@@ -54,7 +54,7 @@ axes:
           동안에도 뇌파가 흔들리지 않습니다. 이렇게 동작 잡음을 잡아야 뇌-컴퓨터
           인터페이스가 실험실에서의 몇 분이 아니라 몇 시간 쓸 수 있는 기술이
           됩니다.
-        refs: [21, 10, 14]
+        refs: [21, 14]
 
   - id: signal
     title_en: Signal Processing & Novel Applications
@@ -94,14 +94,17 @@ axes:
       - title_en: Human / Brain–Machine Interfaces
         title_ko: 인간-기계 / 뇌-기계 인터페이스
         text_en: >-
-          Driving augmented-reality interfaces and machines directly from brain
-          signals, while solving what actually breaks them in practice:
-          electrodes that shift, motion that adds artifact, and accuracy that
-          decays over a long session.
+          Driving augmented-reality interfaces and machines from the body's own
+          signals — brain activity for direct control, and forearm muscle
+          activity read by a soft electrode array to recognize hand gestures.
+          The hard part is what breaks them in practice: electrodes that shift,
+          motion that adds artifact, and accuracy that decays over a long
+          session.
         text_ko: >-
-          뇌 신호로 증강현실 인터페이스와 기계를 직접 조작합니다. 동시에 실제
-          사용에서 문제를 일으키는 것들 — 전극이 밀리는 문제, 움직임이 만드는
-          잡음, 오래 쓸수록 떨어지는 정확도 — 을 함께 풉니다.
+          몸이 내는 신호로 증강현실 인터페이스와 기계를 조작합니다. 뇌 활동으로
+          직접 제어하기도 하고, 소프트 전극 어레이로 전완부 근전도를 읽어 손동작을
+          인식하기도 합니다. 어려운 부분은 실제 사용에서 성능을 깎는 것들입니다 —
+          전극이 밀리는 문제, 움직임이 만드는 잡음, 오래 쓸수록 떨어지는 정확도.
         refs: [21, 10, 4]
 
       - title_en: Cognitive and Physical Performance
