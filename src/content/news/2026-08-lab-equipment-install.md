@@ -10,5 +10,4 @@ summary: >-
 summary_ko: >-
   연구실에 새 실험 장비를 설치했습니다. 자체적으로 측정하고 제작할 수 있는 범위가
   한층 넓어졌습니다.
-image: gallery/2026-08-lab-install/01.jpg
 ---

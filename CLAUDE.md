@@ -47,7 +47,11 @@ src/content/news/*.md        # 뉴스 (파일 1개 = 글 1개)
 
 ## 사이트 구조
 
-`/` Home(대표 비주얼+태그라인, 연구 하이라이트, 최신 논문 3편, 모집 배너) · `/research` · `/people` · `/publications` · `/lectures` · `/news`(뉴스+갤러리) · `/contact` · 동일 구조의 `/ko/…`
+`/` Home(대표 비주얼+태그라인, 연구 하이라이트, 최신 논문 3편, 모집 배너) · `/research` · `/people` ·
+`/publications` · `/lectures` · `/news` · `/gallery` · `/contact` · 동일 구조의 `/ko/…`
+
+뉴스와 갤러리는 별도 페이지다. **뉴스는 글로만** 표시하고(날짜·태그·제목·요약·첨부문서),
+사진은 전부 `/gallery` 에서 행사별로 묶어 보여준다(클릭하면 라이트박스로 크게 보기).
 
 ## 디자인 스펙 (기준 = 현재 사이트 코드)
 

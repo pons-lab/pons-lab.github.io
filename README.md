@@ -21,7 +21,7 @@ GitHub 웹사이트에서 파일을 열고 연필(✏️) 아이콘을 눌러 �
 | 구성원 (교수·대학원생·학부연구생·알럼나이) | `src/data/members.yaml` |
 | 강의 (학기별) | `src/data/lectures.yaml` |
 | 연구 분야·진행 과제 | `src/data/research.yaml` |
-| 갤러리 (행사별 사진 묶음) | `src/data/gallery.yaml` |
+| 갤러리 (행사별 사진 묶음, `/gallery` 페이지) | `src/data/gallery.yaml` |
 | 소식 — 파일 1개 = 글 1개 | `src/content/news/*.md` |
 | 화면에 나오는 버튼·메뉴 문구 | `src/i18n/ui.js` |
 
@@ -58,9 +58,10 @@ tag: Paper
 tag_ko: 논문
 summary: One or two lines in English.
 summary_ko: 한두 줄 요약.
-image: gallery/2026-04-dinner/01.jpg   # 사진 없으면 "" 로 비워두기
 ---
 ```
+
+뉴스는 글로만 표시됩니다. 사진은 갤러리(`/gallery`)에서 따로 관리합니다.
 
 ### 사진 추가
 
