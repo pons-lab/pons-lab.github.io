@@ -38,7 +38,7 @@ export const ui = {
       'Hardware that touches the body, interfaces that turn its signals into control, and the intelligence that reads what they mean.',
     'home.news_kicker': 'News',
     'home.news_title': 'Latest from the lab',
-    'home.news_lead': 'Announcements, milestones, and everyday life in the lab.',
+    'home.news_lead': 'Announcements and milestones from the lab.',
     'home.pubs_kicker': 'Publications',
     'home.pubs_title': 'Selected publications',
     'home.pubs_lead':
@@ -97,7 +97,7 @@ export const ui = {
     'lectures.graduate': 'Graduate',
 
     'news.title': 'News',
-    'news.lead': 'Announcements, milestones, and everyday life in the lab.',
+    'news.lead': 'Announcements and milestones from the lab. Photos live in the gallery.',
     'news.gallery': 'Gallery',
     'news.see_gallery': 'See the photo gallery',
     'news.view_full': 'view full size',
@@ -177,7 +177,7 @@ export const ui = {
       '몸에 닿는 하드웨어, 그 신호를 제어로 바꾸는 인터페이스, 그리고 신호가 뜻하는 바를 읽어내는 지능. 세 축이 하나로 이어집니다.',
     'home.news_kicker': '소식',
     'home.news_title': '연구실 최근 소식',
-    'home.news_lead': '연구실의 공지와 소식, 그리고 일상을 전합니다.',
+    'home.news_lead': '연구실의 공지와 소식을 전합니다.',
     'home.pubs_kicker': '논문',
     'home.pubs_title': '주요 논문',
     'home.pubs_lead':
@@ -235,7 +235,7 @@ export const ui = {
     'lectures.graduate': '대학원',
 
     'news.title': '소식',
-    'news.lead': '연구실의 공지와 소식, 그리고 일상을 전합니다.',
+    'news.lead': '연구실의 공지와 소식을 전합니다. 사진은 갤러리에 있습니다.',
     'news.gallery': '갤러리',
     'news.see_gallery': '사진 갤러리 보기',
     'news.view_full': '원본 크게 보기',

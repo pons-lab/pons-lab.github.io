@@ -1,7 +1,7 @@
 ---
 import { getCollection } from 'astro:content';
 import PageHero from '../PageHero.astro';
-import NewsCard from '../NewsCard.astro';
+import NewsItem from '../NewsItem.astro';
 import { getLangFromUrl, useTranslations, localizePath } from '../../i18n/utils.js';
 
 const lang = getLangFromUrl(Astro.url);
@@ -16,11 +16,11 @@ const items = (await getCollection('news')).sort((a, b) => b.data.date - a.data.
   <div class="container">
     {
       items.length ? (
-        <div class="grid grid-3">
+        <ul class="news-list">
           {items.map((item) => (
-            <NewsCard item={item} />
+            <NewsItem item={item} />
           ))}
-        </div>
+        </ul>
       ) : (
         <p class="muted">{t('news.empty')}</p>
       )
@@ -43,6 +43,12 @@ const items = (await getCollection('news')).sort((a, b) => b.data.date - a.data.
 </section>
 
 <style>
+  .news-list {
+    display: grid;
+    border-top: 1px solid var(--line);
+    padding-top: 1.4rem;
+  }
+
   .to-gallery {
     margin: clamp(2rem, 4vw, 2.75rem) 0 0;
   }

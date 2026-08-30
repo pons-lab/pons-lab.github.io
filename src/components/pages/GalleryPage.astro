@@ -8,7 +8,7 @@ import { getLangFromUrl, useTranslations, pick } from '../../i18n/utils.js';
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 
-// yaml 의 순서대로, 각 행사 폴더에 든 사진을 모두 가져온다.
+// 행사 하나가 카드 하나. 카드를 누르면 그 행사의 사진을 크게 넘겨본다.
 const events = await Promise.all(
   gallery.events
     .map((e) => ({ ...e, photos: galleryPhotos(e.folder) }))
@@ -21,6 +21,8 @@ const events = await Promise.all(
       ),
     }))
 );
+
+const countLabel = (n) => (lang === 'ko' ? `사진 ${n}장` : `${n} photo${n > 1 ? 's' : ''}`);
 ---
 
 <PageHero
@@ -31,36 +33,42 @@ const events = await Promise.all(
 
 <section class="section">
   <div class="container">
-    <div class="events">
+    <ul class="grid grid-3 events">
       {
         events.map((e) => (
-          <section class="event">
-            <h2 class="event-title">
-              <span>{pick(e, 'title', lang)}</span>
-              {e.date && <span class="event-date mono-num">{e.date.replace('-', '.')}</span>}
-            </h2>
-            <ul class="shots">
-              {e.photos.map((photo, i) => (
-                <li class="shot">
-                  <a
-                    href={e.large[i].src}
-                    data-lightbox
-                    data-caption={`${pick(e, 'title', lang)} (${i + 1}/${e.photos.length})`}
-                    aria-label={`${pick(e, 'title', lang)} (${i + 1}/${e.photos.length}) — ${t('news.view_full')}`}
-                  >
-                    <Image src={photo} alt="" width={320} densities={[1, 2]} loading="lazy" />
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </section>
+          <li>
+            <button
+              class="card card-hover event"
+              type="button"
+              data-gallery={JSON.stringify(e.large.map((l) => l.src))}
+              data-title={pick(e, 'title', lang)}
+            >
+              <span class="cover">
+                <Image
+                  src={e.photos[0]}
+                  alt=""
+                  width={480}
+                  densities={[1, 2]}
+                  loading="lazy"
+                />
+                <span class="count mono-num">{e.photos.length}</span>
+              </span>
+              <span class="body">
+                <span class="ev-title">{pick(e, 'title', lang)}</span>
+                <span class="ev-meta mono-num">
+                  {e.date && <>{e.date.replace('-', '.')} · </>}
+                  {countLabel(e.photos.length)}
+                </span>
+              </span>
+            </button>
+          </li>
         ))
       }
-    </div>
+    </ul>
   </div>
 </section>
 
-<!-- 사진 크게 보기 (같은 행사 안에서 앞뒤로 넘길 수 있다) -->
+<!-- 사진 크게 보기 (한 행사 안에서 앞뒤로 넘길 수 있다) -->
 <dialog class="lightbox" aria-label={t('news.gallery')}>
   <button class="lb-close" type="button" aria-label={t('nav.close')}>
     <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true">
@@ -91,59 +99,72 @@ const events = await Promise.all(
 
 <style>
   .events {
-    display: grid;
-    gap: clamp(2rem, 4vw, 2.75rem);
+    align-items: stretch;
   }
-
-  .event-title {
+  .events li {
     display: flex;
-    align-items: baseline;
-    justify-content: space-between;
-    gap: 1rem;
-    font-family: var(--font-sans);
-    font-size: 0.94rem;
-    font-weight: 650;
-    color: var(--ink);
-    padding-bottom: 0.6rem;
-    margin-bottom: 0.9rem;
-    border-bottom: 1px solid var(--line);
   }
 
-  .event-date {
-    font-size: 0.78rem;
-    font-weight: 600;
-    color: var(--accent);
-    flex: none;
-  }
-
-  .shots {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
-    gap: 0.75rem;
-  }
-
-  .shot {
-    border-radius: 10px;
+  .event {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding: 0;
     overflow: hidden;
     border: 1px solid var(--line);
     background: var(--card);
-    aspect-ratio: 4 / 3;
+    text-align: left;
+    font: inherit;
+    color: inherit;
+    cursor: pointer;
   }
 
-  .shot a {
+  .cover {
+    position: relative;
     display: block;
-    width: 100%;
-    height: 100%;
+    aspect-ratio: 4 / 3;
+    border-bottom: 1px solid var(--line);
+    overflow: hidden;
   }
-
-  .shot :global(img) {
+  .cover :global(img) {
     width: 100%;
     height: 100%;
     object-fit: cover;
     transition: transform 0.3s ease;
   }
-  .shot:hover :global(img) {
+  .event:hover .cover :global(img) {
     transform: scale(1.04);
+  }
+
+  .count {
+    position: absolute;
+    right: 0.6rem;
+    bottom: 0.6rem;
+    padding: 0.15rem 0.5rem;
+    border-radius: 999px;
+    background: rgba(10, 16, 28, 0.72);
+    color: #fff;
+    font-size: 0.72rem;
+    font-weight: 600;
+  }
+
+  .body {
+    display: block;
+    padding: 1rem clamp(1rem, 2vw, 1.25rem) 1.15rem;
+  }
+  .ev-title {
+    display: block;
+    font-size: 0.98rem;
+    font-weight: 620;
+    line-height: 1.45;
+    color: var(--ink);
+    letter-spacing: -0.008em;
+  }
+  .ev-meta {
+    display: block;
+    margin-top: 0.3rem;
+    font-size: 0.78rem;
+    color: var(--muted);
   }
 
   /* ── 크게 보기 ─────────────────────────────────────────────────── */
@@ -240,13 +261,6 @@ const events = await Promise.all(
       max-height: 68dvh;
     }
   }
-
-  @media (max-width: 560px) {
-    .shots {
-      grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
-      gap: 0.5rem;
-    }
-  }
 </style>
 
 <script>
@@ -256,25 +270,27 @@ const events = await Promise.all(
   const prev = dialog?.querySelector('.lb-prev');
   const next = dialog?.querySelector('.lb-next');
 
-  // 클릭한 사진이 속한 행사(ul.shots) 안에서만 앞뒤로 넘긴다.
-  let group = [];
+  // 카드 하나가 한 행사. 그 행사의 사진 목록 안에서만 앞뒤로 넘긴다.
+  let photos = [];
+  let title = '';
   let index = 0;
+  let opener = null;
 
   const show = (i) => {
-    index = (i + group.length) % group.length;
-    const link = group[index];
-    img.src = link.href;
-    cap.textContent = link.dataset.caption ?? '';
-    const single = group.length < 2;
+    index = (i + photos.length) % photos.length;
+    img.src = photos[index];
+    cap.textContent = `${title} (${index + 1}/${photos.length})`;
+    const single = photos.length < 2;
     prev.hidden = single;
     next.hidden = single;
   };
 
-  document.querySelectorAll('a[data-lightbox]').forEach((link) => {
-    link.addEventListener('click', (e) => {
-      e.preventDefault();
-      group = [...link.closest('ul').querySelectorAll('a[data-lightbox]')];
-      show(group.indexOf(link));
+  document.querySelectorAll('[data-gallery]').forEach((card) => {
+    card.addEventListener('click', () => {
+      photos = JSON.parse(card.dataset.gallery);
+      title = card.dataset.title ?? '';
+      opener = card;
+      show(0);
       dialog.showModal();
     });
   });
@@ -287,6 +303,9 @@ const events = await Promise.all(
   dialog?.addEventListener('click', (e) => {
     if (!e.target.closest('.lb-figure, .lb-nav, .lb-close')) dialog.close();
   });
+
+  // 닫히면 눌렀던 카드로 초점을 돌려준다.
+  dialog?.addEventListener('close', () => opener?.focus());
 
   dialog?.addEventListener('keydown', (e) => {
     if (e.key === 'ArrowLeft') show(index - 1);

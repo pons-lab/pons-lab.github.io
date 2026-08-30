@@ -1,0 +1,115 @@
+---
+import { getLangFromUrl, formatDate } from '../i18n/utils.js';
+
+// 뉴스는 글 목록으로 보여준다. 사진은 갤러리 페이지에서 따로 다룬다.
+const { item, compact = false } = Astro.props;
+const lang = getLangFromUrl(Astro.url);
+const d = item.data;
+
+const title = lang === 'ko' ? d.title_ko || d.title : d.title;
+const summary = lang === 'ko' ? d.summary_ko || d.summary : d.summary;
+const tag = lang === 'ko' ? d.tag_ko || d.tag : d.tag;
+const fileLabel = lang === 'ko' ? d.file_label_ko || d.file_label : d.file_label;
+---
+
+<li class:list={['news-item', { compact }]}>
+  <p class="meta">
+    <time class="mono-num" datetime={d.date.toISOString().slice(0, 10)}>
+      {formatDate(d.date, lang, { monthOnly: true })}
+    </time>
+    {tag && <span class="tag">{tag}</span>}
+  </p>
+
+  <div class="body">
+    <h3>{title}</h3>
+    {!compact && <p class="summary">{summary}</p>}
+    {
+      !compact && d.file && (
+        <p class="attach">
+          <a href={d.file} target="_blank" rel="noopener">
+            <svg width="13" height="13" viewBox="0 0 16 16" aria-hidden="true">
+              <path
+                d="M8 2v8m0 0L5 7m3 3l3-3M3 13h10"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.6"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+            {fileLabel ?? d.file.split('/').pop()}
+          </a>
+        </p>
+      )
+    }
+  </div>
+</li>
+
+<style>
+  .news-item {
+    display: grid;
+    grid-template-columns: 11rem minmax(0, 1fr);
+    gap: 0.5rem 1.5rem;
+    padding: 1.4rem 0;
+    border-bottom: 1px solid var(--line);
+  }
+  .news-item:first-child {
+    padding-top: 0;
+  }
+  .news-item.compact {
+    padding: 0.95rem 0;
+    grid-template-columns: 8.5rem minmax(0, 1fr);
+  }
+
+  .meta {
+    display: flex;
+    align-items: center;
+    gap: 0.55rem;
+    margin: 0;
+    font-size: 0.78rem;
+    color: var(--muted);
+  }
+  .meta time {
+    white-space: nowrap;
+  }
+
+  h3 {
+    font-family: var(--font-sans);
+    font-size: 1.02rem;
+    font-weight: 620;
+    line-height: 1.45;
+    margin: 0;
+    letter-spacing: -0.008em;
+  }
+  .compact h3 {
+    font-size: 0.95rem;
+  }
+
+  .summary {
+    margin: 0.4rem 0 0;
+    font-size: 0.895rem;
+    line-height: 1.65;
+    color: var(--body);
+    max-width: 72ch;
+  }
+
+  .attach {
+    margin: 0.7rem 0 0;
+  }
+  .attach a {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--accent);
+  }
+
+  @media (max-width: 620px) {
+    .news-item,
+    .news-item.compact {
+      grid-template-columns: minmax(0, 1fr);
+      gap: 0.35rem;
+    }
+  }
+</style>

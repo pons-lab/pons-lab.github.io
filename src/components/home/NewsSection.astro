@@ -1,6 +1,6 @@
 ---
 import { getCollection } from 'astro:content';
-import NewsCard from '../NewsCard.astro';
+import NewsItem from '../NewsItem.astro';
 import { getLangFromUrl, useTranslations, localizePath } from '../../i18n/utils.js';
 
 const lang = getLangFromUrl(Astro.url);
@@ -31,13 +31,18 @@ const items = (await getCollection('news'))
       </a>
     </div>
 
-    <div class="grid grid-3">
-      {items.map((item) => <NewsCard item={item} href={localizePath('/news', lang)} />)}
-    </div>
+    <ul class="news-list">
+      {items.map((item) => <NewsItem item={item} compact />)}
+    </ul>
   </div>
 </section>
 
 <style>
+  .news-list {
+    display: grid;
+    border-top: 1px solid var(--line);
+  }
+
   .head-row {
     display: flex;
     flex-wrap: wrap;
