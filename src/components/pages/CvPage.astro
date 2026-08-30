@@ -547,55 +547,117 @@ const nameLang = (p) => (/[가-힣]/.test(p.inventors) ? 'ko' : 'en');
     }
   }
 
-  /* ── 인쇄 / PDF ─────────────────────────────────────────────────── */
+  /* ── 인쇄 / PDF ─────────────────────────────────────────────────
+     화면용 크기는 rem, 인쇄용은 pt 로 다시 정한다. 둘을 섞으면 rem 로 적힌
+     하위 요소(.note 등)가 pt 로 줄인 부모보다 커져서 위계가 뒤집힌다. */
   @media print {
     .actions {
       display: none;
     }
-    .cv-head {
-      background: none;
-      padding-block: 0 1rem;
-    }
-    .cv-head h1 {
-      font-size: 22pt;
-    }
+
     .body {
       padding-block: 0;
-    }
-    .cv-sec {
-      break-inside: avoid-page;
-      padding-top: 1.1rem;
-      margin-top: 1.1rem;
-    }
-    .cv-sec > h2 {
-      break-after: avoid-page;
-      margin-bottom: 0.7rem;
-    }
-    .pubs li,
-    .entries li {
-      break-inside: avoid;
-    }
-    .pubs li,
-    .entries li,
-    .bullets li,
-    .skills {
-      font-size: 8.6pt;
+      font-size: 9.2pt;
     }
     .cv-head .container,
     .body {
       max-width: none;
     }
-    .pubs li {
-      padding: 0.28rem 0;
-      border-bottom: 0;
+
+    /* 머리말 */
+    .cv-head {
+      background: none;
+      padding-block: 0 0.9rem;
     }
-    .pub-extra {
-      margin-top: 0;
+    .cv-head h1 {
+      font-size: 21pt;
+      margin-bottom: 0.25rem;
     }
-    .cv-sec h3 {
-      padding-bottom: 0.2rem;
+    .role {
+      font-size: 10pt;
+      margin-bottom: 0.45rem;
+    }
+    .contact {
+      font-size: 8.5pt;
+      gap: 0.1rem 0.9rem;
+    }
+
+    /* 섹션. 한 섹션을 통째로 다음 장에 밀면 앞장 아래가 크게 비므로,
+       제목이 혼자 남는 것만 막고 내용은 이어지게 둔다. */
+    .cv-sec {
+      padding-top: 1.35rem;
+      margin-top: 1.35rem;
+    }
+    .cv-sec > h2 {
+      font-size: 8pt;
+      margin-bottom: 0.6rem;
       break-after: avoid-page;
     }
+    .cv-sec h3 {
+      font-size: 9.4pt;
+      margin: 1.1rem 0 0.1rem;
+      padding-bottom: 0.25rem;
+      break-after: avoid-page;
+    }
+    .pubs li,
+    .entries li {
+      break-inside: avoid;
+    }
+
+    /* 경력·학력·과제·강의 */
+    .entries {
+      gap: 0.6rem;
+    }
+    .entries li {
+      grid-template-columns: 7.4rem minmax(0, 1fr);
+      gap: 0.04rem 0.9rem;
+      font-size: 9.2pt;
+      line-height: 1.45;
+    }
+    .entries .period {
+      font-size: 8.4pt;
+    }
+    .where {
+      font-size: 8.8pt;
+    }
+    .note,
+    .lvl {
+      font-size: 8.6pt;
+    }
+
+    /* 논문·특허·학회. 화면과 마찬가지로 가는 선으로 항목을 끊는다. */
+    .pubs li {
+      padding: 0.34rem 0;
+      border-bottom: 1px solid #eef1f7;
+      font-size: 8.9pt;
+      line-height: 1.45;
+    }
+    .pub-extra {
+      margin-top: 0.04rem;
+      font-size: 8.1pt;
+    }
+
+    .bullets {
+      margin-bottom: 1rem;
+    }
+    /* 인쇄에서는 배경색이 찍히지 않아 글머리 점이 사라진다.
+       테두리로 그리면 그대로 남는다. */
+    .bullets li::before {
+      width: 0;
+      height: 0;
+      border: 2.5px solid var(--accent);
+      background: none;
+    }
+    .bullets li {
+      font-size: 9pt;
+      line-height: 1.45;
+    }
+    .skills {
+      grid-template-columns: 7.4rem minmax(0, 1fr);
+      gap: 0.3rem 0.9rem;
+      font-size: 9pt;
+    }
+
     a {
       color: inherit;
       text-decoration: none;

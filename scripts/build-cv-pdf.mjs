@@ -71,7 +71,8 @@ await page.pdf({
   path: out,
   format: 'A4',
   printBackground: false,
-  margin: { top: '15mm', bottom: '15mm', left: '14mm', right: '14mm' },
+  // 좌우 14mm 면 한 줄이 120자를 넘어 읽기 힘들다. 여백을 넓혀 100자 밑으로 둔다.
+  margin: { top: '16mm', bottom: '16mm', left: '19mm', right: '19mm' },
 });
 
 await browser.close();
