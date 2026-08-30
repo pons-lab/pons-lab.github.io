@@ -14,8 +14,8 @@
 events:
   - folder: 2026-08-lab-install
     date: 2026-08
-    title_en: Lab equipment installation
-    title_ko: 실험 장비 설치
+    title_en: Lab space upgrade
+    title_ko: 실험실 환경 개선
 
   - folder: 2026-05-kosombe
     date: 2026-05
