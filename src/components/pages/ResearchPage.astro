@@ -1,6 +1,6 @@
 ---
 import PageHero from '../PageHero.astro';
-import { research, paperById, doiUrl } from '../../lib/data.js';
+import { projectsInOrder, research, paperById, doiUrl } from '../../lib/data.js';
 import { asset } from '../../lib/images.js';
 
 // SVG 다이어그램은 그대로 쓰고, 사진(jpg/png)이 들어오면 크기만 맞춘다.
@@ -84,7 +84,7 @@ const t = useTranslations(lang);
 
     <ul class="projects">
       {
-        research.projects.map((p) => (
+        projectsInOrder().map((p) => (
           <li class="card project">
             <span class="period mono-num">
               {p.period}

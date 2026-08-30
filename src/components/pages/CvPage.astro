@@ -5,9 +5,9 @@ import {
   members,
   cv,
   lectures,
-  research,
   journalsByYear,
   conferencesByScope,
+  projectsInOrder,
   doiUrl,
 } from '../../lib/data.js';
 import { getLangFromUrl, useTranslations, pick } from '../../i18n/utils.js';
@@ -21,8 +21,8 @@ const { unpublished, groups } = journalsByYear();
 const { international, domestic } = conferencesByScope();
 
 // 진행 중인 과제는 역할에 따라 나눠서 싣는다.
-const piProjects = research.projects.filter((p) => p.role === 'pi');
-const coProjects = research.projects.filter((p) => p.role !== 'pi');
+const piProjects = projectsInOrder().filter((p) => p.role === 'pi');
+const coProjects = projectsInOrder().filter((p) => p.role !== 'pi');
 
 // 학술 경력의 첫 항목(현직)에는 연구실 이름을 함께 적는다.
 const labName = lang === 'ko' ? site.name.display_ko : site.name.full_en;
@@ -160,16 +160,22 @@ const nameLang = (p) => (/[가-힣]/.test(p.inventors) ? 'ko' : 'en');
                       <i>{p.venue}</i>
                       {p.detail && `, ${p.detail}`}
                       {p.year && `, ${p.year}`}
-                      {p.doi && (
-                        <>
-                          {'. '}
+                    </span>
+                    {(p.doi || p.metrics) && (
+                      <span class="pub-extra">
+                        {p.doi && (
                           <a href={doiUrl(p.doi)} target="_blank" rel="noopener">
                             DOI {p.doi}
                           </a>
-                        </>
-                      )}
-                      {p.metrics && ` (${p.metrics})`}
-                    </span>
+                        )}
+                        {p.doi && p.metrics && (
+                          <span class="dot" aria-hidden="true">
+                            ·
+                          </span>
+                        )}
+                        {p.metrics && <span>{p.metrics}</span>}
+                      </span>
+                    )}
                   </span>
                 </li>
               ))}
@@ -356,6 +362,12 @@ const nameLang = (p) => (/[가-힣]/.test(p.inventors) ? 'ko' : 'en');
     margin: 1.5rem 0 0;
   }
 
+  /* 1140px 폭에서는 한 줄이 110자를 넘어 눈이 다음 줄을 놓친다.
+     이력서는 읽는 문서이므로 좁은 폭을 쓴다. */
+  .cv-head .container,
+  .body {
+    max-width: var(--container-narrow);
+  }
   .body {
     padding-block: clamp(2.25rem, 5vw, 3.25rem);
   }
@@ -378,12 +390,17 @@ const nameLang = (p) => (/[가-힣]/.test(p.inventors) ? 'ko' : 'en');
     color: var(--accent);
     margin-bottom: 1.25rem;
   }
+  /* 목록을 끊어 주는 표지라 눈에 띄어야 한다. 연도든 "As Principal
+     Investigator" 든 같은 위계이므로 같은 모양으로 둔다. */
   .cv-sec h3 {
     font-family: var(--font-sans);
-    font-size: 0.82rem;
-    font-weight: 650;
-    color: var(--ink);
-    margin: 1.5rem 0 0.7rem;
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--accent);
+    letter-spacing: 0.02em;
+    margin: 1.6rem 0 0.1rem;
+    padding-bottom: 0.35rem;
+    border-bottom: 1px solid var(--line);
   }
   .cv-sec h3:first-of-type {
     margin-top: 0;
@@ -465,16 +482,22 @@ const nameLang = (p) => (/[가-힣]/.test(p.inventors) ? 'ko' : 'en');
     color: var(--body);
   }
 
+  /* 논문 목록은 한 항목이 서너 줄씩 되므로, 항목 사이 여백만으로는 경계가
+     보이지 않는다. 가는 선으로 끊어 준다 (논문 페이지와 같은 방식). */
   .pubs {
     display: grid;
-    gap: 0.7rem;
   }
   .pubs li {
     display: grid;
     grid-template-columns: 2.1rem minmax(0, 1fr);
     gap: 0.75rem;
+    padding: 0.72rem 0;
+    border-bottom: 1px solid var(--line);
     font-size: 0.86rem;
-    line-height: 1.6;
+    line-height: 1.62;
+  }
+  .pubs li:last-child {
+    border-bottom: 0;
   }
   .pubs li.no-num {
     grid-template-columns: minmax(0, 1fr);
@@ -495,9 +518,23 @@ const nameLang = (p) => (/[가-힣]/.test(p.inventors) ? 'ko' : 'en');
     font-style: italic;
     color: var(--body);
   }
+  /* DOI·피인용 지표는 인용 문장에 섞이면 읽는 흐름을 끊는다. 아랫줄로 뺀다. */
+  .pub-extra {
+    display: block;
+    margin-top: 0.15rem;
+    font-size: 0.785rem;
+    color: var(--muted);
+  }
+  .pub-extra .dot {
+    margin: 0 0.4rem;
+    color: var(--line);
+  }
 
   .year-block + .year-block {
-    margin-top: 1.5rem;
+    margin-top: 1.6rem;
+  }
+  .year-block > h3 {
+    margin-top: 0;
   }
 
   @media (max-width: 640px) {
@@ -543,6 +580,21 @@ const nameLang = (p) => (/[가-힣]/.test(p.inventors) ? 'ko' : 'en');
     .bullets li,
     .skills {
       font-size: 8.6pt;
+    }
+    .cv-head .container,
+    .body {
+      max-width: none;
+    }
+    .pubs li {
+      padding: 0.28rem 0;
+      border-bottom: 0;
+    }
+    .pub-extra {
+      margin-top: 0;
+    }
+    .cv-sec h3 {
+      padding-bottom: 0.2rem;
+      break-after: avoid-page;
     }
     a {
       color: inherit;

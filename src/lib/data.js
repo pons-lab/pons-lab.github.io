@@ -63,3 +63,12 @@ export function patentsByStatus() {
     application: pick((p) => p.status !== 'granted'),
   };
 }
+
+// 진행 중인 과제 정렬. 최근 시작한 순서로 두되, 같은 달에 시작한 과제는
+// 연구책임자로 수행하는 쪽을 먼저 보여준다.
+export function projectsInOrder() {
+  const start = (p) => String(p.period).slice(0, 7);
+  return [...research.projects].sort(
+    (a, b) => start(b).localeCompare(start(a)) || (b.role === 'pi') - (a.role === 'pi')
+  );
+}
