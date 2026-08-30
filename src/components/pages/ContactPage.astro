@@ -6,9 +6,12 @@ import { getLangFromUrl, useTranslations, pick } from '../../i18n/utils.js';
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 
-const address = lang === 'ko' ? site.contact.address_ko : site.contact.address_en;
-const room = lang === 'ko' ? site.contact.room_ko : site.contact.room_en;
-const office = pick(members.pi, 'office', lang);
+const lab = site.contact.lab;
+const office = site.contact.office;
+const labAddress = lang === 'ko' ? lab.address_ko : lab.address_en;
+const labRoom = lang === 'ko' ? lab.room_ko : lab.room_en;
+const officeAddress = lang === 'ko' ? office.address_ko : office.address_en;
+const officeRoom = lang === 'ko' ? office.room_ko : office.room_en;
 const how = lang === 'ko' ? site.recruiting.how_to_apply_ko : site.recruiting.how_to_apply_en;
 const affiliation =
   lang === 'ko'
@@ -23,10 +26,10 @@ const affiliation =
     <div class="info">
       <dl class="rows">
         <div class="row">
-          <dt>{t('contact.address')}</dt>
+          <dt>{t('contact.lab')}</dt>
           <dd>
-            <p class="strongish">{room}</p>
-            <p>{address}</p>
+            <p class="strongish">{labRoom}</p>
+            <p>{labAddress}</p>
             <p class="muted small">{affiliation}</p>
             <p class="map">
               <a
@@ -55,17 +58,11 @@ const affiliation =
         </div>
 
         <div class="row">
-          <dt>{t('contact.phone')}</dt>
-          <dd><a href={`tel:${site.contact.phone}`}>{site.contact.phone_display}</a></dd>
-        </div>
-
-        <div class="row">
           <dt>{t('contact.office')}</dt>
           <dd>
-            <p>{office}</p>
-            {members.pi.phone && (
-              <p><a href={`tel:${members.pi.phone}`}>{members.pi.phone}</a></p>
-            )}
+            <p class="strongish">{officeRoom}</p>
+            <p>{officeAddress}</p>
+            <p><a href={`tel:${office.phone}`}>{office.phone_display}</a></p>
           </dd>
         </div>
       </dl>

@@ -9,6 +9,7 @@ import publicationsYaml from '../data/publications.yaml?raw';
 import lecturesYaml from '../data/lectures.yaml?raw';
 import researchYaml from '../data/research.yaml?raw';
 import galleryYaml from '../data/gallery.yaml?raw';
+import cvYaml from '../data/cv.yaml?raw';
 
 export const site = load(siteYaml);
 export const members = load(membersYaml);
@@ -16,6 +17,7 @@ export const publications = load(publicationsYaml);
 export const lectures = load(lecturesYaml);
 export const research = load(researchYaml);
 export const gallery = load(galleryYaml);
+export const cv = load(cvYaml);
 
 /** 저널 논문을 연도별로 묶어 최신순으로 돌려준다. 미출판 논문은 맨 앞의 별도 그룹. */
 export function journalsByYear() {

@@ -1,0 +1,172 @@
+# ============================================================================
+# CV 전용 데이터
+#
+# 여기에는 사이트의 다른 파일에 없는 것만 둡니다. 중복 관리를 피하기 위해
+# CV 페이지(/cv)의 나머지 섹션은 기존 파일을 그대로 재사용합니다.
+#
+#   Education · Career · Honors & Awards → members.yaml
+#   Publications · Conference Presentations → publications.yaml
+#   현재 진행 과제 → research.yaml (projects)
+#   Teaching → lectures.yaml
+#   연구실명 · 연락처 → site.yaml
+# ============================================================================
+
+# ── 연구 관심사 ──────────────────────────────────────────────────────────
+research_interests:
+  - en: >-
+      Artificial intelligence (machine / deep learning) based human– and
+      brain–machine interfaces
+    ko: 인공지능(기계학습·딥러닝) 기반 인간-기계 / 뇌-기계 인터페이스
+  - en: Development of new biomedical signal processing algorithms
+    ko: 새로운 생체신호 처리 알고리즘 개발
+  - en: >-
+      Soft, flexible and stretchable electronics · mixed reality (AR/VR) ·
+      human body communication
+    ko: 소프트·유연·신축성 전자소자 · 혼합현실(AR/VR) · 인체통신
+
+# ── 연구 역량 ────────────────────────────────────────────────────────────
+skills:
+  - label_en: Research techniques
+    label_ko: 연구 기법
+    value_en: >-
+      Biomedical signal processing & feature extraction, machine / deep
+      learning, embedded software development, Android app development,
+      circuit design (Altium, KiCad)
+    value_ko: >-
+      생체신호 처리 및 특징 추출, 기계학습·딥러닝, 임베디드 소프트웨어 개발,
+      안드로이드 앱 개발, 회로 설계 (Altium, KiCad)
+  - label_en: Programming
+    label_ko: 프로그래밍
+    value_en: MATLAB, Python, C, C++, Java, Kotlin, Dart
+    value_ko: MATLAB, Python, C, C++, Java, Kotlin, Dart
+  - label_en: Languages
+    label_ko: 언어
+    value_en: Korean (native), English (fluent)
+    value_ko: 한국어(모국어), 영어(유창)
+
+# ── 특허 ─────────────────────────────────────────────────────────────────
+# status: granted(등록) / application(출원)
+patents:
+  - no: 5
+    inventors: Chang-Hwan Im, Jung Hwan Kim, Suhye Kim, Jaehoon Cheon, Hodam Kim
+    title_en: >-
+      Method and apparatus for analyzing concentration types based on
+      electroencephalography using artificial intelligence
+    title_ko: 인공지능을 활용한 뇌전도 기반 집중력 유형 분석 방법 및 그 장치
+    number: 10-2024-0171693
+    date: 2024.11.27
+    country_en: Korea
+    country_ko: 대한민국
+    status: application
+
+  - no: 4
+    inventors: Chang-Hwan Im, Hodam Kim
+    title_en: Method and device for estimating onset time point of muscle movement
+    title_ko: 근육 움직임 시작 시점 추정 방법 및 장치
+    number: 10-2399318
+    date: 2022.05.13
+    country_en: Korea
+    country_ko: 대한민국
+    status: granted
+
+  - no: 3
+    inventors: Chang-Hwan Im, Ho-Seung Cha, Seong-Jun Choi, Hodam Kim
+    title_en: >-
+      Apparatus and method for user authentication using facial EMG by
+      measuring changes of facial expression of HMD user
+    title_ko: HMD 착용자의 표정 변화를 측정한 얼굴 근전도 기반 사용자 인증 장치 및 방법
+    number: 10-2094488
+    date: 2020.03.23
+    country_en: Korea
+    country_ko: 대한민국
+    status: granted
+
+  - no: 2
+    inventors: Chang-Hwan Im, Hodam Kim
+    title_en: >-
+      Method and apparatus for detecting craving state for game based on
+      electrooculogram
+    title_ko: 안전도 기반 게임 중독 갈망 상태 검출 방법 및 장치
+    number: 10-2014717
+    date: 2019.08.21
+    country_en: Korea
+    country_ko: 대한민국
+    status: granted
+
+  - no: 1
+    inventors: Chang-Hwan Im, Hodam Kim
+    title_en: >-
+      Method for estimating and managing respiratory rate using
+      photoplethysmography
+    title_ko: 광용적맥파를 이용한 호흡률 추정 및 관리 방법
+    number: 10-1837835
+    date: 2018.03.06
+    country_en: Korea
+    country_ko: 대한민국
+    status: granted
+
+# ── 과거 참여 과제 (연구원으로 참여) ─────────────────────────────────────
+# 현재 책임자(PI)로 수행 중인 과제는 research.yaml 의 projects 에 있습니다.
+past_projects:
+  - period: 2022.01 – 2024.03
+    funder_en: National Institutes of Health (NIH)
+    funder_ko: 미국 국립보건원 (NIH)
+    title_en: Deep phenotyping in blepharospasm
+    title_ko: 눈꺼풀연축의 심층 표현형 분석
+    role_en: Researcher
+    role_ko: 연구원
+
+  - period: 2022.01 – 2022.08
+    funder_en: "Biolocity: Guiding Medical Technology to Market"
+    funder_ko: "Biolocity: Guiding Medical Technology to Market"
+    title_en: >-
+      Disposable, soft, home sleep monitoring biopatch for at-home
+      polysomnography
+    title_ko: 가정용 수면다원검사를 위한 일회용 소프트 수면 모니터링 바이오패치
+    role_en: Researcher
+    role_ko: 연구원
+
+  - period: 2019.09 – 2023.02
+    funder_en: National Research Foundation of Korea (NRF)
+    funder_ko: 한국연구재단 (NRF)
+    title_en: >-
+      Development of user-customized neuro-education technologies using
+      human–computer interfaces based on electroencephalography and facial
+      biosignals
+    title_ko: >-
+      뇌파 및 얼굴 생체신호 기반 인간-컴퓨터 인터페이스를 활용한 사용자 맞춤형
+      뉴로 교육 기술 개발
+    role_en: Researcher
+    role_ko: 연구원
+
+  - period: 2017.04 – 2023.12
+    funder_en: Institute for Information & Communications Technology Promotion (IITP)
+    funder_ko: 정보통신기획평가원 (IITP)
+    title_en: >-
+      Development of non-invasive integrated BCI software platform to control
+      home appliances and external devices by user's thought via AR/VR interface
+    title_ko: >-
+      AR/VR 인터페이스를 통해 사용자의 생각으로 가전 및 외부 기기를 제어하는
+      비침습 통합 BCI 소프트웨어 플랫폼 개발
+    role_en: Researcher
+    role_ko: 연구원
+
+  - period: 2017.09 – 2020.08
+    funder_en: Samsung Research Funding & Incubation Center for Future Technology
+    funder_ko: 삼성미래기술육성센터
+    title_en: >-
+      Recognizing facial expressions based on facial electromyogram for
+      interactive VR applications
+    title_ko: 인터랙티브 VR 응용을 위한 얼굴 근전도 기반 표정 인식
+    role_en: Researcher
+    role_ko: 연구원
+
+  - period: 2015.10 – 2019.09
+    funder_en: National Research Foundation of Korea (NRF)
+    funder_ko: 한국연구재단 (NRF)
+    title_en: >-
+      Development of a technology for real-time monitoring of craving for
+      internet gaming based on physiological signal analyses
+    title_ko: 생체신호 분석 기반 인터넷 게임 갈망 실시간 모니터링 기술 개발
+    role_en: Researcher
+    role_ko: 연구원

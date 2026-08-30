@@ -33,7 +33,7 @@ const jsonLd = {
       alternateName: [site.name.short_en, site.name.full_ko],
       url: Astro.site?.href,
       email: site.contact.email,
-      telephone: site.contact.phone,
+      telephone: site.contact.office.phone,
       description: site.description.en,
       parentOrganization: {
         '@type': 'CollegeOrUniversity',
@@ -41,7 +41,7 @@ const jsonLd = {
       },
       address: {
         '@type': 'PostalAddress',
-        streetAddress: site.contact.room_en,
+        streetAddress: site.contact.lab.room_en,
         addressLocality: 'Wonju-si',
         addressRegion: 'Gangwon State',
         postalCode: '26493',

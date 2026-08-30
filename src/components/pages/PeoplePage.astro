@@ -3,7 +3,7 @@ import { Image } from 'astro:assets';
 import PageHero from '../PageHero.astro';
 import { members } from '../../lib/data.js';
 import { asset } from '../../lib/images.js';
-import { getLangFromUrl, useTranslations, pick } from '../../i18n/utils.js';
+import { getLangFromUrl, useTranslations, localizePath, pick } from '../../i18n/utils.js';
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
@@ -65,6 +65,11 @@ const piPhoto = asset(pi.photo);
         </ul>
 
         <p class="bio">{piBio}</p>
+
+        <p class="cv-links">
+          <a class="btn btn-primary" href={localizePath('/cv', lang)}>{t('cv.title')}</a>
+          <a class="btn btn-ghost" href="/cv.pdf" download>{t('cv.download')}</a>
+        </p>
 
         <div class="grid grid-3 detail">
           <div>
@@ -327,6 +332,14 @@ const piPhoto = asset(pi.photo);
 
   .bio {
     max-width: 66ch;
+    margin-bottom: 1.25rem;
+  }
+
+  .cv-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+    margin: 0 0 1.75rem;
     padding-bottom: 1.75rem;
     border-bottom: 1px solid var(--line);
   }

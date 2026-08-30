@@ -41,14 +41,27 @@ institution:
 
 contact:
   email: hodamkim@yonsei.ac.kr
-  phone: "+82-33-760-2859"
-  phone_display: +82-33-760-2859
-  address_en: >-
-    204 Sanhak Hall, 1 Yonseidae-gil, Heungeop-myeon, Wonju-si,
-    Gangwon State 26493, Republic of Korea
-  address_ko: 강원특별자치도 원주시 흥업면 연세대길 1, 산학관 204호 (26493)
-  room_en: Room 204, Sanhak Hall
-  room_ko: 산학관 204호
+
+  # 실험실 — 연구실 공간. 별도 전화는 없습니다.
+  lab:
+    room_en: Room 204, Sanhak Hall
+    room_ko: 산학관 204호
+    address_en: >-
+      Room 204, Sanhak Hall, 1 Yonseidae-gil, Heungeop-myeon, Wonju-si,
+      Gangwon State 26493, Republic of Korea
+    address_ko: 강원특별자치도 원주시 흥업면 연세대길 1, 산학관 204호 (26493)
+
+  # 교수 연구실 — 푸터와 CV 는 이쪽 주소·전화를 씁니다.
+  office:
+    room_en: Room 201, Baekun Hall
+    room_ko: 백운관 201호
+    address_en: >-
+      Room 201, Baekun Hall, 1 Yonseidae-gil, Heungeop-myeon, Wonju-si,
+      Gangwon State 26493, Republic of Korea
+    address_ko: 강원특별자치도 원주시 흥업면 연세대길 1, 백운관 201호 (26493)
+    phone: "+82-33-760-2490"
+    phone_display: +82-33-760-2490
+
   map_url: https://maps.google.com/?q=연세대학교+미래캠퍼스+산학관
 
 # 대학원생·학부연구생 모집 안내 (메인 페이지 리본 + Join 밴드 + Contact 페이지)

@@ -1,0 +1,516 @@
+---
+import Authors from '../Authors.astro';
+import {
+  site,
+  members,
+  cv,
+  lectures,
+  research,
+  journalsByYear,
+  conferencesByScope,
+  doiUrl,
+} from '../../lib/data.js';
+import { getLangFromUrl, useTranslations, pick } from '../../i18n/utils.js';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+const pi = members.pi;
+const office = site.contact.office;
+const { unpublished, groups } = journalsByYear();
+const { international, domestic } = conferencesByScope();
+
+// 학술 경력의 첫 항목(현직)에는 연구실 이름을 함께 적는다.
+const labName = lang === 'ko' ? site.name.display_ko : site.name.full_en;
+const officeAddress = lang === 'ko' ? office.address_ko : office.address_en;
+const levelLabel = (level) =>
+  level === 'graduate' ? t('lectures.graduate') : t('lectures.undergraduate');
+---
+
+<article class="cv">
+  <header class="cv-head">
+    <div class="container">
+      <h1>{lang === 'ko' ? `${pi.name_ko} (${pi.name_en})` : pi.name_en}</h1>
+      <p class="role">
+        {pick(pi, 'title', lang)} · {pick(pi, 'affiliation', lang)}
+      </p>
+      <p class="contact">
+        <span>{officeAddress}</span>
+        <span><a href={`mailto:${site.contact.email}`}>{site.contact.email}</a></span>
+        <span><a href={`tel:${office.phone}`}>{office.phone_display}</a></span>
+        {pi.scholar_url && (
+          <span><a href={pi.scholar_url} target="_blank" rel="noopener">Google Scholar</a></span>
+        )}
+      </p>
+      <p class="actions">
+        <a class="btn btn-primary" href="/cv.pdf" download>{t('cv.download')}</a>
+      </p>
+    </div>
+  </header>
+
+  <div class="container body">
+    <!-- 1. Academic Appointments -->
+    <section class="cv-sec">
+      <h2>{t('cv.appointments')}</h2>
+      <ul class="entries">
+        {
+          pi.experience.map((e, i) => (
+            <li>
+              <span class="period mono-num">
+                {lang === 'ko' ? e.period_ko || e.period : e.period}
+              </span>
+              <strong>{pick(e, 'role', lang)}</strong>
+              <span class="where">{pick(e, 'place', lang)}</span>
+              <span class="note">{i === 0 ? labName : pick(e, 'note', lang)}</span>
+            </li>
+          ))
+        }
+      </ul>
+    </section>
+
+    <!-- 2. Education -->
+    <section class="cv-sec">
+      <h2>{t('cv.education')}</h2>
+      <ul class="entries">
+        {
+          pi.education.map((e) => (
+            <li>
+              <span class="period mono-num">{e.period}</span>
+              <strong>{pick(e, 'role', lang)}</strong>
+              <span class="where">{pick(e, 'place', lang)}</span>
+              {(e.note_en || e.note_ko) && <span class="note">{pick(e, 'note', lang)}</span>}
+            </li>
+          ))
+        }
+      </ul>
+    </section>
+
+    <!-- 3. Research Interests -->
+    <section class="cv-sec">
+      <h2>{t('cv.interests')}</h2>
+      <ul class="bullets">
+        {cv.research_interests.map((r) => <li>{r[lang]}</li>)}
+      </ul>
+      <dl class="skills">
+        {
+          cv.skills.map((s) => (
+            <>
+              <dt>{pick(s, 'label', lang)}</dt>
+              <dd>{pick(s, 'value', lang)}</dd>
+            </>
+          ))
+        }
+      </dl>
+    </section>
+
+    <!-- 4. Publications -->
+    <section class="cv-sec">
+      <h2>{t('cv.publications')}</h2>
+
+      {
+        unpublished.length > 0 && (
+          <div class="year-block">
+            <h3>{t('cv.in_preparation')}</h3>
+            <ul class="pubs" lang="en">
+              {unpublished.map((p) => (
+                <li class="no-num">
+                  <span class="pub-body">
+                    <Authors authors={p.authors} />
+                    <span class="pub-title">, “{p.title}”</span>
+                    <span class="pub-meta"> ({t('pub.in_revision')})</span>
+                  </span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        )
+      }
+
+      {
+        groups.map((g) => (
+          <div class="year-block">
+            <h3 class="mono-num">{g.year}</h3>
+            <ul class="pubs" lang="en">
+              {g.items.map((p) => (
+                <li>
+                  <span class="num mono-num">{p.id}.</span>
+                  <span class="pub-body">
+                    <Authors authors={p.authors} />
+                    <span class="pub-title">, “{p.title},”</span>
+                    <span class="pub-meta">
+                      {' '}
+                      <i>{p.venue}</i>
+                      {p.detail && `, ${p.detail}`}
+                      {p.year && `, ${p.year}`}
+                      {p.doi && (
+                        <>
+                          {'. '}
+                          <a href={doiUrl(p.doi)} target="_blank" rel="noopener">
+                            DOI {p.doi}
+                          </a>
+                        </>
+                      )}
+                      {p.metrics && ` (${p.metrics})`}
+                    </span>
+                  </span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))
+      }
+    </section>
+
+    <!-- 5. Grants & Funded Projects -->
+    <section class="cv-sec">
+      <h2>{t('cv.grants')}</h2>
+
+      <h3>{t('cv.grants_pi')}</h3>
+      <ul class="entries">
+        {
+          research.projects.map((p) => (
+            <li>
+              <span class="period mono-num">{p.period}</span>
+              <strong>{pick(p, 'title', lang)}</strong>
+              <span class="where">{t('cv.role_pi')}</span>
+            </li>
+          ))
+        }
+      </ul>
+
+      <h3>{t('cv.grants_past')}</h3>
+      <ul class="entries">
+        {
+          cv.past_projects.map((p) => (
+            <li>
+              <span class="period mono-num">{p.period}</span>
+              <strong>{pick(p, 'title', lang)}</strong>
+              <span class="where">{pick(p, 'funder', lang)}</span>
+              <span class="note">{pick(p, 'role', lang)}</span>
+            </li>
+          ))
+        }
+      </ul>
+    </section>
+
+    <!-- 6. Teaching -->
+    <section class="cv-sec">
+      <h2>{t('cv.teaching')}</h2>
+      <ul class="entries">
+        {
+          lectures.semesters.map((s) => (
+            <li>
+              <span class="period mono-num">{s.id}</span>
+              <strong>{pick(s, 'term', lang)}</strong>
+              <span class="where">
+                {s.courses.map((c, i) => (
+                  <>
+                    {i > 0 && ' · '}
+                    {pick(c, 'title', lang)}
+                    <span class="lvl"> ({levelLabel(c.level)})</span>
+                  </>
+                ))}
+              </span>
+            </li>
+          ))
+        }
+      </ul>
+    </section>
+
+    <!-- 7. Patents -->
+    <section class="cv-sec">
+      <h2>{t('cv.patents')}</h2>
+      <ul class="pubs">
+        {
+          cv.patents.map((p) => (
+            <li>
+              <span class="num mono-num">{p.no}.</span>
+              <span class="pub-body">
+                <span lang="en">{p.inventors}</span>
+                <span class="pub-title">, “{pick(p, 'title', lang)},”</span>
+                <span class="pub-meta">
+                  {' '}
+                  <span class="mono-num">{p.number}</span>, {p.date} (
+                  {pick(p, 'country', lang)}) — {t(`cv.patent_${p.status}`)}
+                </span>
+              </span>
+            </li>
+          ))
+        }
+      </ul>
+    </section>
+
+    <!-- 8. Conference Presentations -->
+    <section class="cv-sec">
+      <h2>{t('cv.conferences')}</h2>
+      {
+        [
+          { label: t('pub.international'), list: international },
+          { label: t('pub.domestic'), list: domestic },
+        ].map((block) => (
+          <div class="year-block">
+            <h3>{block.label}</h3>
+            <ul class="pubs" lang="en">
+              {block.list.map((c, i) => (
+                <li>
+                  <span class="num mono-num">{block.list.length - i}.</span>
+                  <span class="pub-body">
+                    <Authors authors={c.authors} />
+                    <span class="pub-title">, “{c.title},”</span>
+                    <span class="pub-meta">
+                      {' '}
+                      <i>{c.venue}</i>
+                      {c.place && `, ${c.place}`}
+                      {c.date && `, ${c.date}`}
+                    </span>
+                  </span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))
+      }
+    </section>
+
+    <!-- 9. Honors & Awards -->
+    <section class="cv-sec">
+      <h2>{t('cv.awards')}</h2>
+      <ul class="entries">
+        {
+          pi.awards.map((a) => (
+            <li>
+              <span class="period mono-num">
+                {lang === 'ko' ? a.year_ko || a.year : a.year}
+              </span>
+              <strong>{pick(a, 'title', lang)}</strong>
+              <span class="where">{pick(a, 'org', lang)}</span>
+              {(a.advisee_en || a.advisee_ko) && (
+                <span class="note">{pick(a, 'advisee', lang)}</span>
+              )}
+            </li>
+          ))
+        }
+      </ul>
+    </section>
+  </div>
+</article>
+
+<style>
+  .cv-head {
+    padding-block: clamp(2.5rem, 6vw, 4rem) clamp(1.75rem, 3vw, 2.25rem);
+    border-bottom: 1px solid var(--line);
+    background:
+      radial-gradient(1100px 340px at 8% -30%, #eef3fd 0%, rgba(238, 243, 253, 0) 70%),
+      var(--page);
+  }
+  .cv-head h1 {
+    font-size: clamp(1.9rem, 4vw, 2.6rem);
+    margin-bottom: 0.4rem;
+  }
+  .role {
+    font-size: 1.02rem;
+    font-weight: 550;
+    color: var(--accent);
+    margin: 0 0 0.7rem;
+  }
+  .contact {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.25rem 1.1rem;
+    margin: 0;
+    font-size: 0.885rem;
+    color: var(--body);
+  }
+  .actions {
+    margin: 1.5rem 0 0;
+  }
+
+  .body {
+    padding-block: clamp(2.25rem, 5vw, 3.25rem);
+  }
+
+  .cv-sec {
+    padding-top: clamp(1.75rem, 3vw, 2.5rem);
+    margin-top: clamp(1.75rem, 3vw, 2.5rem);
+    border-top: 1px solid var(--line);
+  }
+  .cv-sec:first-child {
+    padding-top: 0;
+    margin-top: 0;
+    border-top: 0;
+  }
+  .cv-sec > h2 {
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 1.25rem;
+  }
+  .cv-sec h3 {
+    font-family: var(--font-sans);
+    font-size: 0.82rem;
+    font-weight: 650;
+    color: var(--ink);
+    margin: 1.5rem 0 0.7rem;
+  }
+  .cv-sec h3:first-of-type {
+    margin-top: 0;
+  }
+
+  .entries {
+    display: grid;
+    gap: 1rem;
+  }
+  .entries li {
+    display: grid;
+    grid-template-columns: 10rem minmax(0, 1fr);
+    gap: 0.1rem 1.25rem;
+    font-size: 0.9rem;
+    line-height: 1.55;
+  }
+  .entries .period {
+    grid-row: span 4;
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: var(--accent);
+  }
+  .entries strong {
+    font-weight: 620;
+    color: var(--ink);
+  }
+  .where {
+    color: var(--body);
+  }
+  .note {
+    color: var(--muted);
+    font-size: 0.83rem;
+  }
+  .lvl {
+    color: var(--muted);
+  }
+
+  .bullets {
+    display: grid;
+    gap: 0.45rem;
+    margin-bottom: 1.5rem;
+  }
+  .bullets li {
+    position: relative;
+    padding-left: 1rem;
+    font-size: 0.9rem;
+    line-height: 1.6;
+  }
+  .bullets li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.62em;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: var(--accent);
+    opacity: 0.6;
+  }
+
+  .skills {
+    display: grid;
+    grid-template-columns: 10rem minmax(0, 1fr);
+    gap: 0.5rem 1.25rem;
+    margin: 0;
+    font-size: 0.88rem;
+  }
+  .skills dt {
+    font-weight: 620;
+    color: var(--ink);
+  }
+  .skills dd {
+    margin: 0;
+    color: var(--body);
+  }
+
+  .pubs {
+    display: grid;
+    gap: 0.7rem;
+  }
+  .pubs li {
+    display: grid;
+    grid-template-columns: 2.1rem minmax(0, 1fr);
+    gap: 0.75rem;
+    font-size: 0.86rem;
+    line-height: 1.6;
+  }
+  .pubs li.no-num {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .pubs .num {
+    color: var(--muted);
+    font-weight: 600;
+    text-align: right;
+  }
+  .pub-title {
+    color: var(--ink);
+    font-weight: 550;
+  }
+  .pub-meta {
+    color: var(--muted);
+  }
+  .pub-meta i {
+    font-style: italic;
+    color: var(--body);
+  }
+
+  .year-block + .year-block {
+    margin-top: 1.5rem;
+  }
+
+  @media (max-width: 640px) {
+    .entries li,
+    .skills {
+      grid-template-columns: minmax(0, 1fr);
+    }
+    .entries .period {
+      grid-row: auto;
+    }
+  }
+
+  /* ── 인쇄 / PDF ─────────────────────────────────────────────────── */
+  @media print {
+    .actions {
+      display: none;
+    }
+    .cv-head {
+      background: none;
+      padding-block: 0 1rem;
+    }
+    .cv-head h1 {
+      font-size: 22pt;
+    }
+    .body {
+      padding-block: 0;
+    }
+    .cv-sec {
+      break-inside: avoid-page;
+      padding-top: 1.1rem;
+      margin-top: 1.1rem;
+    }
+    .cv-sec > h2 {
+      break-after: avoid-page;
+      margin-bottom: 0.7rem;
+    }
+    .pubs li,
+    .entries li {
+      break-inside: avoid;
+    }
+    .pubs li,
+    .entries li,
+    .bullets li,
+    .skills {
+      font-size: 8.6pt;
+    }
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+  }
+</style>

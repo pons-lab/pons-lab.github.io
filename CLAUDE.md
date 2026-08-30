@@ -99,7 +99,8 @@ src/content/news/*.md        # 뉴스 (파일 1개 = 글 1개)
 ## 콘텐츠 출처
 
 - 기존 사이트 https://sites.google.com/view/npstlab 의 콘텐츠를 이전한다 (Home, People, Research, Publications, Lecture, Board, Contact) — 연구실명만 PONS Lab으로 교체
-- 주소·전화는 Contact 페이지 기준(산학관 204호, +82-33-760-2859)으로 통일하되, 최종 확정 전 사용자에게 확인할 것
+- 연락처는 두 곳을 구분한다: **실험실**은 산학관 204호(전화 없음), **교수 연구실**은 백운관 201호(+82-33-760-2490).
+  Contact 페이지는 둘 다 표기하고(지도는 산학관), 푸터와 CV 는 교수 연구실 기준으로 통일한다.
 
 ## 작업 방식
 
