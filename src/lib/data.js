@@ -1,16 +1,21 @@
-import fs from 'node:fs';
-import path from 'node:path';
 import { load } from 'js-yaml';
 
-const dataDir = path.resolve(process.cwd(), 'src/data');
-const read = (file) => load(fs.readFileSync(path.join(dataDir, file), 'utf8'));
+// yaml 파일을 문자열로 불러와 파싱한다.
+// `?raw` 로 불러오면 개발 서버가 파일 변경을 감지해, yaml 을 저장하는 즉시
+// 브라우저에 반영된다. (fs.readFileSync 로 읽으면 서버를 껐다 켜야 한다.)
+import siteYaml from '../data/site.yaml?raw';
+import membersYaml from '../data/members.yaml?raw';
+import publicationsYaml from '../data/publications.yaml?raw';
+import lecturesYaml from '../data/lectures.yaml?raw';
+import researchYaml from '../data/research.yaml?raw';
+import galleryYaml from '../data/gallery.yaml?raw';
 
-export const site = read('site.yaml');
-export const members = read('members.yaml');
-export const publications = read('publications.yaml');
-export const lectures = read('lectures.yaml');
-export const research = read('research.yaml');
-export const gallery = read('gallery.yaml');
+export const site = load(siteYaml);
+export const members = load(membersYaml);
+export const publications = load(publicationsYaml);
+export const lectures = load(lecturesYaml);
+export const research = load(researchYaml);
+export const gallery = load(galleryYaml);
 
 /** 저널 논문을 연도별로 묶어 최신순으로 돌려준다. 미출판 논문은 맨 앞의 별도 그룹. */
 export function journalsByYear() {

@@ -9,11 +9,17 @@ axes:
     title_en: Wearable Electronics & Advanced Sensors
     title_ko: 웨어러블 전자소자 & 첨단 센서
     lead_en: >-
-      We design skin-conformal, soft bioelectronics that stay comfortable enough
-      to wear all day — and accurate enough to trust in the clinic.
+      Integrated multi-sensor monitoring systems, soft physiological signal
+      patches, and ultra-compact brain sensors for seamless daily monitoring.
     lead_ko: >-
-      하루 종일 착용해도 편안하면서 임상에서 신뢰할 만큼 정확한, 피부에 밀착되는
-      소프트 바이오일렉트로닉스를 설계합니다.
+      통합 멀티센서 모니터링 시스템, 소프트 생체신호 패치, 그리고 일상에서 쓸 수 있는
+      초소형 뇌신호 센서를 만듭니다.
+    # 카드 태그 (메인 페이지 Research 카드 하단)
+    tags_en: [Soft patch, Brain sensor, Multi-sensor]
+    tags_ko: [소프트 패치, 뇌신호 센서, 멀티센서]
+    # 카드 썸네일 이미지. src/assets/research/ 에 파일을 넣고 파일명을 적으면
+    # 사진이 표시됩니다. 비워두면 파형 그래픽이 대신 표시됩니다.
+    image: ""
     topics:
       - title_en: Integrated Multi-Sensor Monitoring System
         title_ko: 통합 멀티센서 모니터링 시스템
@@ -43,11 +49,14 @@ axes:
     title_en: Signal Processing & Novel Applications
     title_ko: 신호처리 & 새로운 응용
     lead_en: >-
-      We turn raw biosignals into decisions — decoding brain and body data with
-      machine learning, then putting it to work in health and interaction.
+      Healthcare monitoring, mental & physical state tracking, human/brain–machine
+      interfaces, and emotion recognition.
     lead_ko: >-
-      측정한 생체신호를 기계학습으로 해석해 의미 있는 판단으로 바꾸고, 이를
-      헬스케어와 인간-기계 상호작용에 적용합니다.
+      헬스케어 모니터링, 정신·신체 상태 추적, 인간/뇌-기계 인터페이스, 감정 인식까지
+      측정한 신호를 실제 응용으로 잇습니다.
+    tags_en: [BCI / HMI, Healthcare, Emotion AI]
+    tags_ko: [BCI / HMI, 헬스케어, 감정 인식 AI]
+    image: ""
     topics:
       - title_en: Healthcare Monitoring
         title_ko: 헬스케어 모니터링

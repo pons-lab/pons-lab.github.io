@@ -14,53 +14,38 @@ const isActive = (path) => {
   return current === target || current.startsWith(`${target}/`);
 };
 
-const otherLang = lang === 'ko' ? 'en' : 'ko';
-const otherLabel = lang === 'ko' ? 'EN' : 'KO';
-const otherHref = alternatePath(Astro.url.pathname, otherLang);
+const university = lang === 'ko' ? site.institution.university_ko : site.institution.university_en;
+const enHref = alternatePath(Astro.url.pathname, 'en');
+const koHref = alternatePath(Astro.url.pathname, 'ko');
 ---
 
 <header class="site-header">
   <div class="container bar">
-    <a class="brand" href={home}>
-      <span class="brand-mark" aria-hidden="true">
-        <svg viewBox="0 0 32 32" width="32" height="32" fill="none">
-          <rect width="32" height="32" rx="9" fill="var(--ink)"></rect>
-          <path
-            d="M7 21c3.2 0 3.6-9 6.6-9 2.4 0 2.6 6.2 4.9 6.2 2.1 0 2.4-4.6 4.3-4.6"
-            stroke="#7ea6ff"
-            stroke-width="2.1"
-            stroke-linecap="round"
-            stroke-linejoin="round"></path>
-        </svg>
-      </span>
-      <span class="brand-text">
-        <strong>{site.name.short_en}</strong>
-        <small>{lang === 'ko' ? site.name.full_ko : site.name.full_en}</small>
-      </span>
+    <a class="logo" href={home}>
+      <b>{site.name.short_en}</b>
+      <span>{university}</span>
     </a>
 
-    <nav class="nav" aria-label={t('nav.menu')}>
-      <ul>
-        {
-          navItems.map((item) => (
-            <li>
-              <a
-                href={localizePath(item.path, lang)}
-                class={isActive(item.path) ? 'active' : ''}
-                aria-current={isActive(item.path) ? 'page' : undefined}
-              >
-                {t(item.key)}
-              </a>
-            </li>
-          ))
-        }
-      </ul>
+    <nav class="menu" aria-label={t('nav.menu')}>
+      {
+        navItems.map((item) => (
+          <a
+            href={localizePath(item.path, lang)}
+            class={isActive(item.path) ? 'active' : ''}
+            aria-current={isActive(item.path) ? 'page' : undefined}
+          >
+            {t(item.key)}
+          </a>
+        ))
+      }
     </nav>
 
     <div class="tools">
-      <a class="lang-switch" href={otherHref} lang={otherLang} aria-label={t('a11y.lang')}>
-        {otherLabel}
-      </a>
+      <div class="lang" aria-label={t('a11y.lang')}>
+        <a href={enHref} class={lang === 'en' ? 'on' : ''} lang="en">EN</a>
+        <span aria-hidden="true">·</span>
+        <a href={koHref} class={lang === 'ko' ? 'on' : ''} lang="ko">KO</a>
+      </div>
       <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="mobile-nav">
         <span class="sr-only">{t('nav.menu')}</span>
         <span class="bars" aria-hidden="true"><i></i><i></i><i></i></span>
@@ -89,117 +74,103 @@ const otherHref = alternatePath(Astro.url.pathname, otherLang);
     position: sticky;
     top: 0;
     z-index: 50;
-    background: rgba(251, 252, 254, 0.86);
-    backdrop-filter: saturate(150%) blur(10px);
+    background: rgba(251, 252, 254, 0.92);
+    backdrop-filter: blur(8px);
     border-bottom: 1px solid var(--line);
   }
 
   .bar {
     display: flex;
     align-items: center;
-    gap: 1.25rem;
-    min-height: 70px;
+    justify-content: space-between;
+    gap: 1.5rem;
+    height: 64px;
   }
 
-  .brand {
+  .logo {
     display: flex;
-    align-items: center;
-    gap: 0.65rem;
+    align-items: baseline;
+    gap: 10px;
     color: var(--ink);
     text-decoration: none;
-    margin-right: auto;
     flex: none;
+    min-width: 0;
   }
-  .brand:hover {
+  .logo:hover {
     text-decoration: none;
   }
-
-  .brand-mark {
-    display: block;
-    flex: none;
-  }
-
-  .brand-text {
-    display: flex;
-    flex-direction: column;
-    line-height: 1.2;
-  }
-  .brand-text strong {
+  .logo b {
     font-family: var(--font-display);
-    font-size: 1.16rem;
-    font-weight: 650;
-    letter-spacing: -0.015em;
-    color: var(--ink);
+    font-size: 1.375rem;
+    font-weight: 600;
+    letter-spacing: -0.012em;
   }
-  .brand-text small {
-    font-size: 0.685rem;
+  .logo span {
+    font-size: 0.72rem;
     color: var(--muted);
-    letter-spacing: 0.01em;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    max-width: 34ch;
   }
 
-  .nav ul {
+  .menu {
     display: flex;
-    align-items: center;
-    gap: 0.15rem;
-  }
-  .nav a {
-    display: block;
-    padding: 0.5rem 0.72rem;
-    border-radius: 8px;
-    color: var(--body);
-    font-size: 0.9rem;
+    gap: 26px;
+    font-size: 0.875rem;
     font-weight: 500;
-    text-decoration: none;
-    transition: color 0.15s ease, background-color 0.15s ease;
+    color: var(--body);
   }
-  .nav a:hover {
-    color: var(--ink);
-    background: #eef2f9;
+  .menu a {
+    color: inherit;
     text-decoration: none;
+    transition: color 0.15s ease;
+    white-space: nowrap;
   }
-  .nav a.active {
+  .menu a:hover {
     color: var(--accent);
-    background: var(--accent-soft);
+    text-decoration: none;
+  }
+  .menu a.active {
+    color: var(--accent);
+    font-weight: 600;
   }
 
   .tools {
     display: flex;
     align-items: center;
-    gap: 0.4rem;
+    gap: 0.5rem;
     flex: none;
   }
 
-  .lang-switch {
+  .lang {
     display: inline-flex;
     align-items: center;
-    justify-content: center;
-    min-width: 44px;
-    height: 34px;
-    padding-inline: 0.6rem;
+    gap: 6px;
+    font-size: 0.78rem;
     border: 1px solid var(--line);
-    border-radius: 999px;
+    border-radius: 20px;
+    padding: 4px 12px;
+    color: var(--muted);
     background: var(--card);
-    color: var(--body);
-    font-size: 0.775rem;
-    font-weight: 600;
-    letter-spacing: 0.05em;
-    text-decoration: none;
-    transition: border-color 0.15s ease, color 0.15s ease;
   }
-  .lang-switch:hover {
-    border-color: var(--accent);
-    color: var(--accent);
+  .lang a {
+    color: inherit;
     text-decoration: none;
+    transition: color 0.15s ease;
+  }
+  .lang a:hover {
+    color: var(--ink);
+    text-decoration: none;
+  }
+  .lang a.on {
+    color: var(--accent);
+    font-weight: 700;
   }
 
   .menu-toggle {
     display: none;
-    width: 40px;
-    height: 36px;
+    width: 38px;
+    height: 34px;
     align-items: center;
     justify-content: center;
     background: var(--card);
@@ -213,8 +184,8 @@ const otherHref = alternatePath(Astro.url.pathname, otherLang);
   }
   .bars i {
     display: block;
-    width: 17px;
-    height: 1.8px;
+    width: 16px;
+    height: 1.7px;
     background: var(--ink);
     border-radius: 2px;
   }
@@ -231,16 +202,16 @@ const otherHref = alternatePath(Astro.url.pathname, otherLang);
   .mobile-nav {
     border-top: 1px solid var(--line);
     background: var(--card);
-    padding-block: 0.5rem 0.9rem;
+    padding-block: 0.4rem 0.85rem;
   }
   .mobile-nav ul {
     display: grid;
   }
   .mobile-nav a {
     display: block;
-    padding: 0.72rem 0.2rem;
+    padding: 0.7rem 0.2rem;
     color: var(--body);
-    font-size: 0.98rem;
+    font-size: 0.96rem;
     font-weight: 500;
     border-bottom: 1px solid var(--line);
     text-decoration: none;
@@ -252,8 +223,8 @@ const otherHref = alternatePath(Astro.url.pathname, otherLang);
     color: var(--accent);
   }
 
-  @media (max-width: 1040px) {
-    .nav {
+  @media (max-width: 980px) {
+    .menu {
       display: none;
     }
     .menu-toggle {
@@ -261,8 +232,8 @@ const otherHref = alternatePath(Astro.url.pathname, otherLang);
     }
   }
 
-  @media (max-width: 480px) {
-    .brand-text small {
+  @media (max-width: 460px) {
+    .logo span {
       display: none;
     }
   }

@@ -10,5 +10,5 @@ summary: >-
 summary_ko: >-
   산학관의 실험 공간과 사무 공간 세팅을 마쳤습니다. 실험대와 장비, 연구용 워크스테이션
   배치가 모두 완료되었습니다.
-image: ""
+image: gallery/2026-01-lab-setup/01.jpg
 ---

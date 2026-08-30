@@ -7,8 +7,12 @@
 #   - photo: public/images/people/ 안의 파일 이름 (없으면 이니셜 아바타가 표시됩니다)
 #
 # 이름 표기: name_ko = 한글 이름, name_en = 영문(로마자) 이름.
-# 영문 로마자 표기는 임시로 표준 표기법에 따라 적어둔 것이니,
-# 본인이 쓰는 표기가 따로 있으면 name_en 만 고쳐주세요.
+#   - 영문(/) 페이지에는 name_en, 한국어(/ko/) 페이지에는 name_ko 가 표시됩니다.
+#   - 로마자 표기는 국립국어원 표준 표기법으로 적어둔 것입니다. 본인이 논문·여권에
+#     쓰는 표기가 다르면 name_en 만 고치면 됩니다. (예: name_en: Seo-Yeon Yun)
+#
+# 사진: src/assets/people/ 에 파일을 넣고 photo: people/파일명.jpg 로 적으면 됩니다.
+# 비워두면 이름 이니셜이 동그라미로 표시됩니다.
 # ============================================================================
 
 pi:
@@ -23,9 +27,8 @@ pi:
   phone: "+82-33-760-2490"
   office_en: Room 201, Baekun Hall
   office_ko: 백운관 201호
-  # 사진 파일을 public/images/people/hodam-kim.jpg 로 넣은 뒤 아래 줄의 따옴표 안에
-  # /images/people/hodam-kim.jpg 를 적으면 사진이 표시됩니다. 비워두면 이니셜 표시.
-  photo: ""
+  # 사진: src/assets/ 아래의 경로를 적습니다. 비워두면 이니셜 아바타가 표시됩니다.
+  photo: people/pi.jpg
   cv_url: ""
   scholar_url: ""
 

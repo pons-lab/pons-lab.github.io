@@ -1,5 +1,7 @@
 ---
-import { getLangFromUrl, formatDate, pick } from '../i18n/utils.js';
+import { Image } from 'astro:assets';
+import { asset } from '../lib/images.js';
+import { getLangFromUrl, formatDate } from '../i18n/utils.js';
 
 const { item } = Astro.props;
 const lang = getLangFromUrl(Astro.url);
@@ -8,12 +10,15 @@ const d = item.data;
 const title = lang === 'ko' ? d.title_ko || d.title : d.title;
 const summary = lang === 'ko' ? d.summary_ko || d.summary : d.summary;
 const tag = lang === 'ko' ? d.tag_ko || d.tag : d.tag;
+const cover = asset(d.image);
 ---
 
 <article class="card card-hover news-card">
   {
-    d.image ? (
-      <img class="thumb" src={d.image} alt="" loading="lazy" decoding="async" width="640" height="400" />
+    cover ? (
+      <div class="thumb">
+        <Image src={cover} alt="" width={400} densities={[1, 2]} loading="lazy" />
+      </div>
     ) : (
       <div class="thumb thumb-blank" aria-hidden="true">
         <svg viewBox="0 0 120 60" role="presentation">
@@ -53,8 +58,13 @@ const tag = lang === 'ko' ? d.tag_ko || d.tag : d.tag;
   .thumb {
     width: 100%;
     aspect-ratio: 16 / 10;
-    object-fit: cover;
     border-bottom: 1px solid var(--line);
+    overflow: hidden;
+  }
+  .thumb :global(img) {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
   }
 
   .thumb-blank {

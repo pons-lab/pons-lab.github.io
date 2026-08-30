@@ -1,6 +1,8 @@
 ---
+import { Image } from 'astro:assets';
 import PageHero from '../PageHero.astro';
-import { members, site } from '../../lib/data.js';
+import { members } from '../../lib/data.js';
+import { asset } from '../../lib/images.js';
 import { getLangFromUrl, useTranslations, pick } from '../../i18n/utils.js';
 
 const lang = getLangFromUrl(Astro.url);
@@ -22,6 +24,8 @@ const initials = (name) =>
 
 const memberName = (m) => (lang === 'ko' ? m.name_ko || m.name_en : m.name_en);
 const memberSince = (m) => (lang === 'ko' ? m.since_ko || m.since : m.since);
+
+const piPhoto = asset(pi.photo);
 ---
 
 <PageHero kicker={t('page.kicker.people')} title={t('people.title')} />
@@ -34,8 +38,8 @@ const memberSince = (m) => (lang === 'ko' ? m.since_ko || m.since : m.since);
     <div class="pi">
       <div class="pi-photo">
         {
-          pi.photo ? (
-            <img src={pi.photo} alt={piName} width="420" height="520" />
+          piPhoto ? (
+            <Image src={piPhoto} alt={piName} width={300} densities={[1, 2]} />
           ) : (
             <div class="avatar avatar-lg" aria-hidden="true">
               {initials(pi.name_en)}
@@ -130,8 +134,15 @@ const memberSince = (m) => (lang === 'ko' ? m.since_ko || m.since : m.since);
             <ul class="grid grid-4">
               {group.members.map((m) => (
                 <li class="card card-hover person">
-                  {m.photo ? (
-                    <img class="avatar-img" src={m.photo} alt={memberName(m)} width="160" height="160" />
+                  {asset(m.photo) ? (
+                    <Image
+                      class="avatar-img"
+                      src={asset(m.photo)}
+                      alt={memberName(m)}
+                      width={62}
+                      densities={[1, 2]}
+                      loading="lazy"
+                    />
                   ) : (
                     <div class="avatar" aria-hidden="true">
                       {initials(m.name_en)}
@@ -187,7 +198,7 @@ const memberSince = (m) => (lang === 'ko' ? m.since_ko || m.since : m.since);
     align-items: start;
   }
 
-  .pi-photo img {
+  .pi-photo :global(img) {
     width: 100%;
     border-radius: var(--radius-lg);
     border: 1px solid var(--line);
@@ -342,7 +353,7 @@ const memberSince = (m) => (lang === 'ko' ? m.since_ko || m.since : m.since);
     padding-block: 1.5rem;
   }
 
-  .avatar-img {
+  :global(.avatar-img) {
     width: 62px;
     height: 62px;
     border-radius: 50%;

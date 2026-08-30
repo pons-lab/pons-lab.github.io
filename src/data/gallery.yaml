@@ -1,26 +1,48 @@
 # ============================================================================
 # 갤러리 — 연구실 사진 (News 페이지 아래쪽 갤러리 섹션)
 #
-# 사진을 추가하려면:
-#   1) 이미지 파일을 public/images/gallery/ 폴더에 넣고
-#   2) 아래 items: 맨 위에 항목을 하나 추가하세요.
-#      image 는 비워두면 색 배경 카드로 표시됩니다.
+# 사진 추가 방법
+#   1) src/assets/gallery/ 안에 행사 이름으로 폴더를 하나 만들고 (예: 2026-09-mt)
+#   2) 그 폴더에 사진 파일을 넣습니다. (파일 이름 순서대로 표시됩니다)
+#   3) 아래 events: 맨 위에 항목을 하나 추가합니다.
+#
+# folder 에 적은 폴더 안의 사진이 자동으로 모두 표시됩니다.
+# 첫 번째 사진이 대표 사진(썸네일)이 되므로, 대표로 쓰고 싶은 사진의 파일 이름을
+# 01.jpg 처럼 앞 번호로 바꿔주면 됩니다.
 # ============================================================================
 
-items:
-  - date: 2026-04
-    title_ko: 2026년 4월 회식
-    title_en: Lab dinner, April 2026
-    image: ""
-  - date: 2026-02
-    title_ko: 2026년 2월 생일 파티
-    title_en: Birthday party, February 2026
-    image: ""
-  - date: 2026-01
-    title_ko: 2026년 1월 회식
-    title_en: Lab dinner, January 2026
-    image: ""
-  - date: 2026-01
-    title_ko: 2026년 1월 실험 및 사무 공간 세팅
-    title_en: Setting up the lab and office space, January 2026
-    image: ""
+events:
+  - folder: 2026-08-lab-install
+    date: 2026-08
+    title_en: Lab equipment installation
+    title_ko: 실험 장비 설치
+
+  - folder: 2026-05-kosombe
+    date: 2026-05
+    title_en: KOSOMBE 2026 Spring Conference
+    title_ko: 2026 대한의용생체공학회 춘계학술대회
+
+  - folder: 2026-04-dinner
+    date: 2026-04
+    title_en: Lab dinner
+    title_ko: 연구실 회식
+
+  - folder: 2026-02-birthday
+    date: 2026-02
+    title_en: Birthday party
+    title_ko: 생일 파티
+
+  - folder: 2026-01-dinner
+    date: 2026-01
+    title_en: Lab dinner
+    title_ko: 연구실 회식
+
+  - folder: 2026-01-lab-setup
+    date: 2026-01
+    title_en: Setting up the lab and office space
+    title_ko: 실험 및 사무 공간 세팅
+
+  - folder: 2026-lab-space
+    date: ""
+    title_en: Our lab space
+    title_ko: 실험 공간

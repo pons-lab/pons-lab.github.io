@@ -4,98 +4,60 @@ import { getLangFromUrl, useTranslations, localizePath } from '../../i18n/utils.
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
-
-const how = lang === 'ko' ? site.recruiting.how_to_apply_ko : site.recruiting.how_to_apply_en;
 ---
 
-<section class="band-dark join">
-  <div class="container inner">
-    <div class="copy">
-      <h2>{t('home.join_title')}</h2>
-      <p class="who">{site.recruiting[lang]}</p>
-      <p class="how">{how}</p>
-      <div class="btn-row">
-        <a class="btn btn-light" href={`mailto:${site.contact.email}`}>{t('cta.email')}</a>
-        <a class="btn btn-outline-light" href={localizePath('/contact', lang)}>
-          {t('cta.contact')}
-        </a>
+<section class="section join-section">
+  <div class="container">
+    <div class="join">
+      <div>
+        <h2>{t('home.join_title')}</h2>
+        <p>{site.recruiting[lang]}</p>
       </div>
+      <a class="btn btn-on-dark" href={localizePath('/contact', lang)}>
+        {t('cta.how_to_apply')} →
+      </a>
     </div>
   </div>
-
-  <svg class="deco" viewBox="0 0 600 300" aria-hidden="true" role="presentation">
-    <path
-      d="M0 150 C 90 60, 210 60, 300 150 C 390 240, 510 240, 600 150"
-      fill="none"
-      stroke="#7ea6ff"
-      stroke-width="1.4"
-      opacity="0.4"></path>
-    <path
-      d="M0 190 C 90 100, 210 100, 300 190 C 390 280, 510 280, 600 190"
-      fill="none"
-      stroke="#7ea6ff"
-      stroke-width="1.4"
-      opacity="0.22"></path>
-    <path
-      d="M0 110 C 90 20, 210 20, 300 110 C 390 200, 510 200, 600 110"
-      fill="none"
-      stroke="#7ea6ff"
-      stroke-width="1.4"
-      opacity="0.14"></path>
-  </svg>
 </section>
 
 <style>
+  .join-section {
+    padding-bottom: 0;
+  }
+
   .join {
-    position: relative;
-    padding-block: clamp(3.5rem, 7vw, 5.5rem);
-    background:
-      radial-gradient(700px 400px at 88% 110%, #1d3566 0%, rgba(29, 53, 102, 0) 62%),
-      var(--ink);
+    background: #101a2e;
+    border-radius: var(--radius);
+    padding: clamp(1.75rem, 4vw, 2.75rem);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+    color: #fff;
   }
 
-  .inner {
-    position: relative;
-    z-index: 1;
+  .join h2 {
+    font-size: clamp(1.3rem, 2.4vw, 1.5rem);
+    color: #fff;
+    margin: 0;
   }
 
-  .copy {
-    max-width: 44rem;
+  .join p {
+    color: #9db0d0;
+    font-size: 0.905rem;
+    margin: 0.375rem 0 0;
+    max-width: 520px;
+    line-height: 1.65;
   }
 
-  h2 {
-    margin-bottom: 0.85rem;
-    max-width: 18ch;
+  .btn-on-dark {
+    background: #fff;
+    color: #101a2e;
+    flex: none;
   }
-
-  .who {
-    font-size: clamp(1.02rem, 1.5vw, 1.12rem);
-    color: rgba(255, 255, 255, 0.86);
-    margin-bottom: 0.55rem;
-    max-width: 52ch;
-  }
-
-  .how {
-    color: rgba(255, 255, 255, 0.6);
-    font-size: 0.94rem;
-    margin-bottom: 1.8rem;
-    max-width: 52ch;
-  }
-
-  .deco {
-    position: absolute;
-    right: -4%;
-    bottom: -12%;
-    width: min(52%, 620px);
-    height: auto;
-    pointer-events: none;
-  }
-
-  @media (max-width: 900px) {
-    .deco {
-      opacity: 0.5;
-      width: 90%;
-      right: -20%;
-    }
+  .btn-on-dark:hover {
+    background: #e8eefc;
+    color: #101a2e;
   }
 </style>
