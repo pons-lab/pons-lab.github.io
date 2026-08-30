@@ -62,6 +62,13 @@ const piPhoto = asset(pi.photo);
               <a href={pi.scholar_url} target="_blank" rel="noopener">Google Scholar</a>
             </li>
           )}
+          {pi.orcid && (
+            <li>
+              <a href={`https://orcid.org/${pi.orcid}`} target="_blank" rel="noopener">
+                ORCID <span class="mono-num">{pi.orcid}</span>
+              </a>
+            </li>
+          )}
         </ul>
 
         <p class="bio">{piBio}</p>

@@ -29,6 +29,10 @@ const labName = lang === 'ko' ? site.name.display_ko : site.name.full_en;
 const officeAddress = lang === 'ko' ? office.address_ko : office.address_en;
 const levelLabel = (level) =>
   level === 'graduate' ? t('lectures.graduate') : t('lectures.undergraduate');
+
+// 발명자명이 한글이면 lang="ko" 로 표시한다 (한국 특허는 국문 등재명을 그대로 쓴다).
+const nameLang = (p) => (/[가-힣]/.test(p.inventors) ? 'ko' : 'en');
+
 ---
 
 <article class="cv">
@@ -44,6 +48,13 @@ const levelLabel = (level) =>
         <span><a href={`tel:${office.phone}`}>{office.phone_display}</a></span>
         {pi.scholar_url && (
           <span><a href={pi.scholar_url} target="_blank" rel="noopener">Google Scholar</a></span>
+        )}
+        {pi.orcid && (
+          <span>
+            <a href={`https://orcid.org/${pi.orcid}`} target="_blank" rel="noopener">
+              ORCID <span class="mono-num">{pi.orcid}</span>
+            </a>
+          </span>
         )}
       </p>
       <p class="actions">
@@ -179,7 +190,8 @@ const levelLabel = (level) =>
             <li>
               <span class="period mono-num">{p.period}</span>
               <strong>{pick(p, 'title', lang)}</strong>
-              <span class="where">{t('cv.role_pi')}</span>
+              {p.funder_en && <span class="where">{pick(p, 'funder', lang)}</span>}
+              <span class="note">{t('cv.role_pi')}</span>
             </li>
           ))
         }
@@ -192,7 +204,8 @@ const levelLabel = (level) =>
             <li>
               <span class="period mono-num">{p.period}</span>
               <strong>{pick(p, 'title', lang)}</strong>
-              <span class="where">{t('research.role_researcher')}</span>
+              {p.funder_en && <span class="where">{pick(p, 'funder', lang)}</span>}
+              <span class="note">{t('research.role_researcher')}</span>
             </li>
           ))
         }
@@ -242,7 +255,7 @@ const levelLabel = (level) =>
             <li>
               <span class="num mono-num">{p.no}.</span>
               <span class="pub-body">
-                <span lang="en">{p.inventors}</span>
+                <span lang={nameLang(p)}>{p.inventors}</span>
                 <span class="pub-title">, “{pick(p, 'title', lang)},”</span>
                 <span class="pub-meta">
                   {' '}

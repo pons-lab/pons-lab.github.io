@@ -179,6 +179,8 @@ axes:
 # 진행 중인 연구과제
 #   role: pi(연구책임자) / researcher(참여연구원)
 # ---------------------------------------------------------------------------
+# 과제: funder_(en|ko) 는 지원기관, program_(en|ko) 는 부처·사업명입니다.
+# NTIS(ntis.go.kr)에서 과제고유번호로 확인해 채웁니다. 비워두면 화면에 표시되지 않습니다.
 projects:
   - period: 2026.03 – 2030.02
     title_en: >-
@@ -200,6 +202,10 @@ projects:
     short_en: Sign Language Recognition System
     short_ko: 수어 인식 시스템
     role: pi
+    funder_en: National Research Foundation of Korea (NRF)
+    funder_ko: 한국연구재단 (NRF)
+    program_en: Individual Basic Research, Ministry of Science and ICT
+    program_ko: 과학기술정보통신부 개인기초연구
 
   - period: 2025.03 – 2028.02
     title_en: >-

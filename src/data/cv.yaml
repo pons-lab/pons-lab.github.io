@@ -48,7 +48,7 @@ skills:
 # status: granted(등록) / application(출원)
 patents:
   - no: 10
-    inventors: Sunghoon Lee, Woon-Hong Yeo, Hodam Kim, Garam Kim, Sungeun Kim
+    inventors: 이성훈, 여운홍, 김호담, 김가람, 김성은
     title_en: Sleep diagnosis system and its operating method
     title_ko: 수면 진단 시스템 및 그 동작 방법
     number: 10-2024-0182022
@@ -60,7 +60,7 @@ patents:
     status: application
 
   - no: 9
-    inventors: Sunghoon Lee, Hodam Kim, Garam Kim, Sungeun Kim
+    inventors: 이성훈, 김호담, 김가람, 김성은
     title_en: Smart all-in-one patch apparatus and method of operation thereof
     title_ko: 스마트 올인원 패치 장치 및 그 동작 방법
     number: 10-2024-0182021
@@ -72,7 +72,7 @@ patents:
     status: application
 
   - no: 8
-    inventors: Sunghoon Lee, Hodam Kim, Garam Kim
+    inventors: 이성훈, 김호담, 김가람
     title_en: Smart all-in-one head patch apparatus and method of operation thereof
     title_ko: 스마트 올인원 헤드 패치 장치 및 그 동작 방법
     number: 10-2024-0156969
@@ -96,7 +96,7 @@ patents:
     status: application
 
   - no: 6
-    inventors: Chang-Hwan Im, Jung Hwan Kim, Suhye Kim, Jaehoon Cheon, Hodam Kim
+    inventors: 임창환, 김정환, 김수혜, 천재훈, 김호담
     title_en: >-
       A method and device for analyzing concentration type based on
       electroencephalography using artificial intelligence
@@ -110,7 +110,7 @@ patents:
     status: application
 
   - no: 5
-    inventors: Chang-Hwan Im, Hodam Kim
+    inventors: 임창환, 김호담
     title_en: Method and device for estimating onset time point of muscle movement
     title_ko: 근육 움직임의 발생 시점 추정 방법
     number: 10-2399318
@@ -124,7 +124,7 @@ patents:
     status: granted
 
   - no: 4
-    inventors: Chang-Hwan Im, Ho-Seung Cha, Seong-Jun Choi, Hodam Kim
+    inventors: 임창환, 차호승, 최성준, 김호담
     title_en: >-
       Apparatus and method for user authentication using facial EMG by
       measuring changes of facial expression of HMD user
@@ -140,7 +140,7 @@ patents:
     status: granted
 
   - no: 3
-    inventors: Chang-Hwan Im, Hodam Kim
+    inventors: 임창환, 김호담
     title_en: >-
       Method and apparatus for detecting craving state for game based on
       electrooculogram
@@ -156,7 +156,7 @@ patents:
     status: granted
 
   - no: 2
-    inventors: Chang-Hwan Im, Hodam Kim
+    inventors: 임창환, 김호담
     title_en: >-
       Method for estimating and managing respiratory rate using
       photoplethysmography
@@ -172,7 +172,7 @@ patents:
     status: granted
 
   - no: 1
-    inventors: Seon Jeong Kim, Shi Hyeong Kim, Hodam Kim
+    inventors: 김선정, 김시형, 김호담
     title_en: >-
       Fibrous actuator driven by humidity and solvent, manufacturing method
       thereof and use of the same

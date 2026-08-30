@@ -10,6 +10,9 @@ const { granted, application } = patentsByStatus();
 const journalCount = publications.journals.length;
 const conferenceCount = publications.conferences.length;
 const patentCount = cv.patents.length;
+// 발명자명이 한글이면 lang="ko" 로 표시한다 (한국 특허는 국문 등재명을 그대로 쓴다).
+const nameLang = (p) => (/[가-힣]/.test(p.inventors) ? 'ko' : 'en');
+
 ---
 
 <PageHero kicker={t('page.kicker.publications')} title={t('pub.patents')}>
@@ -45,7 +48,7 @@ const patentCount = cv.patents.length;
               <span class="num mono-num">{p.no}.</span>
               <div class="body">
                 <h3 class="pat-title">{pick(p, 'title', lang)}</h3>
-                <p class="pat-inventors" lang="en">
+                <p class="pat-inventors" lang={nameLang(p)}>
                   {p.inventors}
                 </p>
                 <p class="pat-meta">
