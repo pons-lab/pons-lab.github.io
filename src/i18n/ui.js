@@ -97,7 +97,7 @@ export const ui = {
     'lectures.graduate': 'Graduate',
 
     'news.title': 'News',
-    'news.lead': 'Announcements and milestones from the lab. Photos live in the gallery.',
+    'news.lead': 'New members, awards, research projects, and milestones from the lab.',
     'news.gallery': 'Gallery',
     'news.see_gallery': 'See the photo gallery',
     'news.view_full': 'view full size',
@@ -235,7 +235,7 @@ export const ui = {
     'lectures.graduate': '대학원',
 
     'news.title': '소식',
-    'news.lead': '연구실의 공지와 소식을 전합니다. 사진은 갤러리에 있습니다.',
+    'news.lead': '새로 합류한 구성원, 수상, 연구과제 등 연구실의 소식을 전합니다.',
     'news.gallery': '갤러리',
     'news.see_gallery': '사진 갤러리 보기',
     'news.view_full': '원본 크게 보기',
