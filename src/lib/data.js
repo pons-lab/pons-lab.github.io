@@ -41,12 +41,12 @@ export function conferencesByScope() {
   return { international: sorted('international'), domestic: sorted('domestic') };
 }
 
-/** 메인 페이지 Selected Publications 용 — 출판된 논문 중 최신 n편. */
-export function selectedPublications(n = 3) {
-  return [...publications.journals]
-    .filter((p) => p.year)
-    .sort((a, b) => b.id - a.id)
-    .slice(0, n);
+/**
+ * 메인 페이지 Selected Publications 용.
+ * CV 의 "대표 연구 성과"로 꼽은 논문(publications.yaml 의 featured: true)만 최신순으로.
+ */
+export function selectedPublications() {
+  return publications.journals.filter((p) => p.featured && p.year).sort((a, b) => b.id - a.id);
 }
 
 /** 논문 번호로 한 편을 찾는다. research.yaml 의 refs 에서 쓴다. */

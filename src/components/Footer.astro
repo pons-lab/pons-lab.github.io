@@ -8,10 +8,12 @@ const t = useTranslations(lang);
 
 // 병기 원칙: 한국어 페이지에서는 국문명 + 영문 약칭을 함께 표기한다.
 const labName = lang === 'ko' ? site.name.display_ko : site.name.full_en;
+// 학부(미래캠퍼스)와 대학원 학과를 함께 적는다
+const inst = site.institution;
 const affiliation =
   lang === 'ko'
-    ? `${site.institution.university_ko} ${site.institution.department_ko}`
-    : `${site.institution.department_en}, ${site.institution.university_en}`;
+    ? `${inst.university_ko} ${inst.department_ko} · ${inst.university_main_ko} ${inst.department_grad_ko}`
+    : `${inst.department_en}, ${inst.university_en} · ${inst.department_grad_en}, ${inst.university_main_en}`;
 // 푸터는 교수 연구실 기준
 const office = site.contact.office;
 const address = lang === 'ko' ? office.address_ko : office.address_en;
@@ -26,7 +28,7 @@ const year = new Date().getFullYear();
       <p class="affil">{affiliation}</p>
     </div>
 
-    <div class="col">
+    <div class="col pages">
       <h2>{t('footer.pages')}</h2>
       <ul>
         <li><a href={localizePath('/', lang)}>{t('nav.home')}</a></li>
@@ -65,9 +67,9 @@ const year = new Date().getFullYear();
 
   .inner {
     display: grid;
-    grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr) minmax(0, 1.25fr);
-    gap: clamp(1.75rem, 4vw, 3.5rem);
-    padding-block: clamp(3rem, 6vw, 4.25rem) 2.25rem;
+    grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr) minmax(0, 1fr);
+    gap: clamp(1.5rem, 3vw, 2.5rem);
+    padding-block: clamp(2.25rem, 4vw, 3rem) 1.75rem;
   }
 
   .name {
@@ -102,6 +104,12 @@ const year = new Date().getFullYear();
   .col ul {
     display: grid;
     gap: 0.42rem;
+  }
+
+  /* 링크가 8개라 한 줄로 세우면 푸터가 길어진다. 2열로 접는다. */
+  .pages ul {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.42rem 1.5rem;
   }
 
   .col a {

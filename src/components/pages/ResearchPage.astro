@@ -42,6 +42,9 @@ const t = useTranslations(lang);
                 {figure(topic.image) && (
                   <figure class="topic-figure">
                     <img src={figure(topic.image)} alt={pick(topic, 'title', lang)} loading="lazy" />
+                    {topic.image_credit && (
+                      <figcaption lang="en">{topic.image_credit}</figcaption>
+                    )}
                   </figure>
                 )}
                 <h3>{pick(topic, 'title', lang)}</h3>
@@ -153,6 +156,18 @@ const t = useTranslations(lang);
   .topic-figure img {
     width: 100%;
     display: block;
+    aspect-ratio: 800 / 460;
+    object-fit: cover;
+  }
+
+  /* 논문 도면을 가져다 쓴 경우 출처를 작게 밝힌다 */
+  .topic-figure figcaption {
+    padding: 0.45rem clamp(1.4rem, 2.4vw, 1.9rem) 0.5rem;
+    font-size: 0.7rem;
+    line-height: 1.4;
+    color: var(--muted);
+    background: var(--card);
+    border-top: 1px solid var(--line);
   }
 
   .topic h3 {

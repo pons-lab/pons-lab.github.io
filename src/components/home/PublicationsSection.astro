@@ -6,7 +6,7 @@ import { getLangFromUrl, useTranslations, localizePath } from '../../i18n/utils.
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 
-const items = selectedPublications(3);
+const items = selectedPublications();
 ---
 
 <section class="section pubs">

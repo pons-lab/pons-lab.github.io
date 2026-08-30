@@ -71,6 +71,13 @@ summary_ko: 한두 줄 요약.
 - 갤러리 사진: `src/assets/gallery/행사이름/` → `gallery.yaml` 에 `folder: 행사이름`
   (폴더 안 사진이 파일명 순서대로 표시됩니다. 대표로 쓸 사진을 `01.jpg` 로 바꾸세요.)
 
+### 연구 카드 그림 (논문 도면)
+
+논문 도면 원본은 `images/` 에 두고, `npm run figures` 로 카드용 이미지를 만듭니다.
+크롭 위치·주석 제거 규칙은 `scripts/prep-research-figures.mjs` 에 있습니다.
+결과물은 `src/assets/research/*.webp` (800×460, 카드 배경색과 동일) 로 저장되고,
+`src/data/research.yaml` 의 `image:` / `image_credit:` 으로 연결합니다.
+
 ### 상장·증명서 같은 문서 올리기
 
 `public/docs/` 에 PDF 를 넣으면 그대로 사이트 주소로 열립니다.

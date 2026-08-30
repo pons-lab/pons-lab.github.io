@@ -13,10 +13,12 @@ const labRoom = lang === 'ko' ? lab.room_ko : lab.room_en;
 const officeAddress = lang === 'ko' ? office.address_ko : office.address_en;
 const officeRoom = lang === 'ko' ? office.room_ko : office.room_en;
 const how = lang === 'ko' ? site.recruiting.how_to_apply_ko : site.recruiting.how_to_apply_en;
+// 학부(미래캠퍼스)와 대학원 학과를 함께 적는다
+const inst = site.institution;
 const affiliation =
   lang === 'ko'
-    ? `${site.institution.university_ko} ${site.institution.department_ko}`
-    : `${site.institution.department_en}, ${site.institution.university_en}`;
+    ? `${inst.university_ko} ${inst.department_ko} · ${inst.university_main_ko} ${inst.department_grad_ko}`
+    : `${inst.department_en}, ${inst.university_en} · ${inst.department_grad_en}, ${inst.university_main_en}`;
 ---
 
 <PageHero kicker={t('page.kicker.contact')} title={t('contact.title')} lead={t('contact.lead')} />

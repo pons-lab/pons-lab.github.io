@@ -21,8 +21,11 @@ pi:
   degree: Ph.D.
   title_en: Assistant Professor
   title_ko: 조교수
-  affiliation_en: Division of Biomedical Engineering, Yonsei University Mirae Campus
-  affiliation_ko: 연세대학교 미래캠퍼스 의공학부
+  # 학부(미래캠퍼스)와 대학원 학과를 함께 표기한다
+  affiliation_en: >-
+    Division of Biomedical Engineering, Yonsei University Mirae Campus ·
+    Department of Biomedical Engineering, Yonsei University
+  affiliation_ko: 연세대학교 미래캠퍼스 의공학부 · 연세대학교 대학원 의공학과
   email: hodamkim@yonsei.ac.kr
   phone: "+82-33-760-2490"
   office_en: Room 201, Baekun Hall

@@ -9,7 +9,8 @@
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
-    "build:pdf": "node scripts/build-cv-pdf.mjs"
+    "build:pdf": "node scripts/build-cv-pdf.mjs",
+    "figures": "node scripts/prep-research-figures.mjs"
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.7.3",

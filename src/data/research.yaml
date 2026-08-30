@@ -3,7 +3,8 @@
 #
 # 메인 페이지 Research 섹션은 axes: 의 3개 카드를 그대로 보여줍니다.
 # 소주제의 refs: 는 publications.yaml 의 논문 번호(id)이며, 같은 논문이 여러
-# 주제에 걸쳐도 됩니다. image: 는 src/assets/ 아래 경로입니다.
+# 주제에 걸쳐도 됩니다. image: 는 src/assets/ 아래 경로이며,
+# image_credit: 을 적으면 그림 아래에 작은 글씨로 출처가 표시됩니다.
 # ============================================================================
 
 axes:
@@ -33,7 +34,7 @@ axes:
           심박·호흡·체온·움직임을 하나의 무선 플랫폼에서 동시에 측정합니다.
           탈수나 온열 스트레스, 야외 작업자의 초기 신장 손상처럼 센서 하나로는
           잡히지 않는 상태는 여러 신호를 함께 읽을 때 비로소 드러납니다.
-        image: research/multi-sensor.svg
+        image: research/multi-sensor.webp
         refs: [16, 23, 15]
 
       - title_en: Soft Physiological Signal Patch
@@ -93,7 +94,8 @@ axes:
           동안에도 뇌파가 흔들리지 않습니다. 이렇게 동작 잡음을 잡아야 뇌-컴퓨터
           인터페이스가 실험실에서의 몇 분이 아니라 몇 시간 쓸 수 있는 기술이
           됩니다.
-        image: research/brain-sensor.svg
+        image: research/brain-sensor.webp
+        image_credit: Adapted from Kim et al., PNAS 2025
         refs: [21, 14]
 
       - title_en: Human / Brain–Machine Interfaces
@@ -110,6 +112,8 @@ axes:
           직접 제어하기도 하고, 소프트 전극 어레이로 전완부 근전도를 읽어 손동작을
           인식하기도 합니다. 어려운 부분은 실제 사용에서 성능을 깎는 것들입니다 —
           전극이 밀리는 문제, 움직임이 만드는 잡음, 오래 쓸수록 떨어지는 정확도.
+        image: research/hmi-forearm-emg.webp
+        image_credit: Adapted from Kim et al., Advanced Science 2024
         refs: [21, 10, 4]
 
   # ── 3. 측정한 신호를 판단으로 ────────────────────────────────────────

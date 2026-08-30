@@ -36,8 +36,11 @@ institution:
   university_ko: 연세대학교 미래캠퍼스
   department_en: Division of Biomedical Engineering
   department_ko: 의공학부
-  department_grad_en: Department of Biomedical Engineering (Graduate School)
+  department_grad_en: Department of Biomedical Engineering
   department_grad_ko: 대학원 의공학과
+  # 대학원 학과가 소속된 본교 이름 (미래캠퍼스와 구분)
+  university_main_en: Yonsei University
+  university_main_ko: 연세대학교
 
 contact:
   email: hodamkim@yonsei.ac.kr
@@ -65,6 +68,10 @@ contact:
     phone_display: +82-33-760-2490
 
   map_url: https://maps.google.com/?q=연세대학교+미래캠퍼스+산학관
+
+# 메인 페이지 Join 밴드의 배경 사진 (src/assets/ 아래 경로).
+# 비워두면 배경 사진 없이 예전처럼 단색 밴드가 됩니다.
+join_background: join-circuit.webp
 
 # 대학원생·학부연구생 모집 안내 (메인 페이지 리본 + Join 밴드 + Contact 페이지)
 recruiting:

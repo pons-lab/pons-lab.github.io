@@ -42,7 +42,7 @@ export const ui = {
     'home.pubs_kicker': 'Publications',
     'home.pubs_title': 'Selected publications',
     'home.pubs_lead':
-      'Recent journal articles. Superscript 1 marks a first author, * a corresponding author; lab members are shown in bold.',
+      'Representative work from the lab. Superscript 1 marks a first author, * a corresponding author; lab members are shown in bold.',
     'home.join_title': 'Build the bridge with us',
     'home.recruiting_label': 'Now recruiting',
 
@@ -183,7 +183,7 @@ export const ui = {
     'home.pubs_kicker': '논문',
     'home.pubs_title': '주요 논문',
     'home.pubs_lead':
-      '최근 학술지 논문입니다. 이름 뒤 1은 제1저자, *는 교신저자이며 연구실 구성원은 굵게 표시했습니다.',
+      '연구실의 대표 논문입니다. 이름 뒤 1은 제1저자, *는 교신저자이며 연구실 구성원은 굵게 표시했습니다.',
     'home.join_title': '함께 다리를 놓을 분을 찾습니다',
     'home.recruiting_label': '모집 중',
 

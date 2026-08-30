@@ -1,14 +1,19 @@
 ---
 import { site } from '../../lib/data.js';
+import { asset } from '../../lib/images.js';
 import { getLangFromUrl, useTranslations, localizePath } from '../../i18n/utils.js';
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 
 const how = lang === 'ko' ? site.recruiting.how_to_apply_ko : site.recruiting.how_to_apply_en;
+
+// 배경 사진. site.yaml 의 join_background 를 비우면 예전처럼 단색 밴드가 된다.
+const bg = asset(site.join_background)?.src ?? null;
 ---
 
-<section class="band-dark join">
+<section class="band-dark join" data-bg={bg ? '' : undefined}>
+  {bg && <div class="bg" style={`background-image:url(${bg})`} aria-hidden="true" />}
   <div class="container inner">
     <div class="copy">
       {
@@ -55,6 +60,29 @@ const how = lang === 'ko' ? site.recruiting.how_to_apply_ko : site.recruiting.ho
 </section>
 
 <style>
+  /* 배경 사진 + 어두운 겹칩. 흰 글씨 가독성을 우선한다. */
+  .bg {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center;
+    opacity: 0.78;
+  }
+  .join[data-bg]::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      100deg,
+      rgba(15, 25, 45, 0.86) 0%,
+      rgba(15, 25, 45, 0.7) 45%,
+      rgba(15, 25, 45, 0.34) 100%
+    );
+  }
+  .join[data-bg] .deco {
+    opacity: 0.35;
+  }
+
   .join {
     position: relative;
     padding-block: clamp(3.5rem, 7vw, 5.5rem);
