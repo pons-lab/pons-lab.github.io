@@ -83,7 +83,12 @@ const t = useTranslations(lang);
       {
         research.projects.map((p) => (
           <li class="card project">
-            <span class="period mono-num">{p.period}</span>
+            <span class="period mono-num">
+              {p.period}
+              <span class:list={['role', p.role]}>
+                {p.role === 'pi' ? t('research.role_pi') : t('research.role_researcher')}
+              </span>
+            </span>
             <h3>{pick(p, 'title', lang)}</h3>
             <span class="tag">{pick(p, 'short', lang)}</span>
           </li>
@@ -216,10 +221,30 @@ const t = useTranslations(lang);
   }
 
   .period {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
     font-size: 0.78rem;
     font-weight: 600;
     letter-spacing: 0.04em;
     color: var(--accent);
+  }
+
+  /* 연구책임자 / 참여연구원 구분 */
+  .role {
+    padding: 0.1rem 0.5rem;
+    border-radius: 999px;
+    font-size: 0.7rem;
+    font-weight: 650;
+    letter-spacing: 0.02em;
+  }
+  .role.pi {
+    background: var(--accent);
+    color: #fff;
+  }
+  .role.researcher {
+    background: #eef2f9;
+    color: var(--body);
   }
 
   .project h3 {

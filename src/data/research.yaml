@@ -172,6 +172,7 @@ axes:
 
 # ---------------------------------------------------------------------------
 # 진행 중인 연구과제
+#   role: pi(연구책임자) / researcher(참여연구원)
 # ---------------------------------------------------------------------------
 projects:
   - period: 2026.03 – 2030.02
@@ -181,6 +182,7 @@ projects:
     title_ko: 전도성 섬유 기반 생체자극 및 질병예방 모니터링
     short_en: Conductive Fiber Wearable Platform
     short_ko: 전도성 섬유 웨어러블 플랫폼
+    role: researcher
 
   - period: 2026.03 – 2029.02
     title_en: >-
@@ -192,6 +194,7 @@ projects:
       감정·의도 인지형 수어 인식 시스템 개발
     short_en: Sign Language Recognition System
     short_ko: 수어 인식 시스템
+    role: pi
 
   - period: 2025.03 – 2028.02
     title_en: >-
@@ -200,3 +203,4 @@ projects:
     title_ko: 개인 맞춤형 다부위 생체신호 측정 웨어러블 시스템 및 분석기술 개발
     short_en: Personalized Biosignal Measurement
     short_ko: 개인 맞춤형 생체신호 측정
+    role: pi

@@ -20,6 +20,10 @@ const office = site.contact.office;
 const { unpublished, groups } = journalsByYear();
 const { international, domestic } = conferencesByScope();
 
+// 진행 중인 과제는 역할에 따라 나눠서 싣는다.
+const piProjects = research.projects.filter((p) => p.role === 'pi');
+const coProjects = research.projects.filter((p) => p.role !== 'pi');
+
 // 학술 경력의 첫 항목(현직)에는 연구실 이름을 함께 적는다.
 const labName = lang === 'ko' ? site.name.display_ko : site.name.full_en;
 const officeAddress = lang === 'ko' ? office.address_ko : office.address_en;
@@ -171,7 +175,7 @@ const levelLabel = (level) =>
       <h3>{t('cv.grants_pi')}</h3>
       <ul class="entries">
         {
-          research.projects.map((p) => (
+          piProjects.map((p) => (
             <li>
               <span class="period mono-num">{p.period}</span>
               <strong>{pick(p, 'title', lang)}</strong>
@@ -183,6 +187,15 @@ const levelLabel = (level) =>
 
       <h3>{t('cv.grants_past')}</h3>
       <ul class="entries">
+        {
+          coProjects.map((p) => (
+            <li>
+              <span class="period mono-num">{p.period}</span>
+              <strong>{pick(p, 'title', lang)}</strong>
+              <span class="where">{t('research.role_researcher')}</span>
+            </li>
+          ))
+        }
         {
           cv.past_projects.map((p) => (
             <li>

@@ -58,6 +58,8 @@ export const ui = {
     'research.lead':
       'We develop soft, wearable devices and intelligent systems for measuring and interpreting brain and physiological signals.',
     'research.projects': 'Current projects',
+    'research.role_pi': 'Principal Investigator',
+    'research.role_researcher': 'Researcher',
     'research.topics': 'Topics',
 
     'people.title': 'People',
@@ -197,6 +199,8 @@ export const ui = {
     'research.lead':
       '뇌 신호와 생체 신호를 측정하고 해석하는 소프트 웨어러블 기기와 지능형 시스템을 개발합니다.',
     'research.projects': '진행 중인 연구과제',
+    'research.role_pi': '연구책임자',
+    'research.role_researcher': '참여연구원',
     'research.topics': '세부 주제',
 
     'people.title': '구성원',
