@@ -1,0 +1,69 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 230" role="img"
+     aria-label="Sensors placed where access is hardest: inside a stent, inside a respirator, inside a bioreactor, and on a patient during surgery">
+  <rect width="400" height="230" fill="#f4f7fd"/>
+
+  <!-- 네 장면을 나누는 옅은 세로선 -->
+  <g stroke="#dbe4f5" stroke-width="1">
+    <path d="M100 34V196M200 34V196M300 34V196"/>
+  </g>
+
+  <!-- ① 스텐트 안에서 두개내압을 잰다 -->
+  <g transform="translate(50 108)">
+    <path d="M-26-6a26 30 0 0 1 52 0c0 16-8 24-14 29l-2 12h-20l-2-14c-8-5-14-13-14-27Z"
+          fill="none" stroke="#9db4de" stroke-width="2" stroke-linejoin="round"/>
+    <!-- 혈관과 그 안의 스텐트 -->
+    <path d="M-20 2q12-12 24-2t20-2" fill="none" stroke="#c3d2ec" stroke-width="7" stroke-linecap="round"/>
+    <path d="M-14 0.5q4-4 8 0t8 0 8 0 8 0" fill="none" stroke="#2153c4" stroke-width="1.6" stroke-linecap="round"/>
+    <circle cx="6" cy="-1" r="3.4" fill="#2153c4"/>
+    <path d="M11 -6q5-3 9-1" fill="none" stroke="#2153c4" stroke-width="1.4" stroke-linecap="round" opacity=".7"/>
+  </g>
+
+  <!-- ② 스스로 밀착되는 마스크 -->
+  <g transform="translate(150 108)">
+    <circle cx="0" cy="-6" r="24" fill="none" stroke="#9db4de" stroke-width="2"/>
+    <path d="M-22 0h44c0 16-10 26-22 26S-22 16-22 0Z" fill="#e8eefc" stroke="#2153c4" stroke-width="2" stroke-linejoin="round"/>
+    <path d="M-22 0h44M-16 11h32M-13 19h26" stroke="#2153c4" stroke-width="1.4" stroke-linecap="round" opacity=".55"/>
+    <!-- 얼굴에 맞춰 조여지는 방향 -->
+    <g stroke="#2153c4" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none">
+      <path d="M-34 4h8m-3-3 3 3-3 3"/>
+      <path d="M34 4h-8m3-3-3 3 3 3"/>
+    </g>
+  </g>
+
+  <!-- ③ 몇 주간 세포 배양을 지켜보는 바이오리액터 -->
+  <g transform="translate(250 108)">
+    <path d="M-22-26h44v34a22 22 0 0 1-44 0Z" fill="none" stroke="#9db4de" stroke-width="2" stroke-linejoin="round"/>
+    <path d="M-22 -2c8 0 8 6 15 6s7-6 14-6 7 5 15 5v5a22 22 0 0 1-44 0Z" fill="#e8eefc"/>
+    <g fill="#2153c4">
+      <circle cx="-10" cy="12" r="2.6"/><circle cx="2" cy="17" r="2.6"/><circle cx="12" cy="9" r="2.6"/>
+      <circle cx="-2" cy="6" r="2"/>
+    </g>
+    <!-- 센서 프로브 -->
+    <path d="M4-34v22" stroke="#2153c4" stroke-width="2.2" stroke-linecap="round"/>
+    <rect x="-4" y="-40" width="16" height="8" rx="3" fill="#2153c4"/>
+  </g>
+
+  <!-- ④ 수술 내내 붙어 있는 심전도 패치 -->
+  <g transform="translate(348 108)">
+    <circle cx="-14" cy="-13" r="9.5" fill="none" stroke="#9db4de" stroke-width="2"/>
+    <path d="M-40 24c0-14 12-22 26-22s26 8 26 22" fill="none" stroke="#9db4de" stroke-width="2"
+          stroke-linecap="round"/>
+    <rect x="-25" y="0" width="21" height="13" rx="4" fill="#e8eefc" stroke="#2153c4" stroke-width="2"/>
+    <circle cx="-19" cy="6.5" r="2.1" fill="#2153c4"/>
+    <path d="M-14 6.5h4" stroke="#2153c4" stroke-width="1.5" stroke-linecap="round"/>
+    <!-- 패치에서 이어져 나오는 심전도 -->
+    <path d="M-4 6.5h5l3-8 4 16 4-11 3 3h11" fill="none" stroke="#2153c4" stroke-width="1.8"
+          stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+
+  <g font-family="Inter, Segoe UI, sans-serif" font-size="8.5" font-weight="600"
+     letter-spacing="1.2" fill="#6b7a94" text-anchor="middle">
+    <text x="50" y="186">IN-STENT</text>
+    <text x="150" y="186">RESPIRATOR</text>
+    <text x="250" y="186">BIOREACTOR</text>
+    <text x="350" y="186">OR ECG</text>
+  </g>
+
+  <text x="200" y="26" font-family="Inter, Segoe UI, sans-serif" font-size="9" font-weight="600"
+        letter-spacing="1.6" fill="#2153c4" text-anchor="middle">WHERE ACCESS IS HARDEST</text>
+</svg>
