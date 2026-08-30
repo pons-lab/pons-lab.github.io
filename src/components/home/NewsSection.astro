@@ -32,7 +32,7 @@ const items = (await getCollection('news'))
     </div>
 
     <div class="grid grid-3">
-      {items.map((item) => <NewsCard item={item} />)}
+      {items.map((item) => <NewsCard item={item} href={localizePath('/news', lang)} />)}
     </div>
   </div>
 </section>

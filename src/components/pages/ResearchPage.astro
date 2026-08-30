@@ -28,7 +28,7 @@ const t = useTranslations(lang);
 
           <div class="grid grid-3 topics">
             {axis.topics.map((topic) => (
-              <div class="card card-hover topic">
+              <div class="card topic">
                 <h3>{pick(topic, 'title', lang)}</h3>
                 {(topic.text_en || topic.text_ko) && <p>{pick(topic, 'text', lang)}</p>}
               </div>

@@ -3,7 +3,9 @@ import Authors from './Authors.astro';
 import { doiUrl } from '../lib/data.js';
 import { getLangFromUrl, useTranslations } from '../i18n/utils.js';
 
-const { pub, compact = false } = Astro.props;
+// level: 이 항목이 놓이는 제목 단계. 홈은 h2 아래라 3, 논문 페이지는 연도 h3 아래라 4.
+const { pub, compact = false, level = 3 } = Astro.props;
+const Title = `h${level}`;
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
@@ -12,13 +14,13 @@ const link = doiUrl(pub.doi);
 const statusLabel = pub.status ? t(`pub.${String(pub.status).replace(/-/g, '_')}`) : null;
 ---
 
-<article class:list={['pub', { compact }]}>
+<article class:list={['pub', { compact }]} lang="en">
   {!compact && <span class="num mono-num">{pub.id}</span>}
 
   <div class="body">
-    <h3 class="title">
+    <Title class="title">
       {link ? <a href={link} target="_blank" rel="noopener">{pub.title}</a> : pub.title}
-    </h3>
+    </Title>
 
     <p class="authors-line"><Authors authors={pub.authors} /></p>
 
@@ -71,7 +73,9 @@ const statusLabel = pub.status ? t(`pub.${String(pub.status).replace(/-/g, '_')}
     margin-top: 0.16rem;
   }
 
-  .title {
+  .title,
+  h3.title,
+  h4.title {
     font-family: var(--font-sans);
     font-size: 1.015rem;
     font-weight: 600;

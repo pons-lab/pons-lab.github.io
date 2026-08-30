@@ -271,9 +271,28 @@ const otherHref = alternatePath(Astro.url.pathname, otherLang);
 <script>
   const toggle = document.querySelector('.menu-toggle');
   const panel = document.getElementById('mobile-nav');
+  const setOpen = (open) => {
+    toggle?.setAttribute('aria-expanded', String(open));
+    if (panel) panel.hidden = !open;
+  };
+
   toggle?.addEventListener('click', () => {
-    const open = toggle.getAttribute('aria-expanded') === 'true';
-    toggle.setAttribute('aria-expanded', String(!open));
-    if (panel) panel.hidden = open;
+    setOpen(toggle.getAttribute('aria-expanded') !== 'true');
+  });
+
+  // 메뉴 안 링크를 누르면 패널을 닫고, Escape 로도 닫는다.
+  panel?.addEventListener('click', (e) => {
+    if (e.target.closest('a')) setOpen(false);
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key !== 'Escape' || toggle?.getAttribute('aria-expanded') !== 'true') return;
+    setOpen(false);
+    toggle.focus();
+  });
+
+  // 데스크톱 폭으로 넓어지면 열린 패널이 남지 않도록 정리한다.
+  matchMedia('(min-width: 1041px)').addEventListener('change', (e) => {
+    if (e.matches) setOpen(false);
   });
 </script>

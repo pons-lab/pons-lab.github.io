@@ -91,6 +91,9 @@ export const ui = {
     'news.title': 'News',
     'news.lead': 'Announcements, milestones, and everyday life in the lab.',
     'news.gallery': 'Gallery',
+    'news.view_full': 'view full size',
+    'pub.jump': 'Jump to year',
+    'notfound.title_ko': '페이지를 찾을 수 없습니다',
     'news.gallery_lead': 'Moments from the lab — conferences, milestones, and life together.',
     'news.empty': 'No news yet.',
 
@@ -197,6 +200,9 @@ export const ui = {
     'news.title': '소식',
     'news.lead': '연구실의 공지와 소식, 그리고 일상을 전합니다.',
     'news.gallery': '갤러리',
+    'news.view_full': '원본 크게 보기',
+    'pub.jump': '연도로 이동',
+    'notfound.title_ko': '페이지를 찾을 수 없습니다',
     'news.gallery_lead': '학회, 기념일, 그리고 함께한 순간들.',
     'news.empty': '아직 등록된 소식이 없습니다.',
 

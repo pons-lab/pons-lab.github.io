@@ -11,6 +11,7 @@ const t = useTranslations('en');
       <p class="code">404</p>
       <h1>{t('notfound.title')}</h1>
       <p class="lead">{t('notfound.lead')}</p>
+      <p class="lead ko" lang="ko">{t('notfound.title_ko')} — 요청하신 페이지가 없거나 주소가 바뀌었습니다.</p>
       <div class="btn-row">
         <a class="btn btn-primary" href="/">{t('cta.back_home')}</a>
         <a class="btn btn-ghost" href="/ko/">한국어 홈</a>
@@ -33,6 +34,10 @@ const t = useTranslations('en');
     margin: 0 0 0.5rem;
   }
   .lead {
+    margin-bottom: 0.6rem;
+  }
+  .ko {
+    color: var(--muted);
     margin-bottom: 1.75rem;
   }
 </style>

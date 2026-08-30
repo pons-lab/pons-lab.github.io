@@ -25,6 +25,16 @@ const conferenceCount = publications.conferences.length;
     </span>
   </p>
   <p class="legend small muted">{t('pub.legend')}</p>
+
+  <nav class="jump" aria-label={t('pub.jump')}>
+    {unpublished.length > 0 && <a href="#y-review">{t('pub.in_revision')}</a>}
+    {groups.map((g) => (
+      <a class="mono-num" href={`#y-${g.year}`}>
+        {g.year}
+      </a>
+    ))}
+    <a href="#conferences">{t('pub.conferences')}</a>
+  </nav>
 </PageHero>
 
 <!-- ── 학술지 논문 ────────────────────────────────────────────────────── -->
@@ -35,10 +45,10 @@ const conferenceCount = publications.conferences.length;
     {
       unpublished.length > 0 && (
         <div class="year-block">
-          <h3 class="year">{t('pub.in_revision')}</h3>
+          <h3 class="year" id="y-review">{t('pub.in_revision')}</h3>
           <div class="items">
             {unpublished.map((pub) => (
-              <PublicationItem pub={pub} />
+              <PublicationItem pub={pub} level={4} />
             ))}
           </div>
         </div>
@@ -48,10 +58,10 @@ const conferenceCount = publications.conferences.length;
     {
       groups.map((group) => (
         <div class="year-block">
-          <h3 class="year mono-num">{group.year}</h3>
+          <h3 class="year mono-num" id={`y-${group.year}`}>{group.year}</h3>
           <div class="items">
             {group.items.map((pub) => (
-              <PublicationItem pub={pub} />
+              <PublicationItem pub={pub} level={4} />
             ))}
           </div>
         </div>
@@ -74,8 +84,8 @@ const conferenceCount = publications.conferences.length;
           <h3 class="year">{block.label}</h3>
           <ol class="conf-list">
             {block.list.map((c) => (
-              <li>
-                <p class="conf-title">{c.title}</p>
+              <li lang="en">
+                <h4 class="conf-title">{c.title}</h4>
                 <p class="conf-authors">
                   <Authors authors={c.authors} />
                 </p>
@@ -129,7 +139,34 @@ const conferenceCount = publications.conferences.length;
     margin-top: clamp(1.75rem, 3vw, 2.5rem);
   }
 
+  .jump {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    margin-top: 1.1rem;
+  }
+  .jump a {
+    padding: 0.3rem 0.7rem;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    background: var(--card);
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--body);
+    text-decoration: none;
+  }
+  .jump a:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+    text-decoration: none;
+  }
+
   .year {
+    /* 긴 목록을 스크롤할 때 지금 보는 연도가 계속 보이도록 고정 */
+    position: sticky;
+    top: 70px;
+    z-index: 1;
+    background: inherit;
     font-family: var(--font-display);
     font-size: 1.05rem;
     font-weight: 700;
@@ -160,6 +197,7 @@ const conferenceCount = publications.conferences.length;
 
   .conf-title {
     margin: 0 0 0.3rem;
+    font-family: var(--font-sans);
     font-size: 0.985rem;
     font-weight: 600;
     color: var(--ink);

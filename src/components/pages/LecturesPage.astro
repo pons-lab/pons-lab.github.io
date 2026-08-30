@@ -29,7 +29,7 @@ const levelLabel = (level) =>
 
             <ul class="courses">
               {s.courses.map((c) => (
-                <li class="card card-hover course">
+                <li class="card course">
                   <span class:list={['level', c.level]}>{levelLabel(c.level)}</span>
                   <div class="titles">
                     <strong>{pick(c, 'title', lang)}</strong>

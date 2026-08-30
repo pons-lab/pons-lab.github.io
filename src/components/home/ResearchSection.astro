@@ -17,7 +17,7 @@ const t = useTranslations(lang);
     <div class="grid grid-2 axes">
       {
         research.axes.map((axis, i) => (
-          <article class="card card-hover axis">
+          <article class="card axis">
             <span class="axis-num mono-num">{String(i + 1).padStart(2, '0')}</span>
             <h3>{pick(axis, 'title', lang)}</h3>
             <p class="axis-lead">{pick(axis, 'lead', lang)}</p>
