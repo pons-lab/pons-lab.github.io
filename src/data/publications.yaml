@@ -525,6 +525,54 @@ conferences:
     place: "Shanghai, China"
     date: May 25–28, 2017
 
+  - year: 2026
+    scope: domestic
+    authors: Seoyeon Yoon1, Jihwan Park1, Hodam Kim*
+    title: >-
+      Development of a Wearable PPG and Skin Temperature Sensing Device for
+      Predictive Closed-Loop Control of Peripheral Blood Flow
+    venue: 2026년도 제67회 대한의용생체공학회 춘계학술대회
+    place: ""
+    date: May 8, 2026
+
+  - year: 2026
+    scope: domestic
+    authors: Gabriel Joseph Mlingi1, Hodam Kim*
+    title: >-
+      Hierarchical 3D Helical CNT Electrode with PEDOT:PSS–PVA/TA Interface for
+      Stable Dry ECG Monitoring
+    venue: 2026년도 제67회 대한의용생체공학회 춘계학술대회
+    place: ""
+    date: May 8, 2026
+
+  - year: 2026
+    scope: domestic
+    authors: Woyesa Addisu Fayera1, Hodam Kim*
+    title: Kirigami-Based Ear EEG Patch for Improved Conformability and Stability
+    venue: 2026년도 제67회 대한의용생체공학회 춘계학술대회
+    place: ""
+    date: May 8, 2026
+
+  - year: 2026
+    scope: domestic
+    authors: Miju Chae1, Sanghyun Kim, Hodam Kim*
+    title: >-
+      Multi-Channel Capacitive Wrist-Worn Sensing for Enhanced Spatial
+      Deformation-Based Hand Motion Tracking
+    venue: 2026년도 제67회 대한의용생체공학회 춘계학술대회
+    place: ""
+    date: May 8, 2026
+
+  - year: 2025
+    scope: domestic
+    authors: Hodam Kim
+    title: >-
+      Persistent and Wearable EEG Technologies: Toward Next-Generation
+      Neurophysiological Monitoring
+    venue: 2025 제12회 대한뇌파신경생리학회 워크숍 및 연례학술대회
+    place: ""
+    date: December 6, 2025
+
   - year: 2025
     scope: domestic
     authors: Hodam Kim
@@ -544,6 +592,16 @@ conferences:
     venue: 2025 한국뇌공학회 하계 워크샵
     place: 제주도
     date: July 10–12, 2025
+
+  - year: 2025
+    scope: domestic
+    authors: Gabriel Joseph Mlingi1, Hodam Kim*
+    title: >-
+      Development of Soft Wireless Wearable Patches for Continuous Monitoring of
+      the Autonomic Nervous System
+    venue: 2025년도 제65회 대한의용생체공학회 춘계학술대회
+    place: ""
+    date: May 8, 2025
 
   - year: 2020
     scope: domestic

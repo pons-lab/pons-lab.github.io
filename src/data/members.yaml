@@ -135,8 +135,12 @@ pi:
       host_en: "Konkuk University Glocal Campus, Dept. of Biomedical Engineering"
       host_ko: "건국대학교 글로컬캠퍼스 의생명공학과"
     - date: 2025.12.06
-      title_en: "2025 12th Workshop and Annual Conference, Korean Society for EEG and Neurophysiology"
-      title_ko: "2025 제12회 대한뇌파신경생리학회 워크샵 및 학술대회"
+      title_en: >-
+        Persistent and Wearable EEG Technologies: Toward Next-Generation
+        Neurophysiological Monitoring
+      title_ko: 지속 착용형 뇌파 기술 — 차세대 신경생리 모니터링을 향하여
+      host_en: "2025 12th Workshop and Annual Conference, Korean Society for EEG and Neurophysiology"
+      host_ko: 2025 제12회 대한뇌파신경생리학회 워크숍 및 연례학술대회
     - date: 2025.11.24
       title_en: "Convergence Research Meeting"
       title_ko: "융합연구 미팅"
@@ -344,7 +348,7 @@ groups:
 # 알럼나이 (연구실을 거쳐간 구성원) — 최근 순
 # ---------------------------------------------------------------------------
 alumni:
-  - name_en: Sanghyeon Kim
+  - name_en: Sanghyun Kim
     name_ko: 김상현
     role_en: Undergraduate Researcher
     role_ko: 학부연구생
