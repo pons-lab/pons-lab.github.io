@@ -20,12 +20,12 @@
   --font-sans: 'Inter', 'Pretendard', 'Pretendard Variable', 'Noto Sans KR',
     -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
 
-  /* 레이아웃 (design-reference.html 의 .wrap = 1080px 기준) */
-  --container: 1080px;
-  --container-narrow: 860px;
+  /* 레이아웃 */
+  --container: 1140px;
+  --container-narrow: 880px;
   --radius: 14px;
-  --radius-lg: 18px;
-  --section-y: clamp(3.5rem, 7vw, 5.25rem);
+  --radius-lg: 22px;
+  --section-y: clamp(4rem, 8vw, 7rem);
 
   /* 그림자 */
   --shadow-sm: 0 1px 2px rgba(22, 35, 59, 0.04), 0 2px 8px rgba(22, 35, 59, 0.04);
@@ -212,24 +212,11 @@ hr {
 }
 
 .section-head {
-  margin-bottom: clamp(1.75rem, 3.2vw, 2.25rem);
+  margin-bottom: clamp(2.2rem, 4vw, 3.2rem);
 }
 
 .section-head h2 {
   margin-bottom: 0.5rem;
-}
-
-/* 시안의 .sec-title / .sec-sub */
-.sec-title {
-  font-size: clamp(1.5rem, 2.6vw, 1.75rem);
-  margin-bottom: 0.625rem;
-}
-
-.sec-sub {
-  color: var(--muted);
-  font-size: 0.94rem;
-  margin-bottom: 2.25rem;
-  max-width: 680px;
 }
 
 .muted {
@@ -251,26 +238,28 @@ hr {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 0.45rem;
-  padding: 0.75rem 1.375rem;
-  border-radius: 10px;
-  font-size: 0.905rem;
-  font-weight: 600;
-  line-height: 1.15;
-  border: 1.5px solid transparent;
+  gap: 0.5rem;
+  padding: 0.78rem 1.4rem;
+  border-radius: 999px;
+  font-size: 0.925rem;
+  font-weight: 550;
+  line-height: 1;
+  border: 1px solid transparent;
   cursor: pointer;
   transition: background-color 0.18s ease, border-color 0.18s ease,
-    color 0.18s ease, box-shadow 0.18s ease;
+    color 0.18s ease, transform 0.18s ease, box-shadow 0.18s ease;
   text-decoration: none;
   white-space: nowrap;
 }
 .btn:hover {
   text-decoration: none;
+  transform: translateY(-1px);
 }
 
 .btn-primary {
   background: var(--accent);
   color: #fff;
+  box-shadow: 0 6px 18px rgba(33, 83, 196, 0.22);
 }
 .btn-primary:hover {
   background: var(--accent-deep);
@@ -278,13 +267,14 @@ hr {
 }
 
 .btn-ghost {
-  background: #fff;
-  color: var(--body);
+  background: transparent;
+  color: var(--ink);
   border-color: var(--line);
 }
 .btn-ghost:hover {
-  border-color: #bcd0f5;
+  border-color: var(--accent);
   color: var(--accent);
+  background: var(--card);
 }
 
 .btn-light {

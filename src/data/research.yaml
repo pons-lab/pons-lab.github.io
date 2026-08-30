@@ -14,12 +14,6 @@ axes:
     lead_ko: >-
       통합 멀티센서 모니터링 시스템, 소프트 생체신호 패치, 그리고 일상에서 쓸 수 있는
       초소형 뇌신호 센서를 만듭니다.
-    # 카드 태그 (메인 페이지 Research 카드 하단)
-    tags_en: [Soft patch, Brain sensor, Multi-sensor]
-    tags_ko: [소프트 패치, 뇌신호 센서, 멀티센서]
-    # 카드 썸네일 이미지. src/assets/research/ 에 파일을 넣고 파일명을 적으면
-    # 사진이 표시됩니다. 비워두면 파형 그래픽이 대신 표시됩니다.
-    image: ""
     topics:
       - title_en: Integrated Multi-Sensor Monitoring System
         title_ko: 통합 멀티센서 모니터링 시스템
@@ -54,9 +48,6 @@ axes:
     lead_ko: >-
       헬스케어 모니터링, 정신·신체 상태 추적, 인간/뇌-기계 인터페이스, 감정 인식까지
       측정한 신호를 실제 응용으로 잇습니다.
-    tags_en: [BCI / HMI, Healthcare, Emotion AI]
-    tags_ko: [BCI / HMI, 헬스케어, 감정 인식 AI]
-    image: ""
     topics:
       - title_en: Healthcare Monitoring
         title_ko: 헬스케어 모니터링
