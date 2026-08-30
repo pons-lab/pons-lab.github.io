@@ -61,12 +61,30 @@ const piPhoto = asset(pi.photo);
 
         <p class="bio">{piBio}</p>
 
-        <div class="grid grid-2 detail">
+        <div class="grid grid-3 detail">
+          <div>
+            <h3>{t('people.education')}</h3>
+            <ul class="entries">
+              {
+                pi.education.map((e) => (
+                  <li>
+                    <span class="period mono-num">
+                      {lang === 'ko' ? e.period_ko || e.period : e.period}
+                    </span>
+                    <strong>{pick(e, 'role', lang)}</strong>
+                    <span class="where">{pick(e, 'place', lang)}</span>
+                    {(e.note_en || e.note_ko) && <span class="note">{pick(e, 'note', lang)}</span>}
+                  </li>
+                ))
+              }
+            </ul>
+          </div>
+
           <div>
             <h3>{t('people.career')}</h3>
             <ul class="entries">
               {
-                pi.career.map((e) => (
+                pi.experience.map((e) => (
                   <li>
                     <span class="period mono-num">
                       {lang === 'ko' ? e.period_ko || e.period : e.period}

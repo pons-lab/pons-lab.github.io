@@ -45,9 +45,32 @@ pi:
     생체신호 지능 기술을 함께 연구하며, 뇌·생체 신호를 실시간 헬스케어와
     인간-기계 상호작용으로 이어지게 하는 시스템을 만듭니다.
 
-  # ── 학력 및 경력 ─────────────────────────────────────────────────────
-  # 기존 사이트와 동일하게 학력과 경력을 한 줄기로, 최신순으로 적습니다.
-  career:
+  # ── 학력 ─────────────────────────────────────────────────────────────
+  education:
+    - period: 2016.03 – 2022.02
+      role_en: Ph.D. in Electronic Engineering
+      role_ko: 공학박사 (융합전자공학과)
+      place_en: >-
+        Department of Electronic Engineering, Hanyang University, Seoul,
+        Republic of Korea
+      place_ko: 한양대학교 융합전자공학과, 서울
+      note_en: >-
+        GPA 100/100 · Computational Intelligence & Neural Engineering (CoNE) Lab
+        (PI: Chang-Hwan Im, Ph.D.)
+      note_ko: "학점 100/100 · CoNE Lab (지도: 임창환 교수)"
+
+    - period: 2010.03 – 2015.08
+      role_en: B.S. in Biomedical Engineering
+      role_ko: 공학사 (생체공학전공)
+      place_en: >-
+        Department of Biomedical Engineering, Hanyang University, Seoul,
+        Republic of Korea
+      place_ko: 한양대학교 생체공학전공, 서울
+      note_en: GPA 97.5/100, Summa Cum Laude
+      note_ko: 학점 97.5/100, 최우등 졸업
+
+  # ── 경력 ─────────────────────────────────────────────────────────────
+  experience:
     - period: 2025.03 – present
       period_ko: 2025.03 – 현재
       role_en: Assistant Professor
@@ -79,28 +102,6 @@ pi:
       place_ko: 조지아공과대학교 기계공학부, 미국 애틀랜타
       note_en: "Bio-Interfaced Translational Nanoengineering Group (PI: Woon-Hong Yeo, Ph.D.)"
       note_ko: "Bio-Interfaced Translational Nanoengineering Group (지도: Woon-Hong Yeo 박사)"
-
-    - period: 2016.03 – 2022.02
-      role_en: Ph.D. in Electronic Engineering
-      role_ko: 공학박사 (융합전자공학과)
-      place_en: >-
-        Department of Electronic Engineering, Hanyang University, Seoul,
-        Republic of Korea
-      place_ko: 한양대학교 융합전자공학과, 서울
-      note_en: >-
-        GPA 100/100 · Computational Intelligence & Neural Engineering (CoNE) Lab
-        (PI: Chang-Hwan Im, Ph.D.)
-      note_ko: "학점 100/100 · CoNE Lab (지도: 임창환 교수)"
-
-    - period: 2010.03 – 2015.08
-      role_en: B.S. in Biomedical Engineering
-      role_ko: 공학사 (생체공학전공)
-      place_en: >-
-        Department of Biomedical Engineering, Hanyang University, Seoul,
-        Republic of Korea
-      place_ko: 한양대학교 생체공학전공, 서울
-      note_en: GPA 97.5/100, Summa Cum Laude
-      note_ko: 학점 97.5/100, 최우등 졸업
 
   # ── 학술단체 활동 ────────────────────────────────────────────────────
   service:

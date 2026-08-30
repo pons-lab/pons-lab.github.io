@@ -60,7 +60,8 @@ export const ui = {
 
     'people.title': 'People',
     'people.pi': 'Principal Investigator',
-    'people.career': 'Education & Career',
+    'people.education': 'Education',
+    'people.career': 'Career',
     'people.service': 'Academic Service',
     'people.talks': 'Invited Talks & Seminars',
     'people.awards': 'Awards & Scholarships',
@@ -173,7 +174,8 @@ export const ui = {
 
     'people.title': '구성원',
     'people.pi': '지도교수',
-    'people.career': '학력 및 경력',
+    'people.education': '학력',
+    'people.career': '경력',
     'people.service': '학술단체 활동',
     'people.talks': '초청 강연 · 세미나',
     'people.awards': '수상 및 장학',
