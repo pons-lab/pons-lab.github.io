@@ -1,0 +1,11 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import JournalPage from '../../components/pages/JournalPage.astro';
+import { getLangFromUrl, useTranslations } from '../../i18n/utils.js';
+
+const t = useTranslations(getLangFromUrl(Astro.url));
+---
+
+<BaseLayout title={t('pub.journals')}>
+  <JournalPage />
+</BaseLayout>

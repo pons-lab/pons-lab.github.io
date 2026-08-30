@@ -47,62 +47,144 @@ skills:
 # ── 특허 ─────────────────────────────────────────────────────────────────
 # status: granted(등록) / application(출원)
 patents:
-  - no: 5
+  - no: 10
+    inventors: Sunghoon Lee, Woon-Hong Yeo, Hodam Kim, Garam Kim, Sungeun Kim
+    title_en: Sleep diagnosis system and its operating method
+    title_ko: 수면 진단 시스템 및 그 동작 방법
+    number: 10-2024-0182022
+    date: 2024.12.09
+    country_en: Korea
+    country_ko: 대한민국
+    assignee_en: Wis Medical Inc.
+    assignee_ko: ㈜위스메디컬
+    status: application
+
+  - no: 9
+    inventors: Sunghoon Lee, Hodam Kim, Garam Kim, Sungeun Kim
+    title_en: Smart all-in-one patch apparatus and method of operation thereof
+    title_ko: 스마트 올인원 패치 장치 및 그 동작 방법
+    number: 10-2024-0182021
+    date: 2024.12.09
+    country_en: Korea
+    country_ko: 대한민국
+    assignee_en: Wis Medical Inc.
+    assignee_ko: ㈜위스메디컬
+    status: application
+
+  - no: 8
+    inventors: Sunghoon Lee, Hodam Kim, Garam Kim
+    title_en: Smart all-in-one head patch apparatus and method of operation thereof
+    title_ko: 스마트 올인원 헤드 패치 장치 및 그 동작 방법
+    number: 10-2024-0156969
+    date: 2024.11.07
+    country_en: Korea
+    country_ko: 대한민국
+    assignee_en: Wis Medical Inc.
+    assignee_ko: ㈜위스메디컬
+    status: application
+
+  - no: 7
+    inventors: Woon-Hong Yeo, Hodam Kim
+    title_en: Human-machine interfaces via a scalable soft electrode array
+    title_ko: 확장 가능한 소프트 전극 어레이를 이용한 인간-기계 인터페이스
+    number: US 2025/0181172 A1
+    date: 2024.12.02
+    country_en: United States
+    country_ko: 미국
+    assignee_en: Georgia Tech Research Corporation
+    assignee_ko: Georgia Tech Research Corporation
+    status: application
+
+  - no: 6
     inventors: Chang-Hwan Im, Jung Hwan Kim, Suhye Kim, Jaehoon Cheon, Hodam Kim
     title_en: >-
-      Method and apparatus for analyzing concentration types based on
+      A method and device for analyzing concentration type based on
       electroencephalography using artificial intelligence
     title_ko: 인공지능을 활용한 뇌전도 기반 집중력 유형 분석 방법 및 그 장치
     number: 10-2024-0171693
     date: 2024.11.27
     country_en: Korea
     country_ko: 대한민국
+    assignee_en: IUCF, Hanyang University
+    assignee_ko: 한양대학교 산학협력단
     status: application
 
-  - no: 4
+  - no: 5
     inventors: Chang-Hwan Im, Hodam Kim
     title_en: Method and device for estimating onset time point of muscle movement
-    title_ko: 근육 움직임 시작 시점 추정 방법 및 장치
+    title_ko: 근육 움직임의 발생 시점 추정 방법
     number: 10-2399318
     date: 2022.05.13
+    application_number: 10-2020-0087101
+    application_date: 2020.07.14
     country_en: Korea
     country_ko: 대한민국
+    assignee_en: IUCF, Hanyang University
+    assignee_ko: 한양대학교 산학협력단
     status: granted
 
-  - no: 3
+  - no: 4
     inventors: Chang-Hwan Im, Ho-Seung Cha, Seong-Jun Choi, Hodam Kim
     title_en: >-
       Apparatus and method for user authentication using facial EMG by
       measuring changes of facial expression of HMD user
-    title_ko: HMD 착용자의 표정 변화를 측정한 얼굴 근전도 기반 사용자 인증 장치 및 방법
+    title_ko: HMD 착용자의 얼굴 표정 변화 시 측정된 근전도를 이용한 사용자의 개인 인증 장치 및 방법
     number: 10-2094488
     date: 2020.03.23
+    application_number: 10-2018-0072526
+    application_date: 2018.06.25
     country_en: Korea
     country_ko: 대한민국
+    assignee_en: IUCF, Hanyang University
+    assignee_ko: 한양대학교 산학협력단
+    status: granted
+
+  - no: 3
+    inventors: Chang-Hwan Im, Hodam Kim
+    title_en: >-
+      Method and apparatus for detecting craving state for game based on
+      electrooculogram
+    title_ko: 안구전도를 이용하는 게임에 대한 갈망 상태 판단 방법 및 장치
+    number: 10-2014707
+    date: 2019.08.21
+    application_number: 10-2017-0084837
+    application_date: 2017.07.04
+    country_en: Korea
+    country_ko: 대한민국
+    assignee_en: IUCF, Hanyang University
+    assignee_ko: 한양대학교 산학협력단
     status: granted
 
   - no: 2
     inventors: Chang-Hwan Im, Hodam Kim
     title_en: >-
-      Method and apparatus for detecting craving state for game based on
-      electrooculogram
-    title_ko: 안전도 기반 게임 중독 갈망 상태 검출 방법 및 장치
-    number: 10-2014717
-    date: 2019.08.21
+      Method for estimating and managing respiratory rate using
+      photoplethysmography
+    title_ko: 광용적맥파를 이용하는 호흡수 측정 및 관리 방법
+    number: 10-1837835
+    date: 2018.03.06
+    application_number: 10-2016-0068577
+    application_date: 2016.06.02
     country_en: Korea
     country_ko: 대한민국
+    assignee_en: IUCF, Hanyang University
+    assignee_ko: 한양대학교 산학협력단
     status: granted
 
   - no: 1
-    inventors: Chang-Hwan Im, Hodam Kim
+    inventors: Seon Jeong Kim, Shi Hyeong Kim, Hodam Kim
     title_en: >-
-      Method for estimating and managing respiratory rate using
-      photoplethysmography
-    title_ko: 광용적맥파를 이용한 호흡률 추정 및 관리 방법
-    number: 10-1837835
-    date: 2018.03.06
+      Fibrous actuator driven by humidity and solvent, manufacturing method
+      thereof and use of the same
+    title_ko: 습도 또는 용매에 의해 구동되는 섬유형 구동기, 이의 제조방법 및 이를 이용한 용도
+    number: 10-1781599
+    date: 2017.09.19
+    application_number: 10-2015-0138895
+    application_date: 2015.10.02
     country_en: Korea
     country_ko: 대한민국
+    assignee_en: IUCF, Hanyang University
+    assignee_ko: 한양대학교 산학협력단
     status: granted
 
 # ── 과거 참여 과제 (연구원으로 참여) ─────────────────────────────────────

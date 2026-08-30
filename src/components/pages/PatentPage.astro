@@ -1,0 +1,214 @@
+---
+import PageHero from '../PageHero.astro';
+import { publications, cv, patentsByStatus } from '../../lib/data.js';
+import { getLangFromUrl, useTranslations, localizePath, pick } from '../../i18n/utils.js';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+const { granted, application } = patentsByStatus();
+const journalCount = publications.journals.length;
+const conferenceCount = publications.conferences.length;
+const patentCount = cv.patents.length;
+---
+
+<PageHero kicker={t('page.kicker.publications')} title={t('pub.patents')}>
+  <p class="counts">
+    <span class="count-chip">
+      <strong class="mono-num">{patentCount}</strong>
+      {t('pub.count_patents')}
+    </span>
+    <a class="count-chip link" href={localizePath('/publications/journal', lang)}>
+      <strong class="mono-num">{journalCount}</strong> {t('pub.count_journals')} →
+    </a>
+    <a class="count-chip link" href={localizePath('/publications/conference', lang)}>
+      <strong class="mono-num">{conferenceCount}</strong> {t('pub.count_conferences')} →
+    </a>
+  </p>
+  <p class="legend small muted">{t('pub.patent_legend')}</p>
+</PageHero>
+
+{
+  [
+    { id: 'granted', label: t('cv.patent_granted'), list: granted },
+    { id: 'application', label: t('cv.patent_application'), list: application },
+  ].map((block, bi) => (
+    <section class:list={['section', { band: bi % 2 === 1 }]} id={block.id}>
+      <div class="container">
+        <h2 class="block-title">
+          {block.label}
+          <span class="count mono-num">{block.list.length}</span>
+        </h2>
+        <ol class="pat-list">
+          {block.list.map((p) => (
+            <li>
+              <span class="num mono-num">{p.no}.</span>
+              <div class="body">
+                <h3 class="pat-title">{pick(p, 'title', lang)}</h3>
+                <p class="pat-inventors" lang="en">
+                  {p.inventors}
+                </p>
+                <p class="pat-meta">
+                  <span class="mono-num num-strong">{p.number}</span>
+                  <span class="dot" aria-hidden="true">
+                    ·
+                  </span>
+                  <span class="mono-num">{p.date}</span>
+                  <span class="dot" aria-hidden="true">
+                    ·
+                  </span>
+                  <span>{pick(p, 'country', lang)}</span>
+                  {p.assignee_en && (
+                    <>
+                      <span class="dot" aria-hidden="true">
+                        ·
+                      </span>
+                      <span>{pick(p, 'assignee', lang)}</span>
+                    </>
+                  )}
+                </p>
+                {p.application_number && (
+                  <p class="pat-filed">
+                    {t('pub.patent_filed')}{' '}
+                    <span class="mono-num">{p.application_number}</span>
+                    <span class="dot" aria-hidden="true">
+                      ·
+                    </span>
+                    <span class="mono-num">{p.application_date}</span>
+                  </p>
+                )}
+              </div>
+            </li>
+          ))}
+        </ol>
+      </div>
+    </section>
+  ))
+}
+
+<style>
+  .counts {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 0.6rem 1.5rem;
+    margin: 0.9rem 0 0.75rem;
+  }
+  .count-chip {
+    font-size: 0.9rem;
+    color: var(--body);
+  }
+  .count-chip strong {
+    font-family: var(--font-display);
+    font-size: 1.35rem;
+    font-weight: 700;
+    color: var(--accent);
+    margin-right: 0.25rem;
+  }
+  a.count-chip {
+    text-decoration: none;
+    color: var(--muted);
+  }
+  a.count-chip strong {
+    color: var(--muted);
+    transition: color 0.15s ease;
+  }
+  a.count-chip:hover,
+  a.count-chip:hover strong {
+    color: var(--accent);
+    text-decoration: none;
+  }
+
+  .legend {
+    margin: 0;
+    max-width: 60ch;
+  }
+
+  .band {
+    background: #f6f8fc;
+    border-block: 1px solid var(--line);
+  }
+
+  .block-title {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-size: clamp(1.35rem, 2.4vw, 1.75rem);
+    padding-bottom: 0.85rem;
+    border-bottom: 2px solid var(--ink);
+    margin-bottom: 1.25rem;
+  }
+  .count {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 1.7rem;
+    padding: 0.1rem 0.5rem;
+    border-radius: 999px;
+    background: var(--accent-soft);
+    color: var(--accent);
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0;
+  }
+
+  .pat-list {
+    display: grid;
+  }
+  .pat-list li {
+    display: grid;
+    grid-template-columns: 2.4rem minmax(0, 1fr);
+    gap: 0.9rem;
+    padding: 1.15rem 0;
+    border-bottom: 1px solid var(--line);
+  }
+  .num {
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: var(--muted);
+    text-align: right;
+    padding-top: 0.15rem;
+  }
+
+  .pat-title {
+    font-family: var(--font-sans);
+    margin: 0 0 0.3rem;
+    font-size: 0.985rem;
+    font-weight: 600;
+    color: var(--ink);
+    line-height: 1.45;
+  }
+  .pat-inventors {
+    margin: 0 0 0.25rem;
+    font-size: 0.885rem;
+    color: var(--body);
+  }
+  .pat-meta,
+  .pat-filed {
+    margin: 0;
+    font-size: 0.865rem;
+    color: var(--muted);
+  }
+  .pat-filed {
+    margin-top: 0.15rem;
+    font-size: 0.815rem;
+  }
+  .num-strong {
+    color: var(--body);
+    font-weight: 600;
+  }
+  .dot {
+    margin: 0 0.4rem;
+    color: var(--line);
+  }
+
+  @media (max-width: 560px) {
+    .pat-list li {
+      grid-template-columns: minmax(0, 1fr);
+      gap: 0.25rem;
+    }
+    .num {
+      text-align: left;
+    }
+  }
+</style>

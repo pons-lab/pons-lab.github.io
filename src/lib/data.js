@@ -53,3 +53,13 @@ export function selectedPublications() {
 export const paperById = (id) => publications.journals.find((p) => p.id === id) ?? null;
 
 export const doiUrl = (doi) => (doi ? `https://doi.org/${doi}` : null);
+
+// 특허는 CV 와 특허 목록 페이지가 같은 cv.yaml 을 본다. 등록/출원만 갈라 준다.
+export function patentsByStatus() {
+  const byDate = (a, b) => String(b.date).localeCompare(String(a.date));
+  const pick = (fn) => (cv.patents ?? []).filter(fn).sort(byDate);
+  return {
+    granted: pick((p) => p.status === 'granted'),
+    application: pick((p) => p.status !== 'granted'),
+  };
+}

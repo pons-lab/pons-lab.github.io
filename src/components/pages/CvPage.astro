@@ -248,6 +248,7 @@ const levelLabel = (level) =>
                   {' '}
                   <span class="mono-num">{p.number}</span>, {p.date} (
                   {pick(p, 'country', lang)}) — {t(`cv.patent_${p.status}`)}
+                  {p.assignee_en && <>, {pick(p, 'assignee', lang)}</>}
                 </span>
               </span>
             </li>

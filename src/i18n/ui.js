@@ -12,6 +12,9 @@ export const ui = {
     'nav.research': 'Research',
     'nav.people': 'People',
     'nav.publications': 'Publications',
+    'nav.pub_journal': 'Journal Articles',
+    'nav.pub_conference': 'Conference Presentations',
+    'nav.pub_patent': 'Patents',
     'nav.lectures': 'Lectures',
     'nav.news': 'News',
     'nav.gallery': 'Gallery',
@@ -48,7 +51,7 @@ export const ui = {
 
     'page.kicker.research': 'What we work on',
     'page.kicker.people': 'The team',
-    'page.kicker.publications': 'Journal & conference',
+    'page.kicker.publications': 'Research output',
     'page.kicker.lectures': 'Teaching',
     'page.kicker.news': 'Board',
     'page.kicker.gallery': 'Lab life',
@@ -92,6 +95,11 @@ export const ui = {
       'Superscript 1 marks a first author, * marks a corresponding author. Lab members are shown in bold.',
     'pub.count_journals': 'journal articles',
     'pub.count_conferences': 'conference presentations',
+    'pub.patents': 'Patents',
+    'pub.count_patents': 'patents',
+    'pub.patent_legend': 'Inventor names are listed in the order recorded on each filing.',
+    'pub.patent_filed': 'Filed',
+    'pub.patent_assignee': 'Assignee',
 
     'lectures.title': 'Lectures',
     'lectures.lead': 'Courses taught by our PI at Yonsei University Mirae Campus.',
@@ -153,6 +161,9 @@ export const ui = {
     'nav.research': '연구',
     'nav.people': '구성원',
     'nav.publications': '논문',
+    'nav.pub_journal': '학술지 논문',
+    'nav.pub_conference': '학회 발표',
+    'nav.pub_patent': '특허',
     'nav.lectures': '강의',
     'nav.news': '소식',
     'nav.gallery': '갤러리',
@@ -189,7 +200,7 @@ export const ui = {
 
     'page.kicker.research': '연구 분야',
     'page.kicker.people': '연구실 사람들',
-    'page.kicker.publications': '학술지 · 학회',
+    'page.kicker.publications': '연구 실적',
     'page.kicker.lectures': '교육',
     'page.kicker.news': '게시판',
     'page.kicker.gallery': '연구실 일상',
@@ -232,6 +243,11 @@ export const ui = {
     'pub.legend': '이름 뒤 1은 제1저자, *는 교신저자입니다. 연구실 구성원은 굵게 표시했습니다.',
     'pub.count_journals': '편의 학술지 논문',
     'pub.count_conferences': '건의 학회 발표',
+    'pub.patents': '특허',
+    'pub.count_patents': '건의 특허',
+    'pub.patent_legend': '발명자는 각 특허에 기재된 순서대로 표기했습니다.',
+    'pub.patent_filed': '출원',
+    'pub.patent_assignee': '출원인',
 
     'lectures.title': '강의',
     'lectures.lead': '연세대학교 미래캠퍼스에서 진행한 강의 목록입니다.',
@@ -293,7 +309,18 @@ export const ui = {
 export const navItems = [
   { key: 'nav.research', path: '/research' },
   { key: 'nav.people', path: '/people' },
-  { key: 'nav.publications', path: '/publications' },
+  {
+    key: 'nav.publications',
+    path: '/publications/journal',
+    // 상위 메뉴에 마우스를 올리거나 초점을 두면 아래 두 항목이 펼쳐진다.
+    // 활성 표시는 matchPrefix 로 판단한다 (/publications 아래 어느 페이지든 활성).
+    matchPrefix: '/publications',
+    children: [
+      { key: 'nav.pub_journal', path: '/publications/journal' },
+      { key: 'nav.pub_conference', path: '/publications/conference' },
+      { key: 'nav.pub_patent', path: '/publications/patent' },
+    ],
+  },
   { key: 'nav.lectures', path: '/lectures' },
   { key: 'nav.news', path: '/news' },
   { key: 'nav.gallery', path: '/gallery' },

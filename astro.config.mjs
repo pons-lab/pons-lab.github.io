@@ -10,6 +10,11 @@ import sitemap from '@astrojs/sitemap';
 export default defineConfig({
   site: 'https://pons-lab.github.io',
   integrations: [sitemap({ i18n: { defaultLocale: 'en', locales: { en: 'en', ko: 'ko' } } })],
+  // 예전 /publications 주소로 들어오는 링크가 깨지지 않게 저널 페이지로 넘긴다
+  redirects: {
+    '/publications': '/publications/journal',
+    '/ko/publications': '/ko/publications/journal',
+  },
   i18n: {
     defaultLocale: 'en',
     locales: ['en', 'ko'],
