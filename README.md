@@ -73,7 +73,8 @@ summary_ko: 한두 줄 요약.
 
 ### 연구 카드 그림 (논문 도면)
 
-논문 도면 원본은 `images/` 에 두고, `npm run figures` 로 카드용 이미지를 만듭니다.
+논문 도면 원본은 `_originals/figures/` 에 두고, `npm run figures` 로 카드용 이미지를 만듭니다.
+(원본은 저장소에 올리지 않습니다 — `_originals/` 는 디스크에만 남습니다.)
 크롭 위치·주석 제거 규칙은 `scripts/prep-research-figures.mjs` 에 있습니다.
 결과물은 `src/assets/research/*.webp` (800×460, 카드 배경색과 동일) 로 저장되고,
 `src/data/research.yaml` 의 `image:` / `image_credit:` 으로 연결합니다.

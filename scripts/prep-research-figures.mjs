@@ -113,7 +113,7 @@ async function compose(parts, out, { gap = 20, pad = 14 } = {}) {
 }
 
 // ── 1) 일상 속 뇌신호 센서 : 손끝 컷 + 뒤통수 착용 컷 ─────────────────
-const src1 = 'images/comfortable EEg device.png';
+const src1 = '_originals/figures/comfortable EEg device.png';
 // 손끝 — 손가락에 바짝 붙여 자른다 (위쪽 분홍 콜아웃·검은 테두리 제외)
 await sharp(src1).extract({ left: 30, top: 436, width: 344, height: 264 }).toFile('prep-finger.png');
 // 뒤통수 — 인셋과 스케일바 아래부터, 머리와 무선 모듈 위주로
@@ -124,7 +124,7 @@ await compose(['prep-finger.png', 'prep-head.png'], 'src/assets/research/brain-s
 // ── 2) 인간-기계 인터페이스 : 전완부 패치 ────────────────────────────
 // 사진의 회색 배경을 카드 배경으로 바꾸고, 여백을 걷어내 피사체를 키운다
 // 가장자리의 검은 테두리를 먼저 잘라낸 뒤 배경을 갈아끼운다
-const hmiSrc = await sharp('images/Soft patch sensor.png')
+const hmiSrc = await sharp('_originals/figures/Soft patch sensor.png')
   .extract({ left: 4, top: 4, width: 403, height: 341 })
   .toBuffer();
 await sharp(await swapBackground(hmiSrc)).trim({ threshold: 6 }).toFile('prep-hmi.png');
@@ -135,7 +135,7 @@ await compose(['prep-hmi.png'], 'src/assets/research/hmi-forearm-emg.webp', { pa
 // 사진은 카드 높이를 꽉 채우고, 도식은 그 옆 밝은 바탕에 얹는다.
 {
   const photoW = 356;
-  const photo = await sharp('images/Integrated Multi-sensor Monitoring System.png')
+  const photo = await sharp('_originals/figures/Integrated Multi-sensor Monitoring System.png')
     .resize(photoW, H, { fit: 'cover', position: 'centre' })
     .toBuffer();
   const diagramW = W - photoW - 44;
@@ -154,7 +154,7 @@ await compose(['prep-hmi.png'], 'src/assets/research/hmi-forearm-emg.webp', { pa
 }
 
 // Join 밴드 배경 (같은 사진, 밴드 폭으로 확대 + 약한 블러)
-await sharp('images/Integrated Multi-sensor Monitoring System.png')
+await sharp('_originals/figures/Integrated Multi-sensor Monitoring System.png')
   .resize(1600, 520, { fit: 'cover', position: 'centre', kernel: 'lanczos3' })
   .blur(1.4)
   .webp({ quality: 78 })

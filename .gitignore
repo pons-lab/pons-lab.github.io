@@ -26,9 +26,17 @@ _originals/
 .claude/
 skills-lock.json
 
-# 개인 문서 원본 (사이트 데이터로 옮긴 뒤에는 저장소에 두지 않는다)
+# 원재료 파일 — 사이트 데이터로 옮기기 위한 재료일 뿐, 저장소에 두지 않는다
+# (CLAUDE.md 「원재료 파일 다루기」 참고)
 *.docx
 *.doc
+*.xlsx
+*.xls
+*.csv
+*.pptx
 
 # 연구 카드 이미지 생성 중간 산출물 (npm run figures 가 만들었다 지움)
 prep-*.png
+
+# 사용자가 넣은 원재료 파일 (사이트 데이터로 옮긴 뒤에는 저장소에 두지 않는다)
+images/
