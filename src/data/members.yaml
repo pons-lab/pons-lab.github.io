@@ -45,56 +45,220 @@ pi:
     생체신호 지능 기술을 함께 연구하며, 뇌·생체 신호를 실시간 헬스케어와
     인간-기계 상호작용으로 이어지게 하는 시스템을 만듭니다.
 
-  education:
-    - period: 2016.03 – 2022.02
-      degree_en: Ph.D. in Electronic Engineering
-      degree_ko: 전자공학 박사
-      school_en: Hanyang University
-      school_ko: 한양대학교
-      note_en: GPA 100/100
-      note_ko: 학점 100/100
-    - period: 2010.03 – 2015.08
-      degree_en: B.S. in Biomedical Engineering
-      degree_ko: 생체공학 학사
-      school_en: Hanyang University
-      school_ko: 한양대학교
-      note_en: GPA 97.5/100, Summa Cum Laude
-      note_ko: 학점 97.5/100, 최우등 졸업
-
-  experience:
+  # ── 학력 및 경력 ─────────────────────────────────────────────────────
+  # 기존 사이트와 동일하게 학력과 경력을 한 줄기로, 최신순으로 적습니다.
+  career:
     - period: 2025.03 – present
       period_ko: 2025.03 – 현재
       role_en: Assistant Professor
       role_ko: 조교수
-      place_en: Yonsei University
-      place_ko: 연세대학교
+      place_en: >-
+        Division of Biomedical Engineering (Undergraduate) and Department of
+        Biomedical Engineering (Graduate), Yonsei University, Wonju,
+        Republic of Korea
+      place_ko: 연세대학교 미래캠퍼스 의공학부 · 대학원 의공학과
+
     - period: 2024.04 – 2025.01
       role_en: Postdoctoral Fellow
       role_ko: 박사후연구원
-      place_en: Icahn School of Medicine at Mount Sinai
-      place_ko: Icahn School of Medicine at Mount Sinai
+      place_en: >-
+        Biomedical Engineering and Imaging Institute / Department of Radiology,
+        Icahn School of Medicine at Mount Sinai, New York, NY, USA
+      place_ko: >-
+        마운트 시나이 아이칸 의과대학 생체의공학·영상연구소 / 영상의학과,
+        미국 뉴욕
+      note_en: "Advanced Wearable Sensors and Electronics Lab (PI: Yun Soung Kim, Ph.D.)"
+      note_ko: "Advanced Wearable Sensors and Electronics Lab (지도: Yun Soung Kim 박사)"
+
     - period: 2022.01 – 2024.03
       role_en: Postdoctoral Fellow
       role_ko: 박사후연구원
-      place_en: Georgia Institute of Technology
-      place_ko: Georgia Institute of Technology
+      place_en: >-
+        George W. Woodruff School of Mechanical Engineering,
+        Georgia Institute of Technology, Atlanta, GA, USA
+      place_ko: 조지아공과대학교 기계공학부, 미국 애틀랜타
+      note_en: "Bio-Interfaced Translational Nanoengineering Group (PI: Woon-Hong Yeo, Ph.D.)"
+      note_ko: "Bio-Interfaced Translational Nanoengineering Group (지도: Woon-Hong Yeo 박사)"
 
+    - period: 2016.03 – 2022.02
+      role_en: Ph.D. in Electronic Engineering
+      role_ko: 공학박사 (융합전자공학과)
+      place_en: >-
+        Department of Electronic Engineering, Hanyang University, Seoul,
+        Republic of Korea
+      place_ko: 한양대학교 융합전자공학과, 서울
+      note_en: >-
+        GPA 100/100 · Computational Intelligence & Neural Engineering (CoNE) Lab
+        (PI: Chang-Hwan Im, Ph.D.)
+      note_ko: "학점 100/100 · CoNE Lab (지도: 임창환 교수)"
+
+    - period: 2010.03 – 2015.08
+      role_en: B.S. in Biomedical Engineering
+      role_ko: 공학사 (생체공학전공)
+      place_en: >-
+        Department of Biomedical Engineering, Hanyang University, Seoul,
+        Republic of Korea
+      place_ko: 한양대학교 생체공학전공, 서울
+      note_en: GPA 97.5/100, Summa Cum Laude
+      note_ko: 학점 97.5/100, 최우등 졸업
+
+  # ── 학술단체 활동 ────────────────────────────────────────────────────
+  service:
+    - period: 2026.01 – present
+      period_ko: 2026.01 – 현재
+      role_en: Committee Member, Academic Affairs (Brain Engineering)
+      role_ko: 학술위원회 위원 (뇌공학)
+      org_en: Korean Society of Medical & Biological Engineering
+      org_ko: 대한의용생체공학회
+
+    - period: 2025.03 – present
+      period_ko: 2025.03 – 현재
+      role_en: Editorial Director
+      role_ko: 편집이사
+      org_en: Korean Brain Engineering Society
+      org_ko: 한국뇌공학회
+
+  # ── 초청 강연 · 세미나 (최신순) ──────────────────────────────────────
+  talks:
+    - date: 2026.05.20
+      title_en: "2026 Workshop on BRAIN & AI"
+      title_ko: "2026 BRAIN&AI 워크샵"
+      host_en: "Hanyang University"
+      host_ko: "한양대학교"
+    - date: 2026.02.10
+      title_en: "Invited seminar"
+      title_ko: "초청 세미나"
+      host_en: "Konkuk University Glocal Campus, Dept. of Biomedical Engineering"
+      host_ko: "건국대학교 글로컬캠퍼스 의생명공학과"
+    - date: 2025.12.06
+      title_en: "2025 12th Workshop and Annual Conference, Korean Society for EEG and Neurophysiology"
+      title_ko: "2025 제12회 대한뇌파신경생리학회 워크샵 및 학술대회"
+    - date: 2025.11.24
+      title_en: "Convergence Research Meeting"
+      title_ko: "융합연구 미팅"
+      host_en: "Yonsei University Mirae Campus"
+      host_ko: "연세대학교 미래캠퍼스"
+    - date: 2025.11.13
+      title_en: "Invited lecture, Advanced Topics in Biomedical Engineering"
+      title_ko: "「의공학 특론」 초청 강의"
+      host_en: "Gangnam Severance, Dept. of Medical Device Industry"
+      host_ko: "강남세브란스 의료기기산업학과"
+    - date: 2025.11.12
+      title_en: "RLC, Biomedical Engineering student research club"
+      title_ko: "의공학부 학술동아리 RLC"
+      host_en: "Yonsei University Mirae Campus"
+      host_ko: "연세대학교 미래캠퍼스"
+    - date: 2025.11.12
+      title_en: "Bio-Convergence Advanced Seminar 2"
+      title_ko: "바이오융합 고급세미나 2"
+      host_en: "HY-KIST Dept. of Bio-Convergence"
+      host_ko: "HY-KIST 바이오융합학과"
+    - date: 2025.11.11
+      title_en: "Invited lecture, Artificial Intelligence and Applications"
+      title_ko: "「인공지능과 응용」 초청 강의"
+      host_en: "Kyonggi University, Dept. of Electronics Engineering"
+      host_ko: "경기대학교 전자공학과"
+    - date: 2025.10.10
+      title_en: "Graduate seminar"
+      title_ko: "대학원 세미나"
+      host_en: "Inha University, Dept. of Mechanical Engineering"
+      host_ko: "인하대학교 기계공학과"
+    - date: 2025.09.25
+      title_en: "Invited seminar"
+      title_ko: "초청 세미나"
+      host_en: "Hanyang University, WearLab"
+      host_ko: "한양대학교 WearLab"
+    - date: 2025.09.25
+      title_en: "Invited seminar"
+      title_ko: "초청 세미나"
+      host_en: "Seoul National University Hospital, Dept. of Biomedical Engineering"
+      host_ko: "서울대학교병원 의공학과"
+    - date: 2025.09.22
+      title_en: "AI Convergence Seminar 2"
+      title_ko: "AI융합 세미나 2"
+      host_en: "Hallym University, AI Convergence"
+      host_ko: "한림대학교 AI융합"
+    - date: 2025.07.15
+      title_en: "K-BioHealth Regional Center industry–academia–hospital exchange"
+      title_ko: "K-바이오헬스 지역센터 산학병 교류회"
+      host_en: "Wonju Medical Device Industry Promotion Foundation"
+      host_ko: "원주의료기기테크노밸리"
+    - date: 2025.05.26
+      title_en: "Special Lecture on Bioengineering"
+      title_ko: "생체공학 특강"
+      host_en: "Hanyang University"
+      host_ko: "한양대학교"
+    - date: 2025.05.23
+      title_en: "Mechanical Technology Seminar"
+      title_ko: "기계기술 세미나"
+      host_en: "Chungnam National University"
+      host_ko: "충남대학교"
+    - date: 2025.05.09
+      title_en: "65th Spring Conference, Korean Society of Medical & Biological Engineering"
+      title_ko: "제65회 대한의용생체공학회 춘계학술대회"
+    - date: 2025.02.05
+      title_en: "2025 Brain and AI Symposium"
+      title_ko: "2025 뇌와 인공지능 심포지엄"
+      host_en: "Korean Brain Engineering Society"
+      host_ko: "한국뇌공학회"
+    - date: 2022.05.04
+      title_en: "2022 Virtual Spring Conference, Korean Society for EEG and Neurophysiology"
+      title_ko: "대한뇌파신경생리학회 2022 온라인 춘계학술대회"
+
+  # ── 수상 및 장학 ─────────────────────────────────────────────────────
   awards:
     - year: 2020.12
       title_en: Best Poster Award
       title_ko: 우수 포스터상
-      org_en: Korean Society for EEG and Neurophysiology
-      org_ko: 대한뇌파신경생리학회
+      org_en: Annual Conference of Korean Society for EEG and Neurophysiology
+      org_ko: 대한뇌파신경생리학회 정기학술대회
     - year: 2017.11
       title_en: Best Poster Award
       title_ko: 우수 포스터상
-      org_en: Korean Society of Medical & Biological Engineering
-      org_ko: 대한의용생체공학회
-    - year: 2014 – 2015
+      org_en: Annual Autumn Conference of Korean Society of Medical & Biological Engineering
+      org_ko: 대한의용생체공학회 추계학술대회
+    - year: 2015 Spring
+      year_ko: 2015년 1학기
       title_en: National Science and Engineering Undergraduate Scholarship
-      title_ko: 국가우수장학금(이공계)
-      org_en: Korea Student Aid Foundation
-      org_ko: 한국장학재단
+      title_ko: 국가우수장학금 (이공계)
+      org_en: Republic of Korea
+      org_ko: 대한민국
+    - year: 2014 Fall
+      year_ko: 2014년 2학기
+      title_en: National Science and Engineering Undergraduate Scholarship
+      title_ko: 국가우수장학금 (이공계)
+      org_en: Republic of Korea
+      org_ko: 대한민국
+    - year: 2014 Spring
+      year_ko: 2014년 1학기
+      title_en: National Science and Engineering Undergraduate Scholarship
+      title_ko: 국가우수장학금 (이공계)
+      org_en: Republic of Korea
+      org_ko: 대한민국
+    - year: 2014 Fall
+      year_ko: 2014년 2학기
+      title_en: Merit Based Scholarship
+      title_ko: 성적우수장학금
+      org_en: Hanyang University
+      org_ko: 한양대학교
+    - year: 2011 Fall
+      year_ko: 2011년 2학기
+      title_en: Merit Based Scholarship
+      title_ko: 성적우수장학금
+      org_en: Hanyang University
+      org_ko: 한양대학교
+    - year: 2011 Spring
+      year_ko: 2011년 1학기
+      title_en: Merit Based Scholarship
+      title_ko: 성적우수장학금
+      org_en: Hanyang University
+      org_ko: 한양대학교
+    - year: 2010 Fall
+      year_ko: 2010년 2학기
+      title_en: Merit Based Scholarship
+      title_ko: 성적우수장학금
+      org_en: Hanyang University
+      org_ko: 한양대학교
 
 # ---------------------------------------------------------------------------
 # 재학 구성원. 그룹 순서가 곧 People 페이지의 표시 순서입니다.
