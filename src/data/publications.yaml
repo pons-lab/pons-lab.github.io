@@ -4,7 +4,8 @@
 # 새 논문을 추가하려면 journals: 맨 위에 항목 하나를 복사해서 붙여넣고 고치세요.
 #   id      : 논문 번호 (기존 사이트의 [번호]와 동일. 가장 큰 번호가 최신)
 #   year    : 출판 연도. 아직 안 나왔으면 비우고 status 를 채우세요.
-#   status  : "in-revision" / "in-press" / "accepted" (출판된 논문은 비워둠)
+#   status  : "in-preparation" / "in-revision" / "in-press" / "accepted"
+#             (출판된 논문은 비워둠)
 #   authors : 저자를 순서대로 쉼표로 나열. 표기 규칙은 아래와 같습니다.
 #               이름 뒤 1  → 제1저자      (예: Hodam Kim1)
 #               이름 뒤 *  → 교신저자     (예: Chang-Hwan Im*)
@@ -19,6 +20,26 @@
 # ============================================================================
 
 journals:
+  - id: 31
+    status: in-preparation
+    authors: Hodam Kim1, Suhye Kim1, and Chang-Hwan Im*
+    title: >-
+      Prediction of the individual's emotional modulation by emotionally
+      arousing videos from resting-state EEG
+    venue: ""
+    detail: ""
+    doi: ""
+
+  - id: 30
+    status: in-preparation
+    authors: Hodam Kim1, Suhye Kim, and Chang-Hwan Im*
+    title: >-
+      Subject-independent emotion estimation based on EEG using continuously
+      indexed domain generalization
+    venue: ""
+    detail: ""
+    doi: ""
+
   - id: 29
     status: in-revision
     authors: >-

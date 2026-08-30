@@ -27,7 +27,7 @@ const conferenceCount = publications.conferences.length;
   <p class="legend small muted">{t('pub.legend')}</p>
 
   <nav class="jump" aria-label={t('pub.jump')}>
-    {unpublished.length > 0 && <a href="#y-review">{t('pub.in_revision')}</a>}
+    {unpublished.length > 0 && <a href="#y-review">{t('pub.unpublished')}</a>}
     {groups.map((g) => (
       <a class="mono-num" href={`#y-${g.year}`}>
         {g.year}
@@ -45,7 +45,7 @@ const conferenceCount = publications.conferences.length;
     {
       unpublished.length > 0 && (
         <div class="year-block">
-          <h3 class="year" id="y-review">{t('pub.in_revision')}</h3>
+          <h3 class="year" id="y-review">{t('pub.unpublished')}</h3>
           <div class="items">
             {unpublished.map((pub) => (
               <PublicationItem pub={pub} level={4} />

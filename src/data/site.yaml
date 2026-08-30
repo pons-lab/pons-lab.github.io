@@ -42,10 +42,12 @@ institution:
 contact:
   email: hodamkim@yonsei.ac.kr
 
-  # 실험실 — 연구실 공간. 별도 전화는 없습니다.
+  # 실험실 — 연구실 공간.
   lab:
     room_en: Room 204, Sanhak Hall
     room_ko: 산학관 204호
+    phone: "+82-33-760-2859"
+    phone_display: +82-33-760-2859
     address_en: >-
       Room 204, Sanhak Hall, 1 Yonseidae-gil, Heungeop-myeon, Wonju-si,
       Gangwon State 26493, Republic of Korea

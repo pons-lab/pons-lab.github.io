@@ -30,6 +30,9 @@ const affiliation =
           <dd>
             <p class="strongish">{labRoom}</p>
             <p>{labAddress}</p>
+            {lab.phone && (
+              <p><a href={`tel:${lab.phone}`}>{lab.phone_display}</a></p>
+            )}
             <p class="muted small">{affiliation}</p>
             <p class="map">
               <a
