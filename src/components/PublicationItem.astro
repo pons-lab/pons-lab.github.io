@@ -1,0 +1,143 @@
+---
+import Authors from './Authors.astro';
+import { doiUrl } from '../lib/data.js';
+import { getLangFromUrl, useTranslations } from '../i18n/utils.js';
+
+const { pub, compact = false } = Astro.props;
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+const link = doiUrl(pub.doi);
+const statusLabel = pub.status ? t(`pub.${String(pub.status).replace(/-/g, '_')}`) : null;
+---
+
+<article class:list={['pub', { compact }]}>
+  {!compact && <span class="num mono-num">{pub.id}</span>}
+
+  <div class="body">
+    <h3 class="title">
+      {link ? <a href={link} target="_blank" rel="noopener">{pub.title}</a> : pub.title}
+    </h3>
+
+    <p class="authors-line"><Authors authors={pub.authors} /></p>
+
+    <p class="meta">
+      {pub.venue && <em class="venue">{pub.venue}</em>}
+      {pub.detail && <span class="detail">, {pub.detail}</span>}
+      {pub.year && <span class="year">, {pub.year}</span>}
+      {statusLabel && <span class="status">{statusLabel}</span>}
+    </p>
+
+    {
+      (link || pub.metrics) && (
+        <p class="foot">
+          {link && (
+            <a class="doi" href={link} target="_blank" rel="noopener">
+              DOI {pub.doi}
+            </a>
+          )}
+          {pub.metrics && <span class="tag tag-quiet">{pub.metrics}</span>}
+        </p>
+      )
+    }
+  </div>
+</article>
+
+<style>
+  .pub {
+    display: grid;
+    grid-template-columns: 2.6rem minmax(0, 1fr);
+    gap: 0.35rem 0.9rem;
+    padding: 1.35rem 0;
+    border-bottom: 1px solid var(--line);
+  }
+  .pub.compact {
+    grid-template-columns: minmax(0, 1fr);
+    border-bottom: 0;
+    padding: 0;
+  }
+
+  .num {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--accent);
+    background: var(--accent-soft);
+    border-radius: 7px;
+    height: 1.75rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 0.16rem;
+  }
+
+  .title {
+    font-family: var(--font-sans);
+    font-size: 1.015rem;
+    font-weight: 600;
+    line-height: 1.45;
+    color: var(--ink);
+    margin: 0 0 0.4rem;
+    letter-spacing: -0.008em;
+  }
+  .title a {
+    color: inherit;
+    text-decoration: none;
+  }
+  .title a:hover {
+    color: var(--accent);
+    text-decoration: underline;
+  }
+
+  .authors-line {
+    margin: 0 0 0.3rem;
+    font-size: 0.895rem;
+    line-height: 1.62;
+  }
+
+  .meta {
+    margin: 0;
+    font-size: 0.875rem;
+    color: var(--muted);
+  }
+  .venue {
+    color: var(--body);
+    font-style: italic;
+  }
+
+  .status {
+    display: inline-block;
+    margin-left: 0.15rem;
+    padding: 0.16rem 0.55rem;
+    border-radius: 999px;
+    background: #fff4e6;
+    color: #9a5b12;
+    font-size: 0.72rem;
+    font-weight: 600;
+    font-style: normal;
+  }
+
+  .foot {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.6rem;
+    margin: 0.55rem 0 0;
+  }
+
+  .doi {
+    font-size: 0.78rem;
+    font-weight: 550;
+    color: var(--accent);
+    word-break: break-all;
+  }
+
+  @media (max-width: 560px) {
+    .pub {
+      grid-template-columns: minmax(0, 1fr);
+    }
+    .num {
+      width: 2.4rem;
+    }
+  }
+</style>

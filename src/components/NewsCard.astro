@@ -1,0 +1,104 @@
+---
+import { getLangFromUrl, formatDate, pick } from '../i18n/utils.js';
+
+const { item } = Astro.props;
+const lang = getLangFromUrl(Astro.url);
+const d = item.data;
+
+const title = lang === 'ko' ? d.title_ko || d.title : d.title;
+const summary = lang === 'ko' ? d.summary_ko || d.summary : d.summary;
+const tag = lang === 'ko' ? d.tag_ko || d.tag : d.tag;
+---
+
+<article class="card card-hover news-card">
+  {
+    d.image ? (
+      <img class="thumb" src={d.image} alt="" loading="lazy" decoding="async" width="640" height="400" />
+    ) : (
+      <div class="thumb thumb-blank" aria-hidden="true">
+        <svg viewBox="0 0 120 60" role="presentation">
+          <path
+            d="M0 34 L18 34 26 20 34 46 42 28 50 38 58 30 68 34 78 16 86 44 94 30 104 36 120 34"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+        </svg>
+      </div>
+    )
+  }
+
+  <div class="body">
+    <p class="meta">
+      <time datetime={d.date.toISOString().slice(0, 10)}>
+        {formatDate(d.date, lang, { monthOnly: true })}
+      </time>
+      {tag && <span class="tag">{tag}</span>}
+    </p>
+    <h3>{title}</h3>
+    <p class="summary">{summary}</p>
+  </div>
+</article>
+
+<style>
+  .news-card {
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+    overflow: hidden;
+  }
+
+  .thumb {
+    width: 100%;
+    aspect-ratio: 16 / 10;
+    object-fit: cover;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .thumb-blank {
+    display: grid;
+    place-items: center;
+    background: linear-gradient(135deg, #eef3fd 0%, #e3ebfa 100%);
+    color: #a9c0ec;
+    padding: 1.5rem;
+  }
+  .thumb-blank svg {
+    width: 62%;
+    max-width: 150px;
+  }
+
+  .body {
+    padding: 1.15rem clamp(1.1rem, 2vw, 1.4rem) clamp(1.25rem, 2vw, 1.5rem);
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+  }
+
+  .meta {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    margin: 0 0 0.55rem;
+    font-size: 0.78rem;
+    color: var(--muted);
+    font-variant-numeric: tabular-nums;
+  }
+
+  h3 {
+    font-family: var(--font-sans);
+    font-size: 1rem;
+    font-weight: 620;
+    line-height: 1.42;
+    margin-bottom: 0.45rem;
+    letter-spacing: -0.008em;
+  }
+
+  .summary {
+    margin: 0;
+    font-size: 0.885rem;
+    line-height: 1.62;
+    color: var(--body);
+  }
+</style>

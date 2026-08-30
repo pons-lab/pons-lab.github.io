@@ -1,0 +1,182 @@
+---
+import PageHero from '../PageHero.astro';
+import PublicationItem from '../PublicationItem.astro';
+import Authors from '../Authors.astro';
+import { publications, journalsByYear, conferencesByScope } from '../../lib/data.js';
+import { getLangFromUrl, useTranslations } from '../../i18n/utils.js';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+const { unpublished, groups } = journalsByYear();
+const { international, domestic } = conferencesByScope();
+
+const journalCount = publications.journals.length;
+const conferenceCount = publications.conferences.length;
+---
+
+<PageHero kicker={t('page.kicker.publications')} title={t('pub.title')}>
+  <p class="counts">
+    <span class="count-chip">
+      <strong class="mono-num">{journalCount}</strong> {t('pub.count_journals')}
+    </span>
+    <span class="count-chip">
+      <strong class="mono-num">{conferenceCount}</strong> {t('pub.count_conferences')}
+    </span>
+  </p>
+  <p class="legend small muted">{t('pub.legend')}</p>
+</PageHero>
+
+<!-- ── 학술지 논문 ────────────────────────────────────────────────────── -->
+<section class="section" id="journals">
+  <div class="container">
+    <h2 class="block-title">{t('pub.journals')}</h2>
+
+    {
+      unpublished.length > 0 && (
+        <div class="year-block">
+          <h3 class="year">{t('pub.in_revision')}</h3>
+          <div class="items">
+            {unpublished.map((pub) => (
+              <PublicationItem pub={pub} />
+            ))}
+          </div>
+        </div>
+      )
+    }
+
+    {
+      groups.map((group) => (
+        <div class="year-block">
+          <h3 class="year mono-num">{group.year}</h3>
+          <div class="items">
+            {group.items.map((pub) => (
+              <PublicationItem pub={pub} />
+            ))}
+          </div>
+        </div>
+      ))
+    }
+  </div>
+</section>
+
+<!-- ── 학회 발표 ──────────────────────────────────────────────────────── -->
+<section class="section conf-band" id="conferences">
+  <div class="container">
+    <h2 class="block-title">{t('pub.conferences')}</h2>
+
+    {
+      [
+        { label: t('pub.international'), list: international },
+        { label: t('pub.domestic'), list: domestic },
+      ].map((block) => (
+        <div class="year-block">
+          <h3 class="year">{block.label}</h3>
+          <ol class="conf-list">
+            {block.list.map((c) => (
+              <li>
+                <p class="conf-title">{c.title}</p>
+                <p class="conf-authors">
+                  <Authors authors={c.authors} />
+                </p>
+                <p class="conf-meta">
+                  <em>{c.venue}</em>
+                  {c.place && <span>, {c.place}</span>}
+                  {c.date && <span>, {c.date}</span>}
+                </p>
+              </li>
+            ))}
+          </ol>
+        </div>
+      ))
+    }
+  </div>
+</section>
+
+<style>
+  .counts {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem 1.5rem;
+    margin: 0.9rem 0 0.75rem;
+  }
+
+  .count-chip {
+    font-size: 0.9rem;
+    color: var(--body);
+  }
+  .count-chip strong {
+    font-family: var(--font-display);
+    font-size: 1.35rem;
+    font-weight: 650;
+    color: var(--accent);
+    margin-right: 0.25rem;
+  }
+
+  .legend {
+    margin: 0;
+    max-width: 60ch;
+  }
+
+  .block-title {
+    font-size: clamp(1.35rem, 2.4vw, 1.75rem);
+    padding-bottom: 0.85rem;
+    border-bottom: 2px solid var(--ink);
+    margin-bottom: 0;
+  }
+
+  .year-block {
+    margin-top: clamp(1.75rem, 3vw, 2.5rem);
+  }
+
+  .year {
+    font-family: var(--font-display);
+    font-size: 1.05rem;
+    font-weight: 650;
+    color: var(--accent);
+    letter-spacing: 0.02em;
+    margin-bottom: 0.35rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .items {
+    display: grid;
+  }
+
+  .conf-band {
+    background: #f6f8fc;
+    border-top: 1px solid var(--line);
+  }
+
+  .conf-list {
+    display: grid;
+  }
+
+  .conf-list li {
+    padding: 1.15rem 0;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .conf-title {
+    margin: 0 0 0.3rem;
+    font-size: 0.985rem;
+    font-weight: 600;
+    color: var(--ink);
+    line-height: 1.45;
+  }
+
+  .conf-authors {
+    margin: 0 0 0.25rem;
+    font-size: 0.885rem;
+  }
+
+  .conf-meta {
+    margin: 0;
+    font-size: 0.865rem;
+    color: var(--muted);
+  }
+  .conf-meta em {
+    color: var(--body);
+  }
+</style>

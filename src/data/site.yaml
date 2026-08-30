@@ -1,0 +1,131 @@
+# ============================================================================
+# 연구실 기본 정보 — 이름 / 태그라인 / 연락처 / 브랜드 문구
+#
+# 연구실 이름·태그라인·연락처가 바뀌면 "이 파일만" 고치면 사이트 전체에
+# 반영됩니다. 다른 파일에는 절대 하드코딩하지 않습니다.
+# ============================================================================
+
+name:
+  # 영문 풀네임 / 약칭
+  full_en: Physiological & On-body Neural Systems Lab
+  short_en: PONS Lab
+  # 국문 명칭. 영문 직역이 아니라 같은 철학(뇌+몸+잇기)을 담은 별도 명칭입니다.
+  full_ko: 뇌·신체·기계 인터페이스 연구실
+  short_ko: PONS Lab
+  # 병기 원칙: 국문명을 표기할 때는 항상 영문 약칭을 함께 씁니다.
+  display_ko: 뇌·신체·기계 인터페이스 연구실(PONS Lab)
+
+tagline:
+  en: Bridging brain, body, and technology
+  ko: 뇌와 몸, 그리고 기술을 잇습니다
+
+# 사이트 메타 설명 (검색엔진 / 카카오톡·페이스북 공유 미리보기에 쓰입니다)
+description:
+  en: >-
+    PONS Lab at Yonsei University Mirae Campus develops soft, wearable
+    bioelectronics and intelligent systems that measure and decode brain and
+    physiological signals — for real-time health monitoring, brain–computer
+    interfaces, and human–machine interaction.
+  ko: >-
+    연세대학교 미래캠퍼스 뇌·신체·기계 인터페이스 연구실(PONS Lab)은 뇌·생체 신호를
+    측정하고 해석하는 소프트 웨어러블 바이오일렉트로닉스와 지능형 시스템을 연구합니다.
+    실시간 건강 모니터링, 뇌-컴퓨터 인터페이스, 인간-기계 상호작용을 다룹니다.
+
+institution:
+  university_en: Yonsei University Mirae Campus
+  university_ko: 연세대학교 미래캠퍼스
+  department_en: Division of Biomedical Engineering
+  department_ko: 의공학부
+  department_grad_en: Department of Biomedical Engineering (Graduate School)
+  department_grad_ko: 대학원 의공학과
+
+contact:
+  email: hodamkim@yonsei.ac.kr
+  phone: "+82-33-760-2859"
+  phone_display: +82-33-760-2859
+  address_en: >-
+    204 Sanhak Hall, 1 Yonseidae-gil, Heungeop-myeon, Wonju-si,
+    Gangwon State 26493, Republic of Korea
+  address_ko: 강원특별자치도 원주시 흥업면 연세대길 1, 산학관 204호 (26493)
+  room_en: Room 204, Sanhak Hall
+  room_ko: 산학관 204호
+  map_url: https://maps.google.com/?q=연세대학교+미래캠퍼스+산학관
+
+# 대학원생·학부연구생 모집 안내 (메인 페이지 리본 + Join 밴드 + Contact 페이지)
+recruiting:
+  open: true
+  en: >-
+    We are currently recruiting undergraduate researchers, M.S. students,
+    Ph.D. students, and postdoctoral researchers.
+  ko: >-
+    학부연구생, 석사과정, 박사과정, 박사후연구원을 상시 모집하고 있습니다.
+  how_to_apply_en: >-
+    Please send your CV, a short cover letter, and a list of references to
+    hodamkim@yonsei.ac.kr.
+  how_to_apply_ko: >-
+    이력서(CV), 간단한 자기소개서, 추천인 명단을 hodamkim@yonsei.ac.kr 로
+    보내주세요.
+
+# 연구실 소개문 (메인 히어로 아래 문단)
+intro:
+  en: >-
+    We develop soft, wearable devices and intelligent systems for measuring and
+    interpreting brain and physiological signals. Our goal is to improve human
+    health and interaction through real-time monitoring, signal analysis, and
+    personalized intervention — from research to real-world impact.
+  ko: >-
+    우리 연구실은 뇌 신호와 생체 신호를 측정하고 해석하는 소프트 웨어러블 기기와
+    지능형 시스템을 개발합니다. 실시간 모니터링, 신호 분석, 개인 맞춤형 중재를 통해
+    사람의 건강과 상호작용을 향상시키는 것, 그리고 그 연구를 실제 삶으로
+    이어지게 하는 것이 목표입니다.
+
+# ---------------------------------------------------------------------------
+# 브랜드 스토리 "Why PONS?" — 메인 페이지 Why PONS? 밴드에 사용
+# ---------------------------------------------------------------------------
+brand:
+  story:
+    en: >-
+      Our name, **PONS**, stands for *Physiological & On-body Neural Systems* —
+      and it is also the brainstem structure that relays signals between the
+      brain and the body. In Latin, *pons* means 'bridge.' True to its name, our
+      lab builds bridges: between brain and body signals, between humans and
+      machines, and between everyday life and healthcare technology.
+    ko: >-
+      연구실 이름 **PONS**는 *Physiological & On-body Neural Systems*의 약자이자,
+      뇌와 몸 사이의 신호를 이어주는 뇌 구조 '뇌교(pons)'의 이름이기도 합니다.
+      라틴어로 pons는 '다리'를 뜻합니다. 이름 그대로 우리 연구실은 뇌와 몸의 신호,
+      사람과 기계, 일상과 헬스케어 기술을 잇는 다리를 만듭니다.
+
+  # P · O · N · S 이름 풀이 카드 (스토리 바로 아래 4개 카드 그리드)
+  cards:
+    - letter: P
+      word: Physiological
+      word_ko: Physiological
+      text_en: We measure the body's vital signals — cardiac, respiratory, muscular, and beyond.
+      text_ko: 심박·호흡·근육 등 몸이 보내는 생리신호를 측정합니다.
+    - letter: O
+      word: On-body
+      word_ko: On-body
+      text_en: We build soft, skin-conformal wearable devices for everyday life.
+      text_ko: 일상에서 편안하게 착용하는 소프트 웨어러블 기기를 만듭니다.
+    - letter: N
+      word: Neural
+      word_ko: Neural
+      text_en: We sense and decode brain signals, from EEG to brain–computer interfaces.
+      text_ko: EEG부터 뇌-컴퓨터 인터페이스까지, 뇌·신경 신호를 측정하고 해석합니다.
+    - letter: S
+      word: Systems
+      word_ko: Systems
+      text_en: >-
+        We integrate sensing, signal processing, and applications into complete
+        systems for health and human–machine interaction.
+      text_ko: >-
+        센싱·신호처리·응용을 통합해 헬스케어와 인간-기계 상호작용을 위한 시스템을
+        완성합니다.
+
+# ---------------------------------------------------------------------------
+# 논문 저자 목록에서 굵게 강조할 연구실 구성원 이름
+# 새 멤버가 논문에 저자로 들어가면 여기에 이름을 추가하세요.
+# ---------------------------------------------------------------------------
+lab_authors:
+  - Hodam Kim

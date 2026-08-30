@@ -1,0 +1,440 @@
+/* ==========================================================================
+   PONS Lab — 전역 스타일
+   색상·간격·글꼴은 모두 아래 :root 변수에서 관리합니다.
+   ========================================================================== */
+
+:root {
+  /* 색상 (CLAUDE.md 확정 팔레트) */
+  --ink: #16233b;
+  --body: #44536e;
+  --muted: #6b7a94;
+  --accent: #2153c4;
+  --accent-soft: #e8eefc;
+  --accent-deep: #17408f;
+  --page: #fbfcfe;
+  --card: #ffffff;
+  --line: #e3e9f2;
+
+  /* 글꼴 */
+  --font-display: 'Fraunces', 'Noto Serif KR', ui-serif, Georgia, serif;
+  --font-sans: 'Inter', 'Pretendard', 'Pretendard Variable', 'Noto Sans KR',
+    -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+
+  /* 레이아웃 */
+  --container: 1140px;
+  --container-narrow: 880px;
+  --radius: 14px;
+  --radius-lg: 22px;
+  --section-y: clamp(4rem, 8vw, 7rem);
+
+  /* 그림자 */
+  --shadow-sm: 0 1px 2px rgba(22, 35, 59, 0.04), 0 2px 8px rgba(22, 35, 59, 0.04);
+  --shadow-md: 0 2px 6px rgba(22, 35, 59, 0.05), 0 12px 32px rgba(22, 35, 59, 0.07);
+}
+
+/* --------------------------------------------------------------------------
+   Reset
+   -------------------------------------------------------------------------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--page);
+  color: var(--body);
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  line-height: 1.72;
+  letter-spacing: -0.003em;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+:lang(ko) body,
+body:lang(ko) {
+  word-break: keep-all;
+  overflow-wrap: break-word;
+}
+
+img,
+svg,
+video {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-display);
+  color: var(--ink);
+  font-weight: 600;
+  line-height: 1.18;
+  letter-spacing: -0.02em;
+  margin: 0 0 0.6em;
+  font-optical-sizing: auto;
+}
+
+h1 {
+  font-size: clamp(2.3rem, 5.2vw, 3.6rem);
+}
+h2 {
+  font-size: clamp(1.85rem, 3.6vw, 2.6rem);
+}
+h3 {
+  font-size: clamp(1.15rem, 1.7vw, 1.35rem);
+  line-height: 1.35;
+}
+h4 {
+  font-size: 1.02rem;
+  line-height: 1.4;
+}
+
+p {
+  margin: 0 0 1.1em;
+}
+
+a {
+  color: var(--accent);
+  text-decoration: none;
+  text-underline-offset: 3px;
+}
+a:hover {
+  text-decoration: underline;
+}
+
+ul,
+ol {
+  margin: 0;
+  padding: 0;
+}
+li {
+  list-style: none;
+}
+
+strong,
+b {
+  font-weight: 650;
+  color: var(--ink);
+}
+
+hr {
+  border: 0;
+  border-top: 1px solid var(--line);
+  margin: 2.5rem 0;
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* --------------------------------------------------------------------------
+   레이아웃 유틸리티
+   -------------------------------------------------------------------------- */
+.container {
+  width: 100%;
+  max-width: var(--container);
+  margin-inline: auto;
+  padding-inline: clamp(1.15rem, 4vw, 2rem);
+}
+
+.container-narrow {
+  max-width: var(--container-narrow);
+}
+
+.section {
+  padding-block: var(--section-y);
+}
+
+.section-tight {
+  padding-block: clamp(3rem, 6vw, 4.5rem);
+}
+
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  z-index: 999;
+  background: var(--ink);
+  color: #fff;
+  padding: 0.7rem 1.1rem;
+  border-radius: 0 0 8px 0;
+}
+.skip-link:focus {
+  left: 0;
+}
+
+/* --------------------------------------------------------------------------
+   공통 타이포 요소
+   -------------------------------------------------------------------------- */
+.kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  font-size: 0.745rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin: 0 0 1rem;
+}
+
+.kicker::before {
+  content: '';
+  width: 22px;
+  height: 1.5px;
+  background: var(--accent);
+  opacity: 0.55;
+  flex: none;
+}
+
+.kicker-plain::before {
+  display: none;
+}
+
+.lead {
+  font-size: clamp(1.03rem, 1.5vw, 1.14rem);
+  line-height: 1.75;
+  color: var(--body);
+  max-width: 62ch;
+}
+
+.section-head {
+  margin-bottom: clamp(2.2rem, 4vw, 3.2rem);
+}
+
+.section-head h2 {
+  margin-bottom: 0.5rem;
+}
+
+.muted {
+  color: var(--muted);
+}
+
+.small {
+  font-size: 0.875rem;
+}
+
+.mono-num {
+  font-variant-numeric: tabular-nums;
+}
+
+/* --------------------------------------------------------------------------
+   버튼
+   -------------------------------------------------------------------------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.78rem 1.4rem;
+  border-radius: 999px;
+  font-size: 0.925rem;
+  font-weight: 550;
+  line-height: 1;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: background-color 0.18s ease, border-color 0.18s ease,
+    color 0.18s ease, transform 0.18s ease, box-shadow 0.18s ease;
+  text-decoration: none;
+  white-space: nowrap;
+}
+.btn:hover {
+  text-decoration: none;
+  transform: translateY(-1px);
+}
+
+.btn-primary {
+  background: var(--accent);
+  color: #fff;
+  box-shadow: 0 6px 18px rgba(33, 83, 196, 0.22);
+}
+.btn-primary:hover {
+  background: var(--accent-deep);
+  color: #fff;
+}
+
+.btn-ghost {
+  background: transparent;
+  color: var(--ink);
+  border-color: var(--line);
+}
+.btn-ghost:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+  background: var(--card);
+}
+
+.btn-light {
+  background: #fff;
+  color: var(--ink);
+}
+.btn-light:hover {
+  color: var(--accent);
+}
+
+.btn-outline-light {
+  background: transparent;
+  color: #fff;
+  border-color: rgba(255, 255, 255, 0.35);
+}
+.btn-outline-light:hover {
+  color: #fff;
+  border-color: rgba(255, 255, 255, 0.75);
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.btn-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.7rem;
+}
+
+/* 화살표가 붙는 텍스트 링크 */
+.link-arrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.9rem;
+  font-weight: 550;
+}
+.link-arrow svg {
+  transition: transform 0.18s ease;
+}
+.link-arrow:hover svg {
+  transform: translateX(3px);
+}
+
+/* --------------------------------------------------------------------------
+   카드
+   -------------------------------------------------------------------------- */
+.card {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: clamp(1.4rem, 2.4vw, 1.9rem);
+}
+
+.card-hover {
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+}
+.card-hover:hover {
+  border-color: #cbd8ee;
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
+}
+
+.grid {
+  display: grid;
+  gap: clamp(1rem, 2vw, 1.5rem);
+}
+.grid-2 {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+.grid-3 {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+.grid-4 {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+@media (max-width: 900px) {
+  .grid-3,
+  .grid-4 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 640px) {
+  .grid-2,
+  .grid-3,
+  .grid-4 {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   태그 / 배지
+   -------------------------------------------------------------------------- */
+.tag {
+  display: inline-block;
+  padding: 0.24rem 0.62rem;
+  border-radius: 999px;
+  background: var(--accent-soft);
+  color: var(--accent-deep);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  line-height: 1.5;
+}
+
+.tag-quiet {
+  background: #f2f5fa;
+  color: var(--muted);
+}
+
+/* --------------------------------------------------------------------------
+   다크 밴드 (Join 섹션 / 푸터)
+   -------------------------------------------------------------------------- */
+.band-dark {
+  background: var(--ink);
+  color: rgba(255, 255, 255, 0.78);
+  position: relative;
+  overflow: hidden;
+}
+.band-dark h2,
+.band-dark h3 {
+  color: #fff;
+}
+
+/* --------------------------------------------------------------------------
+   논문 저자 표기
+   -------------------------------------------------------------------------- */
+.author-lab {
+  font-weight: 650;
+  color: var(--ink);
+}
+
+.author-mark {
+  font-size: 0.72em;
+  vertical-align: super;
+  line-height: 0;
+  color: var(--accent);
+  font-weight: 600;
+  margin-left: 0.5px;
+}
+
+/* 인쇄 */
+@media print {
+  .site-header,
+  .site-footer,
+  .band-dark {
+    display: none;
+  }
+}
+
+/* 모션 최소화 설정 존중 */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

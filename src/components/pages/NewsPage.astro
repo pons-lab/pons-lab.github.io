@@ -1,0 +1,102 @@
+---
+import { getCollection } from 'astro:content';
+import PageHero from '../PageHero.astro';
+import NewsCard from '../NewsCard.astro';
+import { gallery } from '../../lib/data.js';
+import { getLangFromUrl, useTranslations, pick } from '../../i18n/utils.js';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+const items = (await getCollection('news')).sort((a, b) => b.data.date - a.data.date);
+---
+
+<PageHero kicker={t('page.kicker.news')} title={t('news.title')} lead={t('news.lead')} />
+
+<section class="section">
+  <div class="container">
+    {
+      items.length ? (
+        <div class="grid grid-3">
+          {items.map((item) => (
+            <NewsCard item={item} />
+          ))}
+        </div>
+      ) : (
+        <p class="muted">{t('news.empty')}</p>
+      )
+    }
+  </div>
+</section>
+
+<!-- ── 갤러리 ────────────────────────────────────────────────────────── -->
+<section class="section gallery-band" id="gallery">
+  <div class="container">
+    <div class="section-head">
+      <h2>{t('news.gallery')}</h2>
+    </div>
+
+    <ul class="grid grid-4">
+      {
+        gallery.items.map((g) => (
+          <li class="card card-hover shot">
+            {g.image ? (
+              <img src={g.image} alt={pick(g, 'title', lang)} loading="lazy" decoding="async" width="480" height="360" />
+            ) : (
+              <div class="shot-blank" aria-hidden="true">
+                <svg viewBox="0 0 48 40" role="presentation">
+                  <rect x="1.5" y="6" width="45" height="32" rx="4" fill="none" stroke="currentColor" stroke-width="2" />
+                  <path d="M1.5 30l12-11 9 8 7-6 17 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" />
+                  <circle cx="32" cy="16" r="3.5" fill="currentColor" />
+                </svg>
+              </div>
+            )}
+            <p class="shot-cap">{pick(g, 'title', lang)}</p>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</section>
+
+<style>
+  .gallery-band {
+    background: #f6f8fc;
+    border-top: 1px solid var(--line);
+  }
+
+  .shot {
+    padding: 0;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .shot img {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+  }
+
+  .shot-blank {
+    display: grid;
+    place-items: center;
+    aspect-ratio: 4 / 3;
+    background: linear-gradient(140deg, #eef3fd 0%, #e2eaf9 100%);
+    color: #a9c0ec;
+  }
+  .shot-blank svg {
+    width: 40%;
+    max-width: 74px;
+  }
+
+  .shot-cap {
+    margin: 0;
+    padding: 0.85rem 1rem 1rem;
+    font-size: 0.885rem;
+    font-weight: 550;
+    color: var(--ink);
+    line-height: 1.5;
+    border-top: 1px solid var(--line);
+  }
+</style>

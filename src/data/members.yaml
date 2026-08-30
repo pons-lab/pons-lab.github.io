@@ -1,0 +1,187 @@
+# ============================================================================
+# 구성원 — PI / 대학원생 / 학부연구생 / 알럼나이
+#
+# 멤버가 들어오거나 나가면 이 파일만 고치면 됩니다.
+#   - 새 멤버: 해당 그룹의 members: 아래에 한 항목 추가
+#   - 졸업/수료: 해당 항목을 alumni: 로 옮기고 `until` 을 채우기
+#   - photo: public/images/people/ 안의 파일 이름 (없으면 이니셜 아바타가 표시됩니다)
+#
+# 이름 표기: name_ko = 한글 이름, name_en = 영문(로마자) 이름.
+# 영문 로마자 표기는 임시로 표준 표기법에 따라 적어둔 것이니,
+# 본인이 쓰는 표기가 따로 있으면 name_en 만 고쳐주세요.
+# ============================================================================
+
+pi:
+  name_en: Hodam Kim
+  name_ko: 김호담
+  degree: Ph.D.
+  title_en: Assistant Professor
+  title_ko: 조교수
+  affiliation_en: Division of Biomedical Engineering, Yonsei University Mirae Campus
+  affiliation_ko: 연세대학교 미래캠퍼스 의공학부
+  email: hodamkim@yonsei.ac.kr
+  phone: "+82-33-760-2490"
+  office_en: Room 201, Baekun Hall
+  office_ko: 백운관 201호
+  # 사진 파일을 public/images/people/hodam-kim.jpg 로 넣은 뒤 아래 줄의 따옴표 안에
+  # /images/people/hodam-kim.jpg 를 적으면 사진이 표시됩니다. 비워두면 이니셜 표시.
+  photo: ""
+  cv_url: ""
+  scholar_url: ""
+
+  bio_en: >-
+    Hodam Kim is an Assistant Professor in the Division of Biomedical
+    Engineering at Yonsei University Mirae Campus, where he leads PONS Lab. His
+    research bridges soft wearable bioelectronics and biosignal intelligence —
+    building skin-conformal sensors and the signal-processing systems that turn
+    brain and physiological signals into real-time health and human–machine
+    applications.
+  bio_ko: >-
+    김호담 교수는 연세대학교 미래캠퍼스 의공학부 조교수로 뇌·신체·기계 인터페이스
+    연구실(PONS Lab)을 이끌고 있습니다. 피부에 밀착되는 소프트 웨어러블 센서와
+    생체신호 지능 기술을 함께 연구하며, 뇌·생체 신호를 실시간 헬스케어와
+    인간-기계 상호작용으로 이어지게 하는 시스템을 만듭니다.
+
+  education:
+    - period: 2016.03 – 2022.02
+      degree_en: Ph.D. in Electronic Engineering
+      degree_ko: 전자공학 박사
+      school_en: Hanyang University
+      school_ko: 한양대학교
+      note_en: GPA 100/100
+      note_ko: 학점 100/100
+    - period: 2010.03 – 2015.08
+      degree_en: B.S. in Biomedical Engineering
+      degree_ko: 생체공학 학사
+      school_en: Hanyang University
+      school_ko: 한양대학교
+      note_en: GPA 97.5/100, Summa Cum Laude
+      note_ko: 학점 97.5/100, 최우등 졸업
+
+  experience:
+    - period: 2025.03 – present
+      period_ko: 2025.03 – 현재
+      role_en: Assistant Professor
+      role_ko: 조교수
+      place_en: Yonsei University
+      place_ko: 연세대학교
+    - period: 2024.04 – 2025.01
+      role_en: Postdoctoral Fellow
+      role_ko: 박사후연구원
+      place_en: Icahn School of Medicine at Mount Sinai
+      place_ko: Icahn School of Medicine at Mount Sinai
+    - period: 2022.01 – 2024.03
+      role_en: Postdoctoral Fellow
+      role_ko: 박사후연구원
+      place_en: Georgia Institute of Technology
+      place_ko: Georgia Institute of Technology
+
+  awards:
+    - year: 2020.12
+      title_en: Best Poster Award
+      title_ko: 우수 포스터상
+      org_en: Korean Society for EEG and Neurophysiology
+      org_ko: 대한뇌파신경생리학회
+    - year: 2017.11
+      title_en: Best Poster Award
+      title_ko: 우수 포스터상
+      org_en: Korean Society of Medical & Biological Engineering
+      org_ko: 대한의용생체공학회
+    - year: 2014 – 2015
+      title_en: National Science and Engineering Undergraduate Scholarship
+      title_ko: 국가우수장학금(이공계)
+      org_en: Korea Student Aid Foundation
+      org_ko: 한국장학재단
+
+# ---------------------------------------------------------------------------
+# 재학 구성원. 그룹 순서가 곧 People 페이지의 표시 순서입니다.
+# ---------------------------------------------------------------------------
+groups:
+  - id: phd
+    title_en: Ph.D. Students
+    title_ko: 박사과정
+    members:
+      - name_en: Junhyeong Song
+        name_ko: 송준형
+        since: 2026 Fall
+        since_ko: 2026년 2학기
+        photo: ""
+
+  - id: ms
+    title_en: M.S. Students
+    title_ko: 석사과정
+    members:
+      - name_en: Gabriel Joseph Mlingi
+        name_ko: Gabriel Joseph Mlingi
+        since: 2025 Spring
+        since_ko: 2025년 1학기
+        photo: ""
+      - name_en: Woyesa Addisu Fayera
+        name_ko: Woyesa Addisu Fayera
+        since: 2025 Fall
+        since_ko: 2025년 2학기
+        photo: ""
+      - name_en: Dabin Kim
+        name_ko: 김다빈
+        since: 2026 Fall
+        since_ko: 2026년 2학기
+        photo: ""
+
+  - id: undergraduate
+    title_en: Undergraduate Researchers
+    title_ko: 학부연구생
+    members:
+      - name_en: Seoyeon Yoon
+        name_ko: 윤서연
+        since: 2026.03
+        photo: ""
+      - name_en: Jeonghyeon Kim
+        name_ko: 김정현
+        since: 2026.03
+        photo: ""
+      - name_en: Jihwan Park
+        name_ko: 박지환
+        since: 2026.03
+        photo: ""
+      - name_en: Junha Jeon
+        name_ko: 전준하
+        since: 2026.04
+        photo: ""
+      - name_en: Euna Kim
+        name_ko: 김은아
+        since: 2026.04
+        photo: ""
+      - name_en: Eunho Choi
+        name_ko: 최은호
+        since: 2026.04
+        photo: ""
+
+# ---------------------------------------------------------------------------
+# 알럼나이 (연구실을 거쳐간 구성원) — 최근 순
+# ---------------------------------------------------------------------------
+alumni:
+  - name_en: Sanghyeon Kim
+    name_ko: 김상현
+    role_en: Undergraduate Researcher
+    role_ko: 학부연구생
+    period: 2026.03 – 2026.07
+  - name_en: Miju Chae
+    name_ko: 채미주
+    role_en: Undergraduate Researcher
+    role_ko: 학부연구생
+    period: 2025.09 – 2026.06
+  - name_en: Minhyeok Kang
+    name_ko: 강민혁
+    role_en: Undergraduate Researcher
+    role_ko: 학부연구생
+    period: 2026.03 – 2026.05
+  - name_en: Siyeon Park
+    name_ko: 박시연
+    role_en: Undergraduate Researcher
+    role_ko: 학부연구생
+    period: 2026.01 – 2026.03
+  - name_en: Yeongung Jeon
+    name_ko: 전영웅
+    role_en: Undergraduate Researcher
+    role_ko: 학부연구생
+    period: 2026.01 – 2026.02

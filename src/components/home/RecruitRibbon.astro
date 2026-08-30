@@ -1,0 +1,93 @@
+---
+import { site } from '../../lib/data.js';
+import { getLangFromUrl, useTranslations, localizePath } from '../../i18n/utils.js';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+---
+
+{
+  site.recruiting?.open && (
+    <aside class="ribbon">
+      <div class="container inner">
+        <span class="badge">
+          <span class="pulse" aria-hidden="true" />
+          {t('home.recruiting_label')}
+        </span>
+        <p class="text">{site.recruiting[lang]}</p>
+        <a class="link-arrow" href={localizePath('/contact', lang)}>
+          {t('cta.join')}
+          <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+            <path
+              d="M3 8h9m0 0L8.5 4.5M12 8l-3.5 3.5"
+              stroke="currentColor"
+              stroke-width="1.6"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+        </a>
+      </div>
+    </aside>
+  )
+}
+
+<style>
+  .ribbon {
+    background: var(--accent-soft);
+    border-bottom: 1px solid #d6e0f7;
+  }
+
+  .inner {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.65rem 1.15rem;
+    padding-block: 0.95rem;
+  }
+
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    flex: none;
+    padding: 0.28rem 0.72rem;
+    border-radius: 999px;
+    background: var(--accent);
+    color: #fff;
+    font-size: 0.715rem;
+    font-weight: 650;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  .pulse {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #fff;
+    box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.85);
+    animation: pulse 2.1s ease-out infinite;
+  }
+  @keyframes pulse {
+    70% {
+      box-shadow: 0 0 0 7px rgba(255, 255, 255, 0);
+    }
+    100% {
+      box-shadow: 0 0 0 0 rgba(255, 255, 255, 0);
+    }
+  }
+
+  .text {
+    margin: 0;
+    flex: 1 1 22rem;
+    min-width: 0;
+    font-size: 0.925rem;
+    color: #1a3872;
+  }
+
+  .link-arrow {
+    color: var(--accent-deep);
+    flex: none;
+  }
+</style>

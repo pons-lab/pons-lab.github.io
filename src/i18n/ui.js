@@ -1,0 +1,220 @@
+// ============================================================================
+// UI 문자열 사전 — 버튼/메뉴/제목 등 화면에 나오는 짧은 문구만 여기에 둡니다.
+// 논문·멤버·뉴스 같은 "내용"은 src/data/ 의 yaml 파일에서 관리합니다.
+// ============================================================================
+
+export const languages = { en: 'English', ko: '한국어' };
+export const defaultLang = 'en';
+
+export const ui = {
+  en: {
+    'nav.home': 'Home',
+    'nav.research': 'Research',
+    'nav.people': 'People',
+    'nav.publications': 'Publications',
+    'nav.lectures': 'Lectures',
+    'nav.news': 'News',
+    'nav.contact': 'Contact',
+    'nav.menu': 'Menu',
+    'nav.close': 'Close',
+
+    'cta.research': 'Explore our research',
+    'cta.join': 'Join the lab',
+    'cta.contact': 'Contact us',
+    'cta.all_news': 'All news',
+    'cta.all_publications': 'All publications',
+    'cta.all_people': 'Meet the team',
+    'cta.email': 'Email us',
+    'cta.back_home': 'Back to home',
+
+    'home.why_title': 'Why PONS?',
+    'home.why_kicker': 'The name',
+    'home.research_kicker': 'Research',
+    'home.research_title': 'Two axes, one system',
+    'home.research_lead':
+      'We build the sensors that touch the body and the intelligence that makes sense of what they measure.',
+    'home.news_kicker': 'News',
+    'home.news_title': 'Latest from the lab',
+    'home.pubs_kicker': 'Publications',
+    'home.pubs_title': 'Selected publications',
+    'home.join_title': 'Build the bridge with us',
+    'home.recruiting_label': 'Now recruiting',
+
+    'page.kicker.research': 'What we work on',
+    'page.kicker.people': 'The team',
+    'page.kicker.publications': 'Journal & conference',
+    'page.kicker.lectures': 'Teaching',
+    'page.kicker.news': 'Board',
+    'page.kicker.contact': 'Find us',
+
+    'research.title': 'Research',
+    'research.lead':
+      'We develop soft, wearable devices and intelligent systems for measuring and interpreting brain and physiological signals.',
+    'research.projects': 'Current projects',
+    'research.topics': 'Topics',
+
+    'people.title': 'People',
+    'people.pi': 'Principal Investigator',
+    'people.education': 'Education',
+    'people.experience': 'Experience',
+    'people.awards': 'Awards & Honors',
+    'people.alumni': 'Alumni',
+    'people.members': 'Members',
+    'people.since': 'Since',
+    'people.no_alumni': 'No alumni yet.',
+
+    'pub.title': 'Publications',
+    'pub.journals': 'Journal Articles',
+    'pub.conferences': 'Conference Presentations',
+    'pub.international': 'International',
+    'pub.domestic': 'Domestic',
+    'pub.in_revision': 'In revision / Under review',
+    'pub.in_press': 'In press',
+    'pub.accepted': 'Accepted',
+    'pub.first_author': 'First author',
+    'pub.corresponding': 'Corresponding author',
+    'pub.legend':
+      'Superscript 1 marks a first author, * marks a corresponding author. Lab members are shown in bold.',
+    'pub.count_journals': 'journal articles',
+    'pub.count_conferences': 'conference presentations',
+
+    'lectures.title': 'Lectures',
+    'lectures.lead': 'Courses taught by our PI at Yonsei University Mirae Campus.',
+    'lectures.undergraduate': 'Undergraduate',
+    'lectures.graduate': 'Graduate',
+
+    'news.title': 'News',
+    'news.lead': 'Announcements, milestones, and everyday life in the lab.',
+    'news.gallery': 'Gallery',
+    'news.empty': 'No news yet.',
+
+    'contact.title': 'Contact',
+    'contact.lead': 'We are always glad to hear from prospective students and collaborators.',
+    'contact.address': 'Address',
+    'contact.email': 'Email',
+    'contact.phone': 'Phone',
+    'contact.office': 'Office',
+    'contact.join_title': 'Joining the lab',
+    'contact.map': 'Open in Google Maps',
+    'contact.directions': 'Directions',
+
+    'footer.rights': 'All rights reserved.',
+    'footer.pages': 'Pages',
+    'footer.contact': 'Contact',
+
+    'a11y.skip': 'Skip to content',
+    'a11y.lang': 'Language',
+    'notfound.title': 'Page not found',
+    'notfound.lead': 'The page you are looking for does not exist or has moved.',
+  },
+
+  ko: {
+    'nav.home': '홈',
+    'nav.research': '연구',
+    'nav.people': '구성원',
+    'nav.publications': '논문',
+    'nav.lectures': '강의',
+    'nav.news': '소식',
+    'nav.contact': '오시는 길',
+    'nav.menu': '메뉴',
+    'nav.close': '닫기',
+
+    'cta.research': '연구 살펴보기',
+    'cta.join': '연구실 지원하기',
+    'cta.contact': '문의하기',
+    'cta.all_news': '전체 소식 보기',
+    'cta.all_publications': '전체 논문 보기',
+    'cta.all_people': '구성원 보기',
+    'cta.email': '이메일 문의',
+    'cta.back_home': '홈으로 돌아가기',
+
+    'home.why_title': 'Why PONS?',
+    'home.why_kicker': '이름의 유래',
+    'home.research_kicker': '연구',
+    'home.research_title': '두 개의 축, 하나의 시스템',
+    'home.research_lead':
+      '몸에 닿는 센서를 만들고, 그 센서가 측정한 신호를 해석하는 지능을 함께 개발합니다.',
+    'home.news_kicker': '소식',
+    'home.news_title': '연구실 최근 소식',
+    'home.pubs_kicker': '논문',
+    'home.pubs_title': '주요 논문',
+    'home.join_title': '함께 다리를 놓을 분을 찾습니다',
+    'home.recruiting_label': '모집 중',
+
+    'page.kicker.research': '연구 분야',
+    'page.kicker.people': '연구실 사람들',
+    'page.kicker.publications': '학술지 · 학회',
+    'page.kicker.lectures': '교육',
+    'page.kicker.news': '게시판',
+    'page.kicker.contact': '연락처',
+
+    'research.title': '연구',
+    'research.lead':
+      '뇌 신호와 생체 신호를 측정하고 해석하는 소프트 웨어러블 기기와 지능형 시스템을 개발합니다.',
+    'research.projects': '진행 중인 연구과제',
+    'research.topics': '세부 주제',
+
+    'people.title': '구성원',
+    'people.pi': '지도교수',
+    'people.education': '학력',
+    'people.experience': '경력',
+    'people.awards': '수상',
+    'people.alumni': '알럼나이',
+    'people.members': '연구원',
+    'people.since': '합류',
+    'people.no_alumni': '아직 등록된 알럼나이가 없습니다.',
+
+    'pub.title': '논문',
+    'pub.journals': '학술지 논문',
+    'pub.conferences': '학회 발표',
+    'pub.international': '국제 학회',
+    'pub.domestic': '국내 학회',
+    'pub.in_revision': '수정 중 / 심사 중',
+    'pub.in_press': '게재 예정',
+    'pub.accepted': '게재 확정',
+    'pub.first_author': '제1저자',
+    'pub.corresponding': '교신저자',
+    'pub.legend': '이름 뒤 1은 제1저자, *는 교신저자입니다. 연구실 구성원은 굵게 표시했습니다.',
+    'pub.count_journals': '편의 학술지 논문',
+    'pub.count_conferences': '건의 학회 발표',
+
+    'lectures.title': '강의',
+    'lectures.lead': '연세대학교 미래캠퍼스에서 진행한 강의 목록입니다.',
+    'lectures.undergraduate': '학부',
+    'lectures.graduate': '대학원',
+
+    'news.title': '소식',
+    'news.lead': '연구실의 공지와 소식, 그리고 일상을 전합니다.',
+    'news.gallery': '갤러리',
+    'news.empty': '아직 등록된 소식이 없습니다.',
+
+    'contact.title': '오시는 길',
+    'contact.lead': '진학·공동연구 문의는 언제든 환영합니다.',
+    'contact.address': '주소',
+    'contact.email': '이메일',
+    'contact.phone': '전화',
+    'contact.office': '교수 연구실',
+    'contact.join_title': '연구실 지원 안내',
+    'contact.map': '구글 지도에서 보기',
+    'contact.directions': '찾아오시는 길',
+
+    'footer.rights': 'All rights reserved.',
+    'footer.pages': '바로가기',
+    'footer.contact': '연락처',
+
+    'a11y.skip': '본문으로 건너뛰기',
+    'a11y.lang': '언어',
+    'notfound.title': '페이지를 찾을 수 없습니다',
+    'notfound.lead': '요청하신 페이지가 없거나 주소가 바뀌었습니다.',
+  },
+};
+
+// 상단 내비게이션 순서 (경로는 영문 기준, 한국어는 /ko 가 앞에 붙습니다)
+export const navItems = [
+  { key: 'nav.research', path: '/research' },
+  { key: 'nav.people', path: '/people' },
+  { key: 'nav.publications', path: '/publications' },
+  { key: 'nav.lectures', path: '/lectures' },
+  { key: 'nav.news', path: '/news' },
+  { key: 'nav.contact', path: '/contact' },
+];

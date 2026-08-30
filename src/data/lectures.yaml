@@ -1,0 +1,61 @@
+# ============================================================================
+# 강의 — 학기별 (최신 학기가 맨 위)
+#
+# 새 학기를 추가하려면 semesters: 맨 위에 블록을 하나 복사해서 고치세요.
+#   level: undergraduate(학부) 또는 graduate(대학원)
+# ============================================================================
+
+semesters:
+  - id: 2026-2
+    year: 2026
+    term_en: Fall 2026
+    term_ko: 2026학년도 2학기
+    courses:
+      - level: undergraduate
+        title_ko: 마이크로프로세서및실험
+        title_en: Microprocessors and Laboratory
+      - level: graduate
+        title_ko: "맞춤형 헬스케어를 위한 생체신호 처리: 응용 및 심화"
+        title_en: "Biosignal Processing for Personalized Healthcare: Applications and Advanced Topics"
+
+  - id: 2026-1
+    year: 2026
+    term_en: Spring 2026
+    term_ko: 2026학년도 1학기
+    courses:
+      - level: undergraduate
+        title_ko: 컴퓨터프로그래밍
+        title_en: Computer Programming
+      - level: undergraduate
+        title_ko: 공업수학 2
+        title_en: Engineering Mathematics 2
+      - level: undergraduate
+        title_ko: 진로지도 (의공학)
+        title_en: Career Guidance (Biomedical Engineering)
+      - level: graduate
+        title_ko: "맞춤형 헬스케어를 위한 생체신호 처리: 기초"
+        title_en: "Biosignal Processing for Personalized Healthcare: Fundamentals"
+
+  - id: 2025-2
+    year: 2025
+    term_en: Fall 2025
+    term_ko: 2025학년도 2학기
+    courses:
+      - level: undergraduate
+        title_ko: 마이크로프로세서및실험
+        title_en: Microprocessors and Laboratory
+      - level: undergraduate
+        title_ko: 생체신호및시스템
+        title_en: Biosignals and Systems
+
+  - id: 2025-1
+    year: 2025
+    term_en: Spring 2025
+    term_ko: 2025학년도 1학기
+    courses:
+      - level: undergraduate
+        title_ko: 컴퓨터프로그래밍
+        title_en: Computer Programming
+      - level: graduate
+        title_ko: 고급 뇌-컴퓨터 인터페이스
+        title_en: Advanced Brain–Computer Interfaces

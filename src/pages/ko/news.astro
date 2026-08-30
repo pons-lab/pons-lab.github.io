@@ -1,0 +1,11 @@
+﻿---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import NewsPage from '../../components/pages/NewsPage.astro';
+import { getLangFromUrl, useTranslations } from '../../i18n/utils.js';
+
+const t = useTranslations(getLangFromUrl(Astro.url));
+---
+
+<BaseLayout title={t('news.title')}>
+  <NewsPage />
+</BaseLayout>

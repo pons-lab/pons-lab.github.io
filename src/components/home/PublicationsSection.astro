@@ -1,0 +1,74 @@
+---
+import PublicationItem from '../PublicationItem.astro';
+import { selectedPublications } from '../../lib/data.js';
+import { getLangFromUrl, useTranslations, localizePath } from '../../i18n/utils.js';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+const items = selectedPublications(3);
+---
+
+<section class="section pubs">
+  <div class="container">
+    <div class="section-head head-row">
+      <div>
+        <p class="kicker">{t('home.pubs_kicker')}</p>
+        <h2>{t('home.pubs_title')}</h2>
+      </div>
+      <a class="link-arrow" href={localizePath('/publications', lang)}>
+        {t('cta.all_publications')}
+        <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+          <path
+            d="M3 8h9m0 0L8.5 4.5M12 8l-3.5 3.5"
+            stroke="currentColor"
+            stroke-width="1.6"
+            stroke-linecap="round"
+            stroke-linejoin="round"></path>
+        </svg>
+      </a>
+    </div>
+
+    <ol class="list">
+      {
+        items.map((pub) => (
+          <li class="card">
+            <PublicationItem pub={pub} compact />
+          </li>
+        ))
+      }
+    </ol>
+
+    <p class="legend small muted">{t('pub.legend')}</p>
+  </div>
+</section>
+
+<style>
+  .pubs {
+    background: #f6f8fc;
+    border-block: 1px solid var(--line);
+  }
+
+  .head-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+  .head-row h2 {
+    margin-bottom: 0;
+  }
+  .head-row .link-arrow {
+    padding-bottom: 0.4rem;
+  }
+
+  .list {
+    display: grid;
+    gap: 0.9rem;
+  }
+
+  .legend {
+    margin: 1.5rem 0 0;
+  }
+</style>

@@ -1,0 +1,145 @@
+---
+import PageHero from '../PageHero.astro';
+import { lectures } from '../../lib/data.js';
+import { getLangFromUrl, useTranslations, pick } from '../../i18n/utils.js';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+const levelLabel = (level) =>
+  level === 'graduate' ? t('lectures.graduate') : t('lectures.undergraduate');
+---
+
+<PageHero
+  kicker={t('page.kicker.lectures')}
+  title={t('lectures.title')}
+  lead={t('lectures.lead')}
+/>
+
+<section class="section">
+  <div class="container">
+    <div class="semesters">
+      {
+        lectures.semesters.map((s) => (
+          <section class="semester">
+            <h2 class="term">
+              <span class="term-name">{pick(s, 'term', lang)}</span>
+              <span class="term-id mono-num">{s.id}</span>
+            </h2>
+
+            <ul class="courses">
+              {s.courses.map((c) => (
+                <li class="card card-hover course">
+                  <span class:list={['level', c.level]}>{levelLabel(c.level)}</span>
+                  <div class="titles">
+                    <strong>{pick(c, 'title', lang)}</strong>
+                    {lang === 'ko' ? (
+                      <span class="alt">{c.title_en}</span>
+                    ) : (
+                      <span class="alt">{c.title_ko}</span>
+                    )}
+                  </div>
+                </li>
+              ))}
+            </ul>
+          </section>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  .semesters {
+    display: grid;
+    gap: clamp(2.25rem, 4vw, 3.25rem);
+  }
+
+  .term {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 1rem;
+    font-size: 1.15rem;
+    padding-bottom: 0.7rem;
+    border-bottom: 1px solid var(--line);
+    margin-bottom: 1.1rem;
+  }
+
+  .term-name {
+    font-family: var(--font-display);
+    font-weight: 620;
+  }
+
+  .term-id {
+    font-family: var(--font-sans);
+    font-size: 0.755rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    color: var(--accent);
+    background: var(--accent-soft);
+    padding: 0.25rem 0.6rem;
+    border-radius: 999px;
+  }
+
+  .courses {
+    display: grid;
+    gap: 0.75rem;
+  }
+
+  .course {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr);
+    gap: 0.35rem 1rem;
+    align-items: center;
+    padding: 1.05rem clamp(1.1rem, 2vw, 1.4rem);
+  }
+
+  .level {
+    flex: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 4.4rem;
+    padding: 0.28rem 0.6rem;
+    border-radius: 999px;
+    font-size: 0.72rem;
+    font-weight: 650;
+    letter-spacing: 0.04em;
+  }
+  .level.undergraduate {
+    background: #eef2f9;
+    color: var(--body);
+  }
+  .level.graduate {
+    background: var(--accent-soft);
+    color: var(--accent-deep);
+  }
+
+  .titles {
+    display: grid;
+    gap: 0.1rem;
+    min-width: 0;
+  }
+
+  .titles strong {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--ink);
+    line-height: 1.45;
+  }
+
+  .alt {
+    font-size: 0.83rem;
+    color: var(--muted);
+  }
+
+  @media (max-width: 560px) {
+    .course {
+      grid-template-columns: minmax(0, 1fr);
+    }
+    .level {
+      justify-self: start;
+    }
+  }
+</style>

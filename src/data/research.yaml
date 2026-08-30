@@ -1,0 +1,92 @@
+# ============================================================================
+# 연구 분야 — 2개 축(axis) + 진행 중인 과제(projects)
+#
+# 메인 페이지 Research 섹션은 axes: 의 2개 카드를 그대로 보여줍니다.
+# ============================================================================
+
+axes:
+  - id: wearable
+    title_en: Wearable Electronics & Advanced Sensors
+    title_ko: 웨어러블 전자소자 & 첨단 센서
+    lead_en: >-
+      We design skin-conformal, soft bioelectronics that stay comfortable enough
+      to wear all day — and accurate enough to trust in the clinic.
+    lead_ko: >-
+      하루 종일 착용해도 편안하면서 임상에서 신뢰할 만큼 정확한, 피부에 밀착되는
+      소프트 바이오일렉트로닉스를 설계합니다.
+    topics:
+      - title_en: Integrated Multi-Sensor Monitoring System
+        title_ko: 통합 멀티센서 모니터링 시스템
+        text_en: >-
+          A comprehensive monitoring system that integrates multiple sensors to
+          capture device and interrelated physiological signals.
+        text_ko: >-
+          여러 센서를 하나로 통합해 서로 연관된 생리신호를 한 번에 측정하는
+          종합 모니터링 시스템입니다.
+      - title_en: Soft Physiological Signal Patch
+        title_ko: 소프트 생체신호 패치
+        text_en: >-
+          A skin-like, flexible patch device capable of precisely capturing
+          physiological signals.
+        text_ko: >-
+          피부처럼 얇고 유연해 생체신호를 정밀하게 잡아내는 패치형 기기입니다.
+      - title_en: Advanced Brain Sensor
+        title_ko: 차세대 뇌신호 센서
+        text_en: >-
+          An ultra-compact, comfortable sensor for seamless brain monitoring in
+          daily life.
+        text_ko: >-
+          일상 속에서 자연스럽게 뇌 신호를 측정할 수 있는 초소형·고편의성
+          센서입니다.
+
+  - id: signal
+    title_en: Signal Processing & Novel Applications
+    title_ko: 신호처리 & 새로운 응용
+    lead_en: >-
+      We turn raw biosignals into decisions — decoding brain and body data with
+      machine learning, then putting it to work in health and interaction.
+    lead_ko: >-
+      측정한 생체신호를 기계학습으로 해석해 의미 있는 판단으로 바꾸고, 이를
+      헬스케어와 인간-기계 상호작용에 적용합니다.
+    topics:
+      - title_en: Healthcare Monitoring
+        title_ko: 헬스케어 모니터링
+      - title_en: Mental and Physical State Monitoring
+        title_ko: 정신·신체 상태 모니터링
+      - title_en: Human / Brain–Machine Interfaces
+        title_ko: 인간-기계 / 뇌-기계 인터페이스
+      - title_en: Cognitive and Physical Performance
+        title_ko: 인지·신체 수행능력
+      - title_en: Emotion Recognition
+        title_ko: 감정 인식
+
+# ---------------------------------------------------------------------------
+# 진행 중인 연구과제
+# ---------------------------------------------------------------------------
+projects:
+  - period: 2026.03 – 2030.02
+    title_en: >-
+      Bio-Stimulation and Disease Prevention Monitoring Based on Conductive
+      Fibers
+    title_ko: 전도성 섬유 기반 생체자극 및 질병예방 모니터링
+    short_en: Conductive Fiber Wearable Platform
+    short_ko: 전도성 섬유 웨어러블 플랫폼
+
+  - period: 2026.03 – 2029.02
+    title_en: >-
+      Development of an Emotion- and Intent-Aware Sign Language Recognition
+      System Using a Wireless Soft Bioelectronic Platform for Integrated Facial
+      and Manual Gesture Sensing
+    title_ko: >-
+      얼굴·수어 동작 통합 센싱 무선 소프트 바이오일렉트로닉스 기반
+      감정·의도 인지형 수어 인식 시스템 개발
+    short_en: Sign Language Recognition System
+    short_ko: 수어 인식 시스템
+
+  - period: 2025.03 – 2028.02
+    title_en: >-
+      Development of a Wearable System and Analysis Technology for Personalized
+      Multi-Site Biosignal Measurement
+    title_ko: 개인 맞춤형 다부위 생체신호 측정 웨어러블 시스템 및 분석기술 개발
+    short_en: Personalized Biosignal Measurement
+    short_ko: 개인 맞춤형 생체신호 측정

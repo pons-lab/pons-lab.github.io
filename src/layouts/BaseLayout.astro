@@ -1,0 +1,119 @@
+---
+import '../styles/global.css';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { site } from '../lib/data.js';
+import { getLangFromUrl, useTranslations, alternatePath } from '../i18n/utils.js';
+
+const { title, description, ogImage } = Astro.props;
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+const labName = lang === 'ko' ? site.name.display_ko : site.name.full_en;
+const labShort = site.name.short_en;
+const siteTitle = lang === 'ko' ? `${site.name.short_en} · ${site.name.full_ko}` : labName;
+
+const pageTitle = title ? `${title} · ${labShort}` : `${labShort} — ${site.tagline[lang]}`;
+const pageDescription = description || site.description[lang];
+
+const canonical = new URL(Astro.url.pathname, Astro.site).href;
+const enHref = new URL(alternatePath(Astro.url.pathname, 'en'), Astro.site).href;
+const koHref = new URL(alternatePath(Astro.url.pathname, 'ko'), Astro.site).href;
+const ogImageUrl = new URL(ogImage || '/og-image.svg', Astro.site).href;
+
+// 검색엔진용 구조화 데이터 — 연구실(Organization)과 PI(Person)
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'ResearchOrganization',
+      '@id': `${Astro.site}#organization`,
+      name: site.name.full_en,
+      alternateName: [site.name.short_en, site.name.full_ko],
+      url: Astro.site?.href,
+      email: site.contact.email,
+      telephone: site.contact.phone,
+      description: site.description.en,
+      parentOrganization: {
+        '@type': 'CollegeOrUniversity',
+        name: site.institution.university_en,
+      },
+      address: {
+        '@type': 'PostalAddress',
+        streetAddress: site.contact.room_en,
+        addressLocality: 'Wonju-si',
+        addressRegion: 'Gangwon State',
+        postalCode: '26493',
+        addressCountry: 'KR',
+      },
+    },
+    {
+      '@type': 'Person',
+      '@id': `${Astro.site}#pi`,
+      name: 'Hodam Kim',
+      jobTitle: 'Assistant Professor',
+      email: site.contact.email,
+      affiliation: { '@id': `${Astro.site}#organization` },
+      worksFor: { '@id': `${Astro.site}#organization` },
+    },
+    {
+      '@type': 'WebSite',
+      url: Astro.site?.href,
+      name: siteTitle,
+      inLanguage: lang,
+      publisher: { '@id': `${Astro.site}#organization` },
+    },
+  ],
+};
+
+const googleFonts =
+  lang === 'ko'
+    ? 'https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;450;500;550;600;650&family=Noto+Sans+KR:wght@400;500;700&family=Noto+Serif+KR:wght@500;600;700&display=swap'
+    : 'https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;450;500;550;600;650&display=swap';
+---
+
+<!doctype html>
+<html lang={lang === 'ko' ? 'ko-KR' : 'en'}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{pageTitle}</title>
+    <meta name="description" content={pageDescription} />
+    <link rel="canonical" href={canonical} />
+
+    <link rel="alternate" hreflang="en" href={enHref} />
+    <link rel="alternate" hreflang="ko" href={koHref} />
+    <link rel="alternate" hreflang="x-default" href={enHref} />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content={siteTitle} />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={pageDescription} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={ogImageUrl} />
+    <meta property="og:locale" content={lang === 'ko' ? 'ko_KR' : 'en_US'} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={pageTitle} />
+    <meta name="twitter:description" content={pageDescription} />
+    <meta name="twitter:image" content={ogImageUrl} />
+
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="sitemap" href="/sitemap-index.xml" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href={googleFonts} />
+
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+  </head>
+
+  <body>
+    <a class="skip-link" href="#main">{t('a11y.skip')}</a>
+    <Header />
+    <main id="main">
+      <slot />
+    </main>
+    <Footer />
+  </body>
+</html>

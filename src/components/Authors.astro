@@ -1,0 +1,69 @@
+---
+/**
+ * 저자 목록 렌더러.
+ *
+ * publications.yaml 의 authors 문자열을 그대로 받아서
+ *   - 이름 뒤 1  → 제1저자 위첨자
+ *   - 이름 뒤 *  → 교신저자 위첨자
+ *   - site.yaml 의 lab_authors 에 있는 이름 → 굵게 강조
+ * 로 표시합니다. 데이터 파일에는 별도 표시를 하지 않아도 됩니다.
+ */
+import { site } from '../lib/data.js';
+import { getLangFromUrl, useTranslations } from '../i18n/utils.js';
+
+const { authors } = Astro.props;
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+const labAuthors = (site.lab_authors ?? []).map((n) => n.toLowerCase());
+
+const parsed = String(authors ?? '')
+  .replace(/\s+/g, ' ')
+  .trim()
+  .split(/,\s*|\s+and\s+|\s+&\s+/i)
+  .map((chunk) => chunk.trim())
+  .filter(Boolean)
+  .map((chunk) => {
+    const m = chunk.match(/^(.+?)\s*([1*]+)$/);
+    const name = (m ? m[1] : chunk).trim();
+    const marks = m ? m[2] : '';
+    return {
+      name,
+      first: marks.includes('1'),
+      corresponding: marks.includes('*'),
+      isLab: labAuthors.includes(name.toLowerCase()),
+    };
+  });
+
+const markLabel = (a) =>
+  [a.first ? t('pub.first_author') : null, a.corresponding ? t('pub.corresponding') : null]
+    .filter(Boolean)
+    .join(', ');
+---
+
+<span class="authors">
+  {
+    parsed.map((a, i) => (
+      <>
+        {i > 0 && <span class="sep">, </span>}
+        <span class={a.isLab ? 'author-lab' : undefined}>{a.name}</span>
+        {(a.first || a.corresponding) && (
+          <span class="author-mark" title={markLabel(a)}>
+            {a.first ? '1' : ''}
+            {a.corresponding ? '*' : ''}
+          </span>
+        )}
+      </>
+    ))
+  }
+</span>
+
+<style>
+  .authors {
+    color: var(--body);
+  }
+  .sep {
+    color: var(--muted);
+  }
+</style>

@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <rect width="1200" height="630" fill="#16233b"/>
+  <g opacity="0.5">
+    <path d="M0 470 C 180 380, 420 380, 600 470 C 780 560, 1020 560, 1200 470"
+          fill="none" stroke="#7ea6ff" stroke-width="2" opacity="0.45"/>
+    <path d="M0 520 C 180 430, 420 430, 600 520 C 780 610, 1020 610, 1200 520"
+          fill="none" stroke="#7ea6ff" stroke-width="2" opacity="0.25"/>
+  </g>
+  <path d="M80 300 L150 300 176 250 202 350 228 272 254 322 280 288 320 300 360 232 386 360 412 274 448 312 520 300"
+        fill="none" stroke="#7ea6ff" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" opacity="0.9"/>
+  <text x="80" y="200" fill="#7ea6ff" font-family="Inter, Segoe UI, sans-serif" font-size="26"
+        font-weight="600" letter-spacing="6">PONS LAB</text>
+  <text x="80" y="440" fill="#ffffff" font-family="Georgia, serif" font-size="66" font-weight="600">
+    Bridging brain, body,
+  </text>
+  <text x="80" y="516" fill="#ffffff" font-family="Georgia, serif" font-size="66" font-weight="600">
+    and technology
+  </text>
+  <text x="80" y="580" fill="#8d9dba" font-family="Inter, Segoe UI, sans-serif" font-size="22">
+    Physiological &amp; On-body Neural Systems Lab · Yonsei University Mirae Campus
+  </text>
+</svg>

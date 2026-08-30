@@ -1,0 +1,54 @@
+---
+import { getCollection } from 'astro:content';
+import NewsCard from '../NewsCard.astro';
+import { getLangFromUrl, useTranslations, localizePath } from '../../i18n/utils.js';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+const items = (await getCollection('news'))
+  .sort((a, b) => b.data.date - a.data.date)
+  .slice(0, 3);
+---
+
+<section class="section">
+  <div class="container">
+    <div class="section-head head-row">
+      <div>
+        <p class="kicker">{t('home.news_kicker')}</p>
+        <h2>{t('home.news_title')}</h2>
+      </div>
+      <a class="link-arrow" href={localizePath('/news', lang)}>
+        {t('cta.all_news')}
+        <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+          <path
+            d="M3 8h9m0 0L8.5 4.5M12 8l-3.5 3.5"
+            stroke="currentColor"
+            stroke-width="1.6"
+            stroke-linecap="round"
+            stroke-linejoin="round"></path>
+        </svg>
+      </a>
+    </div>
+
+    <div class="grid grid-3">
+      {items.map((item) => <NewsCard item={item} />)}
+    </div>
+  </div>
+</section>
+
+<style>
+  .head-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+  .head-row h2 {
+    margin-bottom: 0;
+  }
+  .head-row .link-arrow {
+    padding-bottom: 0.4rem;
+  }
+</style>

@@ -1,0 +1,166 @@
+---
+import PageHero from '../PageHero.astro';
+import { site, members } from '../../lib/data.js';
+import { getLangFromUrl, useTranslations, pick } from '../../i18n/utils.js';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+const address = lang === 'ko' ? site.contact.address_ko : site.contact.address_en;
+const room = lang === 'ko' ? site.contact.room_ko : site.contact.room_en;
+const office = pick(members.pi, 'office', lang);
+const how = lang === 'ko' ? site.recruiting.how_to_apply_ko : site.recruiting.how_to_apply_en;
+const affiliation =
+  lang === 'ko'
+    ? `${site.institution.university_ko} ${site.institution.department_ko}`
+    : `${site.institution.department_en}, ${site.institution.university_en}`;
+---
+
+<PageHero kicker={t('page.kicker.contact')} title={t('contact.title')} lead={t('contact.lead')} />
+
+<section class="section">
+  <div class="container layout">
+    <div class="info">
+      <dl class="rows">
+        <div class="row">
+          <dt>{t('contact.address')}</dt>
+          <dd>
+            <p class="strongish">{room}</p>
+            <p>{address}</p>
+            <p class="muted small">{affiliation}</p>
+            <p class="map">
+              <a
+                class="link-arrow"
+                href={site.contact.map_url}
+                target="_blank"
+                rel="noopener"
+              >
+                {t('contact.map')}
+                <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                  <path
+                    d="M3 8h9m0 0L8.5 4.5M12 8l-3.5 3.5"
+                    stroke="currentColor"
+                    stroke-width="1.6"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"></path>
+                </svg>
+              </a>
+            </p>
+          </dd>
+        </div>
+
+        <div class="row">
+          <dt>{t('contact.email')}</dt>
+          <dd><a href={`mailto:${site.contact.email}`}>{site.contact.email}</a></dd>
+        </div>
+
+        <div class="row">
+          <dt>{t('contact.phone')}</dt>
+          <dd><a href={`tel:${site.contact.phone}`}>{site.contact.phone_display}</a></dd>
+        </div>
+
+        <div class="row">
+          <dt>{t('contact.office')}</dt>
+          <dd>
+            <p>{office}</p>
+            {members.pi.phone && (
+              <p><a href={`tel:${members.pi.phone}`}>{members.pi.phone}</a></p>
+            )}
+          </dd>
+        </div>
+      </dl>
+    </div>
+
+    <aside class="join card">
+      <h2>{t('contact.join_title')}</h2>
+      <p>{site.recruiting[lang]}</p>
+      <p class="muted">{how}</p>
+      <a class="btn btn-primary" href={`mailto:${site.contact.email}`}>{t('cta.email')}</a>
+    </aside>
+  </div>
+</section>
+
+<style>
+  .layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr);
+    gap: clamp(1.75rem, 4vw, 3.25rem);
+    align-items: start;
+  }
+
+  .rows {
+    margin: 0;
+    display: grid;
+  }
+
+  .row {
+    display: grid;
+    grid-template-columns: minmax(6.5rem, 9rem) minmax(0, 1fr);
+    gap: 0.4rem 1.5rem;
+    padding: 1.25rem 0;
+    border-bottom: 1px solid var(--line);
+  }
+  .row:first-child {
+    padding-top: 0;
+  }
+
+  dt {
+    font-size: 0.72rem;
+    font-weight: 650;
+    letter-spacing: 0.13em;
+    text-transform: uppercase;
+    color: var(--muted);
+    padding-top: 0.24rem;
+  }
+
+  dd {
+    margin: 0;
+    font-size: 0.945rem;
+  }
+  dd p {
+    margin: 0 0 0.28rem;
+  }
+  dd p:last-child {
+    margin-bottom: 0;
+  }
+
+  .strongish {
+    font-weight: 620;
+    color: var(--ink);
+  }
+
+  .map {
+    margin-top: 0.6rem !important;
+  }
+
+  .join {
+    background: linear-gradient(160deg, #f2f6fd 0%, var(--card) 55%);
+    border-color: #d8e2f5;
+  }
+
+  .join h2 {
+    font-size: 1.2rem;
+    margin-bottom: 0.7rem;
+  }
+
+  .join p {
+    font-size: 0.925rem;
+    margin-bottom: 0.7rem;
+  }
+
+  .join .btn {
+    margin-top: 0.6rem;
+  }
+
+  @media (max-width: 860px) {
+    .layout {
+      grid-template-columns: minmax(0, 1fr);
+    }
+  }
+
+  @media (max-width: 520px) {
+    .row {
+      grid-template-columns: minmax(0, 1fr);
+    }
+  }
+</style>

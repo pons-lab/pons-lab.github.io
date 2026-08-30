@@ -1,0 +1,26 @@
+# ============================================================================
+# 갤러리 — 연구실 사진 (News 페이지 아래쪽 갤러리 섹션)
+#
+# 사진을 추가하려면:
+#   1) 이미지 파일을 public/images/gallery/ 폴더에 넣고
+#   2) 아래 items: 맨 위에 항목을 하나 추가하세요.
+#      image 는 비워두면 색 배경 카드로 표시됩니다.
+# ============================================================================
+
+items:
+  - date: 2026-04
+    title_ko: 2026년 4월 회식
+    title_en: Lab dinner, April 2026
+    image: ""
+  - date: 2026-02
+    title_ko: 2026년 2월 생일 파티
+    title_en: Birthday party, February 2026
+    image: ""
+  - date: 2026-01
+    title_ko: 2026년 1월 회식
+    title_en: Lab dinner, January 2026
+    image: ""
+  - date: 2026-01
+    title_ko: 2026년 1월 실험 및 사무 공간 세팅
+    title_en: Setting up the lab and office space, January 2026
+    image: ""

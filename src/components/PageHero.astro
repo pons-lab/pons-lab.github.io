@@ -1,0 +1,27 @@
+---
+const { kicker, title, lead } = Astro.props;
+---
+
+<section class="page-hero">
+  <div class="container">
+    {kicker && <p class="kicker">{kicker}</p>}
+    <h1>{title}</h1>
+    {lead && <p class="lead">{lead}</p>}
+    <slot />
+  </div>
+</section>
+
+<style>
+  .page-hero {
+    padding-block: clamp(3rem, 7vw, 5.25rem) clamp(2.25rem, 4vw, 3rem);
+    border-bottom: 1px solid var(--line);
+    background:
+      radial-gradient(1100px 340px at 8% -30%, #eef3fd 0%, rgba(238, 243, 253, 0) 70%),
+      var(--page);
+  }
+
+  h1 {
+    max-width: 20ch;
+    margin-bottom: 0.65rem;
+  }
+</style>

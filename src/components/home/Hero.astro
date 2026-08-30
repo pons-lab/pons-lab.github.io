@@ -1,0 +1,254 @@
+---
+import { site } from '../../lib/data.js';
+import { getLangFromUrl, useTranslations, localizePath } from '../../i18n/utils.js';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+// 히어로 kicker 는 연구실 정식 명칭. 한국어에서는 국문명 + 영문 약칭 병기.
+const kicker = lang === 'ko' ? site.name.display_ko : site.name.full_en;
+---
+
+<section class="hero">
+  <div class="container inner">
+    <div class="copy">
+      <p class="kicker kicker-plain">{kicker}</p>
+      <h1>{site.tagline[lang]}</h1>
+      <p class="lead">{site.intro[lang]}</p>
+      <div class="btn-row">
+        <a class="btn btn-primary" href={localizePath('/research', lang)}>{t('cta.research')}</a>
+        <a class="btn btn-ghost" href={localizePath('/contact', lang)}>{t('cta.join')}</a>
+      </div>
+    </div>
+
+    <div class="visual" aria-hidden="true">
+      <svg viewBox="0 0 520 420" role="presentation" class="waves">
+        <defs>
+          <linearGradient id="fade-eeg" x1="0" x2="1">
+            <stop offset="0" stop-color="#2153c4" stop-opacity="0"></stop>
+            <stop offset="0.14" stop-color="#2153c4" stop-opacity="0.95"></stop>
+            <stop offset="0.86" stop-color="#2153c4" stop-opacity="0.95"></stop>
+            <stop offset="1" stop-color="#2153c4" stop-opacity="0"></stop>
+          </linearGradient>
+          <linearGradient id="fade-ecg" x1="0" x2="1">
+            <stop offset="0" stop-color="#16233b" stop-opacity="0"></stop>
+            <stop offset="0.14" stop-color="#16233b" stop-opacity="0.72"></stop>
+            <stop offset="0.86" stop-color="#16233b" stop-opacity="0.72"></stop>
+            <stop offset="1" stop-color="#16233b" stop-opacity="0"></stop>
+          </linearGradient>
+          <linearGradient id="fade-resp" x1="0" x2="1">
+            <stop offset="0" stop-color="#6b7a94" stop-opacity="0"></stop>
+            <stop offset="0.14" stop-color="#6b7a94" stop-opacity="0.6"></stop>
+            <stop offset="0.86" stop-color="#6b7a94" stop-opacity="0.6"></stop>
+            <stop offset="1" stop-color="#6b7a94" stop-opacity="0"></stop>
+          </linearGradient>
+          <linearGradient id="fade-emg" x1="0" x2="1">
+            <stop offset="0" stop-color="#2153c4" stop-opacity="0"></stop>
+            <stop offset="0.14" stop-color="#2153c4" stop-opacity="0.42"></stop>
+            <stop offset="0.86" stop-color="#2153c4" stop-opacity="0.42"></stop>
+            <stop offset="1" stop-color="#2153c4" stop-opacity="0"></stop>
+          </linearGradient>
+        </defs>
+
+        <!-- 옅은 격자 (계측 화면 느낌) -->
+        <g stroke="#e3e9f2" stroke-width="1">
+          <path d="M0 60H520M0 150H520M0 240H520M0 330H520"></path>
+          <path d="M65 20V400M195 20V400M325 20V400M455 20V400"></path>
+        </g>
+
+        <!-- EEG (뇌파) -->
+        <path
+          class="w w-eeg"
+          d="M0 68 L26 68 42 44 58 88 74 52 90 80 106 60 122 74 140 46 156 86 172 58 190 72 206 50 222 82 240 62 256 76 272 48 290 84 306 56 322 70 340 52 356 80 372 60 390 74 406 46 424 86 440 58 458 72 476 64 494 68 520 68"
+          stroke="url(#fade-eeg)"></path>
+
+        <!-- ECG (심전도) -->
+        <path
+          class="w w-ecg"
+          d="M0 158 L40 158 52 158 58 146 64 158 76 158 82 190 90 108 98 196 106 158 130 158 142 152 154 158 200 158 212 158 218 146 224 158 236 158 242 190 250 108 258 196 266 158 290 158 302 152 314 158 360 158 372 158 378 146 384 158 396 158 402 190 410 108 418 196 426 158 450 158 462 152 474 158 520 158"
+          stroke="url(#fade-ecg)"></path>
+
+        <!-- Respiration (호흡) -->
+        <path
+          class="w w-resp"
+          d="M0 250 C 40 250, 55 208, 90 208 C 125 208, 138 292, 174 292 C 210 292, 222 208, 258 208 C 294 208, 306 292, 342 292 C 378 292, 390 208, 426 208 C 462 208, 476 250, 520 250"
+          stroke="url(#fade-resp)"></path>
+
+        <!-- EMG (근전도) -->
+        <path
+          class="w w-emg"
+          d="M0 340 L34 340 40 330 46 350 52 336 58 344 64 340 96 340 102 316 108 366 114 322 120 358 126 330 132 350 138 340 172 340 178 326 184 356 190 332 196 348 202 340 236 340 242 310 248 372 254 318 260 362 266 328 272 352 278 340 312 340 318 330 324 350 330 336 336 344 342 340 376 340 382 318 388 364 394 324 400 356 406 332 412 348 418 340 452 340 458 332 464 348 470 338 476 342 482 340 520 340"
+          stroke="url(#fade-emg)"></path>
+
+        <!-- 측정 지점 표시 -->
+        <g class="dots">
+          <circle cx="90" cy="108" r="4.5" fill="#2153c4"></circle>
+          <circle cx="250" cy="108" r="4.5" fill="#2153c4" opacity="0.55"></circle>
+          <circle cx="410" cy="108" r="4.5" fill="#2153c4" opacity="0.3"></circle>
+        </g>
+      </svg>
+
+      <ul class="signal-key">
+        <li><span class="sw sw-eeg"></span>EEG</li>
+        <li><span class="sw sw-ecg"></span>ECG</li>
+        <li><span class="sw sw-resp"></span>RESP</li>
+        <li><span class="sw sw-emg"></span>EMG</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero {
+    position: relative;
+    overflow: hidden;
+    background:
+      radial-gradient(760px 460px at 82% 6%, #eaf0fd 0%, rgba(234, 240, 253, 0) 68%),
+      radial-gradient(620px 420px at 4% 96%, #f0f4fb 0%, rgba(240, 244, 251, 0) 62%),
+      var(--page);
+    border-bottom: 1px solid var(--line);
+  }
+
+  .inner {
+    display: grid;
+    grid-template-columns: minmax(0, 1.02fr) minmax(0, 0.98fr);
+    align-items: center;
+    gap: clamp(2rem, 5vw, 4rem);
+    padding-block: clamp(3.5rem, 8vw, 6.5rem);
+  }
+
+  .copy .kicker {
+    color: var(--muted);
+    letter-spacing: 0.11em;
+    font-size: 0.735rem;
+    margin-bottom: 1.15rem;
+  }
+
+  h1 {
+    font-size: clamp(2.4rem, 5.4vw, 3.85rem);
+    line-height: 1.08;
+    letter-spacing: -0.028em;
+    margin-bottom: 1.15rem;
+    max-width: 15ch;
+  }
+
+  .lead {
+    margin-bottom: 1.9rem;
+    max-width: 54ch;
+  }
+
+  .visual {
+    position: relative;
+  }
+
+  .waves {
+    width: 100%;
+    height: auto;
+    overflow: visible;
+  }
+
+  .w {
+    fill: none;
+    stroke-width: 2.1;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-dasharray: 2400;
+    stroke-dashoffset: 2400;
+    animation: draw 2.4s cubic-bezier(0.33, 0.5, 0.25, 1) forwards;
+  }
+  .w-eeg {
+    animation-delay: 0.05s;
+  }
+  .w-ecg {
+    animation-delay: 0.35s;
+    stroke-width: 2.3;
+  }
+  .w-resp {
+    animation-delay: 0.65s;
+    stroke-width: 2;
+  }
+  .w-emg {
+    animation-delay: 0.9s;
+    stroke-width: 1.9;
+  }
+
+  @keyframes draw {
+    to {
+      stroke-dashoffset: 0;
+    }
+  }
+
+  .dots circle {
+    opacity: 0;
+    animation: pop 0.5s ease 2.1s forwards;
+  }
+  @keyframes pop {
+    from {
+      opacity: 0;
+      transform: scale(0.4);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  .signal-key {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem 1.15rem;
+    margin-top: 0.75rem;
+    padding-left: 0.15rem;
+  }
+  .signal-key li {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.42rem;
+    font-size: 0.71rem;
+    font-weight: 600;
+    letter-spacing: 0.11em;
+    color: var(--muted);
+  }
+  .sw {
+    width: 14px;
+    height: 2.5px;
+    border-radius: 2px;
+    display: inline-block;
+  }
+  .sw-eeg {
+    background: #2153c4;
+  }
+  .sw-ecg {
+    background: #16233b;
+  }
+  .sw-resp {
+    background: #6b7a94;
+  }
+  .sw-emg {
+    background: rgba(33, 83, 196, 0.45);
+  }
+
+  @media (max-width: 900px) {
+    .inner {
+      grid-template-columns: minmax(0, 1fr);
+      gap: 2.5rem;
+    }
+    h1 {
+      max-width: 18ch;
+    }
+    .visual {
+      order: 2;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .w {
+      stroke-dashoffset: 0;
+      animation: none;
+    }
+    .dots circle {
+      opacity: 1;
+      animation: none;
+    }
+  }
+</style>

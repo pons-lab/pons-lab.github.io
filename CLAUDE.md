@@ -1,0 +1,78 @@
+# PONS Lab 홈페이지 프로젝트
+
+연세대학교 미래캠퍼스 의공학부 **PONS Lab — Physiological & On-body Neural Systems Lab** (PI: Hodam Kim 조교수)의 연구실 홈페이지. 기존 Google Sites(https://sites.google.com/view/npstlab)를 대체하는 리뉴얼 프로젝트다.
+
+- **국문 명칭**: 뇌·신체·기계 인터페이스 연구실. 국문명은 영문 직역이 아니라 같은 철학(뇌+몸+잇기)을 담은 별도 명칭이다.
+- **병기 원칙 (중요)**: 국문명을 표기할 때는 항상 "뇌·신체·기계 인터페이스 연구실(PONS Lab)"처럼 영문 약칭을 병기한다. 한국어 페이지(/ko/)의 사이트 제목·푸터·소개문 전부 이 원칙을 따른다.
+
+- **태그라인**: "Bridging brain, body, and technology" — 메인 페이지 히어로와 사이트 메타 설명에 사용. pons는 뇌교(라틴어로 '다리')라는 뇌 구조에서 따온 이름이므로 이 은유를 브랜딩에 살릴 것.
+- **브랜드 스토리 ("Why PONS?")**: 메인 페이지 히어로 아래(또는 연구실 소개 섹션)에 이름의 유래를 소개하는 짧은 섹션을 넣는다. 아래 문구를 그대로 사용 (site.yaml 또는 i18n 딕셔너리에 저장):
+  - EN: "Our name, **PONS**, stands for *Physiological & On-body Neural Systems* — and it is also the brainstem structure that relays signals between the brain and the body. In Latin, *pons* means 'bridge.' True to its name, our lab builds bridges: between brain and body signals, between humans and machines, and between everyday life and healthcare technology."
+  - KO: "연구실 이름 **PONS**는 *Physiological & On-body Neural Systems*의 약자이자, 뇌와 몸 사이의 신호를 이어주는 뇌 구조 '뇌교(pons)'의 이름이기도 합니다. 라틴어로 pons는 '다리'를 뜻합니다. 이름 그대로 우리 연구실은 뇌와 몸의 신호, 사람과 기계, 일상과 헬스케어 기술을 잇는 다리를 만듭니다."
+- **이름 풀이 카드 (P·O·N·S)**: "Why PONS?" 스토리 바로 아래에 4개 카드 그리드로 배치 (모바일에서는 세로 스택). 각 카드는 머리글자를 크게 강조하고 아래 문구 사용:
+  - **P — Physiological**: EN "We measure the body's vital signals — cardiac, respiratory, muscular, and beyond." / KO "심박·호흡·근육 등 몸이 보내는 생리신호를 측정합니다."
+  - **O — On-body**: EN "We build soft, skin-conformal wearable devices for everyday life." / KO "일상에서 편안하게 착용하는 소프트 웨어러블 기기를 만듭니다."
+  - **N — Neural**: EN "We sense and decode brain signals, from EEG to brain–computer interfaces." / KO "EEG부터 뇌-컴퓨터 인터페이스까지, 뇌·신경 신호를 측정하고 해석합니다."
+  - **S — Systems**: EN "We integrate sensing, signal processing, and applications into complete systems for health and human–machine interaction." / KO "센싱·신호처리·응용을 통합해 헬스케어와 인간-기계 상호작용을 위한 시스템을 완성합니다."
+- **주의**: 기존 사이트에는 옛 이름(NeuroPhysio Systems & Technology Lab, NPST Lab)이 쓰여 있다. 콘텐츠를 옮길 때 연구실명은 모두 PONS Lab으로 바꾼다.
+
+## 사용자에 대해
+
+- 사용자는 GitHub와 웹 개발 경험이 거의 없다. Git/GitHub 조작(커밋, 푸시, 저장소 생성, 배포)은 항상 네가 직접 수행하고, 전문 용어는 짧게 풀어서 설명할 것.
+- 대화는 한국어로 한다.
+- 되돌리기 어려운 작업(저장소 삭제, 강제 푸시, DNS 변경 등)은 실행 전에 반드시 확인받을 것.
+
+## 기술 스택 (확정)
+
+- **Astro** 정적 사이트, TypeScript 최소화, 프레임워크 컴포넌트(React 등) 없이 순수 Astro 컴포넌트 우선
+- **배포**: GitHub Pages + GitHub Actions (push 시 자동 배포)
+- **저장소·주소**: 저장소 이름은 `<GitHub계정명>.github.io` → 사이트 주소가 `https://<계정명>.github.io/`가 되고 Astro base path 설정이 불필요. 추후 학교 서브도메인(예: ponslab.yonsei.ac.kr)을 신청해 연결할 예정이므로 base path 없는 구조를 유지할 것.
+- **다국어**: 영문이 기본(`/`), 한국어는 `/ko/` 경로. Astro 공식 i18n 라우팅 사용. UI 문자열은 딕셔너리 파일로 분리, 논문·멤버 등 데이터는 언어 공통으로 한 곳에서 관리
+
+## 콘텐츠 관리 원칙 (중요)
+
+논문·멤버·뉴스·강의는 코드가 아니라 **데이터 파일**로 관리한다. 사용자가 "논문 추가해줘"라고 하면 해당 데이터 파일만 수정하면 되도록:
+
+```
+src/data/site.yaml           # 연구실명(영문 풀네임·약칭·국문명)·태그라인·주소·연락처 (이름 변경 시 이 파일만 수정)
+src/data/publications.yaml   # 논문 (연도, 저자, 저널, DOI, 태그: first/corresponding/member)
+src/data/members.yaml        # PI·멤버·알럼나이
+src/data/lectures.yaml       # 학기별 강의
+src/content/news/*.md        # 뉴스 (파일 1개 = 글 1개)
+```
+
+- 연구실명·태그라인·연락처는 반드시 site.yaml에서만 참조 (하드코딩 금지)
+- 논문 저자 표기 규칙 유지: 1저자 `1`, 교신저자 `*`, 랩 멤버 강조 표시
+- 논문은 연도별 역순 그룹핑, DOI 링크 포함
+
+## 사이트 구조
+
+`/` Home(대표 비주얼+태그라인, 연구 하이라이트, 최신 논문 3편, 모집 배너) · `/research` · `/people` · `/publications` · `/lectures` · `/news`(뉴스+갤러리) · `/contact` · 동일 구조의 `/ko/…`
+
+## 디자인 스펙 (확정 — 저장소 루트의 design-reference.html이 기준)
+
+사용자와 합의된 확정 시안이 `design-reference.html`에 있다. **메인 페이지는 이 파일의 레이아웃·색상·타이포그래피를 그대로 구현**하고, 서브 페이지들도 같은 디자인 언어를 따른다.
+
+- **톤**: 라이트 아카데믹 — 밝은 배경, 학술적 신뢰감 + 현대적 미니멀
+- **색상**: 잉크 `#16233b`, 본문 보조 `#44536e`, 뮤트 `#6b7a94`, 포인트 블루 `#2153c4`, 포인트 배경 `#e8eefc`, 페이지 배경 `#fbfcfe`, 카드 `#ffffff`, 라인 `#e3e9f2`
+- **타이포**: 제목 Fraunces(serif), 본문/UI Inter(sans). Google Fonts 사용, 한국어 페이지는 Pretendard 또는 Noto Sans KR 추가
+- **메인 페이지 섹션 순서 (확정)**: ① 히어로(연구실명 kicker + 태그라인 헤드라인 + 소개문 + CTA 2개 + 생체신호 파형 SVG) → ② 모집 리본 → ③ Research(2축 카드) → ④ Why PONS? 밴드(스토리 + 브릿지 일러스트 + P·O·N·S 카드 4개 통합) → ⑤ News(최신 3건) → ⑥ Selected Publications(최신 3편) → ⑦ Join 밴드(다크 배경 CTA) → ⑧ 푸터
+- **참고**: 신뢰 지표(숫자 통계) 스트립은 사용자 결정으로 제외함 — 넣지 말 것
+- 반응형 필수(모바일 우선 점검), 다크모드는 불필요
+- 성능: 이미지 최적화, Lighthouse 90점 이상 목표
+
+## SEO (기존 사이트의 최대 약점이었음)
+
+- noindex 금지. sitemap, robots.txt, 페이지별 title/description, Open Graph 메타태그 필수
+- 구조화 데이터(JSON-LD, Person/Organization) 추가
+
+## 콘텐츠 출처
+
+- 기존 사이트 https://sites.google.com/view/npstlab 의 콘텐츠를 이전한다 (Home, People, Research, Publications, Lecture, Board, Contact) — 연구실명만 PONS Lab으로 교체
+- 주소·전화는 Contact 페이지 기준(산학관 204호, +82-33-760-2859)으로 통일하되, 최종 확정 전 사용자에게 확인할 것
+
+## 작업 방식
+
+- 단계가 끝날 때마다 로컬 미리보기로 확인시켜 줄 것
+- 의미 있는 변경마다 커밋. 커밋 메시지는 영어로 간결하게
+- 배포 후에는 실제 URL을 알려줄 것

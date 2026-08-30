@@ -1,0 +1,144 @@
+---
+import PageHero from '../PageHero.astro';
+import { research } from '../../lib/data.js';
+import { getLangFromUrl, useTranslations, pick } from '../../i18n/utils.js';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+---
+
+<PageHero
+  kicker={t('page.kicker.research')}
+  title={t('research.title')}
+  lead={t('research.lead')}
+/>
+
+<section class="section">
+  <div class="container axes">
+    {
+      research.axes.map((axis, i) => (
+        <article class="axis">
+          <header class="axis-head">
+            <span class="num mono-num">{String(i + 1).padStart(2, '0')}</span>
+            <div>
+              <h2>{pick(axis, 'title', lang)}</h2>
+              <p class="lead">{pick(axis, 'lead', lang)}</p>
+            </div>
+          </header>
+
+          <div class="grid grid-3 topics">
+            {axis.topics.map((topic) => (
+              <div class="card card-hover topic">
+                <h3>{pick(topic, 'title', lang)}</h3>
+                {(topic.text_en || topic.text_ko) && <p>{pick(topic, 'text', lang)}</p>}
+              </div>
+            ))}
+          </div>
+        </article>
+      ))
+    }
+  </div>
+</section>
+
+<section class="section projects-band">
+  <div class="container">
+    <div class="section-head">
+      <h2>{t('research.projects')}</h2>
+    </div>
+
+    <ul class="projects">
+      {
+        research.projects.map((p) => (
+          <li class="card project">
+            <span class="period mono-num">{p.period}</span>
+            <h3>{pick(p, 'title', lang)}</h3>
+            <span class="tag">{pick(p, 'short', lang)}</span>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</section>
+
+<style>
+  .axes {
+    display: grid;
+    gap: clamp(2.75rem, 6vw, 4.5rem);
+  }
+
+  .axis-head {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr);
+    gap: 1rem;
+    align-items: start;
+    margin-bottom: clamp(1.5rem, 3vw, 2rem);
+  }
+
+  .num {
+    font-family: var(--font-display);
+    font-size: 0.86rem;
+    font-weight: 600;
+    color: var(--accent);
+    background: var(--accent-soft);
+    border-radius: 8px;
+    padding: 0.35rem 0.6rem;
+    line-height: 1;
+    margin-top: 0.5rem;
+  }
+
+  .axis-head h2 {
+    font-size: clamp(1.5rem, 2.6vw, 2rem);
+    margin-bottom: 0.5rem;
+  }
+
+  .axis-head .lead {
+    margin-bottom: 0;
+  }
+
+  .topic h3 {
+    font-family: var(--font-sans);
+    font-size: 0.99rem;
+    font-weight: 620;
+    margin-bottom: 0.5rem;
+    letter-spacing: -0.008em;
+  }
+
+  .topic p {
+    margin: 0;
+    font-size: 0.9rem;
+    color: var(--body);
+    line-height: 1.62;
+  }
+
+  .projects-band {
+    background: #f6f8fc;
+    border-top: 1px solid var(--line);
+  }
+
+  .projects {
+    display: grid;
+    gap: 0.9rem;
+  }
+
+  .project {
+    display: grid;
+    gap: 0.5rem;
+    justify-items: start;
+  }
+
+  .period {
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    color: var(--accent);
+  }
+
+  .project h3 {
+    font-family: var(--font-sans);
+    font-size: 1.02rem;
+    font-weight: 600;
+    line-height: 1.5;
+    margin: 0;
+    max-width: 72ch;
+  }
+</style>

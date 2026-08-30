@@ -1,0 +1,124 @@
+---
+import { research } from '../../lib/data.js';
+import { getLangFromUrl, useTranslations, localizePath, pick } from '../../i18n/utils.js';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+---
+
+<section class="section">
+  <div class="container">
+    <div class="section-head">
+      <p class="kicker">{t('home.research_kicker')}</p>
+      <h2>{t('home.research_title')}</h2>
+      <p class="lead">{t('home.research_lead')}</p>
+    </div>
+
+    <div class="grid grid-2 axes">
+      {
+        research.axes.map((axis, i) => (
+          <article class="card card-hover axis">
+            <span class="axis-num mono-num">{String(i + 1).padStart(2, '0')}</span>
+            <h3>{pick(axis, 'title', lang)}</h3>
+            <p class="axis-lead">{pick(axis, 'lead', lang)}</p>
+            <ul class="topics">
+              {axis.topics.map((topic) => (
+                <li>
+                  <span class="dot" aria-hidden="true" />
+                  <div>
+                    <strong>{pick(topic, 'title', lang)}</strong>
+                    {(topic.text_en || topic.text_ko) && <p>{pick(topic, 'text', lang)}</p>}
+                  </div>
+                </li>
+              ))}
+            </ul>
+          </article>
+        ))
+      }
+    </div>
+
+    <p class="more">
+      <a class="link-arrow" href={localizePath('/research', lang)}>
+        {t('cta.research')}
+        <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+          <path
+            d="M3 8h9m0 0L8.5 4.5M12 8l-3.5 3.5"
+            stroke="currentColor"
+            stroke-width="1.6"
+            stroke-linecap="round"
+            stroke-linejoin="round"></path>
+        </svg>
+      </a>
+    </p>
+  </div>
+</section>
+
+<style>
+  .axis {
+    position: relative;
+    padding-top: clamp(1.7rem, 2.6vw, 2.1rem);
+  }
+
+  .axis-num {
+    display: block;
+    font-family: var(--font-display);
+    font-size: 0.86rem;
+    font-weight: 600;
+    color: var(--accent);
+    opacity: 0.65;
+    margin-bottom: 0.6rem;
+    letter-spacing: 0.06em;
+  }
+
+  .axis h3 {
+    margin-bottom: 0.55rem;
+  }
+
+  .axis-lead {
+    font-size: 0.94rem;
+    color: var(--body);
+    margin-bottom: 1.35rem;
+    padding-bottom: 1.35rem;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .topics {
+    display: grid;
+    gap: 0.9rem;
+  }
+
+  .topics li {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr);
+    gap: 0.7rem;
+    align-items: start;
+  }
+
+  .dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--accent);
+    opacity: 0.5;
+    margin-top: 0.62rem;
+  }
+
+  .topics strong {
+    display: block;
+    font-size: 0.945rem;
+    font-weight: 600;
+    color: var(--ink);
+    line-height: 1.45;
+  }
+
+  .topics p {
+    margin: 0.2rem 0 0;
+    font-size: 0.885rem;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+
+  .more {
+    margin: clamp(1.75rem, 3vw, 2.4rem) 0 0;
+  }
+</style>
