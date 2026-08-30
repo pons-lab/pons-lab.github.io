@@ -41,8 +41,3 @@ events:
     date: 2026-01
     title_en: Setting up the lab and office space
     title_ko: 실험 및 사무 공간 세팅
-
-  - folder: 2026-lab-space
-    date: ""
-    title_en: Our lab space
-    title_ko: 실험 공간
