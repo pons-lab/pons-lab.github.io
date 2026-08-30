@@ -49,17 +49,43 @@ src/content/news/*.md        # 뉴스 (파일 1개 = 글 1개)
 
 `/` Home(대표 비주얼+태그라인, 연구 하이라이트, 최신 논문 3편, 모집 배너) · `/research` · `/people` · `/publications` · `/lectures` · `/news`(뉴스+갤러리) · `/contact` · 동일 구조의 `/ko/…`
 
-## 디자인 스펙 (확정 — 저장소 루트의 design-reference.html이 기준)
+## 디자인 스펙 (기준 = 현재 사이트 코드)
 
-사용자와 합의된 확정 시안이 `design-reference.html`에 있다. **메인 페이지는 이 파일의 레이아웃·색상·타이포그래피를 그대로 구현**하고, 서브 페이지들도 같은 디자인 언어를 따른다.
+**디자인 기준은 `src/` 안의 실제 코드다.** 토큰(색상·글꼴·간격·그림자)과 공통 클래스는 전부
+`src/styles/global.css` 의 `:root` 와 유틸리티 클래스에 있고, 섹션별 세부 스타일은 각 `.astro`
+컴포넌트의 `<style>` 블록에 있다. 새 화면을 만들 때는 아래 토큰과 공통 클래스를 재사용한다.
 
-- **톤**: 라이트 아카데믹 — 밝은 배경, 학술적 신뢰감 + 현대적 미니멀
-- **색상**: 잉크 `#16233b`, 본문 보조 `#44536e`, 뮤트 `#6b7a94`, 포인트 블루 `#2153c4`, 포인트 배경 `#e8eefc`, 페이지 배경 `#fbfcfe`, 카드 `#ffffff`, 라인 `#e3e9f2`
-- **타이포**: 제목 Fraunces(serif), 본문/UI Inter(sans). Google Fonts 사용, 한국어 페이지는 Pretendard 또는 Noto Sans KR 추가
-- **메인 페이지 섹션 순서 (확정)**: ① 히어로(연구실명 kicker + 태그라인 헤드라인 + 소개문 + CTA 2개 + 생체신호 파형 SVG) → ② 모집 리본 → ③ Research(2축 카드) → ④ Why PONS? 밴드(스토리 + 브릿지 일러스트 + P·O·N·S 카드 4개 통합) → ⑤ News(최신 3건) → ⑥ Selected Publications(최신 3편) → ⑦ Join 밴드(다크 배경 CTA) → ⑧ 푸터
+> `design-reference.html` 은 **초기 시안 아카이브다. 더 이상 기준이 아니다.**
+> (제목 서체·일부 섹션 구성이 현재 사이트와 다르다. 참고만 하고 여기에 맞추지 말 것.)
+
+- **톤**: 라이트 아카데믹 — 밝은 배경, 학술적 신뢰감 + 현대적 미니멀. 다크모드 없음.
+- **색상 토큰** (`global.css` `:root`): 잉크 `--ink #16233b`, 본문 `--body #44536e`,
+  뮤트 `--muted #6b7a94`, 포인트 `--accent #2153c4`, 진한 포인트 `--accent-deep #17408f`,
+  포인트 배경 `--accent-soft #e8eefc`, 페이지 `--page #fbfcfe`, 카드 `--card #ffffff`,
+  라인 `--line #e3e9f2`. 밴드 배경 `#f6f8fc` (섹션 교차용, 아직 토큰 아님).
+- **타이포**: **제목·본문 모두 Inter 하나**로 통일한다(`--font-display` 는 `--font-sans` 를 가리키는
+  별칭). 세리프(Fraunces)는 쓰지 않는다. 굵기와 자간으로 위계를 만든다.
+  한국어 페이지(`/ko/`)에서만 Noto Sans KR 을 추가로 로드하고, 한국어 본문은 `word-break: keep-all`.
+- **레이아웃 토큰**: `--container 1140px`, `--container-narrow 880px`, `--radius 14px`,
+  `--radius-lg 22px`, `--section-y clamp(4rem, 8vw, 7rem)`, 그림자 `--shadow-sm/--shadow-md`.
+- **공통 클래스**: `.container` / `.section` / `.section-tight` / `.card` `.card-hover` /
+  `.btn`(`-primary` `-ghost` `-light` `-outline-light`, 알약형) / `.kicker`(대문자 트래킹 라벨,
+  앞에 짧은 선) / `.lead` / `.tag` `.tag-quiet` / `.link-arrow`(호버 시 화살표 이동) /
+  `.band-dark` / `.grid` `.grid-2~4` / `.mono-num`.
+- **메인 페이지 섹션 순서 (현행)**: ① 히어로(연구실명 kicker + 태그라인 헤드라인 + 소개문 + CTA 2개 +
+  EEG·ECG·RESP·EMG 4채널 파형 SVG + 신호 범례) → ② 모집 리본(연한 파란 띠) → ③ Research(2축 카드) →
+  ④ Why PONS? 밴드(스토리 + 브릿지 일러스트 + P·O·N·S 카드 4개) → ⑤ News(최신 3건) →
+  ⑥ Selected Publications(최신 3편) → ⑦ Join 밴드(다크 CTA) → ⑧ 푸터(다크).
+  한국어 Join 밴드는 제목·부연 없이 모집 문구 한 줄 + 버튼만 두는 단순형이다.
+- **서브 페이지 패턴**: 모두 `PageHero`(kicker + h1 + lead, 옅은 그라데이션 + 하단 라인)로 시작하고,
+  본문은 흰 배경 섹션과 `#f6f8fc` 밴드를 번갈아 쌓는다.
+- **헤더**: sticky + 반투명 blur, 좌측 브랜드(로고 마크 + `PONS Lab` + 풀네임), 우측 내비 + EN/KO 토글.
+  1040px 이하에서 내비가 햄버거 패널로 접힌다.
+- **모션**: 절제해서 쓴다 — 히어로 파형 그려지기, 모집 배지 펄스, 브릿지 위 신호 이동,
+  카드 호버 살짝 올라오기 정도. 새 애니메이션을 넣을 때도 `prefers-reduced-motion` 처리를 반드시 포함.
 - **참고**: 신뢰 지표(숫자 통계) 스트립은 사용자 결정으로 제외함 — 넣지 말 것
-- 반응형 필수(모바일 우선 점검), 다크모드는 불필요
-- 성능: 이미지 최적화, Lighthouse 90점 이상 목표
+- 반응형 필수(모바일 우선 점검)
+- 성능: 이미지는 `astro:assets` 의 `<Image>` 로 최적화, Lighthouse 90점 이상 목표
 
 ## SEO (기존 사이트의 최대 약점이었음)
 
