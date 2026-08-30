@@ -70,6 +70,19 @@ image: gallery/2026-04-dinner/01.jpg   # 사진 없으면 "" 로 비워두기
 - 갤러리 사진: `src/assets/gallery/행사이름/` → `gallery.yaml` 에 `folder: 행사이름`
   (폴더 안 사진이 파일명 순서대로 표시됩니다. 대표로 쓸 사진을 `01.jpg` 로 바꾸세요.)
 
+### 상장·증명서 같은 문서 올리기
+
+`public/docs/` 에 PDF 를 넣으면 그대로 사이트 주소로 열립니다.
+파일 이름은 `연도-월-무슨자료-이름.pdf` 형식으로, 영문 소문자와 하이픈만 씁니다.
+
+넣은 문서는 뉴스나 수상 내역에 연결할 수 있습니다.
+
+- 뉴스: `src/content/news/*.md` 에 `file: /docs/파일명.pdf` 와 `file_label: 상장 보기` 추가
+- 수상 내역: `src/data/members.yaml` 의 `awards:` 항목에 `file: /docs/파일명.pdf` 추가
+
+지도학생이 받은 상은 `advisee_ko: 지도학생 OOO 수상` 을 함께 적으면
+"지도학생" 표시가 붙습니다. 자세한 내용은 `public/docs/README.md` 참고.
+
 ---
 
 ## 개발자용

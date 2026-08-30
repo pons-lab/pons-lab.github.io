@@ -57,6 +57,11 @@ const piPhoto = asset(pi.photo);
           <li><a href={`mailto:${pi.email}`}>{pi.email}</a></li>
           {pi.phone && <li><a href={`tel:${pi.phone}`}>{pi.phone}</a></li>}
           <li class="muted">{pick(pi, 'office', lang)}</li>
+          {pi.scholar_url && (
+            <li>
+              <a href={pi.scholar_url} target="_blank" rel="noopener">Google Scholar</a>
+            </li>
+          )}
         </ul>
 
         <p class="bio">{piBio}</p>
@@ -156,8 +161,21 @@ const piPhoto = asset(pi.photo);
                     <span class="period mono-num">
                       {lang === 'ko' ? a.year_ko || a.year : a.year}
                     </span>
-                    <strong>{pick(a, 'title', lang)}</strong>
+                    <strong>
+                      {pick(a, 'title', lang)}
+                      {(a.advisee_en || a.advisee_ko) && (
+                        <span class="advisee">{t('people.advisee')}</span>
+                      )}
+                    </strong>
                     <span class="where">{pick(a, 'org', lang)}</span>
+                    {(a.advisee_en || a.advisee_ko) && (
+                      <span class="note">{pick(a, 'advisee', lang)}</span>
+                    )}
+                    {a.file && (
+                      <a class="doc" href={a.file} target="_blank" rel="noopener">
+                        {t('people.certificate')}
+                      </a>
+                    )}
                   </li>
                 ))
               }
@@ -358,6 +376,27 @@ const piPhoto = asset(pi.photo);
   .note {
     color: var(--muted);
     font-size: 0.82rem;
+  }
+
+  /* 지도학생이 받은 상 표시 */
+  .advisee {
+    display: inline-block;
+    margin-left: 0.4rem;
+    padding: 0.05rem 0.42rem;
+    border-radius: 999px;
+    background: var(--accent-soft);
+    color: var(--accent-deep);
+    font-size: 0.66rem;
+    font-weight: 650;
+    letter-spacing: 0.02em;
+    vertical-align: 1px;
+  }
+
+  .doc {
+    justify-self: start;
+    margin-top: 0.2rem;
+    font-size: 0.78rem;
+    font-weight: 600;
   }
 
 

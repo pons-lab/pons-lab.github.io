@@ -30,7 +30,7 @@ pi:
   # 사진: src/assets/ 아래의 경로를 적습니다. 비워두면 이니셜 아바타가 표시됩니다.
   photo: people/pi.jpg
   cv_url: ""
-  scholar_url: ""
+  scholar_url: https://scholar.google.com/citations?user=0iDfEjwAAAAJ&hl=ko
 
   bio_en: >-
     Hodam Kim is an Assistant Professor in the Division of Biomedical
@@ -208,6 +208,17 @@ pi:
 
   # ── 수상 및 장학 ─────────────────────────────────────────────────────
   awards:
+    # advisee_* 를 적으면 "지도학생 수상"으로 표시됩니다.
+    # file: 은 public/docs/ 에 넣은 상장 파일 경로입니다.
+    - year: 2026.05
+      title_en: Best Poster Award
+      title_ko: 우수 포스터상
+      org_en: Spring Conference, Korean Society of Medical & Biological Engineering
+      org_ko: 대한의용생체공학회 춘계학술대회
+      advisee_en: Awarded to advisees Seoyeon Yoon and Jihwan Park
+      advisee_ko: 지도학생 윤서연 · 박지환 수상
+      file: /docs/2026-05-kosombe-best-poster-yoon-seoyeon.pdf
+
     - year: 2020.12
       title_en: Best Poster Award
       title_ko: 우수 포스터상

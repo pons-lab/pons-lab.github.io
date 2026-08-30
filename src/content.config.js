@@ -13,6 +13,10 @@ const news = defineCollection({
     summary: z.string(),
     summary_ko: z.string(),
     image: z.string().optional(),
+    // 상장·증명서 등 첨부 문서. public/docs/ 에 파일을 넣고 /docs/파일명 으로 적습니다.
+    file: z.string().optional(),
+    file_label: z.string().optional(),
+    file_label_ko: z.string().optional(),
   }),
 });
 

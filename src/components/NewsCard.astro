@@ -12,6 +12,7 @@ const title = lang === 'ko' ? d.title_ko || d.title : d.title;
 const summary = lang === 'ko' ? d.summary_ko || d.summary : d.summary;
 const tag = lang === 'ko' ? d.tag_ko || d.tag : d.tag;
 const cover = asset(d.image);
+const fileLabel = lang === 'ko' ? d.file_label_ko || d.file_label : d.file_label;
 const Tag = href ? 'a' : 'article';
 ---
 
@@ -46,6 +47,25 @@ const Tag = href ? 'a' : 'article';
     </p>
     <h3>{title}</h3>
     <p class="summary">{summary}</p>
+    {
+      d.file && !href && (
+        <p class="attach">
+          <a href={d.file} target="_blank" rel="noopener">
+            <svg width="13" height="13" viewBox="0 0 16 16" aria-hidden="true">
+              <path
+                d="M8 2v8m0 0L5 7m3 3l3-3M3 13h10"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.6"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+            {fileLabel ?? d.file.split('/').pop()}
+          </a>
+        </p>
+      )
+    }
   </div>
 </Tag>
 
@@ -113,6 +133,18 @@ const Tag = href ? 'a' : 'article';
     line-height: 1.42;
     margin-bottom: 0.45rem;
     letter-spacing: -0.008em;
+  }
+
+  .attach {
+    margin: 0.75rem 0 0;
+  }
+  .attach a {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--accent);
   }
 
   .summary {
