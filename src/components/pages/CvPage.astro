@@ -117,7 +117,10 @@ const levelLabel = (level) =>
                   <span class="pub-body">
                     <Authors authors={p.authors} />
                     <span class="pub-title">, “{p.title}”</span>
-                    <span class="pub-meta"> ({t('pub.in_revision')})</span>
+                    <span class="pub-meta">
+                      {' '}
+                      ({t(`pub.${String(p.status).replace(/-/g, '_')}`)})
+                    </span>
                   </span>
                 </li>
               ))}
@@ -365,12 +368,17 @@ const levelLabel = (level) =>
   .entries li {
     display: grid;
     grid-template-columns: 10rem minmax(0, 1fr);
+    grid-auto-flow: row;
     gap: 0.1rem 1.25rem;
     font-size: 0.9rem;
     line-height: 1.55;
   }
+  .entries li > :not(.period) {
+    grid-column: 2;
+  }
   .entries .period {
-    grid-row: span 4;
+    grid-column: 1;
+    grid-row: 1 / -1;
     font-size: 0.78rem;
     font-weight: 600;
     color: var(--accent);
