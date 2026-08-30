@@ -531,8 +531,8 @@ conferences:
     title: >-
       Development of a Wearable PPG and Skin Temperature Sensing Device for
       Predictive Closed-Loop Control of Peripheral Blood Flow
-    venue: 2026년도 제67회 대한의용생체공학회 춘계학술대회
-    place: ""
+    venue: 67th Spring Conference, Korean Society of Medical & Biological Engineering
+    place: Republic of Korea
     date: May 8, 2026
 
   - year: 2026
@@ -541,16 +541,16 @@ conferences:
     title: >-
       Hierarchical 3D Helical CNT Electrode with PEDOT:PSS–PVA/TA Interface for
       Stable Dry ECG Monitoring
-    venue: 2026년도 제67회 대한의용생체공학회 춘계학술대회
-    place: ""
+    venue: 67th Spring Conference, Korean Society of Medical & Biological Engineering
+    place: Republic of Korea
     date: May 8, 2026
 
   - year: 2026
     scope: domestic
     authors: Woyesa Addisu Fayera1, Hodam Kim*
     title: Kirigami-Based Ear EEG Patch for Improved Conformability and Stability
-    venue: 2026년도 제67회 대한의용생체공학회 춘계학술대회
-    place: ""
+    venue: 67th Spring Conference, Korean Society of Medical & Biological Engineering
+    place: Republic of Korea
     date: May 8, 2026
 
   - year: 2026
@@ -559,8 +559,8 @@ conferences:
     title: >-
       Multi-Channel Capacitive Wrist-Worn Sensing for Enhanced Spatial
       Deformation-Based Hand Motion Tracking
-    venue: 2026년도 제67회 대한의용생체공학회 춘계학술대회
-    place: ""
+    venue: 67th Spring Conference, Korean Society of Medical & Biological Engineering
+    place: Republic of Korea
     date: May 8, 2026
 
   - year: 2025
@@ -569,8 +569,10 @@ conferences:
     title: >-
       Persistent and Wearable EEG Technologies: Toward Next-Generation
       Neurophysiological Monitoring
-    venue: 2025 제12회 대한뇌파신경생리학회 워크숍 및 연례학술대회
-    place: ""
+    venue: >-
+      12th Workshop and Annual Conference, Korean Society for EEG and
+      Neurophysiology
+    place: Republic of Korea
     date: December 6, 2025
 
   - year: 2025
@@ -579,8 +581,10 @@ conferences:
     title: >-
       Quantitative eye blink monitoring system for automated blepharospasm
       assessment using wireless wearable bioelectronics
-    venue: 2025년도 한국정보통신설비학회 하계학술대회
-    place: 속초
+    venue: >-
+      2025 ITFE Summer Conference, Korea Institute of Information &
+      Telecommunication Facilities Engineering
+    place: "Sokcho, Republic of Korea"
     date: August 27–29, 2025
 
   - year: 2025
@@ -589,8 +593,8 @@ conferences:
     title: >-
       Real-Time Monitoring of Multidimensional Mental States via Wireless Soft
       Bioelectronic Systems
-    venue: 2025 한국뇌공학회 하계 워크샵
-    place: 제주도
+    venue: 2025 Summer Workshop, Korean Brain Engineering Society
+    place: "Jeju, Republic of Korea"
     date: July 10–12, 2025
 
   - year: 2025
@@ -599,8 +603,8 @@ conferences:
     title: >-
       Development of Soft Wireless Wearable Patches for Continuous Monitoring of
       the Autonomic Nervous System
-    venue: 2025년도 제65회 대한의용생체공학회 춘계학술대회
-    place: ""
+    venue: 65th Spring Conference, Korean Society of Medical & Biological Engineering
+    place: Republic of Korea
     date: May 8, 2025
 
   - year: 2020
