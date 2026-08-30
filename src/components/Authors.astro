@@ -18,11 +18,13 @@ const t = useTranslations(lang);
 
 const labAuthors = (site.lab_authors ?? []).map((n) => n.toLowerCase());
 
+// yaml 에는 "A, B, and C" 로도 "A and B" 로도 적혀 있다. 어느 쪽이든 이름만 뽑아내고,
+// 화면에 찍을 때 규칙에 맞게 and 를 다시 붙인다.
 const parsed = String(authors ?? '')
   .replace(/\s+/g, ' ')
   .trim()
   .split(/,\s*|\s+and\s+|\s+&\s+/i)
-  .map((chunk) => chunk.trim())
+  .map((chunk) => chunk.trim().replace(/^(?:and|&)\s+/i, ''))
   .filter(Boolean)
   .map((chunk) => {
     const m = chunk.match(/^(.+?)\s*([1*]+)$/);
@@ -36,6 +38,13 @@ const parsed = String(authors ?? '')
     };
   });
 
+// 두 명이면 "A and B", 세 명 이상이면 마지막 앞에 ", and".
+const separator = (i) => {
+  if (i === 0) return '';
+  if (i < parsed.length - 1) return ', ';
+  return parsed.length === 2 ? ' and ' : ', and ';
+};
+
 const markLabel = (a) =>
   [a.first ? t('pub.first_author') : null, a.corresponding ? t('pub.corresponding') : null]
     .filter(Boolean)
@@ -46,7 +55,7 @@ const markLabel = (a) =>
   {
     parsed.map((a, i) => (
       <>
-        {i > 0 && <span class="sep">, </span>}
+        {i > 0 && <span class="sep">{separator(i)}</span>}
         <span class={a.isLab ? 'author-lab' : undefined}>{a.name}</span>
         {(a.first || a.corresponding) && (
           <span class="author-mark" title={markLabel(a)}>
