@@ -21,3 +21,7 @@ Thumbs.db
 
 # 원본 사진 보관 (빌드/배포에는 포함되지 않음 — src/assets/ 의 정리된 사본을 사용)
 _originals/
+
+# Claude Code 작업용 파일 (사이트와 무관)
+.claude/
+skills-lock.json

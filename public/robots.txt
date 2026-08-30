@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://ponslab.github.io/sitemap-index.xml
+Sitemap: https://pons-lab.github.io/sitemap-index.xml
