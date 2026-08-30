@@ -78,8 +78,8 @@ journals:
       Flexible Smart Insole and Plantar Pressure Monitoring Using
       Screen-Printed Nanomaterials and Piezoresistive Sensors
     venue: ACS Applied Materials & Interfaces
-    detail: ""
-    doi: ""
+    detail: 17 (33), 47153–47161
+    doi: 10.1021/acsami.5c08296
     metrics: IF 8.2, Q1, 20%
 
   - id: 24
@@ -106,8 +106,8 @@ journals:
       Wireless Soft Athlete Bioelectronics for Monitoring Carbon Dioxide
       Ventilation and Physiological Performance
     venue: Advanced Science
-    detail: ""
-    doi: ""
+    detail: 12 (34), e03880
+    doi: 10.1002/advs.202503880
     metrics: IF 14.1, Q1, 5%
 
   - id: 22
@@ -186,7 +186,7 @@ journals:
     title: A Wireless Smart Adhesive Integrated with a Tunable Inverted-F Antenna
     venue: Sensors
     detail: 24 (22), 7155
-    doi: ""
+    doi: 10.3390/s24227155
     metrics: IF 3.4, Q2
 
   - id: 16
