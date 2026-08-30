@@ -25,3 +25,7 @@ _originals/
 # Claude Code 작업용 파일 (사이트와 무관)
 .claude/
 skills-lock.json
+
+# 개인 문서 원본 (사이트 데이터로 옮긴 뒤에는 저장소에 두지 않는다)
+*.docx
+*.doc

@@ -61,8 +61,8 @@ src/content/news/*.md        # 뉴스 (파일 1개 = 글 1개)
 `src/styles/global.css` 의 `:root` 와 유틸리티 클래스에 있고, 섹션별 세부 스타일은 각 `.astro`
 컴포넌트의 `<style>` 블록에 있다. 새 화면을 만들 때는 아래 토큰과 공통 클래스를 재사용한다.
 
-> `design-reference.html` 은 **초기 시안 아카이브다. 더 이상 기준이 아니다.**
-> (제목 서체·일부 섹션 구성이 현재 사이트와 다르다. 참고만 하고 여기에 맞추지 말 것.)
+> 초기 시안 `design-reference.html` 은 역할이 끝나 저장소에서 삭제했다.
+> 필요하면 git 이력(`git show 29e9b7d:design-reference.html`)에서 꺼내볼 수 있다.
 
 - **톤**: 라이트 아카데믹 — 밝은 배경, 학술적 신뢰감 + 현대적 미니멀. 다크모드 없음.
 - **색상 토큰** (`global.css` `:root`): 잉크 `--ink #16233b`, 본문 `--body #44536e`,

@@ -100,7 +100,6 @@ npm run preview  # 빌드 결과 확인
 - 이미지: `astro:assets` 의 `<Image>` 로 빌드 시 자동 최적화 (webp 변환·리사이즈)
 - 디자인 기준은 `src/` 안의 실제 코드입니다. 토큰은 `src/styles/global.css` 의 `:root`,
   세부 스타일은 각 컴포넌트의 `<style>` 블록에 있습니다. 자세한 내용은 `CLAUDE.md` 참고.
-- `design-reference.html` 은 초기 시안 아카이브이며 더 이상 기준이 아닙니다.
 
 ### 주소를 학교 도메인으로 바꿀 때
 
