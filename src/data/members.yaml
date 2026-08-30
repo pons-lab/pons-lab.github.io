@@ -215,8 +215,10 @@ pi:
       title_ko: 우수 포스터상
       org_en: Spring Conference, Korean Society of Medical & Biological Engineering
       org_ko: 대한의용생체공학회 춘계학술대회
-      advisee_en: Awarded to advisees Seoyeon Yoon and Jihwan Park
-      advisee_ko: 지도학생 윤서연 · 박지환 수상
+      advisee_en: >-
+        Joint award to advisees Seoyeon Yoon and Jihwan Park,
+        co-first authors on the poster
+      advisee_ko: 지도학생 윤서연 · 박지환 공동 수상 (공동 제1저자)
       file: /docs/2026-05-kosombe-best-poster-yoon-seoyeon.pdf
 
     - year: 2020.12
