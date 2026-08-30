@@ -190,15 +190,17 @@ projects:
     short_en: Conductive Fiber Wearable Platform
     short_ko: 전도성 섬유 웨어러블 플랫폼
     role: researcher
+    funder_en: Gangwon RISE
+    funder_ko: 강원 RISE
 
   - period: 2026.03 – 2029.02
     title_en: >-
-      Development of an Emotion- and Intent-Aware Sign Language Recognition
-      System Using a Wireless Soft Bioelectronic Platform for Integrated Facial
-      and Manual Gesture Sensing
+      Development of an Emotion- and Intent-Interpreting Sign Language
+      Recognition System Using a Wireless Flexible Electronics-Based Platform
+      for Combined Facial Expression and Hand Gesture Recognition
     title_ko: >-
-      얼굴·수어 동작 통합 센싱 무선 소프트 바이오일렉트로닉스 기반
-      감정·의도 인지형 수어 인식 시스템 개발
+      무선 유연 전자 기반 표정 및 손동작 복합 인식 플랫폼을 활용한
+      감정·의도 해석형 수어 인식 시스템 개발
     short_en: Sign Language Recognition System
     short_ko: 수어 인식 시스템
     role: pi
@@ -215,3 +217,5 @@ projects:
     short_en: Personalized Biosignal Measurement
     short_ko: 개인 맞춤형 생체신호 측정
     role: pi
+    funder_en: Yonsei University
+    funder_ko: 연세대학교

@@ -430,6 +430,7 @@ journals:
 conferences:
   - year: 2025
     scope: international
+    format: oral
     authors: Hodam Kim and Woon-Hong Yeo
     title: Imperceptible Brain Sensors for Persistent Brain-Computer Interfaces
     venue: US-Korea Conference (UKC) on Science, Technology, and Entrepreneurship
@@ -438,6 +439,7 @@ conferences:
 
   - year: 2024
     scope: international
+    format: poster
     authors: Hoon Yi, Hodam Kim, and Woon-Hong Yeo
     title: >-
       Wireless soft multifunctional biopatch for preventing heat-related
@@ -448,6 +450,7 @@ conferences:
 
   - year: 2024
     scope: international
+    format: poster
     authors: Karam Kim, Hodam Kim, and Woon-Hong Yeo
     title: >-
       Smart Mouthguard and Soft Cardiac Patch for Health Monitoring of Athletes
@@ -457,6 +460,7 @@ conferences:
 
   - year: 2022
     scope: international
+    format: poster
     authors: Suhye Kim, Hodam Kim, and Chang-Hwan Im*
     title: >-
       Subject-independent EEG-based emotion classification using continuously
@@ -467,6 +471,7 @@ conferences:
 
   - year: 2020
     scope: international
+    format: poster
     authors: >-
       Seonghun Park, Ho-Seung Cha, Jinuk Kwon, Hodam Kim and Chang-Hwan Im*
     title: >-
@@ -478,6 +483,7 @@ conferences:
 
   - year: 2019
     scope: international
+    format: poster
     authors: Hodam Kim, Younsoo Chae, and Chang-Hwan Im*
     title: >-
       Validation of Test-Retest Reliability of Multimodal Biosignal-based
@@ -488,6 +494,7 @@ conferences:
 
   - year: 2018
     scope: international
+    format: poster
     authors: Hodam Kim and Chang-Hwan Im*
     title: >-
       Influence of Slight Changes in Electrode Locations upon the Classification
@@ -498,6 +505,7 @@ conferences:
 
   - year: 2018
     scope: international
+    format: poster
     authors: Hodam Kim and Chang-Hwan Im*
     title: >-
       Influence of Slight Changes in Electrode Locations upon the Classification
@@ -508,6 +516,7 @@ conferences:
 
   - year: 2017
     scope: international
+    format: poster
     authors: >-
       Hodam Kim, Jihyeon Ha, Wanjoo Park, Laehyun Kim, and Chang-Hwan Im*
     title: >-
@@ -519,6 +528,7 @@ conferences:
 
   - year: 2017
     scope: international
+    format: poster
     authors: Hodam Kim, Jeong-Youn Kim, and Chang-Hwan Im*
     title: "Massive EEG Hyperscanning: A New Tool for Social Neuroscience"
     venue: 8th International IEEE EMBS Conference on Neural Engineering
@@ -527,6 +537,7 @@ conferences:
 
   - year: 2026
     scope: domestic
+    format: poster
     authors: Seoyeon Yoon1, Jihwan Park1, Hodam Kim*
     title: >-
       Development of a Wearable PPG and Skin Temperature Sensing Device for
@@ -537,6 +548,7 @@ conferences:
 
   - year: 2026
     scope: domestic
+    format: poster
     authors: Gabriel Joseph Mlingi1, Hodam Kim*
     title: >-
       Hierarchical 3D Helical CNT Electrode with PEDOT:PSS–PVA/TA Interface for
@@ -547,6 +559,7 @@ conferences:
 
   - year: 2026
     scope: domestic
+    format: poster
     authors: Woyesa Addisu Fayera1, Hodam Kim*
     title: Kirigami-Based Ear EEG Patch for Improved Conformability and Stability
     venue: 67th Spring Conference, Korean Society of Medical & Biological Engineering
@@ -555,6 +568,7 @@ conferences:
 
   - year: 2026
     scope: domestic
+    format: poster
     authors: Miju Chae1, Sanghyun Kim, Hodam Kim*
     title: >-
       Multi-Channel Capacitive Wrist-Worn Sensing for Enhanced Spatial
@@ -565,6 +579,7 @@ conferences:
 
   - year: 2025
     scope: domestic
+    format: oral
     authors: Hodam Kim
     title: >-
       Persistent and Wearable EEG Technologies: Toward Next-Generation
@@ -577,6 +592,7 @@ conferences:
 
   - year: 2025
     scope: domestic
+    format: oral
     authors: Hodam Kim
     title: >-
       Quantitative eye blink monitoring system for automated blepharospasm
@@ -589,6 +605,7 @@ conferences:
 
   - year: 2025
     scope: domestic
+    format: poster
     authors: Hodam Kim
     title: >-
       Real-Time Monitoring of Multidimensional Mental States via Wireless Soft
@@ -599,6 +616,7 @@ conferences:
 
   - year: 2025
     scope: domestic
+    format: poster
     authors: Gabriel Joseph Mlingi1, Hodam Kim*
     title: >-
       Development of Soft Wireless Wearable Patches for Continuous Monitoring of
@@ -607,8 +625,20 @@ conferences:
     place: Republic of Korea
     date: May 8, 2025
 
+  - year: 2025
+    scope: domestic
+    format: oral
+    authors: Hodam Kim
+    title: >-
+      Persistent brain-computer interfaces using soft multifunctional
+      bioelectronics & motion artifact-controlled micro-brain sensors
+    venue: 2025 Brain and AI Symposium, Korean Brain Engineering Society
+    place: Republic of Korea
+    date: February 5, 2025
+
   - year: 2020
     scope: domestic
+    format: oral
     authors: Hodam Kim and Chang-Hwan Im*
     title: >-
       Recognition of user's emotions reflected in fast and subtle expressions
@@ -619,6 +649,7 @@ conferences:
 
   - year: 2020
     scope: domestic
+    format: poster
     authors: Hodam Kim and Chang-Hwan Im*
     title: >-
       Recognition of user's emotions reflected in fast and subtle expressions
@@ -629,6 +660,7 @@ conferences:
 
   - year: 2018
     scope: domestic
+    format: poster
     authors: Hodam Kim and Chang-Hwan Im*
     title: >-
       Influence of Slight Changes in Electrode Locations upon the Classification
@@ -639,6 +671,7 @@ conferences:
 
   - year: 2017
     scope: domestic
+    format: poster
     authors: Hodam Kim, Jeong-Youn Kim, and Chang-Hwan Im*
     title: >-
       Massive EEG Hyperscanning and Interbrain Spectral Synchronization:
@@ -649,6 +682,7 @@ conferences:
 
   - year: 2017
     scope: domestic
+    format: poster
     authors: Hodam Kim, Jeong-Youn Kim, and Chang-Hwan Im*
     title: "Massive EEG Hyperscanning: A New Tool for Social Neuroscience"
     venue: 8th Annual Meeting of Korean Society for Computational Neuroscience
@@ -657,6 +691,7 @@ conferences:
 
   - year: 2016
     scope: domestic
+    format: poster
     authors: Hodam Kim and Chang-Hwan Im*
     title: >-
       An Improved Method for the Real-time Estimation of Respiratory Rate from

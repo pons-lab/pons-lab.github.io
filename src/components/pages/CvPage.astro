@@ -292,6 +292,7 @@ const nameLang = (p) => (/[가-힣]/.test(p.inventors) ? 'ko' : 'en');
                       <i>{c.venue}</i>
                       {c.place && `, ${c.place}`}
                       {c.date && `, ${c.date}`}
+                      {` (${c.format === 'oral' ? t('pub.oral') : t('pub.poster')})`}
                     </span>
                   </span>
                 </li>

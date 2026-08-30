@@ -52,6 +52,9 @@ const patentCount = cv.patents.length;
                   <em>{c.venue}</em>
                   {c.place && <span>, {c.place}</span>}
                   {c.date && <span>, {c.date}</span>}
+                  <span class:list={['fmt', c.format]}>
+                    {c.format === 'oral' ? t('pub.oral') : t('pub.poster')}
+                  </span>
                 </p>
               </div>
             </li>
@@ -183,6 +186,26 @@ const patentCount = cv.patents.length;
   }
   .conf-meta em {
     color: var(--body);
+  }
+
+  /* 구두 발표만 눈에 띄게. 포스터는 조용한 회색으로 둔다. */
+  .fmt {
+    display: inline-block;
+    margin-left: 0.5rem;
+    padding: 0.05rem 0.42rem;
+    border-radius: 999px;
+    border: 1px solid var(--line);
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--muted);
+    vertical-align: 0.05em;
+  }
+  .fmt.oral {
+    border-color: transparent;
+    background: var(--accent-soft);
+    color: var(--accent-deep);
   }
 
   .to-other {
