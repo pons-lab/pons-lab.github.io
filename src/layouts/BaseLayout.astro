@@ -67,10 +67,13 @@ const jsonLd = {
   ],
 };
 
+// 제목·본문 모두 Inter 하나로 통일. 이탤릭(저널명 표기)도 함께 받아둔다.
+// 한국어 페이지에는 한글 글꼴(Noto Sans KR)을 추가로 받는다.
+const INTER = 'Inter:ital,wght@0,400;0,450;0,500;0,550;0,600;0,650;0,700;1,400;1,500';
 const googleFonts =
   lang === 'ko'
-    ? 'https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;450;500;550;600;650&family=Noto+Sans+KR:wght@400;500;700&family=Noto+Serif+KR:wght@500;600;700&display=swap'
-    : 'https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;450;500;550;600;650&display=swap';
+    ? `https://fonts.googleapis.com/css2?family=${INTER}&family=Noto+Sans+KR:wght@400;500;700&display=swap`
+    : `https://fonts.googleapis.com/css2?family=${INTER}&display=swap`;
 ---
 
 <!doctype html>

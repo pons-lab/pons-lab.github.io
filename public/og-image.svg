@@ -10,10 +10,10 @@
         fill="none" stroke="#7ea6ff" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" opacity="0.9"/>
   <text x="80" y="200" fill="#7ea6ff" font-family="Inter, Segoe UI, sans-serif" font-size="26"
         font-weight="600" letter-spacing="6">PONS LAB</text>
-  <text x="80" y="440" fill="#ffffff" font-family="Georgia, serif" font-size="66" font-weight="600">
+  <text x="80" y="440" fill="#ffffff" font-family="Inter, Segoe UI, Helvetica, Arial, sans-serif" font-size="64" font-weight="700">
     Bridging brain, body,
   </text>
-  <text x="80" y="516" fill="#ffffff" font-family="Georgia, serif" font-size="66" font-weight="600">
+  <text x="80" y="516" fill="#ffffff" font-family="Inter, Segoe UI, Helvetica, Arial, sans-serif" font-size="64" font-weight="700">
     and technology
   </text>
   <text x="80" y="580" fill="#8d9dba" font-family="Inter, Segoe UI, sans-serif" font-size="22">
