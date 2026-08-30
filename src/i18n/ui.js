@@ -32,9 +32,9 @@ export const ui = {
     'home.why_title': 'Why PONS?',
     'home.why_kicker': 'The name',
     'home.research_kicker': 'Research',
-    'home.research_title': 'Two axes, one system',
+    'home.research_title': 'Three axes, one system',
     'home.research_lead':
-      'Two connected thrusts — building the hardware that touches the body, and the intelligence that understands its signals.',
+      'Hardware that touches the body, interfaces that turn its signals into control, and the intelligence that reads what they mean.',
     'home.news_kicker': 'News',
     'home.news_title': 'Latest from the lab',
     'home.news_lead': 'Announcements, milestones, and everyday life in the lab.',
@@ -146,9 +146,9 @@ export const ui = {
     'home.why_title': 'Why PONS?',
     'home.why_kicker': '이름의 유래',
     'home.research_kicker': '연구',
-    'home.research_title': '두 개의 축, 하나의 시스템',
+    'home.research_title': '세 개의 축, 하나의 시스템',
     'home.research_lead':
-      '서로 이어진 두 개의 축 — 몸에 닿는 하드웨어를 만들고, 그 신호를 이해하는 지능을 함께 개발합니다.',
+      '몸에 닿는 하드웨어, 그 신호를 제어로 바꾸는 인터페이스, 그리고 신호가 뜻하는 바를 읽어내는 지능. 세 축이 하나로 이어집니다.',
     'home.news_kicker': '소식',
     'home.news_title': '연구실 최근 소식',
     'home.news_lead': '연구실의 공지와 소식, 그리고 일상을 전합니다.',

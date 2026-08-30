@@ -14,7 +14,7 @@ const t = useTranslations(lang);
       <p class="lead">{t('home.research_lead')}</p>
     </div>
 
-    <div class="grid grid-2 axes">
+    <div class="grid grid-3 axes">
       {
         research.axes.map((axis, i) => (
           <a class="card card-hover axis" href={localizePath('/research', lang)}>
@@ -25,10 +25,7 @@ const t = useTranslations(lang);
               {axis.topics.map((topic) => (
                 <li>
                   <span class="dot" aria-hidden="true" />
-                  <div>
-                    <strong>{pick(topic, 'title', lang)}</strong>
-                    {(topic.text_en || topic.text_ko) && <p>{pick(topic, 'text', lang)}</p>}
-                  </div>
+                  <strong>{pick(topic, 'title', lang)}</strong>
                 </li>
               ))}
             </ul>
@@ -97,7 +94,7 @@ const t = useTranslations(lang);
 
   .topics {
     display: grid;
-    gap: 0.9rem;
+    gap: 0.6rem;
   }
 
   .topics li {
@@ -113,7 +110,7 @@ const t = useTranslations(lang);
     border-radius: 50%;
     background: var(--accent);
     opacity: 0.5;
-    margin-top: 0.62rem;
+    margin-top: 0.55rem;
   }
 
   .topics strong {
