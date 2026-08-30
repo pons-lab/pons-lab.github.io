@@ -1,11 +1,17 @@
 ---
+import { getLangFromUrl } from '../i18n/utils.js';
+
 const { kicker, title, lead } = Astro.props;
+
+// 페이지 이름은 한국어 페이지에서도 영어로 두기로 했다(사용자 결정).
+// 문서 언어가 한국어일 때는 제목에만 lang="en" 을 붙여 준다.
+const titleLang = getLangFromUrl(Astro.url) === 'ko' ? 'en' : undefined;
 ---
 
 <section class="page-hero">
   <div class="container">
     {kicker && <p class="kicker">{kicker}</p>}
-    <h1>{title}</h1>
+    <h1 lang={titleLang}>{title}</h1>
     {lead && <p class="lead">{lead}</p>}
     <slot />
   </div>

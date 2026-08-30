@@ -40,7 +40,7 @@ const otherHref = alternatePath(Astro.url.pathname, otherLang);
       </span>
     </a>
 
-    <nav class="nav" aria-label={t('nav.menu')}>
+    <nav class="nav" aria-label={t('nav.menu')} lang={lang === 'ko' ? 'en' : undefined}>
       <ul>
         {
           navItems.map((item) => (
@@ -96,7 +96,13 @@ const otherHref = alternatePath(Astro.url.pathname, otherLang);
     </div>
   </div>
 
-  <nav class="mobile-nav" id="mobile-nav" hidden aria-label={t('nav.menu')}>
+  <nav
+    class="mobile-nav"
+    id="mobile-nav"
+    hidden
+    aria-label={t('nav.menu')}
+    lang={lang === 'ko' ? 'en' : undefined}
+  >
     <ul class="container">
       <li><a href={home}>{t('nav.home')}</a></li>
       {
