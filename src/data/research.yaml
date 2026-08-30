@@ -27,6 +27,7 @@ axes:
           심박·호흡·체온·움직임을 하나의 무선 플랫폼에서 동시에 측정합니다.
           탈수나 온열 스트레스, 야외 작업자의 초기 신장 손상처럼 센서 하나로는
           잡히지 않는 상태는 여러 신호를 함께 읽을 때 비로소 드러납니다.
+        image: research/multi-sensor.svg
         refs: [16, 23, 15]
       - title_en: Soft Physiological Signal Patch
         title_ko: 소프트 생체신호 패치
@@ -41,6 +42,7 @@ axes:
           패치입니다. 집에서 하룻밤 수면과 수면무호흡을 측정하는 등 병원 밖에서
           오래 쓰는 것을 목표로 합니다. 이런 환경에서는 착용감이 곧 데이터가
           모이느냐 마느냐를 결정합니다.
+        image: research/soft-patch.svg
         refs: [9, 19, 8]
       - title_en: Advanced Brain Sensor
         title_ko: 차세대 뇌신호 센서
@@ -54,6 +56,7 @@ axes:
           동안에도 뇌파가 흔들리지 않습니다. 이렇게 동작 잡음을 잡아야 뇌-컴퓨터
           인터페이스가 실험실에서의 몇 분이 아니라 몇 시간 쓸 수 있는 기술이
           됩니다.
+        image: research/brain-sensor.svg
         refs: [21, 14]
 
   - id: signal
@@ -65,6 +68,8 @@ axes:
     lead_ko: >-
       헬스케어 모니터링, 정신·신체 상태 추적, 인간/뇌-기계 인터페이스, 감정 인식까지
       측정한 신호를 실제 응용으로 잇습니다.
+    # 축 전체를 대표하는 그림. 다른 그림으로 바꾸려면 src/assets/ 아래 경로만 적으면 됩니다.
+    image: research/signal-pipeline.svg
     topics:
       - title_en: Healthcare Monitoring
         title_ko: 헬스케어 모니터링

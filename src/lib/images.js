@@ -13,7 +13,7 @@
 //       gallery.yaml  folder: 2026-04-dinner
 // ============================================================================
 
-const assets = import.meta.glob('/src/assets/**/*.{jpg,jpeg,png,webp,avif}', {
+const assets = import.meta.glob('/src/assets/**/*.{jpg,jpeg,png,webp,avif,svg}', {
   eager: true,
 });
 

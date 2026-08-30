@@ -1,6 +1,10 @@
 ---
 import PageHero from '../PageHero.astro';
 import { research, paperById, doiUrl } from '../../lib/data.js';
+import { asset } from '../../lib/images.js';
+
+// SVG 다이어그램은 그대로 쓰고, 사진(jpg/png)이 들어오면 크기만 맞춘다.
+const figure = (path) => asset(path)?.src ?? null;
 import { getLangFromUrl, useTranslations, pick } from '../../i18n/utils.js';
 
 const lang = getLangFromUrl(Astro.url);
@@ -26,9 +30,20 @@ const t = useTranslations(lang);
             </div>
           </header>
 
+          {figure(axis.image) && (
+            <figure class="axis-figure">
+              <img src={figure(axis.image)} alt={pick(axis, 'title', lang)} loading="lazy" />
+            </figure>
+          )}
+
           <div class="grid grid-3 topics">
             {axis.topics.map((topic) => (
               <div class="card topic">
+                {figure(topic.image) && (
+                  <figure class="topic-figure">
+                    <img src={figure(topic.image)} alt={pick(topic, 'title', lang)} loading="lazy" />
+                  </figure>
+                )}
                 <h3>{pick(topic, 'title', lang)}</h3>
                 {(topic.text_en || topic.text_ko) && <p>{pick(topic, 'text', lang)}</p>}
 
@@ -111,6 +126,28 @@ const t = useTranslations(lang);
 
   .axis-head .lead {
     margin-bottom: 0;
+  }
+
+  .axis-figure {
+    margin: 0 0 clamp(1.25rem, 2.5vw, 1.75rem);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    overflow: hidden;
+    background: #f4f7fd;
+  }
+  .axis-figure img {
+    width: 100%;
+    display: block;
+  }
+
+  .topic-figure {
+    margin: calc(-1 * clamp(1.4rem, 2.4vw, 1.9rem)) calc(-1 * clamp(1.4rem, 2.4vw, 1.9rem)) 1.15rem;
+    border-bottom: 1px solid var(--line);
+    background: #f4f7fd;
+  }
+  .topic-figure img {
+    width: 100%;
+    display: block;
   }
 
   .topic h3 {

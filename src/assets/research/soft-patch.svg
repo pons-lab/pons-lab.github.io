@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 230" role="img" aria-label="Soft skin-conformal patch">
+  <rect width="400" height="230" fill="#f4f7fd"/>
+  <!-- 피부 단면 -->
+  <path d="M0 150c34-13 58 11 92 11s54-22 88-22 56 20 90 20 62-16 130-6v77H0Z" fill="#e6ecf8"/>
+  <path d="M0 150c34-13 58 11 92 11s54-22 88-22 56 20 90 20 62-16 130-6" fill="none" stroke="#9db4de" stroke-width="2"/>
+  <g stroke="#c3d2ec" stroke-width="1.4" stroke-linecap="round" opacity=".8">
+    <path d="M44 168v22M84 176v22M124 172v22M164 162v22M204 168v22M244 176v22M284 174v22M324 166v22"/>
+  </g>
+  <!-- 패치: 피부 곡면을 그대로 따라간다 -->
+  <path d="M96 143c30-3 48-21 82-21s54 20 86 20" fill="none" stroke="#2153c4" stroke-width="7"
+        stroke-linecap="round" opacity=".92"/>
+  <path d="M96 137c30-3 48-21 82-21s54 20 86 20" fill="none" stroke="#7ea6ff" stroke-width="2.4"
+        stroke-linecap="round"/>
+  <!-- 전극 -->
+  <g fill="#16233b">
+    <circle cx="120" cy="136" r="4"/><circle cx="178" cy="123" r="4"/><circle cx="236" cy="136" r="4"/>
+  </g>
+  <!-- 측정된 신호 -->
+  <g fill="none" stroke="#2153c4" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M78 64h34l5-11 5 11h16l5 24 6-46 6 40 5-18h40l5-11 5 11h34"/>
+  </g>
+  <path d="M178 116V78" stroke="#2153c4" stroke-width="1.5" stroke-dasharray="3 4" opacity=".65"/>
+  <g font-family="Inter, Segoe UI, sans-serif" font-size="9.5" font-weight="600" letter-spacing="1.4" fill="#6b7a94">
+    <text x="78" y="42">SKIN-CONFORMAL</text>
+    <text x="78" y="206" fill="#9db4de">SKIN</text>
+  </g>
+</svg>

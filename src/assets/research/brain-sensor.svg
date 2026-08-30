@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 230" role="img" aria-label="Micro brain sensor between hair follicles">
+  <rect width="400" height="230" fill="#f4f7fd"/>
+  <!-- 두피 -->
+  <path d="M0 128h400v102H0Z" fill="#e6ecf8"/>
+  <path d="M0 128h400" stroke="#9db4de" stroke-width="2"/>
+  <!-- 모낭과 머리카락 -->
+  <g fill="none" stroke="#8fa6d4" stroke-width="2.4" stroke-linecap="round">
+    <path d="M40 128c-4-26 6-42 2-62M78 128c5-24-4-40 1-60M150 128c-4-26 6-42 2-62
+             M188 128c5-24-4-40 1-60M300 128c-4-26 6-42 2-62M338 128c5-24-4-40 1-60"/>
+  </g>
+  <g fill="#c3d2ec">
+    <ellipse cx="40" cy="140" rx="6" ry="11"/><ellipse cx="79" cy="140" rx="6" ry="11"/>
+    <ellipse cx="150" cy="140" rx="6" ry="11"/><ellipse cx="189" cy="140" rx="6" ry="11"/>
+    <ellipse cx="300" cy="140" rx="6" ry="11"/><ellipse cx="339" cy="140" rx="6" ry="11"/>
+  </g>
+  <!-- 모낭 사이에 내려앉은 초소형 전극 -->
+  <g>
+    <path d="M228 128v-16" stroke="#2153c4" stroke-width="2.4" stroke-linecap="round"/>
+    <rect x="212" y="94" width="32" height="18" rx="6" fill="#2153c4"/>
+    <rect x="218" y="99" width="20" height="8" rx="3" fill="#7ea6ff"/>
+    <circle cx="228" cy="131" r="5" fill="#16233b"/>
+  </g>
+  <!-- 확대 표시 -->
+  <circle cx="228" cy="118" r="46" fill="none" stroke="#2153c4" stroke-width="1.4"
+          stroke-dasharray="4 5" opacity=".55"/>
+  <!-- 잡음 없는 뇌파 -->
+  <g fill="none" stroke="#2153c4" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M22 52l16-16 14 26 14-30 14 22 14-14 16 20 14-24 12 18"/>
+  </g>
+  <g font-family="Inter, Segoe UI, sans-serif" font-size="9.5" font-weight="600" letter-spacing="1.4" fill="#6b7a94">
+    <text x="22" y="26">EEG — MOTION ARTIFACT CONTROLLED</text>
+    <text x="264" y="100" fill="#2153c4">MICRO ELECTRODE</text>
+    <text x="22" y="206" fill="#9db4de">SCALP</text>
+  </g>
+</svg>

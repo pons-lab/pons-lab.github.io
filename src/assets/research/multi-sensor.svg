@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 230" role="img" aria-label="Integrated multi-sensor monitoring">
+  <rect width="400" height="230" fill="#f4f7fd"/>
+  <g stroke="#dbe4f5" stroke-width="1"><path d="M0 58H400M0 115H400M0 172H400"/></g>
+  <!-- 인체 실루엣 -->
+  <g fill="none" stroke="#9db4de" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="112" cy="52" r="17"/>
+    <path d="M112 69v72M112 86l-31 26M112 86l31 26M112 141l-20 52M112 141l20 52"/>
+  </g>
+  <!-- 측정 지점 -->
+  <g>
+    <circle cx="112" cy="42" r="7" fill="#2153c4"/>
+    <circle cx="112" cy="100" r="7" fill="#2153c4"/>
+    <circle cx="81" cy="112" r="6" fill="#5b8bf0"/>
+    <circle cx="92" cy="193" r="6" fill="#5b8bf0"/>
+  </g>
+  <!-- 무선 전송 -->
+  <g fill="none" stroke="#2153c4" stroke-width="1.8" stroke-linecap="round" opacity=".5">
+    <path d="M140 92q22-14 44 0M146 104q16-9 32 0"/>
+  </g>
+  <!-- 허브 -->
+  <rect x="210" y="72" width="52" height="72" rx="11" fill="#fff" stroke="#2153c4" stroke-width="2"/>
+  <rect x="222" y="86" width="28" height="20" rx="4" fill="#e8eefc"/>
+  <g stroke="#2153c4" stroke-width="1.6" stroke-linecap="round"><path d="M222 118h28M222 128h18"/></g>
+  <!-- 파형 출력 -->
+  <g fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M282 66h14l6-13 6 26 6-19 6 10 7-4h35" stroke="#2153c4"/>
+    <path d="M282 108h20l4-8 4 8h12l4 22 5-40 5 34 4-16h32" stroke="#16233b" opacity=".62"/>
+    <path d="M282 152c14 0 18-16 32-16s18 16 32 16 16-11 32-11" stroke="#6b7a94" opacity=".6"/>
+  </g>
+  <g font-family="Inter, Segoe UI, sans-serif" font-size="9.5" font-weight="600" fill="#6b7a94" letter-spacing="1.4">
+    <text x="282" y="46">TEMP</text><text x="282" y="88">ECG</text><text x="282" y="132">RESP</text>
+  </g>
+</svg>

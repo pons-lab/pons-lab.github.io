@@ -20,79 +20,65 @@ const story = inlineMd(site.brand.story[lang]);
 
       <!-- 뇌(brain) ↔ 몸(body) 을 잇는 다리 — 이름의 은유를 그림으로 -->
       <figure class="bridge" aria-hidden="true">
-        <svg viewBox="0 0 460 260" role="presentation">
+        <svg viewBox="0 0 460 190" role="presentation">
           <defs>
-            <linearGradient id="deck" x1="0" x2="1">
+            <linearGradient id="strand-a" x1="0" x2="1">
               <stop offset="0" stop-color="#2153c4"></stop>
               <stop offset="1" stop-color="#5b8bf0"></stop>
             </linearGradient>
+            <linearGradient id="strand-b" x1="1" x2="0">
+              <stop offset="0" stop-color="#2153c4"></stop>
+              <stop offset="1" stop-color="#8fb0ee"></stop>
+            </linearGradient>
+            <path
+              id="twist-a"
+              d="M96 95 C 132 40, 168 40, 204 95 S 276 150, 312 95 S 348 47, 364 95"></path>
+            <path
+              id="twist-b"
+              d="M96 95 C 132 150, 168 150, 204 95 S 276 40, 312 95 S 348 143, 364 95"></path>
           </defs>
 
-          <!-- 물결(신호)이 흐르는 아래쪽 -->
-          <path
-            d="M10 214 C 60 200, 88 228, 138 214 C 188 200, 216 228, 266 214 C 316 200, 344 228, 394 214 C 424 205, 438 210, 450 214"
-            stroke="#c9d7f2"
-            stroke-width="2"
-            fill="none"
-            stroke-linecap="round"></path>
-          <path
-            d="M10 234 C 60 220, 88 248, 138 234 C 188 220, 216 248, 266 234 C 316 220, 344 248, 394 234 C 424 225, 438 230, 450 234"
-            stroke="#dde5f5"
-            stroke-width="2"
-            fill="none"
-            stroke-linecap="round"></path>
+          <!-- 뇌와 몸을 잇는 두 가닥이 서로를 감으며 지나간다 (pons = 잇는 다리) -->
+          <use href="#twist-b" class="strand" stroke="url(#strand-b)"></use>
+          <use href="#twist-a" class="strand" stroke="url(#strand-a)"></use>
 
-          <!-- 다리 상판 -->
-          <path d="M30 150 H430" stroke="url(#deck)" stroke-width="5" stroke-linecap="round"></path>
-
-          <!-- 아치와 케이블 -->
-          <path
-            d="M30 150 C 120 62, 340 62, 430 150"
-            stroke="#2153c4"
-            stroke-width="2.4"
-            fill="none"
-            stroke-linecap="round"
-            opacity="0.85"></path>
-          <g stroke="#9ab6ee" stroke-width="1.4" stroke-linecap="round">
-            <path d="M78 150V112"></path>
-            <path d="M126 150V92"></path>
-            <path d="M174 150V80"></path>
-            <path d="M230 150V76"></path>
-            <path d="M286 150V80"></path>
-            <path d="M334 150V92"></path>
-            <path d="M382 150V112"></path>
+          <!-- 두 가닥이 만나는 지점 -->
+          <g fill="#fff" stroke="#2153c4" stroke-width="1.6">
+            <circle cx="204" cy="95" r="4"></circle>
+            <circle cx="312" cy="95" r="4"></circle>
           </g>
 
           <!-- 왼쪽: 뇌 -->
-          <g transform="translate(14 108)">
-            <circle cx="0" cy="0" r="26" fill="#e8eefc"></circle>
+          <g transform="translate(58 95)">
+            <circle cx="0" cy="0" r="30" fill="#e8eefc"></circle>
             <path
-              d="M-11 6c-5-2-6-9-2-12-2-5 3-10 8-8 3-4 10-3 11 2 5 1 6 8 2 11 1 5-4 9-9 7-3 3-8 2-10 0Z"
-              fill="none"
-              stroke="#2153c4"
-              stroke-width="1.7"
-              stroke-linejoin="round"></path>
-            <path
-              d="M0-14v22M0-4h6M0 3h-6"
-              stroke="#2153c4"
-              stroke-width="1.3"
-              stroke-linecap="round"
-              opacity="0.75"></path>
+              d="M-12 7c-6-2-7-10-2-14-2-6 4-11 9-9 3-5 11-3 12 2 6 1 7 9 2 12 1 6-4 10-10 8-3 3-9 2-11 1Z"
+              fill="none" stroke="#2153c4" stroke-width="1.8" stroke-linejoin="round"></path>
+            <path d="M0-16v25M0-5h7M0 3h-7" stroke="#2153c4" stroke-width="1.4"
+              stroke-linecap="round" opacity="0.7"></path>
           </g>
 
-          <!-- 오른쪽: 심장(몸) -->
-          <g transform="translate(446 108)">
-            <circle cx="0" cy="0" r="26" fill="#e8eefc"></circle>
+          <!-- 오른쪽: 몸(심장) -->
+          <g transform="translate(402 95)">
+            <circle cx="0" cy="0" r="30" fill="#e8eefc"></circle>
             <path
-              d="M0 10c-8-6-13-10-13-16a6.5 6.5 0 0 1 13-2 6.5 6.5 0 0 1 13 2c0 6-5 10-13 16Z"
-              fill="none"
-              stroke="#2153c4"
-              stroke-width="1.7"
-              stroke-linejoin="round"></path>
+              d="M0 12c-9-7-15-11-15-18a7.5 7.5 0 0 1 15-2 7.5 7.5 0 0 1 15 2c0 7-6 11-15 18Z"
+              fill="none" stroke="#2153c4" stroke-width="1.8" stroke-linejoin="round"></path>
           </g>
 
-          <!-- 다리를 건너는 신호 -->
-          <circle class="spark" cx="30" cy="150" r="4.5" fill="#16233b"></circle>
+          <!-- 신호가 두 가닥을 서로 반대 방향으로 오간다 -->
+          <circle class="pulse pulse-a" r="4.5" fill="#16233b">
+            <animateMotion dur="5s" repeatCount="indefinite" keyPoints="0;1"
+              keyTimes="0;1" calcMode="linear">
+              <mpath href="#twist-a"></mpath>
+            </animateMotion>
+          </circle>
+          <circle class="pulse pulse-b" r="4" fill="#2153c4">
+            <animateMotion dur="5s" begin="2.5s" repeatCount="indefinite" keyPoints="1;0"
+              keyTimes="0;1" calcMode="linear">
+              <mpath href="#twist-b"></mpath>
+            </animateMotion>
+          </circle>
         </svg>
         <figcaption class="bridge-cap">
           <span>brain</span>
@@ -162,24 +148,25 @@ const story = inlineMd(site.brand.story[lang]);
     overflow: visible;
   }
 
-  .spark {
-    animation: cross 4.2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  .strand {
+    fill: none;
+    stroke-width: 2.6;
+    stroke-linecap: round;
+    stroke-dasharray: 620;
+    stroke-dashoffset: 620;
+    animation: weave 1.8s ease-out forwards;
   }
-  @keyframes cross {
-    0% {
-      transform: translateX(0);
-      opacity: 0;
+  .strand + .strand {
+    animation-delay: 0.25s;
+  }
+  @keyframes weave {
+    to {
+      stroke-dashoffset: 0;
     }
-    12% {
-      opacity: 1;
-    }
-    88% {
-      opacity: 1;
-    }
-    100% {
-      transform: translateX(400px);
-      opacity: 0;
-    }
+  }
+
+  .pulse {
+    opacity: 0.85;
   }
 
   .bridge-cap {
@@ -251,9 +238,12 @@ const story = inlineMd(site.brand.story[lang]);
   }
 
   @media (prefers-reduced-motion: reduce) {
-    .spark {
+    .strand {
+      stroke-dashoffset: 0;
       animation: none;
-      opacity: 0;
+    }
+    .pulse {
+      display: none;
     }
   }
 </style>
