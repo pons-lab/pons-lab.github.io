@@ -1,6 +1,6 @@
 ---
 import PageHero from '../PageHero.astro';
-import { research } from '../../lib/data.js';
+import { research, paperById, doiUrl } from '../../lib/data.js';
 import { getLangFromUrl, useTranslations, pick } from '../../i18n/utils.js';
 
 const lang = getLangFromUrl(Astro.url);
@@ -31,6 +31,24 @@ const t = useTranslations(lang);
               <div class="card topic">
                 <h3>{pick(topic, 'title', lang)}</h3>
                 {(topic.text_en || topic.text_ko) && <p>{pick(topic, 'text', lang)}</p>}
+
+                {topic.refs?.length && (
+                  <ul class="refs" lang="en">
+                    {topic.refs.map((id) => paperById(id)).filter(Boolean).map((paper) => (
+                      <li>
+                        {doiUrl(paper.doi) ? (
+                          <a href={doiUrl(paper.doi)} target="_blank" rel="noopener">
+                            {paper.venue} {paper.year}
+                          </a>
+                        ) : (
+                          <span>
+                            {paper.venue} {paper.year}
+                          </span>
+                        )}
+                      </li>
+                    ))}
+                  </ul>
+                )}
               </div>
             ))}
           </div>
@@ -103,7 +121,41 @@ const t = useTranslations(lang);
     letter-spacing: -0.008em;
   }
 
+  /* 주제마다 근거가 되는 실제 논문을 저널명 + 연도 칩으로 보여준다. */
+  .refs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    margin-top: 0.9rem;
+    padding-top: 0.85rem;
+    border-top: 1px solid var(--line);
+  }
+  .refs li {
+    font-size: 0.745rem;
+    font-weight: 600;
+    line-height: 1.35;
+  }
+  .refs a,
+  .refs span {
+    display: inline-block;
+    padding: 0.24rem 0.55rem;
+    border-radius: 999px;
+    background: var(--accent-soft);
+    color: var(--accent-deep);
+    text-decoration: none;
+  }
+  .refs a:hover {
+    background: var(--accent);
+    color: #fff;
+    text-decoration: none;
+  }
+
+  .topic {
+    display: flex;
+    flex-direction: column;
+  }
   .topic p {
+    flex: 1;
     margin: 0;
     font-size: 0.9rem;
     color: var(--body);

@@ -47,4 +47,7 @@ export function selectedPublications(n = 3) {
     .slice(0, n);
 }
 
+/** 논문 번호로 한 편을 찾는다. research.yaml 의 refs 에서 쓴다. */
+export const paperById = (id) => publications.journals.find((p) => p.id === id) ?? null;
+
 export const doiUrl = (doi) => (doi ? `https://doi.org/${doi}` : null);

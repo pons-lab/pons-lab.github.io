@@ -161,20 +161,27 @@ const conferenceCount = publications.conferences.length;
     text-decoration: none;
   }
 
+  /* 연도 / International·Domestic 제목은 목록을 스크롤하는 동안 고정된다.
+     배경이 투명하면 아래 논문 글자가 비쳐 겹치므로 각 섹션 배경색을 그대로 채운다.
+     (이 사이트는 라이트 전용이라 다크모드 대응은 없다.) */
   .year {
-    /* 긴 목록을 스크롤할 때 지금 보는 연도가 계속 보이도록 고정 */
     position: sticky;
-    top: 70px;
-    z-index: 1;
-    background: inherit;
+    top: 69px;
+    z-index: 3;
+    background: var(--page);
     font-family: var(--font-display);
     font-size: 1.05rem;
     font-weight: 700;
     color: var(--accent);
     letter-spacing: 0.02em;
     margin-bottom: 0.35rem;
-    padding-bottom: 0.5rem;
+    padding-block: 0.6rem 0.5rem;
     border-bottom: 1px solid var(--line);
+  }
+
+  /* 학회 섹션은 밴드 배경(#f6f8fc) 위에 있으므로 같은 색으로 채운다. */
+  .conf-band .year {
+    background: #f6f8fc;
   }
 
   .items {

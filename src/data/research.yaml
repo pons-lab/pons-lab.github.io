@@ -18,26 +18,43 @@ axes:
       - title_en: Integrated Multi-Sensor Monitoring System
         title_ko: 통합 멀티센서 모니터링 시스템
         text_en: >-
-          A comprehensive monitoring system that integrates multiple sensors to
-          capture device and interrelated physiological signals.
+          One wireless platform that reads several body signals at once —
+          cardiac, respiratory, thermal and motion. Conditions no single sensor
+          can catch, such as dehydration, heat stress or early kidney injury in
+          outdoor workers, only become visible when the signals are read
+          together.
         text_ko: >-
-          여러 센서를 하나로 통합해 서로 연관된 생리신호를 한 번에 측정하는
-          종합 모니터링 시스템입니다.
+          심박·호흡·체온·움직임을 하나의 무선 플랫폼에서 동시에 측정합니다.
+          탈수나 온열 스트레스, 야외 작업자의 초기 신장 손상처럼 센서 하나로는
+          잡히지 않는 상태는 여러 신호를 함께 읽을 때 비로소 드러납니다.
+        refs: [16, 23, 15]
       - title_en: Soft Physiological Signal Patch
         title_ko: 소프트 생체신호 패치
         text_en: >-
-          A skin-like, flexible patch device capable of precisely capturing
-          physiological signals.
+          Skin-conformal patches built from ultrathin nanomembrane electrodes —
+          thin enough to forget you are wearing them. We use them for overnight
+          sleep and apnea screening at home and for continuous monitoring
+          outside the clinic, where comfort decides whether the data gets
+          collected at all.
         text_ko: >-
-          피부처럼 얇고 유연해 생체신호를 정밀하게 잡아내는 패치형 기기입니다.
+          초박막 나노멤브레인 전극으로 만든, 착용을 잊을 만큼 얇은 피부 밀착
+          패치입니다. 집에서 하룻밤 수면과 수면무호흡을 측정하는 등 병원 밖에서
+          오래 쓰는 것을 목표로 합니다. 이런 환경에서는 착용감이 곧 데이터가
+          모이느냐 마느냐를 결정합니다.
+        refs: [9, 19, 8]
       - title_en: Advanced Brain Sensor
         title_ko: 차세대 뇌신호 센서
         text_en: >-
-          An ultra-compact, comfortable sensor for seamless brain monitoring in
-          daily life.
+          Micro-scale electrodes that sit between hair follicles rather than on
+          top of hair, so EEG stays clean while the wearer moves. Controlling
+          motion artifact this way is what turns a brain–computer interface from
+          a few minutes in a lab into something usable for hours.
         text_ko: >-
-          일상 속에서 자연스럽게 뇌 신호를 측정할 수 있는 초소형·고편의성
-          센서입니다.
+          머리카락 위가 아니라 모낭 사이에 자리 잡는 초소형 전극입니다. 움직이는
+          동안에도 뇌파가 흔들리지 않습니다. 이렇게 동작 잡음을 잡아야 뇌-컴퓨터
+          인터페이스가 실험실에서의 몇 분이 아니라 몇 시간 쓸 수 있는 기술이
+          됩니다.
+        refs: [21, 10, 14]
 
   - id: signal
     title_en: Signal Processing & Novel Applications
@@ -51,14 +68,66 @@ axes:
     topics:
       - title_en: Healthcare Monitoring
         title_ko: 헬스케어 모니터링
+        text_en: >-
+          Turning a continuous stream of signals into a clinical answer — sleep
+          quality and apnea measured at home, intracranial pressure after a
+          stent procedure, and drug-trial endpoints scored by measurement
+          instead of by observation.
+        text_ko: >-
+          끊임없이 들어오는 신호를 임상적 판단으로 바꿉니다. 집에서 재는 수면의
+          질과 수면무호흡, 스텐트 시술 후의 두개내압, 그리고 관찰이 아니라
+          측정으로 판정하는 약물 임상시험 지표 등을 다룹니다.
+        refs: [9, 22, 12]
+
       - title_en: Mental and Physical State Monitoring
         title_ko: 정신·신체 상태 모니터링
+        text_en: >-
+          Reading stress, drowsiness, fatigue and attention from the body in
+          real time — and closing the loop by acting on what is read, not only
+          logging it.
+        text_ko: >-
+          스트레스·졸음·피로·집중도를 몸의 신호에서 실시간으로 읽어냅니다. 읽은
+          결과를 기록만 하는 데서 그치지 않고, 곧바로 개입으로 되돌리는
+          폐루프 시스템을 지향합니다.
+        refs: [24, 9]
+
       - title_en: Human / Brain–Machine Interfaces
         title_ko: 인간-기계 / 뇌-기계 인터페이스
+        text_en: >-
+          Driving augmented-reality interfaces and machines directly from brain
+          signals, while solving what actually breaks them in practice:
+          electrodes that shift, motion that adds artifact, and accuracy that
+          decays over a long session.
+        text_ko: >-
+          뇌 신호로 증강현실 인터페이스와 기계를 직접 조작합니다. 동시에 실제
+          사용에서 문제를 일으키는 것들 — 전극이 밀리는 문제, 움직임이 만드는
+          잡음, 오래 쓸수록 떨어지는 정확도 — 을 함께 풉니다.
+        refs: [21, 10, 4]
+
       - title_en: Cognitive and Physical Performance
         title_ko: 인지·신체 수행능력
+        text_en: >-
+          Measuring how well attention and the body are holding up: EEG
+          neurofeedback that keeps a learner engaged through an online lecture,
+          and ventilation and hydration tracked in athletes under load.
+        text_ko: >-
+          집중력과 몸이 얼마나 버티고 있는지를 측정합니다. 온라인 강의를 듣는
+          동안 학습자의 몰입을 유지시키는 EEG 뉴로피드백, 운동 부하 상태에서의
+          환기량·수분 상태 추적 등을 연구합니다.
+        refs: [7, 23, 16]
+
       - title_en: Emotion Recognition
         title_ko: 감정 인식
+        text_en: >-
+          Classifying emotion from brain and facial-muscle signals, including
+          expressions too brief to see — and checking that the model still works
+          on the same person weeks later, which is where most such systems fail.
+        text_ko: >-
+          뇌파와 얼굴 근전도로 감정을 분류합니다. 눈으로는 알아채기 어려운 짧은
+          표정까지 다루며, 같은 사람에게 몇 주 뒤에도 모델이 동작하는지를 함께
+          검증합니다. 대부분의 감정 인식 시스템이 무너지는 지점이 바로
+          여기입니다.
+        refs: [5, 6, 3]
 
 # ---------------------------------------------------------------------------
 # 진행 중인 연구과제
