@@ -11,7 +11,9 @@ import Footer from '../components/Footer.astro';
 import { site, members } from '../lib/data.js';
 import { getLangFromUrl, useTranslations, alternatePath } from '../i18n/utils.js';
 
-const { title, description, ogImage } = Astro.props;
+// noindex: 검색엔진 색인에서 빼는 페이지 (구성원 전용 안내 등).
+// astro.config.mjs 의 sitemap filter 에서도 같은 주소를 빼 준다.
+const { title, description, ogImage, noindex = false } = Astro.props;
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
@@ -89,6 +91,7 @@ const jsonLd = {
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{pageTitle}</title>
     <meta name="description" content={pageDescription} />
+    {noindex && <meta name="robots" content="noindex, nofollow" />}
     <link rel="canonical" href={canonical} />
 
     <link rel="alternate" hreflang="en" href={enHref} />

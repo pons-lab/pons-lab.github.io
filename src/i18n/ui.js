@@ -19,6 +19,11 @@ export const ui = {
     'nav.news': 'News',
     'nav.gallery': 'Gallery',
     'nav.contact': 'Contact',
+    'nav.members': 'Members',
+    'page.kicker.members': 'Internal',
+    'members.title': 'For Lab Members',
+    'members.lead':
+      "Resources for lab members. You need to be signed in with your lab (university) account to open them — ask the PI for access. Please keep new folders and important files owned by the PI's account.",
     'nav.menu': 'Menu',
     'nav.close': 'Close',
 
@@ -179,6 +184,11 @@ export const ui = {
     'nav.news': 'News',
     'nav.gallery': 'Gallery',
     'nav.contact': 'Contact',
+    'nav.members': 'Members',
+    'page.kicker.members': 'Internal',
+    'members.title': 'For Lab Members',
+    'members.lead':
+      '연구실 구성원 전용 자료 링크입니다. 연구실(학교) 계정으로 로그인해야 접근할 수 있으며, 권한은 PI에게 요청하세요. 새 폴더나 중요 파일은 PI 계정 소유로 유지해 주세요.',
     'nav.menu': '메뉴',
     'nav.close': '닫기',
 

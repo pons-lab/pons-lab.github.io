@@ -82,6 +82,16 @@ const otherHref = alternatePath(Astro.url.pathname, otherLang);
             </li>
           ))
         }
+        {/* 구성원 전용 페이지. 공개 메뉴가 아니라 작게 끝에 붙인다. */}
+        <li class="members">
+          <a
+            href={localizePath('/members', lang)}
+            class={isActive({ path: '/members' }) ? 'active' : ''}
+            aria-current={isActive({ path: '/members' }) ? 'page' : undefined}
+          >
+            {t('nav.members')}
+          </a>
+        </li>
       </ul>
     </nav>
 
@@ -124,6 +134,11 @@ const otherHref = alternatePath(Astro.url.pathname, otherLang);
           )
         )
       }
+      <li class="members">
+        <a href={localizePath('/members', lang)} class={isActive({ path: '/members' }) ? 'active' : ''}>
+          {t('nav.members')}
+        </a>
+      </li>
     </ul>
   </nav>
 </header>
@@ -229,6 +244,16 @@ const otherHref = alternatePath(Astro.url.pathname, otherLang);
   .has-menu:focus-within .caret {
     transform: rotate(180deg);
     opacity: 1;
+  }
+
+  /* 구성원 전용 링크는 공개 메뉴보다 한 단계 작고 조용하게 */
+  .nav .members > a {
+    font-size: 0.82rem;
+    color: var(--muted);
+  }
+  .nav .members > a:hover,
+  .nav .members > a.active {
+    color: var(--accent);
   }
 
   .submenu {

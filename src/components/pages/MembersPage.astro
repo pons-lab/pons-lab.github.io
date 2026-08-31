@@ -1,0 +1,107 @@
+---
+/**
+ * 연구실 구성원 전용 링크 모음.
+ *
+ * 공개 페이지지만 안내용이라 검색엔진 색인에서 빼고 sitemap 에도 넣지 않는다
+ * (BaseLayout 의 noindex 속성 + astro.config.mjs 의 sitemap filter).
+ * 실제 접근 제어는 구글 드라이브·GitHub 쪽 권한이 한다.
+ */
+import PageHero from '../PageHero.astro';
+import { getLangFromUrl, useTranslations } from '../../i18n/utils.js';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+const links = [
+  {
+    key: 'drive',
+    title: 'Shared Drive',
+    desc: 'Data · Hardware · Firmware · Software · Documents · Lab meeting',
+    href: 'https://drive.google.com/drive/folders/1PyUWYZjl8rHWmj7B0QRNHtViHDcEROWo',
+  },
+  {
+    key: 'github',
+    title: 'Lab GitHub',
+    desc: 'Code repositories',
+    href: 'https://github.com/pons-lab',
+  },
+];
+---
+
+<PageHero kicker={t('page.kicker.members')} title={t('members.title')} lead={t('members.lead')} />
+
+<section class="section">
+  <div class="container">
+    <ul class="cards grid grid-2">
+      {
+        links.map((l) => (
+          <li>
+            <a class="card card-hover" href={l.href} target="_blank" rel="noopener noreferrer">
+              <span class="head">
+                <span class="title">{l.title}</span>
+                <svg width="15" height="15" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                  <path
+                    d="M6 3h7v7M13 3L4 12"
+                    stroke="currentColor"
+                    stroke-width="1.7"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+              </span>
+              <span class="desc" lang="en">
+                {l.desc}
+              </span>
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</section>
+
+<style>
+  .cards {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .cards li {
+    display: flex;
+  }
+
+  .card {
+    display: flex;
+    flex-direction: column;
+    gap: 0.45rem;
+    width: 100%;
+    padding: 1.5rem 1.6rem;
+    text-decoration: none;
+    color: inherit;
+  }
+  .card:hover {
+    text-decoration: none;
+  }
+
+  .head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    color: var(--accent);
+  }
+  .title {
+    font-size: 1.06rem;
+    font-weight: 650;
+    color: var(--ink);
+  }
+  .card:hover .title {
+    color: var(--accent);
+  }
+
+  .desc {
+    font-size: 0.9rem;
+    line-height: 1.6;
+    color: var(--muted);
+  }
+</style>
