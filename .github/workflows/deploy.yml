@@ -36,6 +36,19 @@ jobs:
       - run: npm run build
       - run: npm run build:pdf
 
+      # 레이아웃 자동 검사. 겹침·넘침·깨진 링크가 있으면 여기서 실패해
+      # 배포까지 가지 않는다. (로컬에서는 npm run qa)
+      - name: Layout QA
+        run: npm run qa:only
+
+      # 실패했을 때 어떻게 보였는지 확인할 수 있게 스크린샷을 남긴다
+      - if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: qa-screenshots
+          path: qa/
+          retention-days: 7
+
       - uses: actions/upload-pages-artifact@v3
         with:
           path: ./dist

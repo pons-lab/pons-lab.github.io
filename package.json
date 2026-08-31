@@ -11,7 +11,9 @@
     "astro": "astro",
     "build:pdf": "node scripts/build-cv-pdf.mjs",
     "figures": "node scripts/prep-research-figures.mjs",
-    "export": "node scripts/export-records.mjs"
+    "export": "node scripts/export-records.mjs",
+    "qa": "npm run build && npm run build:pdf && node scripts/qa.mjs",
+    "qa:only": "node scripts/qa.mjs"
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.7.3",

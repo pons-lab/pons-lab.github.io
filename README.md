@@ -1,115 +1,142 @@
 # PONS Lab 홈페이지
 
 연세대학교 미래캠퍼스 의공학부 **PONS Lab — Physiological & On-body Neural Systems Lab**
-(뇌·신체·기계 인터페이스 연구실) 홈페이지 소스입니다.
+(뇌·신체·기계 인터페이스 연구실) 홈페이지.
 
-- 사이트 주소: <https://pons-lab.github.io/>
-- `main` 브랜치에 푸시하면 GitHub Actions 가 자동으로 빌드해서 배포합니다.
+- **사이트**: https://pons-lab.github.io
+- **저장소**: `pons-lab/pons-lab.github.io`
+- **기술**: [Astro](https://astro.build) 정적 사이트 · GitHub Pages 자동 배포
+
+이 문서는 **운영 매뉴얼**입니다. 코드를 몰라도 내용을 고칠 수 있게 쓰였습니다.
 
 ---
 
-## 내용만 고치고 싶을 때
+## 1. 가장 자주 하는 일
 
-코드를 몰라도 아래 파일만 고치면 사이트 내용이 바뀝니다.
-GitHub 웹사이트에서 파일을 열고 연필(✏️) 아이콘을 눌러 바로 수정할 수 있습니다.
-수정 후 **Commit changes** 를 누르면 1~2분 뒤 사이트에 반영됩니다.
+내용을 바꿀 때는 파일을 직접 찾지 말고 **Claude Code에 말로 부탁하면 됩니다.**
+아래 예문을 그대로 쓰셔도 됩니다.
 
-| 고치고 싶은 것 | 파일 |
+| 하고 싶은 일 | 이렇게 말하면 됩니다 |
 |---|---|
-| 연구실 이름·태그라인·주소·전화·이메일·모집 문구 | `src/data/site.yaml` |
-| 논문 (학술지 / 학회) | `src/data/publications.yaml` |
-| 구성원 (교수·대학원생·학부연구생·알럼나이) | `src/data/members.yaml` |
-| 강의 (학기별) | `src/data/lectures.yaml` |
-| 연구 분야·진행 과제 | `src/data/research.yaml` |
-| 갤러리 (행사별 사진 묶음, `/gallery` 페이지) | `src/data/gallery.yaml` |
-| 소식 — 파일 1개 = 글 1개 | `src/content/news/*.md` |
-| 화면에 나오는 버튼·메뉴 문구 | `src/i18n/ui.js` |
+| 논문 추가 | "논문 추가해줘. `저자 / 제목 / 저널 / 권(호), 페이지, 연도 / DOI`" |
+| 학회 발표 추가 | "학회 발표 추가해줘. 국내/국제, 저자, 제목, 학회명, 장소, 날짜, 구두/포스터" |
+| 특허 추가 | "특허 추가해줘. 발명자, 국문·영문 명칭, 출원(등록)번호, 일자, 출원인, 등록/출원" |
+| 뉴스 올리기 | "뉴스 올려줘. 2026년 9월, 태그는 People, 제목과 내용은 …" |
+| 멤버 추가·졸업 | "○○○ 학생 석사과정으로 합류했어. 2026년 3월부터" / "○○○ 졸업했어, 알럼나이로 옮겨줘" |
+| 강의 업데이트 | "2027-1학기 강의 추가해줘. 학부 ○○○, 대학원 ○○○" |
+| 수상 추가 | "○○상 받았어. 2026년 5월, 대한의용생체공학회" |
+| 사진 추가 | 사진을 `_originals/` 에 넣고 "갤러리에 이 사진들 추가해줘. 행사는 …" |
+| CV 수정 | "CV의 ○○ 부분 고쳐줘" (Full·Short·PDF에 함께 반영됨) |
+| 실적 엑셀 | "실적 엑셀 뽑아줘" |
 
-각 파일 맨 위에 한국어 사용법이 적혀 있습니다.
-
-### 논문 추가
-
-`src/data/publications.yaml` 의 `journals:` 맨 위에 항목을 복사해서 붙여넣고 고칩니다.
-
-```yaml
-  - id: 30                      # 기존 번호 + 1
-    year: 2026                  # 아직 안 나왔으면 지우고 status: in-revision
-    authors: >-
-      Hodam Kim1, ... , Woon-Hong Yeo*
-    title: 논문 제목
-    venue: 저널 이름
-    detail: 12 (3), 45-67
-    doi: 10.1234/example        # 링크는 자동 생성됩니다
-```
-
-저자 표기 규칙: 이름 뒤 `1` = 제1저자, `*` = 교신저자, `1*` = 둘 다.
-연구실 구성원 이름은 `site.yaml` 의 `lab_authors` 에 있으면 자동으로 굵게 표시됩니다.
-
-### 소식 추가
-
-`src/content/news/` 에 `2026-09-무슨일.md` 같은 파일을 하나 만듭니다.
-
-```markdown
----
-title: New paper accepted
-title_ko: 논문 게재 확정
-date: 2026-09-15
-tag: Paper
-tag_ko: 논문
-summary: One or two lines in English.
-summary_ko: 한두 줄 요약.
----
-```
-
-뉴스는 글로만 표시됩니다. 사진은 갤러리(`/gallery`)에서 따로 관리합니다.
-
-### 사진 추가
-
-사진은 반드시 **`src/assets/`** 안에 넣습니다. (`public/` 에 넣으면 용량이 줄지 않아 사이트가 느려집니다.)
-
-- 구성원 사진: `src/assets/people/` → `members.yaml` 에 `photo: people/파일명.jpg`
-- 갤러리 사진: `src/assets/gallery/행사이름/` → `gallery.yaml` 에 `folder: 행사이름`
-  (폴더 안 사진이 파일명 순서대로 표시됩니다. 대표로 쓸 사진을 `01.jpg` 로 바꾸세요.)
-
-### 연구 카드 그림 (논문 도면)
-
-논문 도면 원본은 `_originals/figures/` 에 두고, `npm run figures` 로 카드용 이미지를 만듭니다.
-(원본은 저장소에 올리지 않습니다 — `_originals/` 는 디스크에만 남습니다.)
-크롭 위치·주석 제거 규칙은 `scripts/prep-research-figures.mjs` 에 있습니다.
-결과물은 `src/assets/research/*.webp` (800×460, 카드 배경색과 동일) 로 저장되고,
-`src/data/research.yaml` 의 `image:` / `image_credit:` 으로 연결합니다.
-
-### 상장·증명서 같은 문서 올리기
-
-`public/docs/` 에 PDF 를 넣으면 그대로 사이트 주소로 열립니다.
-파일 이름은 `연도-월-무슨자료-이름.pdf` 형식으로, 영문 소문자와 하이픈만 씁니다.
-
-넣은 문서는 뉴스나 수상 내역에 연결할 수 있습니다.
-
-- 뉴스: `src/content/news/*.md` 에 `file: /docs/파일명.pdf` 와 `file_label: 상장 보기` 추가
-- 수상 내역: `src/data/members.yaml` 의 `awards:` 항목에 `file: /docs/파일명.pdf` 추가
-
-지도학생이 받은 상은 `advisee_ko: 지도학생 OOO 수상` 을 함께 적으면
-"지도학생" 표시가 붙습니다. 자세한 내용은 `public/docs/README.md` 참고.
+> **핵심 원칙**: 논문·멤버·뉴스·강의 같은 내용은 **코드가 아니라 데이터 파일**에
+> 들어 있습니다. 같은 정보가 여러 곳에 중복되지 않게 되어 있어서, 데이터 파일
+> 한 곳만 고치면 사이트 전체·CV·PDF·엑셀에 한꺼번에 반영됩니다.
 
 ---
 
-## 개발자용
+## 2. 어떤 정보가 어느 파일에 있나
 
-```bash
-npm install      # 최초 1회
-npm run dev      # 로컬 미리보기 http://localhost:4321
-npm run build    # dist/ 에 정적 파일 생성
-npm run preview  # 빌드 결과 확인
-```
+### 데이터 파일 (`src/data/`)
 
-- **Astro** 정적 사이트, 프레임워크 컴포넌트 없이 순수 `.astro` 컴포넌트
-- 다국어: 영문 기본(`/`), 한국어 `/ko/` — Astro 공식 i18n 라우팅
-- 이미지: `astro:assets` 의 `<Image>` 로 빌드 시 자동 최적화 (webp 변환·리사이즈)
-- 디자인 기준은 `src/` 안의 실제 코드입니다. 토큰은 `src/styles/global.css` 의 `:root`,
-  세부 스타일은 각 컴포넌트의 `<style>` 블록에 있습니다. 자세한 내용은 `CLAUDE.md` 참고.
+| 파일 | 들어 있는 내용 | 어디에 나오나 |
+|---|---|---|
+| `site.yaml` | 연구실 이름·태그라인·소속·**주소**·연락처·모집 안내 | 사이트 전체, 푸터, Contact, CV |
+| `members.yaml` | PI 프로필(학력·경력·**학술 활동**·초청 강연·수상·ORCID), 멤버, 알럼나이 | People, CV |
+| `publications.yaml` | 저널 논문, 학회 발표 (구두/포스터 포함) | Publications, CV, 메인 |
+| `cv.yaml` | 연구 관심사, 연구 역량(Skills), 특허, 종료 과제, 심사 활동 | CV, Patents |
+| `research.yaml` | 연구 3축과 세부 주제, **진행 중인 과제** | Research, CV |
+| `lectures.yaml` | 학기별 강의 | Lectures, CV |
+| `gallery.yaml` | 갤러리 행사와 사진 | Gallery |
 
-### 주소를 학교 도메인으로 바꿀 때
+### 그 밖에
 
-`astro.config.mjs` 의 `site` 한 줄과 `public/robots.txt` 의 Sitemap 주소를 바꾸고,
-저장소 Settings > Pages > Custom domain 에 도메인을 등록합니다.
+| 위치 | 내용 |
+|---|---|
+| `src/content/news/*.md` | 뉴스 — **파일 하나가 글 하나** |
+| `src/assets/` | 사이트에 쓰는 이미지 (자동 최적화됨) |
+| `public/docs/` | 내려받게 할 PDF (상장 등) |
+| `src/i18n/ui.js` | 화면 문구(메뉴·버튼 등)의 영문·국문 |
+| `src/styles/global.css` | 색·글꼴·간격 토큰과 공통 클래스 |
+| `src/styles/cv-print.css` | **CV PDF 전용** 인쇄 스타일 |
+
+### 잘 헷갈리는 것
+
+- **주소**는 `site.yaml` 의 `contact.address` **한 곳**에만 있습니다. 방 번호만
+  앞에 붙여 자동으로 완성됩니다.
+- **PI 소속**은 `site.yaml` 의 `institution.affiliations_en/_ko` 목록에 있습니다.
+  `members.yaml` 에는 없습니다.
+- **진행 중인 과제**는 `research.yaml`, **끝난 과제**는 `cv.yaml` 입니다.
+- **학술 활동**은 `members.yaml` 의 `pi.service`, 심사 활동은 `cv.yaml` 의 `service`.
+- **Short CV에 실리는 논문 5편**은 `publications.yaml` 에서 `featured: true` 인 것들입니다.
+
+---
+
+## 3. 명령어
+
+| 명령 | 하는 일 |
+|---|---|
+| `npm run dev` | 로컬 미리보기 (http://localhost:4321) — 파일을 고치면 즉시 반영 |
+| `npm run build` | 사이트를 `dist/` 로 빌드 |
+| `npm run build:pdf` | `cv-full.pdf`(8쪽)·`cv-short.pdf`(1쪽) 생성 |
+| **`npm run qa`** | **빌드 + PDF + 자동 레이아웃 검사** — UI를 고쳤으면 반드시 실행 |
+| `npm run qa:only` | 이미 빌드된 `dist/` 만 검사 (빠름) |
+| `npm run export` | 실적 엑셀을 `_exports/` 에 생성 (개인용, git 제외) |
+| `npm run figures` | 논문 그림을 연구 카드용 이미지로 가공 |
+
+### `npm run qa` 가 검사하는 것
+
+모든 페이지(영문·한국어)를 **데스크톱 1280 · 태블릿 820 · 모바일 390** 세 폭으로
+열어 확인합니다.
+
+- 요소가 서로 **겹치는지**
+- 글자가 칸을 **넘치는지**
+- **가로 스크롤**이 생기는지
+- **깨진 내부 링크**가 있는지
+- **콘솔 에러**가 있는지
+
+문제가 있으면 페이지·요소·화면폭을 표로 보여주고 실패합니다.
+전체 페이지 스크린샷은 `qa/` 폴더에 저장되니 **눈으로도 꼭 확인하세요**
+(`qa/` 는 git에 올라가지 않습니다).
+
+---
+
+## 4. 배포
+
+`main` 브랜치에 푸시하면 **GitHub Actions가 자동으로** 빌드 → PDF 생성 →
+**QA 검사** → 배포합니다. QA에서 걸리면 **배포되지 않고** 실패하며, 그때의
+스크린샷이 Actions 아티팩트(`qa-screenshots`)로 남습니다.
+
+배포 상황은 저장소의 **Actions** 탭에서 볼 수 있고, 보통 2~3분 걸립니다.
+
+> 나중에 학교 서브도메인(예: `ponslab.yonsei.ac.kr`)을 연결할 수 있게
+> base path 없는 구조를 유지하고 있습니다.
+
+---
+
+## 5. 원본 파일 처리 규칙
+
+엑셀·docx·원본 사진처럼 **내용을 옮기기 위한 재료**는 사이트의 일부가 아닙니다.
+
+1. **git에 커밋하지 않습니다.** (`.gitignore` 에 `*.xlsx`, `*.docx` 등이 있습니다)
+2. 반영이 끝나면 **원본과 대조해 확인한 뒤 알리고 삭제**합니다.
+3. 나중에 다시 가공할 수 있는 원본 이미지는 `_originals/` 에 둡니다.
+   이 폴더는 디스크에만 남고 저장소·배포에는 포함되지 않습니다.
+
+`_exports/`(실적 엑셀)와 `qa/`(검사 스크린샷)도 같은 이유로 git에서 제외됩니다.
+
+---
+
+## 6. 문제 해결
+
+| 증상 | 확인할 것 |
+|---|---|
+| 고친 내용이 화면에 안 보임 | `npm run dev` 가 켜져 있는지. 데이터 파일은 저장하면 바로 반영됩니다 |
+| `npm run qa` 가 깨진 링크로 실패 | PDF가 없어서일 수 있습니다. `qa:only` 말고 `npm run qa` 로 실행하세요 |
+| 배포가 실패함 | Actions 탭 → 실패한 단계 확인. QA 실패면 `qa-screenshots` 아티팩트를 내려받아 확인 |
+| PDF에 한글이 네모로 나옴 | 글꼴은 프로젝트에 내장돼 있습니다. `npm i` 를 다시 실행해 보세요 |
+| Short CV가 2쪽이 됨 | 내용이 늘어난 것입니다. `src/styles/cv-print.css` 의 `article.cv.short` 값을 조입니다 |
+| 사이트는 멀쩡한데 PDF만 이상함 | 인쇄 스타일은 `src/styles/cv-print.css` 한 곳에 있습니다 |
+
+문제가 계속되면 Claude Code에 **증상을 그대로 말하면** 됩니다.
+예: "모바일에서 논문 페이지 글자가 겹쳐 보여."
