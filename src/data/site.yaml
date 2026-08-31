@@ -42,6 +42,16 @@ institution:
   university_main_en: Yonsei University
   university_main_ko: 연세대학교
 
+  # PI·연구실 소속. 소속이 둘 이상이면 한 줄에 하나씩 적는다.
+  # 화면에서는 항목마다 줄을 바꿔 보여준다 (Affiliation.astro).
+  # 소속 하나 안에서 여러 요소를 잇는 가운뎃점은 그 문자열 안에 그대로 둔다.
+  affiliations_en:
+    - Division of Biomedical Engineering, Yonsei University Mirae Campus
+    - Department of Biomedical Engineering, Yonsei University
+  affiliations_ko:
+    - 연세대학교 미래캠퍼스 의공학부
+    - 연세대학교 대학원 의공학과
+
 contact:
   email: hodamkim@yonsei.ac.kr
 

@@ -1,4 +1,5 @@
 ---
+import Affiliation from '../Affiliation.astro';
 import { Image } from 'astro:assets';
 import PageHero from '../PageHero.astro';
 import { members } from '../../lib/data.js';
@@ -11,7 +12,6 @@ const t = useTranslations(lang);
 const pi = members.pi;
 const piName = lang === 'ko' ? `${pi.name_ko} (${pi.name_en})` : `${pi.name_en}, ${pi.degree}`;
 const piTitle = pick(pi, 'title', lang);
-const piAffil = pick(pi, 'affiliation', lang);
 const piBio = pick(pi, 'bio', lang);
 
 const initials = (name) =>
@@ -51,7 +51,7 @@ const piPhoto = asset(pi.photo);
       <div class="pi-body">
         <h2>{piName}</h2>
         <p class="role">{piTitle}</p>
-        <p class="affil">{piAffil}</p>
+        <p class="affil"><Affiliation /></p>
 
         <ul class="pi-contact">
           <li><a href={`mailto:${pi.email}`}>{pi.email}</a></li>

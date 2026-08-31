@@ -72,3 +72,9 @@ export function projectsInOrder() {
     (a, b) => start(b).localeCompare(start(a)) || (b.role === 'pi') - (a.role === 'pi')
   );
 }
+
+// PI·연구실 소속 목록. 소속이 둘이라 한 줄에 이어 붙이지 않고 줄을 나눠 쓴다.
+export function affiliations(lang) {
+  const inst = site.institution;
+  return inst[`affiliations_${lang}`] ?? inst.affiliations_en;
+}

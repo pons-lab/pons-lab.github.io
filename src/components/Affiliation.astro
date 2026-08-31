@@ -1,0 +1,31 @@
+---
+/**
+ * PI·연구실 소속 표시.
+ *
+ * 소속이 둘이라 한 줄에 이어 붙이면 아무 데서나 줄이 바뀌어 어느 소속인지
+ * 알아보기 어렵다. 목록(site.yaml 의 institution.affiliations_*)을 받아
+ * 소속마다 한 줄씩 보여준다. 소속 하나 안의 가운뎃점은 문자열 그대로 둔다.
+ *
+ * prefix 를 주면 첫 줄 앞에 "직위 · " 형태로 붙는다 (CV 머리말용).
+ */
+import { affiliations } from '../lib/data.js';
+import { getLangFromUrl } from '../i18n/utils.js';
+
+const { prefix } = Astro.props;
+const list = affiliations(getLangFromUrl(Astro.url));
+---
+
+<span class="affiliation">
+  {
+    list.map((line, i) => (
+      <span class="affiliation-line">{i === 0 && prefix ? `${prefix} · ${line}` : line}</span>
+    ))
+  }
+</span>
+
+<style>
+  .affiliation,
+  .affiliation-line {
+    display: block;
+  }
+</style>

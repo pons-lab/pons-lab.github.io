@@ -1,4 +1,5 @@
 ---
+import Affiliation from './Affiliation.astro';
 import { site } from '../lib/data.js';
 import { navItems } from '../i18n/ui.js';
 import { getLangFromUrl, useTranslations, localizePath } from '../i18n/utils.js';
@@ -8,12 +9,6 @@ const t = useTranslations(lang);
 
 // 병기 원칙: 한국어 페이지에서는 국문명 + 영문 약칭을 함께 표기한다.
 const labName = lang === 'ko' ? site.name.display_ko : site.name.full_en;
-// 학부(미래캠퍼스)와 대학원 학과를 함께 적는다
-const inst = site.institution;
-const affiliation =
-  lang === 'ko'
-    ? `${inst.university_ko} ${inst.department_ko} · ${inst.university_main_ko} ${inst.department_grad_ko}`
-    : `${inst.department_en}, ${inst.university_en} · ${inst.department_grad_en}, ${inst.university_main_en}`;
 // 푸터는 교수 연구실 기준
 const office = site.contact.office;
 const address = lang === 'ko' ? office.address_ko : office.address_en;
@@ -25,7 +20,7 @@ const year = new Date().getFullYear();
     <div class="about">
       <p class="name">{labName}</p>
       <p class="tag">{site.tagline[lang]}</p>
-      <p class="affil">{affiliation}</p>
+      <p class="affil"><Affiliation /></p>
     </div>
 
     <div class="col pages">

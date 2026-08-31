@@ -1,4 +1,5 @@
 ---
+import Affiliation from '../Affiliation.astro';
 import Authors from '../Authors.astro';
 import {
   site,
@@ -40,7 +41,7 @@ const nameLang = (p) => (/[가-힣]/.test(p.inventors) ? 'ko' : 'en');
     <div class="container">
       <h1>{lang === 'ko' ? `${pi.name_ko} (${pi.name_en})` : pi.name_en}</h1>
       <p class="role">
-        {pick(pi, 'title', lang)} · {pick(pi, 'affiliation', lang)}
+        <Affiliation prefix={pick(pi, 'title', lang)} />
       </p>
       <p class="contact">
         <span>{officeAddress}</span>
@@ -372,13 +373,14 @@ const nameLang = (p) => (/[가-힣]/.test(p.inventors) ? 'ko' : 'en');
     padding-block: clamp(2.25rem, 5vw, 3.25rem);
   }
 
+  /* 섹션 제목은 작은 대문자 라벨이라, 구분선에 붙으면 선에 눌려 보인다.
+     선과 제목 사이(padding-top)를 넉넉히 두고 모든 섹션에 같은 값을 쓴다. */
   .cv-sec {
-    padding-top: clamp(1.75rem, 3vw, 2.5rem);
-    margin-top: clamp(1.75rem, 3vw, 2.5rem);
+    padding-top: clamp(2.6rem, 4vw, 3.4rem);
+    margin-top: clamp(1.6rem, 2.5vw, 2.1rem);
     border-top: 1px solid var(--line);
   }
   .cv-sec:first-child {
-    padding-top: 0;
     margin-top: 0;
     border-top: 0;
   }
@@ -585,8 +587,11 @@ const nameLang = (p) => (/[가-힣]/.test(p.inventors) ? 'ko' : 'en');
     /* 섹션. 한 섹션을 통째로 다음 장에 밀면 앞장 아래가 크게 비므로,
        제목이 혼자 남는 것만 막고 내용은 이어지게 둔다. */
     .cv-sec {
+      padding-top: 1.85rem;
+      margin-top: 1.05rem;
+    }
+    .cv-sec:first-child {
       padding-top: 1.35rem;
-      margin-top: 1.35rem;
     }
     .cv-sec > h2 {
       font-size: 8pt;
