@@ -1,5 +1,5 @@
 ---
-import Affiliation from '../Affiliation.astro';
+import PiIdentity from '../PiIdentity.astro';
 import Authors from '../Authors.astro';
 import {
   site,
@@ -39,10 +39,7 @@ const nameLang = (p) => (/[가-힣]/.test(p.inventors) ? 'ko' : 'en');
 <article class="cv">
   <header class="cv-head">
     <div class="container">
-      <h1>{lang === 'ko' ? `${pi.name_ko} (${pi.name_en})` : pi.name_en}</h1>
-      <p class="role">
-        <Affiliation prefix={pick(pi, 'title', lang)} />
-      </p>
+      <PiIdentity size="lg" level={1} />
       <p class="contact">
         <span>{officeAddress}</span>
         <span><a href={`mailto:${site.contact.email}`}>{site.contact.email}</a></span>
@@ -341,23 +338,13 @@ const nameLang = (p) => (/[가-힣]/.test(p.inventors) ? 'ko' : 'en');
       radial-gradient(1100px 340px at 8% -30%, #eef3fd 0%, rgba(238, 243, 253, 0) 70%),
       var(--page);
   }
-  .cv-head h1 {
-    font-size: clamp(1.9rem, 4vw, 2.6rem);
-    margin-bottom: 0.4rem;
-  }
-  .role {
-    font-size: 1.02rem;
-    font-weight: 550;
-    color: var(--accent);
-    margin: 0 0 0.7rem;
-  }
   .contact {
     display: flex;
     flex-wrap: wrap;
     gap: 0.25rem 1.1rem;
     margin: 0;
     font-size: 0.885rem;
-    color: var(--body);
+    color: var(--muted);
   }
   .actions {
     margin: 1.5rem 0 0;
@@ -570,14 +557,6 @@ const nameLang = (p) => (/[가-힣]/.test(p.inventors) ? 'ko' : 'en');
     .cv-head {
       background: none;
       padding-block: 0 0.9rem;
-    }
-    .cv-head h1 {
-      font-size: 21pt;
-      margin-bottom: 0.25rem;
-    }
-    .role {
-      font-size: 10pt;
-      margin-bottom: 0.45rem;
     }
     .contact {
       font-size: 8.5pt;

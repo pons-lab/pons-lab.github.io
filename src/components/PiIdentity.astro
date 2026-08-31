@@ -1,0 +1,76 @@
+---
+/**
+ * PI 신원 표시 — 이름 · 직함 · 소속을 한 줄씩 세로로 쌓는다.
+ *
+ * People 카드와 CV 머리말이 같은 순서와 모양을 쓰도록 한곳에 모았다.
+ * 직함은 소속과 같은 줄에 붙이지 않는다. 소속은 site.yaml 의 목록을 그대로
+ * 받아 한 줄에 하나씩 (Affiliation.astro).
+ *
+ * 연락처는 페이지마다 항목이 달라 아래 slot 으로 받는다.
+ *
+ *   size  'lg' = CV 머리말, 'md' = People 카드
+ *   level 이름을 감쌀 제목 태그 번호 (문서 구조에 맞게)
+ */
+import Affiliation from './Affiliation.astro';
+import { members } from '../lib/data.js';
+import { getLangFromUrl, pick } from '../i18n/utils.js';
+
+const { size = 'md', level = 2 } = Astro.props;
+const lang = getLangFromUrl(Astro.url);
+const pi = members.pi;
+
+const Name = `h${level}`;
+const name = lang === 'ko' ? `${pi.name_ko} (${pi.name_en})` : `${pi.name_en}, ${pi.degree}`;
+---
+
+<div class:list={['pi-identity', size]}>
+  <Name class="pi-name">{name}</Name>
+  <p class="pi-title">{pick(pi, 'title', lang)}</p>
+  <div class="pi-affil"><Affiliation /></div>
+  <slot />
+</div>
+
+<style>
+  .pi-name {
+    margin: 0 0 0.45rem;
+  }
+  .lg .pi-name {
+    font-size: clamp(1.9rem, 4vw, 2.6rem);
+  }
+  .md .pi-name {
+    font-size: clamp(1.6rem, 3vw, 2.15rem);
+  }
+
+  /* 직함은 섹션 라벨과 같은 모양의 작은 대문자 라벨로 둔다. */
+  .pi-title {
+    margin: 0 0 0.5rem;
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent);
+  }
+
+  .pi-affil {
+    margin: 0 0 0.75rem;
+    color: var(--body);
+    font-size: 0.95rem;
+    line-height: 1.55;
+  }
+
+  @media print {
+    .lg .pi-name {
+      font-size: 21pt;
+      margin-bottom: 0.3rem;
+    }
+    .pi-title {
+      font-size: 8pt;
+      margin-bottom: 0.35rem;
+    }
+    .pi-affil {
+      font-size: 9.4pt;
+      line-height: 1.4;
+      margin-bottom: 0.45rem;
+    }
+  }
+</style>

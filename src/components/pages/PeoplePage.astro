@@ -1,5 +1,5 @@
 ---
-import Affiliation from '../Affiliation.astro';
+import PiIdentity from '../PiIdentity.astro';
 import { Image } from 'astro:assets';
 import PageHero from '../PageHero.astro';
 import { members } from '../../lib/data.js';
@@ -11,7 +11,6 @@ const t = useTranslations(lang);
 
 const pi = members.pi;
 const piName = lang === 'ko' ? `${pi.name_ko} (${pi.name_en})` : `${pi.name_en}, ${pi.degree}`;
-const piTitle = pick(pi, 'title', lang);
 const piBio = pick(pi, 'bio', lang);
 
 const initials = (name) =>
@@ -49,11 +48,8 @@ const piPhoto = asset(pi.photo);
       </div>
 
       <div class="pi-body">
-        <h2>{piName}</h2>
-        <p class="role">{piTitle}</p>
-        <p class="affil"><Affiliation /></p>
-
-        <ul class="pi-contact">
+        <PiIdentity size="md" level={2}>
+          <ul class="pi-contact">
           <li><a href={`mailto:${pi.email}`}>{pi.email}</a></li>
           {pi.phone && <li><a href={`tel:${pi.phone}`}>{pi.phone}</a></li>}
           <li class="muted">{pick(pi, 'office', lang)}</li>
@@ -69,7 +65,8 @@ const piPhoto = asset(pi.photo);
               </a>
             </li>
           )}
-        </ul>
+          </ul>
+        </PiIdentity>
 
         <p class="bio">{piBio}</p>
 
@@ -309,24 +306,6 @@ const piPhoto = asset(pi.photo);
     aspect-ratio: 4 / 5;
     border-radius: var(--radius-lg);
     font-size: clamp(2.5rem, 6vw, 3.6rem);
-  }
-
-  .pi-body h2 {
-    font-size: clamp(1.6rem, 3vw, 2.15rem);
-    margin-bottom: 0.35rem;
-  }
-
-  .role {
-    font-size: 1.02rem;
-    font-weight: 550;
-    color: var(--accent);
-    margin: 0 0 0.2rem;
-  }
-
-  .affil {
-    margin: 0 0 1rem;
-    color: var(--muted);
-    font-size: 0.93rem;
   }
 
   .pi-contact {
