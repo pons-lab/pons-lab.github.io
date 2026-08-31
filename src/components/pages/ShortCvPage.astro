@@ -13,7 +13,7 @@ import {
   research,
   selectedPublications,
   projectsInOrder,
-  awardsInOrder,
+  academicService,
   cvStats,
   doiUrl,
 } from '../../lib/data.js';
@@ -40,13 +40,6 @@ const oneLine = (e) => ({
   role: pick(e, 'role', lang),
   place: pick(e, 'place', lang),
 });
-
-// 수상 연월은 2026.05 처럼 숫자로 저장돼 있어 문자열로 되돌린다.
-const awards = awardsInOrder().map((a) => ({
-  when: lang === 'ko' && a.year_ko ? a.year_ko : typeof a.year === 'number' ? a.year.toFixed(2) : a.year,
-  title: pick(a, 'title', lang),
-  org: pick(a, 'org', lang),
-}));
 ---
 
 <article class="cv short">
@@ -160,13 +153,18 @@ const awards = awardsInOrder().map((a) => ({
     </section>
 
     <section class="cv-sec">
-      <h2>{t('cv.awards')}</h2>
-      <ul class="awards">
+      <h2>{t('cv.service')}</h2>
+      <ul class="rows">
         {
-          awards.map((a) => (
+          academicService().map((e) => (
             <li>
-              <span class="period mono-num">{a.when}</span> <strong>{a.title}</strong>
-              <span class="quiet">, {a.org}</span>
+              <span class="period mono-num">
+                {lang === 'ko' ? e.period_ko || e.period : e.period}
+              </span>
+              <span>
+                <strong>{pick(e, 'role', lang)}</strong>
+                <span class="quiet">, {pick(e, 'org', lang)}</span>
+              </span>
             </li>
           ))
         }
@@ -248,30 +246,6 @@ const awards = awardsInOrder().map((a) => ({
     color: var(--muted);
   }
 
-  .awards {
-    columns: 2;
-    column-gap: 2rem;
-    font-size: 0.855rem;
-    line-height: 1.5;
-  }
-  .awards li {
-    break-inside: avoid;
-    margin-bottom: 0.35rem;
-  }
-  .awards strong {
-    font-weight: 620;
-    color: var(--ink);
-  }
-  .awards .period {
-    margin-right: 0.2rem;
-  }
-
-  @media (max-width: 640px) {
-    .awards {
-      columns: 1;
-    }
-  }
-
   .axes {
     margin: 0;
     font-size: 0.885rem;
@@ -317,76 +291,6 @@ const awards = awardsInOrder().map((a) => ({
     .rows li {
       grid-template-columns: minmax(0, 1fr);
       gap: 0.1rem;
-    }
-  }
-
-  /* ── 인쇄 / PDF — 한 장에 담기도록 조인다 ─────────────────────── */
-  @media print {
-    .actions {
-      display: none;
-    }
-    .cv-head {
-      background: none;
-      padding-block: 0 0.55rem;
-    }
-    .cv-head .container,
-    .body {
-      max-width: none;
-    }
-    .body {
-      padding-block: 0;
-    }
-    .contact,
-    .summary {
-      font-size: 8.4pt;
-    }
-    .summary {
-      margin-top: 0.3rem;
-    }
-    .cv-sec {
-      padding-top: 0.6rem;
-      margin-top: 0.4rem;
-      break-inside: avoid;
-    }
-    .cv-sec > h2 {
-      font-size: 7.4pt;
-      margin-bottom: 0.3rem;
-      break-after: avoid-page;
-    }
-    .rows {
-      gap: 0.14rem;
-    }
-    .rows li {
-      grid-template-columns: 6.6rem minmax(0, 1fr);
-      gap: 0.6rem;
-      font-size: 8.1pt;
-      line-height: 1.32;
-    }
-    .period {
-      font-size: 7.7pt;
-    }
-    .axes {
-      font-size: 8.1pt;
-    }
-    .pubs {
-      gap: 0.14rem;
-    }
-    .pubs li {
-      font-size: 8pt;
-      line-height: 1.32;
-      padding-left: 1.25rem;
-    }
-    .awards {
-      font-size: 7.9pt;
-      line-height: 1.3;
-      column-gap: 1.3rem;
-    }
-    .awards li {
-      margin-bottom: 0.16rem;
-    }
-    a {
-      color: inherit;
-      text-decoration: none;
     }
   }
 </style>

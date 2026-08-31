@@ -88,7 +88,6 @@ for (const target of TARGETS) {
   }
 
   const out = path.join(dist, target.file);
-  const short = Boolean(target.margin);
   await page.pdf({
     path: out,
     format: 'A4',
@@ -98,9 +97,9 @@ for (const target of TARGETS) {
     footerTemplate: FOOTER,
     // 좌우 14mm 면 한 줄이 120자를 넘어 읽기 힘들다. 여백을 넓혀 100자 밑으로 둔다.
     // 아래 여백은 쪽번호 줄이 들어갈 만큼 남긴다.
-    margin: short
-      ? { top: '13mm', bottom: '16mm', left: '15mm', right: '15mm' }
-      : { top: '15mm', bottom: '16mm', left: '19mm', right: '19mm' },
+    // cv-print.css 의 @page 와 같은 값을 쓴다. 둘이 어긋나면 인쇄 결과가
+    // 스타일시트에서 계산한 폭·높이와 달라진다.
+    margin: { top: '18mm', bottom: '16mm', left: '19mm', right: '19mm' },
   });
   await page.close();
 

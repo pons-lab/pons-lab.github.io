@@ -1,5 +1,11 @@
 ---
+// 글꼴은 프로젝트에 내장한다. CDN 에 기대면 CI 에서 PDF 를 만들 때
+// 글꼴이 늦게 오거나 빠져서 줄 간격과 줄바꿈이 화면과 달라진다.
+// 두 글꼴 모두 가변(variable) 판이라 550·620 같은 중간 굵기도 그대로 나온다.
+import '@fontsource-variable/inter';
+import '@fontsource-variable/noto-sans-kr';
 import '../styles/global.css';
+import '../styles/cv-print.css';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import { site, members } from '../lib/data.js';
@@ -74,19 +80,6 @@ const jsonLd = {
   ],
 };
 
-// 제목·본문 모두 Inter 하나로 통일. 이탤릭(저널명 표기)도 함께 받아둔다.
-// 한국어 페이지에는 한글 글꼴(Noto Sans KR)을 추가로 받는다.
-const INTER = 'Inter:ital,wght@0,400;0,450;0,500;0,550;0,600;0,650;0,700;1,400;1,500';
-// 영문 페이지라도 한글이 실려 있으면(한국 특허 발명자명 등) 한글 글꼴이 필요하다.
-// 특히 CV PDF 는 CI 의 리눅스에서 인쇄하는데 그 환경에는 시스템 한글 글꼴이 없어
-// 글꼴을 받지 않으면 네모(두부)로 찍힌다.
-const KOREAN_IN_PAGE = ['/cv', '/publications/patent'];
-const needsKorean =
-  lang === 'ko' || KOREAN_IN_PAGE.some((p) => Astro.url.pathname.startsWith(p));
-
-const googleFonts = needsKorean
-  ? `https://fonts.googleapis.com/css2?family=${INTER}&family=Noto+Sans+KR:wght@400;500;700&display=swap`
-  : `https://fonts.googleapis.com/css2?family=${INTER}&display=swap`;
 ---
 
 <!doctype html>
@@ -117,9 +110,6 @@ const googleFonts = needsKorean
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="sitemap" href="/sitemap-index.xml" />
 
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link rel="stylesheet" href={googleFonts} />
 
     <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
   </head>

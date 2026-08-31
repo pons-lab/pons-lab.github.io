@@ -44,6 +44,19 @@ skills:
     value_en: Korean (native), English (fluent)
     value_ko: 한국어(모국어), 영어(유창)
 
+# ── 학술 활동 (Academic Service) ─────────────────────────────────────────
+# 학회 임원·위원 이력은 members.yaml 의 pi.service 에 있습니다 (People 페이지와
+# 공유). 여기에는 그쪽에 넣기 애매한 항목 — 논문 심사(reviewer), 학회 프로그램
+# 위원 등 — 만 적습니다. 두 목록이 CV 의 Academic Service 에 이어서 나옵니다.
+#
+# 예시 (실제 내역으로 바꿔 주세요):
+#   - period: 2023 – present
+#     role_en: "Reviewer"
+#     role_ko: "논문 심사위원"
+#     org_en: "IEEE TNSRE · Biosensors and Bioelectronics · Sensors"
+#     org_ko: "IEEE TNSRE · Biosensors and Bioelectronics · Sensors"
+service: []
+
 # ── 특허 ─────────────────────────────────────────────────────────────────
 # status: granted(등록) / application(출원)
 patents:

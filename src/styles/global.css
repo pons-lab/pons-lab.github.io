@@ -17,7 +17,7 @@
 
   /* 글꼴 — 제목도 본문과 같은 Inter 를 굵게 써서 하나로 통일한다.
      (제목만 세리프로 되돌리고 싶으면 --font-display 한 줄만 바꾸면 됩니다.) */
-  --font-sans: 'Inter', 'Inter Fallback', 'Pretendard', 'Pretendard Variable',
+  --font-sans: 'Inter Variable', 'Inter Fallback', 'Noto Sans KR Variable',
     'Noto Sans KR', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
   --font-display: var(--font-sans);
 

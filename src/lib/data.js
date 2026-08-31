@@ -107,3 +107,12 @@ function awardKey(a) {
 export function awardsInOrder() {
   return [...(members.pi.awards ?? [])].sort((a, b) => awardKey(b) - awardKey(a));
 }
+
+// 학술 활동. 학회 임원·위원은 members.yaml, 심사 등은 cv.yaml 에 있다.
+// 최근 것이 위로 오게 시작 연도 역순으로 합친다.
+export function academicService() {
+  const startYear = (e) => Number(String(e.period).slice(0, 4)) || 0;
+  return [...(members.pi.service ?? []), ...(cv.service ?? [])].sort(
+    (a, b) => startYear(b) - startYear(a)
+  );
+}
