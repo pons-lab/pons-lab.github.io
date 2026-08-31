@@ -26,6 +26,36 @@ const links = [
     href: 'https://github.com/pons-lab',
   },
 ];
+
+// 지켜야 할 것들. 이 페이지에서만 쓰는 문구라 여기 두고 언어만 골라 쓴다.
+const rules = [
+  {
+    en: 'Code goes on GitHub; everything else on the Shared Drive.',
+    ko: '코드는 GitHub 에, 나머지 자료는 공유 드라이브에 둡니다.',
+  },
+  {
+    en: 'Join the Shared Drive with your university account only.',
+    ko: '공유 드라이브는 학교 계정으로만 참여합니다.',
+  },
+  {
+    en:
+      'Keep important files and folders owned by the PI — hand ownership over ' +
+      'before you graduate.',
+    ko: '중요한 파일과 폴더는 PI 소유로 유지하고, 졸업 전에 소유권을 넘깁니다.',
+  },
+  {
+    en: 'Never share anything as “Anyone with the link.”',
+    ko: '“링크가 있는 모든 사용자” 로는 공유하지 않습니다.',
+  },
+  {
+    en: 'Never put data, personal information, or passwords on GitHub.',
+    ko: '데이터·개인정보·비밀번호는 GitHub 에 올리지 않습니다.',
+  },
+  {
+    en: 'Two-factor authentication is required on GitHub.',
+    ko: 'GitHub 2단계 인증은 필수입니다.',
+  },
+];
 ---
 
 <PageHero kicker={t('page.kicker.members')} title={t('members.title')} lead={t('members.lead')} />
@@ -57,6 +87,14 @@ const links = [
         ))
       }
     </ul>
+
+    <section class="rules">
+      <h2>{t('members.rules')}</h2>
+      <ol>
+        {rules.map((r) => <li>{r[lang]}</li>)}
+      </ol>
+      <p class="more">{t('members.more')}</p>
+    </section>
   </div>
 </section>
 
@@ -102,6 +140,58 @@ const links = [
   .desc {
     font-size: 0.9rem;
     line-height: 1.6;
+    color: var(--muted);
+  }
+
+  .rules {
+    margin-top: clamp(2.5rem, 5vw, 3.5rem);
+    padding-top: clamp(1.75rem, 3vw, 2.25rem);
+    border-top: 1px solid var(--line);
+  }
+  .rules h2 {
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 1.1rem;
+  }
+  .rules ol {
+    display: grid;
+    gap: 0.6rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    counter-reset: rule;
+    max-width: 68ch;
+  }
+  .rules li {
+    position: relative;
+    padding-left: 2rem;
+    font-size: 0.925rem;
+    line-height: 1.65;
+    color: var(--body);
+  }
+  .rules li::before {
+    counter-increment: rule;
+    content: counter(rule);
+    position: absolute;
+    left: 0;
+    top: 0.18em;
+    display: grid;
+    place-items: center;
+    width: 1.35rem;
+    height: 1.35rem;
+    border-radius: 50%;
+    background: var(--accent-soft);
+    color: var(--accent-deep);
+    font-size: 0.72rem;
+    font-weight: 700;
+  }
+
+  .more {
+    margin: 1.5rem 0 0;
+    font-size: 0.875rem;
     color: var(--muted);
   }
 </style>
