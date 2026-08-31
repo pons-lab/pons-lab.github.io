@@ -88,3 +88,22 @@ export function cvStats() {
     grants: research.projects.filter((p) => p.role === 'pi').length,
   };
 }
+
+// 전체 주소 = 방 번호 + 캠퍼스 주소. 주소 본문은 site.yaml 한 곳에만 있다.
+export function fullAddress(place, lang) {
+  const a = site.contact.address;
+  return lang === 'ko'
+    ? `${a.street_ko}, ${place.room_ko} (${a.postal_code})`
+    : `${place.room_en}, ${a.street_en}`;
+}
+
+// 수상은 연·월 역순으로. 학기 표기("2014 Fall")도 월로 바꿔 같은 자로 잰다.
+const SEMESTER = { Spring: 3, Fall: 9 };
+function awardKey(a) {
+  if (typeof a.year === 'number') return a.year;
+  const m = String(a.year).match(/^(\d{4})\s+(Spring|Fall)$/);
+  return m ? Number(m[1]) + SEMESTER[m[2]] / 100 : Number(String(a.year).slice(0, 4)) || 0;
+}
+export function awardsInOrder() {
+  return [...(members.pi.awards ?? [])].sort((a, b) => awardKey(b) - awardKey(a));
+}

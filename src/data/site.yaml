@@ -55,25 +55,27 @@ institution:
 contact:
   email: hodamkim@yonsei.ac.kr
 
+  # 캠퍼스 주소 — 여기 한 곳에서만 관리합니다.
+  # 실험실·교수 연구실의 전체 주소는 아래 room 을 앞에 붙여 자동으로 만듭니다
+  # (data.js 의 fullAddress). 다른 파일에 주소를 다시 적지 마세요.
+  address:
+    street_en: 1 Yeonsedae-gil, Heungeop-myeon, Wonju-si, Gangwon-do 26493, Republic of Korea
+    street_ko: 강원특별자치도 원주시 흥업면 연세대길 1
+    postal_code: "26493"
+    locality_en: Wonju-si
+    region_en: Gangwon-do
+
   # 실험실 — 연구실 공간.
   lab:
     room_en: Room 204, Sanhak Hall
     room_ko: 산학관 204호
     phone: "+82-33-760-2859"
     phone_display: +82-33-760-2859
-    address_en: >-
-      Room 204, Sanhak Hall, 1 Yonseidae-gil, Heungeop-myeon, Wonju-si,
-      Gangwon State 26493, Republic of Korea
-    address_ko: 강원특별자치도 원주시 흥업면 연세대길 1, 산학관 204호 (26493)
 
   # 교수 연구실 — 푸터와 CV 는 이쪽 주소·전화를 씁니다.
   office:
     room_en: Room 201, Baekun Hall
     room_ko: 백운관 201호
-    address_en: >-
-      Room 201, Baekun Hall, 1 Yonseidae-gil, Heungeop-myeon, Wonju-si,
-      Gangwon State 26493, Republic of Korea
-    address_ko: 강원특별자치도 원주시 흥업면 연세대길 1, 백운관 201호 (26493)
     phone: "+82-33-760-2490"
     phone_display: +82-33-760-2490
 
@@ -161,6 +163,7 @@ brand:
 # ---------------------------------------------------------------------------
 lab_authors:
   - Hodam Kim
+  - 김호담
   - Seoyeon Yoon
   - Jihwan Park
   - Gabriel Joseph Mlingi

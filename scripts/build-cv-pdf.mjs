@@ -57,6 +57,16 @@ const server = http.createServer((req, res) => {
 await new Promise((resolve) => server.listen(0, '127.0.0.1', resolve));
 const base = `http://127.0.0.1:${server.address().port}`;
 
+// 인쇄 날짜와 쪽번호를 아래 여백에 넣는다. Chromium 의 머리말/꼬리말은
+// 페이지 CSS 를 상속하지 않으므로 글꼴·크기를 여기서 직접 준다.
+const updated = new Date().toLocaleDateString('en-CA'); // YYYY-MM-DD
+const FOOTER = `
+  <div style="width:100%;padding:0 19mm;font-family:Inter,Segoe UI,sans-serif;
+              font-size:7.5pt;color:#8b98ad;display:flex;justify-content:space-between;">
+    <span>Hodam Kim — Last updated: ${updated}</span>
+    <span>Page <span class="pageNumber"></span> of <span class="totalPages"></span></span>
+  </div>`;
+
 const browser = await chromium.launch();
 
 for (const target of TARGETS) {
@@ -78,14 +88,19 @@ for (const target of TARGETS) {
   }
 
   const out = path.join(dist, target.file);
+  const short = Boolean(target.margin);
   await page.pdf({
     path: out,
     format: 'A4',
     printBackground: false,
+    displayHeaderFooter: true,
+    headerTemplate: '<span></span>',
+    footerTemplate: FOOTER,
     // 좌우 14mm 면 한 줄이 120자를 넘어 읽기 힘들다. 여백을 넓혀 100자 밑으로 둔다.
-    margin: target.margin
-      ? { top: '13mm', bottom: '13mm', left: '15mm', right: '15mm' }
-      : { top: '16mm', bottom: '16mm', left: '19mm', right: '19mm' },
+    // 아래 여백은 쪽번호 줄이 들어갈 만큼 남긴다.
+    margin: short
+      ? { top: '13mm', bottom: '16mm', left: '15mm', right: '15mm' }
+      : { top: '15mm', bottom: '16mm', left: '19mm', right: '19mm' },
   });
   await page.close();
 

@@ -36,7 +36,7 @@ const statusLabel = pub.status ? t(`pub.${String(pub.status).replace(/-/g, '_')}
         <p class="foot">
           {link && (
             <a class="doi" href={link} target="_blank" rel="noopener">
-              DOI {pub.doi}
+              doi.org/{pub.doi}
             </a>
           )}
           {pub.metrics && <span class="tag tag-quiet">{pub.metrics}</span>}

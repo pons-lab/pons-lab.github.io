@@ -2,6 +2,7 @@
 import PiIdentity from '../PiIdentity.astro';
 import Authors from '../Authors.astro';
 import {
+  fullAddress,
   site,
   members,
   cv,
@@ -9,6 +10,7 @@ import {
   journalsByYear,
   conferencesByScope,
   projectsInOrder,
+  awardsInOrder,
   doiUrl,
 } from '../../lib/data.js';
 import { getLangFromUrl, useTranslations, localizePath, pick } from '../../i18n/utils.js';
@@ -22,13 +24,34 @@ const office = site.contact.office;
 const { groups } = journalsByYear();
 const { international, domestic } = conferencesByScope();
 
-// 진행 중인 과제는 역할에 따라 나눠서 싣는다.
-const piProjects = projectsInOrder().filter((p) => p.role === 'pi');
-const coProjects = projectsInOrder().filter((p) => p.role !== 'pi');
+// 과제는 어디서 왔든 같은 두 줄 구조로 그린다.
+//   1줄: 제목 + 역할 배지 / 2줄: 지원기관 · 기간
+const grantRow = (g, isPi) => ({
+  title: pick(g, 'title', lang),
+  funder: g.funder_en ? pick(g, 'funder', lang) : '',
+  period: g.period,
+  isPi,
+});
+const piGrants = projectsInOrder()
+  .filter((g) => g.role === 'pi')
+  .map((g) => grantRow(g, true));
+const otherGrants = [
+  ...projectsInOrder()
+    .filter((g) => g.role !== 'pi')
+    .map((g) => grantRow(g, false)),
+  ...cv.past_projects.map((g) => grantRow(g, false)),
+];
+
+// 특허 발명자 중 본인 이름은 논문과 마찬가지로 굵게 표시한다.
+const LAB = (site.lab_authors ?? []).map((n) => n.toLowerCase());
+const inventorList = (text) =>
+  String(text ?? '')
+    .split(/,\s*/)
+    .map((n) => ({ name: n, isLab: LAB.includes(n.toLowerCase()) }));
 
 // 학술 경력의 첫 항목(현직)에는 연구실 이름을 함께 적는다.
 const labName = lang === 'ko' ? site.name.display_ko : site.name.full_en;
-const officeAddress = lang === 'ko' ? office.address_ko : office.address_en;
+const officeAddress = fullAddress(office, lang);
 const levelLabel = (level) =>
   level === 'graduate' ? t('lectures.graduate') : t('lectures.undergraduate');
 
@@ -106,12 +129,17 @@ const nameLang = (p) => (/[가-힣]/.test(p.inventors) ? 'ko' : 'en');
       <ul class="bullets">
         {cv.research_interests.map((r) => <li>{r[lang]}</li>)}
       </ul>
+    </section>
+
+    <!-- 3b. Skills -->
+    <section class="cv-sec">
+      <h2>{t('cv.skills')}</h2>
       <dl class="skills">
         {
-          cv.skills.map((s) => (
+          cv.skills.map((sk) => (
             <>
-              <dt>{pick(s, 'label', lang)}</dt>
-              <dd>{pick(s, 'value', lang)}</dd>
+              <dt>{pick(sk, 'label', lang)}</dt>
+              <dd>{pick(sk, 'value', lang)}</dd>
             </>
           ))
         }
@@ -143,7 +171,7 @@ const nameLang = (p) => (/[가-힣]/.test(p.inventors) ? 'ko' : 'en');
                       <span class="pub-extra">
                         {p.doi && (
                           <a href={doiUrl(p.doi)} target="_blank" rel="noopener">
-                            DOI {p.doi}
+                            doi.org/{p.doi}
                           </a>
                         )}
                         {p.doi && p.metrics && (
@@ -168,38 +196,36 @@ const nameLang = (p) => (/[가-힣]/.test(p.inventors) ? 'ko' : 'en');
       <h2>{t('cv.grants')}</h2>
 
       <h3>{t('cv.grants_pi')}</h3>
-      <ul class="entries">
+      <ul class="grants">
         {
-          piProjects.map((p) => (
+          piGrants.map((g) => (
             <li>
-              <span class="period mono-num">{p.period}</span>
-              <strong>{pick(p, 'title', lang)}</strong>
-              {p.funder_en && <span class="where">{pick(p, 'funder', lang)}</span>}
-              <span class="note">{t('cv.role_pi')}</span>
+              <span class="g-title">
+                <strong>{g.title}</strong>
+                <span class="g-badge pi">PI</span>
+              </span>
+              <span class="g-meta">
+                {g.funder && <>{g.funder} · </>}
+                <span class="mono-num">{g.period}</span>
+              </span>
             </li>
           ))
         }
       </ul>
 
       <h3>{t('cv.grants_past')}</h3>
-      <ul class="entries">
+      <ul class="grants">
         {
-          coProjects.map((p) => (
+          otherGrants.map((g) => (
             <li>
-              <span class="period mono-num">{p.period}</span>
-              <strong>{pick(p, 'title', lang)}</strong>
-              {p.funder_en && <span class="where">{pick(p, 'funder', lang)}</span>}
-              <span class="note">{t('research.role_researcher')}</span>
-            </li>
-          ))
-        }
-        {
-          cv.past_projects.map((p) => (
-            <li>
-              <span class="period mono-num">{p.period}</span>
-              <strong>{pick(p, 'title', lang)}</strong>
-              <span class="where">{pick(p, 'funder', lang)}</span>
-              <span class="note">{pick(p, 'role', lang)}</span>
+              <span class="g-title">
+                <strong>{g.title}</strong>
+                <span class="g-badge">Researcher</span>
+              </span>
+              <span class="g-meta">
+                {g.funder && <>{g.funder} · </>}
+                <span class="mono-num">{g.period}</span>
+              </span>
             </li>
           ))
         }
@@ -239,13 +265,36 @@ const nameLang = (p) => (/[가-힣]/.test(p.inventors) ? 'ko' : 'en');
             <li>
               <span class="num mono-num">{p.no}.</span>
               <span class="pub-body">
-                <span lang={nameLang(p)}>{p.inventors}</span>
-                <span class="pub-title">, “{pick(p, 'title', lang)},”</span>
-                <span class="pub-meta">
-                  {' '}
-                  <span class="mono-num">{p.number}</span>, {p.date} (
-                  {pick(p, 'country', lang)}) — {t(`cv.patent_${p.status}`)}
-                  {p.assignee_en && <>, {pick(p, 'assignee', lang)}</>}
+                <span lang={nameLang(p)}>
+                  {inventorList(p.inventors).map((inv, i) => (
+                    <>
+                      {i > 0 && ', '}
+                      {inv.isLab ? <strong class="author-lab">{inv.name}</strong> : inv.name}
+                    </>
+                  ))}
+                </span>
+                {/* 특허 제목은 두 언어 페이지 모두 등록된 영문 명칭으로 통일한다. */}
+                <span class="pub-title">, “{p.title_en},”</span>
+                <span class="pub-extra">
+                  <span class="mono-num">
+                    {p.country_code} {p.number}
+                  </span>
+                  <span class="dot" aria-hidden="true">
+                    ·
+                  </span>
+                  <span class="mono-num">{p.date}</span>
+                  <span class="dot" aria-hidden="true">
+                    ·
+                  </span>
+                  {t(`cv.patent_${p.status}`)}
+                  {p.assignee_en && (
+                    <>
+                      <span class="dot" aria-hidden="true">
+                        ·
+                      </span>
+                      {pick(p, 'assignee', lang)}
+                    </>
+                  )}
                 </span>
               </span>
             </li>
@@ -292,7 +341,7 @@ const nameLang = (p) => (/[가-힣]/.test(p.inventors) ? 'ko' : 'en');
       <h2>{t('cv.awards')}</h2>
       <ul class="entries">
         {
-          pi.awards.map((a) => (
+          awardsInOrder().map((a) => (
             <li>
               <span class="period mono-num">
                 {lang === 'ko' ? a.year_ko || a.year : a.year}
@@ -409,6 +458,47 @@ const nameLang = (p) => (/[가-힣]/.test(p.inventors) ? 'ko' : 'en');
     font-size: 0.83rem;
   }
   .lvl {
+    color: var(--muted);
+  }
+
+  /* 과제는 두 줄로 읽는다: 제목+역할, 그리고 지원기관·기간.
+     항목 안은 촘촘하게, 항목 사이는 넉넉하게 — 값을 하나로 고정한다. */
+  .grants {
+    display: grid;
+    gap: 0.85rem;
+  }
+  .grants li {
+    display: grid;
+    gap: 0.12rem;
+    font-size: 0.9rem;
+    line-height: 1.5;
+  }
+  .g-title strong {
+    font-weight: 620;
+    color: var(--ink);
+  }
+  .g-badge {
+    display: inline-block;
+    margin-left: 0.45rem;
+    padding: 0.02rem 0.42rem;
+    border-radius: 999px;
+    border: 1px solid var(--line);
+    background: var(--card);
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--muted);
+    vertical-align: 0.12em;
+    white-space: nowrap;
+  }
+  .g-badge.pi {
+    border-color: transparent;
+    background: var(--accent-soft);
+    color: var(--accent-deep);
+  }
+  .g-meta {
+    font-size: 0.845rem;
     color: var(--muted);
   }
 
@@ -546,8 +636,8 @@ const nameLang = (p) => (/[가-힣]/.test(p.inventors) ? 'ko' : 'en');
     /* 섹션. 한 섹션을 통째로 다음 장에 밀면 앞장 아래가 크게 비므로,
        제목이 혼자 남는 것만 막고 내용은 이어지게 둔다. */
     .cv-sec {
-      padding-top: 1.85rem;
-      margin-top: 1.05rem;
+      padding-top: 1.55rem;
+      margin-top: 0.9rem;
     }
     .cv-sec:first-child {
       padding-top: 1.35rem;
@@ -564,13 +654,30 @@ const nameLang = (p) => (/[가-힣]/.test(p.inventors) ? 'ko' : 'en');
       break-after: avoid-page;
     }
     .pubs li,
-    .entries li {
+    .entries li,
+    .grants li {
       break-inside: avoid;
+    }
+    .grants {
+      gap: 0.5rem;
+    }
+    .grants li {
+      font-size: 9.2pt;
+      line-height: 1.4;
+    }
+    .g-badge {
+      font-size: 6.8pt;
+      background: none;
+      border: 1px solid var(--line);
+      color: var(--body);
+    }
+    .g-meta {
+      font-size: 8.6pt;
     }
 
     /* 경력·학력·과제·강의 */
     .entries {
-      gap: 0.6rem;
+      gap: 0.5rem;
     }
     .entries li {
       grid-template-columns: 7.4rem minmax(0, 1fr);

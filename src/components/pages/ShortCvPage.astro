@@ -13,6 +13,7 @@ import {
   research,
   selectedPublications,
   projectsInOrder,
+  awardsInOrder,
   cvStats,
   doiUrl,
 } from '../../lib/data.js';
@@ -41,7 +42,7 @@ const oneLine = (e) => ({
 });
 
 // 수상 연월은 2026.05 처럼 숫자로 저장돼 있어 문자열로 되돌린다.
-const awards = pi.awards.map((a) => ({
+const awards = awardsInOrder().map((a) => ({
   when: lang === 'ko' && a.year_ko ? a.year_ko : typeof a.year === 'number' ? a.year.toFixed(2) : a.year,
   title: pick(a, 'title', lang),
   org: pick(a, 'org', lang),
@@ -130,7 +131,7 @@ const awards = pi.awards.map((a) => ({
                   <>
                     {'. '}
                     <a href={doiUrl(p.doi)} target="_blank" rel="noopener">
-                      DOI {p.doi}
+                      doi.org/{p.doi}
                     </a>
                   </>
                 )}

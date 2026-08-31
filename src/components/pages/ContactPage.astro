@@ -1,7 +1,7 @@
 ---
 import Affiliation from '../Affiliation.astro';
 import PageHero from '../PageHero.astro';
-import { site, members } from '../../lib/data.js';
+import { site, members, fullAddress } from '../../lib/data.js';
 import { getLangFromUrl, useTranslations, pick } from '../../i18n/utils.js';
 
 const lang = getLangFromUrl(Astro.url);
@@ -9,9 +9,9 @@ const t = useTranslations(lang);
 
 const lab = site.contact.lab;
 const office = site.contact.office;
-const labAddress = lang === 'ko' ? lab.address_ko : lab.address_en;
+const labAddress = fullAddress(lab, lang);
 const labRoom = lang === 'ko' ? lab.room_ko : lab.room_en;
-const officeAddress = lang === 'ko' ? office.address_ko : office.address_en;
+const officeAddress = fullAddress(office, lang);
 const officeRoom = lang === 'ko' ? office.room_ko : office.room_en;
 const how = lang === 'ko' ? site.recruiting.how_to_apply_ko : site.recruiting.how_to_apply_en;
 ---

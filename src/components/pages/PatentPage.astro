@@ -52,7 +52,9 @@ const nameLang = (p) => (/[가-힣]/.test(p.inventors) ? 'ko' : 'en');
                   {p.inventors}
                 </p>
                 <p class="pat-meta">
-                  <span class="mono-num num-strong">{p.number}</span>
+                  <span class="mono-num num-strong">
+                    {p.country_code} {p.number}
+                  </span>
                   <span class="dot" aria-hidden="true">
                     ·
                   </span>

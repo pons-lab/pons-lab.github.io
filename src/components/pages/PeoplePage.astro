@@ -2,7 +2,7 @@
 import PiIdentity from '../PiIdentity.astro';
 import { Image } from 'astro:assets';
 import PageHero from '../PageHero.astro';
-import { members } from '../../lib/data.js';
+import { members, awardsInOrder } from '../../lib/data.js';
 import { asset } from '../../lib/images.js';
 import { getLangFromUrl, useTranslations, localizePath, pick } from '../../i18n/utils.js';
 
@@ -165,7 +165,7 @@ const piPhoto = asset(pi.photo);
             </summary>
             <ul class="entries">
               {
-                pi.awards.map((a) => (
+                awardsInOrder().map((a) => (
                   <li>
                     <span class="period mono-num">
                       {lang === 'ko' ? a.year_ko || a.year : a.year}

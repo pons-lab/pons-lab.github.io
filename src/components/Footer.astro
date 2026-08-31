@@ -1,6 +1,6 @@
 ---
 import Affiliation from './Affiliation.astro';
-import { site } from '../lib/data.js';
+import { site, fullAddress } from '../lib/data.js';
 import { keepTogether } from '../lib/text.js';
 import { navItems } from '../i18n/ui.js';
 import { getLangFromUrl, useTranslations, localizePath } from '../i18n/utils.js';
@@ -12,7 +12,7 @@ const t = useTranslations(lang);
 const labName = lang === 'ko' ? site.name.display_ko : site.name.full_en;
 // 푸터는 교수 연구실 기준
 const office = site.contact.office;
-const address = lang === 'ko' ? office.address_ko : office.address_en;
+const address = fullAddress(office, lang);
 const year = new Date().getFullYear();
 ---
 
