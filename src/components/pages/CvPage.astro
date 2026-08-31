@@ -11,14 +11,15 @@ import {
   projectsInOrder,
   doiUrl,
 } from '../../lib/data.js';
-import { getLangFromUrl, useTranslations, pick } from '../../i18n/utils.js';
+import { getLangFromUrl, useTranslations, localizePath, pick } from '../../i18n/utils.js';
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 
 const pi = members.pi;
 const office = site.contact.office;
-const { unpublished, groups } = journalsByYear();
+// 준비 중·심사 중 원고는 Full CV 에 싣지 않는다 (Publications 페이지에는 그대로 있다).
+const { groups } = journalsByYear();
 const { international, domestic } = conferencesByScope();
 
 // 진행 중인 과제는 역할에 따라 나눠서 싣는다.
@@ -56,7 +57,8 @@ const nameLang = (p) => (/[가-힣]/.test(p.inventors) ? 'ko' : 'en');
         )}
       </p>
       <p class="actions">
-        <a class="btn btn-primary" href="/cv.pdf" download>{t('cv.download')}</a>
+        <a class="btn btn-primary" href="/cv-full.pdf" download>{t('cv.download_full')}</a>
+        <a class="btn btn-ghost" href={localizePath('/cv/short', lang)}>{t('cv.short_title')}</a>
       </p>
     </div>
   </header>
@@ -119,28 +121,6 @@ const nameLang = (p) => (/[가-힣]/.test(p.inventors) ? 'ko' : 'en');
     <!-- 4. Publications -->
     <section class="cv-sec">
       <h2>{t('cv.publications')}</h2>
-
-      {
-        unpublished.length > 0 && (
-          <div class="year-block">
-            <h3>{t('cv.in_preparation')}</h3>
-            <ul class="pubs" lang="en">
-              {unpublished.map((p) => (
-                <li class="no-num">
-                  <span class="pub-body">
-                    <Authors authors={p.authors} />
-                    <span class="pub-title">, “{p.title}”</span>
-                    <span class="pub-meta">
-                      {' '}
-                      ({t(`pub.${String(p.status).replace(/-/g, '_')}`)})
-                    </span>
-                  </span>
-                </li>
-              ))}
-            </ul>
-          </div>
-        )
-      }
 
       {
         groups.map((g) => (

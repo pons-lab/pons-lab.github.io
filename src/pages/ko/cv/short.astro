@@ -1,0 +1,11 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import ShortCvPage from '../../../components/pages/ShortCvPage.astro';
+import { getLangFromUrl, useTranslations } from '../../../i18n/utils.js';
+
+const t = useTranslations(getLangFromUrl(Astro.url));
+---
+
+<BaseLayout title={t('cv.short_title')}>
+  <ShortCvPage />
+</BaseLayout>

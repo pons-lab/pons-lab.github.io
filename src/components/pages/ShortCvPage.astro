@@ -1,0 +1,394 @@
+---
+/**
+ * Short CV — 한 장(최대 두 장)으로 접는 요약본.
+ *
+ * Full CV(/cv)와 같은 데이터를 보되 각 항목을 한 줄로 줄인다.
+ * 논문은 publications.yaml 의 featured: true 다섯 편만 싣는다.
+ */
+import PiIdentity from '../PiIdentity.astro';
+import Authors from '../Authors.astro';
+import {
+  site,
+  members,
+  research,
+  selectedPublications,
+  projectsInOrder,
+  cvStats,
+  doiUrl,
+} from '../../lib/data.js';
+import { getLangFromUrl, useTranslations, localizePath, pick } from '../../i18n/utils.js';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+const pi = members.pi;
+const stats = cvStats();
+const summary = t('cv.stats')
+  .replace('{papers}', stats.papers)
+  .replace('{patents}', stats.patents)
+  .replace('{grants}', stats.grants);
+
+const selected = selectedPublications();
+const grants = projectsInOrder();
+const axes = research.axes.map((a) => pick(a, 'title', lang));
+
+// 학력·경력은 한 줄로 줄인다. Full CV 에 있는 GPA·연구실 상세는 싣지 않는다.
+const oneLine = (e) => ({
+  period: lang === 'ko' ? e.period_ko || e.period : e.period,
+  role: pick(e, 'role', lang),
+  place: pick(e, 'place', lang),
+});
+
+// 수상 연월은 2026.05 처럼 숫자로 저장돼 있어 문자열로 되돌린다.
+const awards = pi.awards.map((a) => ({
+  when: lang === 'ko' && a.year_ko ? a.year_ko : typeof a.year === 'number' ? a.year.toFixed(2) : a.year,
+  title: pick(a, 'title', lang),
+  org: pick(a, 'org', lang),
+}));
+---
+
+<article class="cv short">
+  <header class="cv-head">
+    <div class="container">
+      <PiIdentity size="lg" level={1}>
+        <p class="contact">
+          <a href={`mailto:${site.contact.email}`}>{site.contact.email}</a>
+        </p>
+      </PiIdentity>
+      <p class="summary">{summary}</p>
+      <p class="actions">
+        <a class="btn btn-primary" href="/cv-short.pdf" download>{t('cv.download_short')}</a>
+        <a class="btn btn-ghost" href={localizePath('/cv', lang)}>{t('cv.full_title')}</a>
+      </p>
+    </div>
+  </header>
+
+  <div class="container body">
+    <section class="cv-sec">
+      <h2>{t('cv.education')}</h2>
+      <ul class="rows">
+        {
+          pi.education.map(oneLine).map((e) => (
+            <li>
+              <span class="period mono-num">{e.period}</span>
+              <span>
+                <strong>{e.role}</strong>
+                <span class="quiet">, {e.place}</span>
+              </span>
+            </li>
+          ))
+        }
+      </ul>
+    </section>
+
+    <section class="cv-sec">
+      <h2>{t('cv.appointments')}</h2>
+      <ul class="rows">
+        {
+          pi.experience.map(oneLine).map((e) => (
+            <li>
+              <span class="period mono-num">{e.period}</span>
+              <span>
+                <strong>{e.role}</strong>
+                <span class="quiet">, {e.place}</span>
+              </span>
+            </li>
+          ))
+        }
+      </ul>
+    </section>
+
+    <section class="cv-sec">
+      <h2>{t('cv.interests')}</h2>
+      <p class="axes">
+        {
+          axes.map((a, i) => (
+            <>
+              {i > 0 && <span class="dot" aria-hidden="true"> · </span>}
+              {a}
+            </>
+          ))
+        }
+      </p>
+    </section>
+
+    <section class="cv-sec">
+      <h2>{t('cv.selected')}</h2>
+      <ol class="pubs" lang="en">
+        {
+          selected.map((p) => (
+            <li>
+              <Authors authors={p.authors} />
+              <span class="pub-title">, “{p.title},”</span>
+              <span class="pub-meta">
+                {' '}
+                <i>{p.venue}</i>
+                {p.detail && `, ${p.detail}`}
+                {p.year && `, ${p.year}`}
+                {p.doi && (
+                  <>
+                    {'. '}
+                    <a href={doiUrl(p.doi)} target="_blank" rel="noopener">
+                      DOI {p.doi}
+                    </a>
+                  </>
+                )}
+              </span>
+            </li>
+          ))
+        }
+      </ol>
+    </section>
+
+    <section class="cv-sec">
+      <h2>{t('cv.current_grants')}</h2>
+      <ul class="rows">
+        {
+          grants.map((g) => (
+            <li>
+              <span class="period mono-num">{g.period}</span>
+              <span>
+                <strong>{pick(g, 'title', lang)}</strong>
+                {g.funder_en && <span class="quiet">, {pick(g, 'funder', lang)}</span>}
+                <span class="quiet">
+                  {' — '}
+                  {g.role === 'pi' ? t('research.role_pi') : t('research.role_researcher')}
+                </span>
+              </span>
+            </li>
+          ))
+        }
+      </ul>
+    </section>
+
+    <section class="cv-sec">
+      <h2>{t('cv.awards')}</h2>
+      <ul class="awards">
+        {
+          awards.map((a) => (
+            <li>
+              <span class="period mono-num">{a.when}</span> <strong>{a.title}</strong>
+              <span class="quiet">, {a.org}</span>
+            </li>
+          ))
+        }
+      </ul>
+    </section>
+  </div>
+</article>
+
+<style>
+  .cv-head {
+    padding-block: clamp(2.25rem, 5vw, 3.25rem) clamp(1.25rem, 2.5vw, 1.75rem);
+    border-bottom: 1px solid var(--line);
+    background:
+      radial-gradient(1100px 340px at 8% -30%, #eef3fd 0%, rgba(238, 243, 253, 0) 70%),
+      var(--page);
+  }
+  .cv-head .container,
+  .body {
+    max-width: var(--container-narrow);
+  }
+  .contact {
+    margin: 0;
+    font-size: 0.885rem;
+    color: var(--muted);
+  }
+  .summary {
+    margin: 0.7rem 0 0;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--accent-deep);
+  }
+  .actions {
+    margin: 1.35rem 0 0;
+  }
+
+  .body {
+    padding-block: clamp(1.75rem, 4vw, 2.5rem);
+  }
+  .cv-sec {
+    padding-top: clamp(1.5rem, 2.5vw, 2rem);
+    margin-top: clamp(1rem, 1.8vw, 1.4rem);
+    border-top: 1px solid var(--line);
+  }
+  .cv-sec:first-child {
+    margin-top: 0;
+    border-top: 0;
+    padding-top: 0;
+  }
+  .cv-sec > h2 {
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.85rem;
+  }
+
+  .rows {
+    display: grid;
+    gap: 0.5rem;
+  }
+  .rows li {
+    display: grid;
+    grid-template-columns: 8.5rem minmax(0, 1fr);
+    gap: 0.9rem;
+    font-size: 0.885rem;
+    line-height: 1.5;
+  }
+  .period {
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: var(--accent);
+  }
+  .rows strong {
+    font-weight: 620;
+    color: var(--ink);
+  }
+  .quiet {
+    color: var(--muted);
+  }
+
+  .awards {
+    columns: 2;
+    column-gap: 2rem;
+    font-size: 0.855rem;
+    line-height: 1.5;
+  }
+  .awards li {
+    break-inside: avoid;
+    margin-bottom: 0.35rem;
+  }
+  .awards strong {
+    font-weight: 620;
+    color: var(--ink);
+  }
+  .awards .period {
+    margin-right: 0.2rem;
+  }
+
+  @media (max-width: 640px) {
+    .awards {
+      columns: 1;
+    }
+  }
+
+  .axes {
+    margin: 0;
+    font-size: 0.885rem;
+    color: var(--ink);
+  }
+  .axes .dot {
+    color: var(--line);
+  }
+
+  .pubs {
+    display: grid;
+    gap: 0.55rem;
+    counter-reset: pub;
+  }
+  .pubs li {
+    position: relative;
+    padding-left: 1.6rem;
+    font-size: 0.85rem;
+    line-height: 1.5;
+  }
+  .pubs li::before {
+    counter-increment: pub;
+    content: counter(pub) '.';
+    position: absolute;
+    left: 0;
+    color: var(--muted);
+    font-weight: 600;
+    font-size: 0.8rem;
+  }
+  .pub-title {
+    color: var(--ink);
+    font-weight: 550;
+  }
+  .pub-meta {
+    color: var(--muted);
+  }
+  .pub-meta i {
+    font-style: italic;
+    color: var(--body);
+  }
+
+  @media (max-width: 560px) {
+    .rows li {
+      grid-template-columns: minmax(0, 1fr);
+      gap: 0.1rem;
+    }
+  }
+
+  /* ── 인쇄 / PDF — 한 장에 담기도록 조인다 ─────────────────────── */
+  @media print {
+    .actions {
+      display: none;
+    }
+    .cv-head {
+      background: none;
+      padding-block: 0 0.55rem;
+    }
+    .cv-head .container,
+    .body {
+      max-width: none;
+    }
+    .body {
+      padding-block: 0;
+    }
+    .contact,
+    .summary {
+      font-size: 8.4pt;
+    }
+    .summary {
+      margin-top: 0.3rem;
+    }
+    .cv-sec {
+      padding-top: 0.6rem;
+      margin-top: 0.4rem;
+      break-inside: avoid;
+    }
+    .cv-sec > h2 {
+      font-size: 7.4pt;
+      margin-bottom: 0.3rem;
+      break-after: avoid-page;
+    }
+    .rows {
+      gap: 0.14rem;
+    }
+    .rows li {
+      grid-template-columns: 6.6rem minmax(0, 1fr);
+      gap: 0.6rem;
+      font-size: 8.1pt;
+      line-height: 1.32;
+    }
+    .period {
+      font-size: 7.7pt;
+    }
+    .axes {
+      font-size: 8.1pt;
+    }
+    .pubs {
+      gap: 0.14rem;
+    }
+    .pubs li {
+      font-size: 8pt;
+      line-height: 1.32;
+      padding-left: 1.25rem;
+    }
+    .awards {
+      font-size: 7.9pt;
+      line-height: 1.3;
+      column-gap: 1.3rem;
+    }
+    .awards li {
+      margin-bottom: 0.16rem;
+    }
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+  }
+</style>

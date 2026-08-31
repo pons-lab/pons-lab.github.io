@@ -78,3 +78,12 @@ export function affiliations(lang) {
   const inst = site.institution;
   return inst[`affiliations_${lang}`] ?? inst.affiliations_en;
 }
+
+// Short CV 머리말 요약 숫자. 데이터에서 세므로 논문·특허를 추가하면 저절로 맞는다.
+export function cvStats() {
+  return {
+    papers: publications.journals.filter((p) => p.year).length, // 게재 완료된 것만
+    patents: (cv.patents ?? []).length,
+    grants: research.projects.length,
+  };
+}

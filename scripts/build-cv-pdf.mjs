@@ -1,4 +1,6 @@
-// dist/cv 를 인쇄해 dist/cv.pdf 를 만든다.
+// dist 의 CV 페이지를 인쇄해 PDF 두 개를 만든다.
+//   /cv       → cv-full.pdf   (전체)
+//   /cv/short → cv-short.pdf  (한 장 요약)
 // 사이트에 이미 있는 CV 페이지를 그대로 쓰므로 내용이 두 벌로 갈라지지 않는다.
 //
 // dist 를 잠깐 HTTP 로 띄워서 연다. file:// 로 열면 페이지가 참조하는
@@ -11,11 +13,18 @@ import fs from 'node:fs';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const dist = path.join(root, 'dist');
-const out = path.join(dist, 'cv.pdf');
+// 예전에 공유된 /cv.pdf 링크가 죽지 않도록 전체 CV 를 그 이름으로도 남긴다.
+const TARGETS = [
+  { route: '/cv/', file: 'cv-full.pdf', alias: 'cv.pdf', maxPages: null },
+  // 요약본은 한 장에 담으려고 여백을 조금 줄인다.
+  { route: '/cv/short/', file: 'cv-short.pdf', alias: null, margin: '13mm 15mm' },
+];
 
-if (!fs.existsSync(path.join(dist, 'cv', 'index.html'))) {
-  console.error('dist/cv/index.html 이 없습니다. 먼저 npm run build 를 실행하세요.');
-  process.exit(1);
+for (const t of TARGETS) {
+  if (!fs.existsSync(path.join(dist, t.route.replace(/^\/|\/$/g, ''), 'index.html'))) {
+    console.error(`dist${t.route}index.html 이 없습니다. 먼저 npm run build 를 실행하세요.`);
+    process.exit(1);
+  }
 }
 
 const MIME = {
@@ -50,32 +59,42 @@ await new Promise((resolve) => server.listen(0, '127.0.0.1', resolve));
 const base = `http://127.0.0.1:${server.address().port}`;
 
 const browser = await chromium.launch();
-const page = await browser.newPage();
-await page.goto(`${base}/cv/`, { waitUntil: 'networkidle' });
-await page.emulateMedia({ media: 'print' });
-await page.evaluate(() => document.fonts.ready);
 
-// 스타일이 실제로 붙었는지 확인한다. 안 붙었으면 PDF 를 만들지 않고 실패시킨다.
-const styled = await page.evaluate(() => {
-  const h2 = document.querySelector('.cv-sec > h2');
-  return h2 ? getComputedStyle(h2).textTransform === 'uppercase' : false;
-});
-if (!styled) {
-  console.error('CV 페이지에 스타일이 적용되지 않았습니다. PDF 를 만들지 않고 중단합니다.');
-  await browser.close();
-  server.close();
-  process.exit(1);
+for (const target of TARGETS) {
+  const page = await browser.newPage();
+  await page.goto(`${base}${target.route}`, { waitUntil: 'networkidle' });
+  await page.emulateMedia({ media: 'print' });
+  await page.evaluate(() => document.fonts.ready);
+
+  // 스타일이 실제로 붙었는지 확인한다. 안 붙었으면 PDF 를 만들지 않고 실패시킨다.
+  const styled = await page.evaluate(() => {
+    const h2 = document.querySelector('.cv-sec > h2');
+    return h2 ? getComputedStyle(h2).textTransform === 'uppercase' : false;
+  });
+  if (!styled) {
+    console.error(`${target.route} 에 스타일이 적용되지 않았습니다. PDF 를 만들지 않고 중단합니다.`);
+    await browser.close();
+    server.close();
+    process.exit(1);
+  }
+
+  const out = path.join(dist, target.file);
+  await page.pdf({
+    path: out,
+    format: 'A4',
+    printBackground: false,
+    // 좌우 14mm 면 한 줄이 120자를 넘어 읽기 힘들다. 여백을 넓혀 100자 밑으로 둔다.
+    margin: target.margin
+      ? { top: '13mm', bottom: '13mm', left: '15mm', right: '15mm' }
+      : { top: '16mm', bottom: '16mm', left: '19mm', right: '19mm' },
+  });
+  await page.close();
+
+  if (target.alias) fs.copyFileSync(out, path.join(dist, target.alias));
+
+  const kb = Math.round(fs.statSync(out).size / 1024);
+  console.log(`${target.file} 생성 완료 (${kb} kB)`);
 }
-
-await page.pdf({
-  path: out,
-  format: 'A4',
-  printBackground: false,
-  // 좌우 14mm 면 한 줄이 120자를 넘어 읽기 힘들다. 여백을 넓혀 100자 밑으로 둔다.
-  margin: { top: '16mm', bottom: '16mm', left: '19mm', right: '19mm' },
-});
 
 await browser.close();
 server.close();
-
-console.log('cv.pdf 생성 완료 (' + Math.round(fs.statSync(out).size / 1024) + ' kB)');
