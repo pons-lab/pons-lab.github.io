@@ -29,7 +29,8 @@ const summary = t('cv.stats')
   .replace('{grants}', stats.grants);
 
 const selected = selectedPublications();
-const grants = projectsInOrder();
+// 요약본에는 연구책임자로 수행하는 과제만 싣는다.
+const grants = projectsInOrder().filter((g) => g.role === 'pi');
 const axes = research.axes.map((a) => pick(a, 'title', lang));
 
 // 학력·경력은 한 줄로 줄인다. Full CV 에 있는 GPA·연구실 상세는 싣지 않는다.
@@ -150,10 +151,6 @@ const awards = pi.awards.map((a) => ({
               <span>
                 <strong>{pick(g, 'title', lang)}</strong>
                 {g.funder_en && <span class="quiet">, {pick(g, 'funder', lang)}</span>}
-                <span class="quiet">
-                  {' — '}
-                  {g.role === 'pi' ? t('research.role_pi') : t('research.role_researcher')}
-                </span>
               </span>
             </li>
           ))

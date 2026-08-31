@@ -30,7 +30,7 @@ jobs:
 
       - run: npm ci
 
-      # CV 페이지를 인쇄해 dist/cv.pdf 를 만든다 (Download CV 버튼이 이 파일을 가리킴)
+      # CV 페이지를 인쇄해 dist/cv-full.pdf 와 dist/cv-short.pdf 를 만든다
       - run: npx playwright install --with-deps chromium
 
       - run: npm run build

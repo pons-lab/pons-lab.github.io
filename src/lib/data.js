@@ -80,10 +80,11 @@ export function affiliations(lang) {
 }
 
 // Short CV 머리말 요약 숫자. 데이터에서 세므로 논문·특허를 추가하면 저절로 맞는다.
+// 과제는 아래 Current Grants 에 싣는 것과 같은 기준(연구책임자)으로 센다.
 export function cvStats() {
   return {
     papers: publications.journals.filter((p) => p.year).length, // 게재 완료된 것만
     patents: (cv.patents ?? []).length,
-    grants: research.projects.length,
+    grants: research.projects.filter((p) => p.role === 'pi').length,
   };
 }

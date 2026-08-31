@@ -78,7 +78,7 @@ const jsonLd = {
 // 한국어 페이지에는 한글 글꼴(Noto Sans KR)을 추가로 받는다.
 const INTER = 'Inter:ital,wght@0,400;0,450;0,500;0,550;0,600;0,650;0,700;1,400;1,500';
 // 영문 페이지라도 한글이 실려 있으면(한국 특허 발명자명 등) 한글 글꼴이 필요하다.
-// 특히 cv.pdf 는 CI 의 리눅스에서 인쇄하는데 그 환경에는 시스템 한글 글꼴이 없어
+// 특히 CV PDF 는 CI 의 리눅스에서 인쇄하는데 그 환경에는 시스템 한글 글꼴이 없어
 // 글꼴을 받지 않으면 네모(두부)로 찍힌다.
 const KOREAN_IN_PAGE = ['/cv', '/publications/patent'];
 const needsKorean =

@@ -13,9 +13,8 @@ import fs from 'node:fs';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const dist = path.join(root, 'dist');
-// 예전에 공유된 /cv.pdf 링크가 죽지 않도록 전체 CV 를 그 이름으로도 남긴다.
 const TARGETS = [
-  { route: '/cv/', file: 'cv-full.pdf', alias: 'cv.pdf', maxPages: null },
+  { route: '/cv/', file: 'cv-full.pdf' },
   // 요약본은 한 장에 담으려고 여백을 조금 줄인다.
   { route: '/cv/short/', file: 'cv-short.pdf', alias: null, margin: '13mm 15mm' },
 ];
@@ -89,8 +88,6 @@ for (const target of TARGETS) {
       : { top: '16mm', bottom: '16mm', left: '19mm', right: '19mm' },
   });
   await page.close();
-
-  if (target.alias) fs.copyFileSync(out, path.join(dist, target.alias));
 
   const kb = Math.round(fs.statSync(out).size / 1024);
   console.log(`${target.file} 생성 완료 (${kb} kB)`);
