@@ -66,6 +66,9 @@ body {
   letter-spacing: -0.003em;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  /* 마지막 줄에 한 단어만 남는 것을 브라우저가 알아서 피하게 한다. */
+  text-wrap: pretty;
 }
 
 :lang(ko) body,

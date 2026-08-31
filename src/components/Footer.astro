@@ -1,6 +1,7 @@
 ---
 import Affiliation from './Affiliation.astro';
 import { site } from '../lib/data.js';
+import { keepTogether } from '../lib/text.js';
 import { navItems } from '../i18n/ui.js';
 import { getLangFromUrl, useTranslations, localizePath } from '../i18n/utils.js';
 
@@ -18,7 +19,7 @@ const year = new Date().getFullYear();
 <footer class="site-footer">
   <div class="container inner">
     <div class="about">
-      <p class="name">{labName}</p>
+      <p class="name">{keepTogether(labName)}</p>
       <p class="tag">{site.tagline[lang]}</p>
       <p class="affil"><Affiliation /></p>
     </div>
@@ -62,7 +63,7 @@ const year = new Date().getFullYear();
 
   .inner {
     display: grid;
-    grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr) minmax(0, 1fr);
+    grid-template-columns: minmax(0, 1.55fr) minmax(0, 1fr) minmax(0, 1fr);
     gap: clamp(1.5rem, 3vw, 2.5rem);
     padding-block: clamp(2.25rem, 4vw, 3rem) 1.75rem;
   }

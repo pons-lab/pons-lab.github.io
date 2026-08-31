@@ -9,6 +9,7 @@
  * prefix 를 주면 첫 줄 앞에 "직위 · " 형태로 붙는다 (CV 머리말용).
  */
 import { affiliations } from '../lib/data.js';
+import { keepTogether } from '../lib/text.js';
 import { getLangFromUrl } from '../i18n/utils.js';
 
 const { prefix } = Astro.props;
@@ -18,7 +19,9 @@ const list = affiliations(getLangFromUrl(Astro.url));
 <span class="affiliation">
   {
     list.map((line, i) => (
-      <span class="affiliation-line">{i === 0 && prefix ? `${prefix} · ${line}` : line}</span>
+      <span class="affiliation-line">
+        {keepTogether(i === 0 && prefix ? `${prefix} · ${line}` : line)}
+      </span>
     ))
   }
 </span>
