@@ -1,14 +1,16 @@
 ---
 import { getCollection } from 'astro:content';
 import NewsItem from '../NewsItem.astro';
+import { site } from '../../lib/data.js';
 import { getLangFromUrl, useTranslations, localizePath } from '../../i18n/utils.js';
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 
+// 몇 건을 보여줄지는 site.yaml 에서 정한다.
 const items = (await getCollection('news'))
   .sort((a, b) => b.data.date - a.data.date)
-  .slice(0, 3);
+  .slice(0, site.home_news_count ?? 3);
 ---
 
 <section class="section">

@@ -88,6 +88,10 @@ contact:
 
   map_url: https://maps.google.com/?q=연세대학교+미래캠퍼스+산학관
 
+# 메인 페이지 "Latest from the lab" 에 몇 건을 보여줄지.
+# 뉴스가 쌓이면 이 숫자만 바꾸면 됩니다.
+home_news_count: 5
+
 # 메인 페이지 Join 밴드의 배경 사진 (src/assets/ 아래 경로).
 # 비워두면 배경 사진 없이 예전처럼 단색 밴드가 됩니다.
 join_background: join-circuit.webp
