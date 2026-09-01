@@ -89,12 +89,13 @@ export function cvStats() {
   };
 }
 
-// 전체 주소 = 방 번호 + 캠퍼스 주소. 주소 본문은 site.yaml 한 곳에만 있다.
+// 전체 주소를 의미 단위 조각 배열로 돌려준다. 주소 본문은 site.yaml 한 곳에만 있다.
+// 조각 안에서는 줄이 바뀌지 않게 화면에서 처리한다 (Address.astro).
 export function fullAddress(place, lang) {
   const a = site.contact.address;
   return lang === 'ko'
-    ? `${a.street_ko}, ${place.room_ko} (${a.postal_code})`
-    : `${place.room_en}, ${a.street_en}`;
+    ? [...a.lines_ko, `${place.room_ko} (${a.postal_code})`]
+    : [place.room_en, ...a.lines_en];
 }
 
 // 수상은 연·월 역순으로. 학기 표기("2014 Fall")도 월로 바꿔 같은 자로 잰다.

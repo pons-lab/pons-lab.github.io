@@ -1,7 +1,8 @@
 ---
 import Affiliation from '../Affiliation.astro';
 import PageHero from '../PageHero.astro';
-import { site, members, fullAddress } from '../../lib/data.js';
+import Address from '../Address.astro';
+import { site, members } from '../../lib/data.js';
 import { getLangFromUrl, useTranslations, pick } from '../../i18n/utils.js';
 
 const lang = getLangFromUrl(Astro.url);
@@ -9,9 +10,7 @@ const t = useTranslations(lang);
 
 const lab = site.contact.lab;
 const office = site.contact.office;
-const labAddress = fullAddress(lab, lang);
 const labRoom = lang === 'ko' ? lab.room_ko : lab.room_en;
-const officeAddress = fullAddress(office, lang);
 const officeRoom = lang === 'ko' ? office.room_ko : office.room_en;
 const how = lang === 'ko' ? site.recruiting.how_to_apply_ko : site.recruiting.how_to_apply_en;
 ---
@@ -26,7 +25,7 @@ const how = lang === 'ko' ? site.recruiting.how_to_apply_ko : site.recruiting.ho
           <dt>{t('contact.lab')}</dt>
           <dd>
             <p class="strongish">{labRoom}</p>
-            <p>{labAddress}</p>
+            <p><Address place={lab} /></p>
             {lab.phone && (
               <p><a href={`tel:${lab.phone}`}>{lab.phone_display}</a></p>
             )}
@@ -61,7 +60,7 @@ const how = lang === 'ko' ? site.recruiting.how_to_apply_ko : site.recruiting.ho
           <dt>{t('contact.office')}</dt>
           <dd>
             <p class="strongish">{officeRoom}</p>
-            <p>{officeAddress}</p>
+            <p><Address place={office} /></p>
             <p><a href={`tel:${office.phone}`}>{office.phone_display}</a></p>
           </dd>
         </div>

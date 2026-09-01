@@ -49,7 +49,7 @@ const jsonLd = {
       },
       address: {
         '@type': 'PostalAddress',
-        streetAddress: `${site.contact.lab.room_en}, ${site.contact.address.street_en.split(',')[0]}`,
+        streetAddress: `${site.contact.lab.room_en}, ${site.contact.address.lines_en[0]}`,
         addressLocality: site.contact.address.locality_en,
         addressRegion: site.contact.address.region_en,
         postalCode: site.contact.address.postal_code,

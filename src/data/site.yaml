@@ -59,8 +59,15 @@ contact:
   # 실험실·교수 연구실의 전체 주소는 아래 room 을 앞에 붙여 자동으로 만듭니다
   # (data.js 의 fullAddress). 다른 파일에 주소를 다시 적지 마세요.
   address:
-    street_en: 1 Yeonsedae-gil, Heungeop-myeon, Wonju-si, Gangwon-do 26493, Republic of Korea
-    street_ko: 강원특별자치도 원주시 흥업면 연세대길 1
+    # 의미 단위로 나눠 적습니다. 화면에서는 한 조각이 통째로 움직이고,
+    # 줄은 조각과 조각 사이에서만 바뀝니다 (Address.astro).
+    # 앞에 방 번호가 한 조각으로 더 붙습니다.
+    lines_en:
+      - 1 Yeonsedae-gil, Heungeop-myeon
+      - Wonju-si, Gangwon-do 26493
+      - Republic of Korea
+    lines_ko:
+      - 강원특별자치도 원주시 흥업면 연세대길 1
     postal_code: "26493"
     locality_en: Wonju-si
     region_en: Gangwon-do

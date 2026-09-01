@@ -1,0 +1,53 @@
+---
+/**
+ * 주소 표시.
+ *
+ * 주소는 site.yaml 에서 의미 단위로 나눠 둔다("Wonju-si, Gangwon-do 26493" 처럼).
+ * 한 단위 안에서 줄이 바뀌면 도시와 도가 갈라져 읽기 어려우므로,
+ * 각 조각은 통째로 움직이고(nowrap) 줄은 조각과 조각 사이에서만 바뀐다.
+ *
+ *   stack  좁은 칸(푸터 등)에서 조각마다 한 줄씩 쌓고 싶을 때
+ */
+import { fullAddress } from '../lib/data.js';
+import { getLangFromUrl } from '../i18n/utils.js';
+
+const { place, stack = false } = Astro.props;
+const segments = fullAddress(place, getLangFromUrl(Astro.url));
+---
+
+<span class:list={['address', { stack }]}>
+  {
+    segments.map((seg, i) => (
+      <>
+        <span class="seg">{seg}</span>
+        {i < segments.length - 1 && <span class="sep">, </span>}
+      </>
+    ))
+  }
+</span>
+
+<style>
+  .seg {
+    white-space: nowrap;
+  }
+
+  /* 조각마다 한 줄씩. 줄이 바뀌므로 사이의 쉼표는 지운다. */
+  .stack,
+  .stack .seg {
+    display: block;
+  }
+  .stack .sep {
+    display: none;
+  }
+
+  /* 좁은 화면에서는 어느 자리에 쓰였든 세로로 쌓는다. */
+  @media (max-width: 560px) {
+    .address,
+    .address .seg {
+      display: block;
+    }
+    .address .sep {
+      display: none;
+    }
+  }
+</style>

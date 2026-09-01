@@ -72,7 +72,7 @@
     line-height: 1.4 !important;
     margin: 0 !important;
   }
-  article.cv .contact span {
+  article.cv .contact > span {
     margin-right: 4mm !important;
   }
   article.cv .summary {

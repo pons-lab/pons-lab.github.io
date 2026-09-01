@@ -1,8 +1,8 @@
 ---
 import PiIdentity from '../PiIdentity.astro';
+import Address from '../Address.astro';
 import Authors from '../Authors.astro';
 import {
-  fullAddress,
   site,
   members,
   cv,
@@ -52,7 +52,6 @@ const inventorList = (text) =>
 
 // 학술 경력의 첫 항목(현직)에는 연구실 이름을 함께 적는다.
 const labName = lang === 'ko' ? site.name.display_ko : site.name.full_en;
-const officeAddress = fullAddress(office, lang);
 const levelLabel = (level) =>
   level === 'graduate' ? t('lectures.graduate') : t('lectures.undergraduate');
 
@@ -66,7 +65,7 @@ const nameLang = (p) => (/[가-힣]/.test(p.inventors) ? 'ko' : 'en');
     <div class="container">
       <PiIdentity size="lg" level={1} />
       <p class="contact">
-        <span>{officeAddress}</span>
+        <span><Address place={office} /></span>
         <span><a href={`mailto:${site.contact.email}`}>{site.contact.email}</a></span>
         <span><a href={`tel:${office.phone}`}>{office.phone_display}</a></span>
         {pi.scholar_url && (
