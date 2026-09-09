@@ -106,6 +106,12 @@ pi:
 
   # ── 학술단체 활동 ────────────────────────────────────────────────────
   service:
+    - period: 2026.08 – 2027.12
+      period_ko: 2026.08 – 2027.12
+      role_en: Director of Domestic Academic Affairs, Academic Committee
+      role_ko: 학술위원회 국내학술이사
+      org_en: Korea BCI Society
+      org_ko: 한국BCI학회
     - period: 2026.01 – present
       period_ko: 2026.01 – 현재
       role_en: Committee Member, Academic Affairs (Brain Engineering)

@@ -345,31 +345,31 @@
     margin-bottom: 1.4mm !important;
   }
   article.cv.short .cv-sec {
-    padding-top: 2.7mm !important;
+    padding-top: 2.3mm !important;
   }
   article.cv.short .cv-sec:first-child {
     padding-top: 3.2mm !important;
   }
   article.cv.short .cv-sec + .cv-sec {
-    margin-top: 1.8mm !important;
+    margin-top: 1.5mm !important;
   }
   article.cv.short .cv-sec > h2 {
     font-size: 7.8pt !important;
-    margin-bottom: 1.5mm !important;
+    margin-bottom: 1.3mm !important;
   }
   article.cv.short .rows li,
   article.cv.short .grants li {
-    margin-bottom: 1.5mm !important;
+    margin-bottom: 1.25mm !important;
     font-size: 8.7pt !important;
-    line-height: 1.36 !important;
+    line-height: 1.34 !important;
   }
   article.cv.short .rows .period {
     font-size: 8.1pt !important;
   }
   article.cv.short .pubs li {
-    margin-bottom: 1.5mm !important;
+    margin-bottom: 1.25mm !important;
     font-size: 8.4pt !important;
-    line-height: 1.36 !important;
+    line-height: 1.34 !important;
   }
   article.cv.short .axes {
     font-size: 8.7pt !important;
