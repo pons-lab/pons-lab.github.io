@@ -114,6 +114,8 @@ export const ui = {
     'lectures.lead': 'Courses taught by our PI at Yonsei University Mirae Campus.',
     'lectures.undergraduate': 'Undergraduate',
     'lectures.graduate': 'Graduate',
+    'lectures.in_english': 'English',
+    'lectures.in_english_cv': 'taught in English',
 
     'news.title': 'News',
     'news.lead': 'New members, awards, research projects, and milestones from the lab.',
@@ -280,6 +282,8 @@ export const ui = {
     'lectures.lead': '연세대학교 미래캠퍼스에서 진행한 강의 목록입니다.',
     'lectures.undergraduate': 'Undergraduate',
     'lectures.graduate': 'Graduate',
+    'lectures.in_english': '영어 강의',
+    'lectures.in_english_cv': 'taught in English',
 
     'news.title': 'News',
     'news.lead': '새로 합류한 구성원, 수상, 연구과제 등 연구실의 소식을 전합니다.',

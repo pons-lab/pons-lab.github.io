@@ -122,6 +122,10 @@ src/content/news/*.md        # 뉴스 (파일 1개 = 글 1개)
 | 논문 | `"[제목]" has been published in [저널]!` |
 | 과제 | `Our lab has been awarded a new grant on [주제].` |
 
+**과제 뉴스는 과제 1건당 1개 항목으로 쓰고, 역할은 문장 끝에
+`(Principal investigator)` / `(Participating researcher)` 로 표기한다.**
+한국어는 `(연구책임자)` / `(참여 연구자)`. 여러 과제를 한 항목에 묶지 않는다.
+
 - **느낌표는 써도 된다.** 축하·환영에는 오히려 자연스럽다.
 - **이모지는 쓰지 않는다.**
 - **날짜와 태그를 문장에 다시 적지 않는다.** 목록에 이미 "September 2026 · People"

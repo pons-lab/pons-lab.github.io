@@ -30,7 +30,12 @@ const levelLabel = (level) =>
             <ul class="courses">
               {s.courses.map((c) => (
                 <li class="card course">
-                  <span class:list={['level', c.level]}>{levelLabel(c.level)}</span>
+                  <span class="labels">
+                    <span class:list={['level', c.level]}>{levelLabel(c.level)}</span>
+                    {c.language === 'en' && (
+                      <span class="tag lang">{t('lectures.in_english')}</span>
+                    )}
+                  </span>
                   <div class="titles">
                     <strong>{pick(c, 'title', lang)}</strong>
                     {lang === 'ko' ? (
@@ -53,6 +58,17 @@ const levelLabel = (level) =>
   .semesters {
     display: grid;
     gap: clamp(2.25rem, 4vw, 3.25rem);
+  }
+
+  .labels {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.4rem;
+  }
+  /* 영어 강의 배지 — 뉴스 태그와 같은 모양 */
+  .tag.lang {
+    white-space: nowrap;
   }
 
   .term {

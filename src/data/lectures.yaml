@@ -3,6 +3,7 @@
 #
 # 새 학기를 추가하려면 semesters: 맨 위에 블록을 하나 복사해서 고치세요.
 #   level: undergraduate(학부) 또는 graduate(대학원)
+#   language: en 을 적으면 영어 강의 배지가 붙습니다. 생략하면 한국어 강의입니다.
 # ============================================================================
 
 semesters:
@@ -17,6 +18,10 @@ semesters:
       - level: graduate
         title_ko: "맞춤형 헬스케어를 위한 생체신호 처리: 응용 및 심화"
         title_en: "Biosignal Processing for Personalized Healthcare: Applications and Advanced Topics"
+        language: en
+      - level: graduate
+        title_ko: 웨어러블 헬스케어 시스템
+        title_en: Wearable Healthcare Systems
 
   - id: 2026-1
     year: 2026
@@ -35,6 +40,7 @@ semesters:
       - level: graduate
         title_ko: "맞춤형 헬스케어를 위한 생체신호 처리: 기초"
         title_en: "Biosignal Processing for Personalized Healthcare: Fundamentals"
+        language: en
 
   - id: 2025-2
     year: 2025
@@ -59,3 +65,4 @@ semesters:
       - level: graduate
         title_ko: 고급 뇌-컴퓨터 인터페이스
         title_en: Advanced Brain–Computer Interfaces
+        language: en

@@ -264,7 +264,12 @@ const nameLang = (p) => (/[가-힣]/.test(p.inventors) ? 'ko' : 'en');
                   <>
                     {i > 0 && ' · '}
                     {pick(c, 'title', lang)}
-                    <span class="lvl"> ({levelLabel(c.level)})</span>
+                    <span class="lvl">
+                      {' ('}
+                      {levelLabel(c.level)}
+                      {c.language === 'en' && `, ${t('lectures.in_english_cv')}`}
+                      {')'}
+                    </span>
                   </>
                 ))}
               </span>
