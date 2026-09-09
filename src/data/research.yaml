@@ -182,6 +182,17 @@ axes:
 # 과제: funder_(en|ko) 는 지원기관, program_(en|ko) 는 부처·사업명입니다.
 # NTIS(ntis.go.kr)에서 과제고유번호로 확인해 채웁니다. 비워두면 화면에 표시되지 않습니다.
 projects:
+  - period: 2026.07 – 2030.12
+    title_en: >-
+      BCI-INSIDE-OUT-EARS: EEG-Acoustic Dual-Signal Sensing and Personalized
+      Real-World Care for Senior Depression
+    title_ko: >-
+      뇌파-음향 이중 신호 탐지 기반 비침습 BCI를 통한 노인 우울의
+      맞춤형 실생활 돌봄 플랫폼 구축
+    short_en: Senior Depression Care Platform
+    short_ko: 노인 우울 돌봄 플랫폼
+    role: researcher
+
   - period: 2026.03 – 2030.02
     title_en: >-
       Bio-Stimulation and Disease Prevention Monitoring Based on Conductive

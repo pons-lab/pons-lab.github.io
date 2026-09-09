@@ -341,6 +341,14 @@ groups:
         name_ko: 최은호
         since: 2026.04
         photo: ""
+      - name_en: Geonho Cheon
+        name_ko: 천건호
+        since: 2026.09
+        photo: ""
+      - name_en: Sumin Han
+        name_ko: 한수민
+        since: 2026.09
+        photo: ""
 
 # ---------------------------------------------------------------------------
 # 알럼나이 (연구실을 거쳐간 구성원) — 최근 순
