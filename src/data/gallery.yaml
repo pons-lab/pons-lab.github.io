@@ -9,9 +9,18 @@
 # folder 에 적은 폴더 안의 사진이 자동으로 모두 표시됩니다.
 # 첫 번째 사진이 대표 사진(썸네일)이 되므로, 대표로 쓰고 싶은 사진의 파일 이름을
 # 01.jpg 처럼 앞 번호로 바꿔주면 됩니다.
+#
+# 영상을 함께 넣으려면 public/gallery/ 에 mp4 를 두고 video: 에 경로를 적습니다.
+# (웹용으로 720p H.264 로 압축해서 넣습니다. 사진 뒤에 이어서 재생됩니다.)
 # ============================================================================
 
 events:
+  - folder: 2026-09-birthday
+    date: 2026-09
+    title_en: Birthday party
+    title_ko: 생일파티
+    video: /gallery/2026-09-birthday.mp4
+
   - folder: 2026-08-lab-install
     date: 2026-08
     title_en: Lab space upgrade

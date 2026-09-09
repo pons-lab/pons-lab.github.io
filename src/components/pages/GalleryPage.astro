@@ -23,6 +23,9 @@ const events = await Promise.all(
 );
 
 const countLabel = (n) => (lang === 'ko' ? `사진 ${n}장` : `${n} photo${n > 1 ? 's' : ''}`);
+// 영상이 있으면 사진 장수 뒤에 덧붙인다.
+const metaLabel = (e) =>
+  e.video ? `${countLabel(e.photos.length)} · ${lang === 'ko' ? '영상 1개' : '1 video'}` : countLabel(e.photos.length);
 ---
 
 <PageHero
@@ -40,7 +43,10 @@ const countLabel = (n) => (lang === 'ko' ? `사진 ${n}장` : `${n} photo${n > 1
             <button
               class="card card-hover event"
               type="button"
-              data-gallery={JSON.stringify(e.large.map((l) => l.src))}
+              data-gallery={JSON.stringify([
+                ...e.large.map((l) => ({ type: 'image', src: l.src })),
+                ...(e.video ? [{ type: 'video', src: e.video }] : []),
+              ])}
               data-title={pick(e, 'title', lang)}
             >
               <span class="cover">
@@ -51,13 +57,20 @@ const countLabel = (n) => (lang === 'ko' ? `사진 ${n}장` : `${n} photo${n > 1
                   densities={[1, 2]}
                   loading="lazy"
                 />
-                <span class="count mono-num">{e.photos.length}</span>
+                <span class="count mono-num">{e.photos.length + (e.video ? 1 : 0)}</span>
+                {e.video && (
+                  <span class="has-video" aria-hidden="true">
+                    <svg width="13" height="13" viewBox="0 0 16 16" fill="currentColor">
+                      <path d="M5 3.5v9l8-4.5-8-4.5Z" />
+                    </svg>
+                  </span>
+                )}
               </span>
               <span class="body">
                 <span class="ev-title">{pick(e, 'title', lang)}</span>
                 <span class="ev-meta mono-num">
                   {e.date && <>{e.date.replace('-', '.')} · </>}
-                  {countLabel(e.photos.length)}
+                  {metaLabel(e)}
                 </span>
               </span>
             </button>
@@ -86,6 +99,7 @@ const countLabel = (n) => (lang === 'ko' ? `사진 ${n}장` : `${n} photo${n > 1
 
   <figure class="lb-figure">
     <img class="lb-img" alt="" />
+    <video class="lb-video" controls playsinline preload="metadata" hidden></video>
     <figcaption class="lb-cap"></figcaption>
   </figure>
 
@@ -126,6 +140,21 @@ const countLabel = (n) => (lang === 'ko' ? `사진 ${n}장` : `${n} photo${n > 1
     border-bottom: 1px solid var(--line);
     overflow: hidden;
   }
+  /* 영상이 있는 행사에는 재생 표시를 얹는다. */
+  .has-video {
+    position: absolute;
+    left: 0.6rem;
+    bottom: 0.6rem;
+    display: grid;
+    place-items: center;
+    width: 1.7rem;
+    height: 1.7rem;
+    padding-left: 1px;
+    border-radius: 50%;
+    background: rgba(10, 16, 28, 0.72);
+    color: #fff;
+  }
+
   .cover :global(img) {
     width: 100%;
     height: 100%;
@@ -199,7 +228,8 @@ const countLabel = (n) => (lang === 'ko' ? `사진 ${n}장` : `${n} photo${n > 1
     min-width: 0;
     max-width: min(1400px, 92vw);
   }
-  .lb-img {
+  .lb-img,
+  .lb-video {
     max-width: 100%;
     max-height: 78dvh;
     width: auto;
@@ -257,7 +287,8 @@ const countLabel = (n) => (lang === 'ko' ? `사진 ${n}장` : `${n} photo${n > 1
     .lb-next {
       right: 1.25rem;
     }
-    .lb-img {
+    .lb-img,
+    .lb-video {
       max-height: 68dvh;
     }
   }
@@ -266,6 +297,7 @@ const countLabel = (n) => (lang === 'ko' ? `사진 ${n}장` : `${n} photo${n > 1
 <script>
   const dialog = document.querySelector('.lightbox');
   const img = dialog?.querySelector('.lb-img');
+  const video = dialog?.querySelector('.lb-video');
   const cap = dialog?.querySelector('.lb-cap');
   const prev = dialog?.querySelector('.lb-prev');
   const next = dialog?.querySelector('.lb-next');
@@ -278,7 +310,23 @@ const countLabel = (n) => (lang === 'ko' ? `사진 ${n}장` : `${n} photo${n > 1
 
   const show = (i) => {
     index = (i + photos.length) % photos.length;
-    img.src = photos[index];
+    const item = photos[index];
+
+    // 사진에서 넘어올 때 재생 중이던 영상을 멈춘다.
+    video.pause();
+
+    if (item.type === 'video') {
+      video.src = item.src;
+      video.hidden = false;
+      img.hidden = true;
+      img.removeAttribute('src');
+    } else {
+      img.src = item.src;
+      img.hidden = false;
+      video.hidden = true;
+      video.removeAttribute('src');
+    }
+
     cap.textContent = `${title} (${index + 1}/${photos.length})`;
     const single = photos.length < 2;
     prev.hidden = single;
@@ -305,7 +353,10 @@ const countLabel = (n) => (lang === 'ko' ? `사진 ${n}장` : `${n} photo${n > 1
   });
 
   // 닫히면 눌렀던 카드로 초점을 돌려준다.
-  dialog?.addEventListener('close', () => opener?.focus());
+  dialog?.addEventListener('close', () => {
+    video?.pause();
+    opener?.focus();
+  });
 
   dialog?.addEventListener('keydown', (e) => {
     if (e.key === 'ArrowLeft') show(index - 1);
