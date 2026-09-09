@@ -99,7 +99,8 @@ const metaLabel = (e) =>
 
   <figure class="lb-figure">
     <img class="lb-img" alt="" />
-    <video class="lb-video" controls playsinline preload="metadata" hidden></video>
+    {/* 기본은 음소거. 컨트롤에 음소거 해제 버튼이 있어 원하면 소리를 켤 수 있다. */}
+    <video class="lb-video" controls muted playsinline preload="metadata" hidden></video>
     <figcaption class="lb-cap"></figcaption>
   </figure>
 
