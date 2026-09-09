@@ -30,14 +30,14 @@ const levelLabel = (level) =>
             <ul class="courses">
               {s.courses.map((c) => (
                 <li class="card course">
-                  <span class="labels">
-                    <span class:list={['level', c.level]}>{levelLabel(c.level)}</span>
-                    {c.language === 'en' && (
-                      <span class="tag lang">{t('lectures.in_english')}</span>
-                    )}
-                  </span>
+                  <span class:list={['level', c.level]}>{levelLabel(c.level)}</span>
                   <div class="titles">
-                    <strong>{pick(c, 'title', lang)}</strong>
+                    <strong>
+                      {pick(c, 'title', lang)}
+                      {c.language === 'en' && (
+                        <span class="tag lang">{t('lectures.in_english')}</span>
+                      )}
+                    </strong>
                     {lang === 'ko' ? (
                       <span class="alt">{c.title_en}</span>
                     ) : (
@@ -60,15 +60,11 @@ const levelLabel = (level) =>
     gap: clamp(2.25rem, 4vw, 3.25rem);
   }
 
-  .labels {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: 0.4rem;
-  }
-  /* 영어 강의 배지 — 뉴스 태그와 같은 모양 */
+  /* 영어 강의 배지 — 뉴스 태그와 같은 모양. 제목 옆에 붙는다. */
   .tag.lang {
+    margin-left: 0.5rem;
     white-space: nowrap;
+    vertical-align: 0.08em;
   }
 
   .term {
@@ -103,20 +99,21 @@ const levelLabel = (level) =>
     gap: 0.75rem;
   }
 
+  /* 라벨 칸을 고정 폭으로 둬야 과목마다 제목이 같은 자리에서 시작한다.
+     (auto 로 두면 라벨 길이에 따라 제목이 좌우로 밀린다) */
   .course {
     display: grid;
-    grid-template-columns: auto minmax(0, 1fr);
-    gap: 0.35rem 1rem;
+    grid-template-columns: 7.2rem minmax(0, 1fr);
+    gap: 0.35rem 1.1rem;
     align-items: center;
     padding: 1.05rem clamp(1.1rem, 2vw, 1.4rem);
   }
 
   .level {
-    flex: none;
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    min-width: 4.4rem;
+    width: 100%;
     padding: 0.28rem 0.6rem;
     border-radius: 999px;
     font-size: 0.72rem;
@@ -156,6 +153,8 @@ const levelLabel = (level) =>
     }
     .level {
       justify-self: start;
+      width: auto;
+      min-width: 4.4rem;
     }
   }
 </style>
