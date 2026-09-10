@@ -170,6 +170,29 @@ export const ui = {
     'cv.patent_application': 'Pending',
     'cv.conferences': 'Conference Presentations',
     'cv.awards': 'Honors & Awards',
+    /* 페이지별 메타 설명 — 검색 결과 스니펫과 링크 공유 미리보기에 쓰입니다. */
+    'desc.research':
+      'Soft on-body bioelectronics, neural and human-machine interfaces, and biosignal intelligence — the three research axes and current projects of PONS Lab.',
+    'desc.people':
+      'The people of PONS Lab — principal investigator Hodam Kim, graduate and undergraduate researchers, and alumni.',
+    'desc.journal':
+      'Peer-reviewed journal articles from PONS Lab, grouped by year with DOI links.',
+    'desc.conference':
+      'Conference presentations from PONS Lab at international and domestic meetings.',
+    'desc.patent': 'Patents filed and registered by PONS Lab.',
+    'desc.lectures':
+      'Courses taught by the principal investigator of PONS Lab at Yonsei University Mirae Campus, by semester.',
+    'desc.news':
+      'New members, awards, research grants, and milestones from PONS Lab.',
+    'desc.gallery':
+      'Photos from PONS Lab — conferences, milestones, and everyday life in the lab.',
+    'desc.contact':
+      'How to reach PONS Lab at Yonsei University Mirae Campus — address, email, phone, and how to apply to join.',
+    'desc.cv':
+      'Curriculum vitae of Hodam Kim, Assistant Professor and principal investigator of PONS Lab.',
+    'desc.cv_short':
+      'One-page curriculum vitae of Hodam Kim, Assistant Professor and principal investigator of PONS Lab.',
+
     'a11y.skip': 'Skip to content',
     'a11y.lang': 'Language',
     'notfound.title': 'Page not found',
@@ -338,6 +361,23 @@ export const ui = {
     'cv.patent_application': 'Application',
     'cv.conferences': 'Conference Presentations',
     'cv.awards': 'Honors & Awards',
+    /* 페이지별 메타 설명 — 검색 결과 스니펫과 링크 공유 미리보기에 쓰입니다. */
+    'desc.research':
+      '소프트 웨어러블 바이오일렉트로닉스, 뇌·인간-기계 인터페이스, 생체신호 지능 — 뇌·신체·기계 인터페이스 연구실(PONS Lab)의 연구 3축과 진행 중인 과제.',
+    'desc.people':
+      'PONS Lab 구성원 소개 — 지도교수 김호담, 대학원생과 학부연구생, 그리고 알럼나이.',
+    'desc.journal': 'PONS Lab 의 학술지 논문 목록. 연도별로 정리했고 DOI 링크를 함께 제공합니다.',
+    'desc.conference': 'PONS Lab 이 발표한 국제·국내 학회 발표 목록.',
+    'desc.patent': 'PONS Lab 의 출원·등록 특허 목록.',
+    'desc.lectures':
+      '연세대학교 미래캠퍼스에서 PONS Lab 지도교수가 진행한 학기별 강의 목록.',
+    'desc.news': '새로 합류한 구성원, 수상, 연구과제 등 PONS Lab 의 소식.',
+    'desc.gallery': '학회, 기념일, 연구실 일상 — PONS Lab 의 사진 기록.',
+    'desc.contact':
+      '연세대학교 미래캠퍼스 PONS Lab 연락처 — 주소, 이메일, 전화, 그리고 연구실 지원 방법.',
+    'desc.cv': 'PONS Lab 지도교수 김호담(Hodam Kim)의 전체 이력서.',
+    'desc.cv_short': 'PONS Lab 지도교수 김호담(Hodam Kim)의 1쪽 요약 이력서.',
+
     'a11y.skip': '본문으로 건너뛰기',
     'a11y.lang': '언어',
     'notfound.title': 'Page not found',

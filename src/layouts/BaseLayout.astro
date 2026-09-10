@@ -28,7 +28,9 @@ const pageDescription = description || site.description[lang];
 const canonical = new URL(Astro.url.pathname, Astro.site).href;
 const enHref = new URL(alternatePath(Astro.url.pathname, 'en'), Astro.site).href;
 const koHref = new URL(alternatePath(Astro.url.pathname, 'ko'), Astro.site).href;
-const ogImageUrl = new URL(ogImage || '/og-image.svg', Astro.site).href;
+// 공유 미리보기 이미지는 PNG 여야 한다 — 카카오톡·페이스북·링크드인은 SVG 를 렌더하지 않는다.
+// (원본은 public/og-image.svg, 고친 뒤 1200x630 PNG 로 다시 구워야 한다)
+const ogImageUrl = new URL(ogImage || '/og-image.png', Astro.site).href;
 
 // 검색엔진용 구조화 데이터 — 연구실(Organization)과 PI(Person)
 const jsonLd = {
@@ -104,6 +106,9 @@ const jsonLd = {
     <meta property="og:description" content={pageDescription} />
     <meta property="og:url" content={canonical} />
     <meta property="og:image" content={ogImageUrl} />
+    <meta property="og:image:type" content="image/png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
     <meta property="og:locale" content={lang === 'ko' ? 'ko_KR' : 'en_US'} />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={pageTitle} />

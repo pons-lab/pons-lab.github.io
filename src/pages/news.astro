@@ -6,6 +6,6 @@ import { getLangFromUrl, useTranslations } from '../i18n/utils.js';
 const t = useTranslations(getLangFromUrl(Astro.url));
 ---
 
-<BaseLayout title={t('news.title')}>
+<BaseLayout title={t('news.title')} description={t('desc.news')}>
   <NewsPage />
 </BaseLayout>

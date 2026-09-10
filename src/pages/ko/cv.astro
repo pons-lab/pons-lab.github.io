@@ -6,6 +6,6 @@ import { getLangFromUrl, useTranslations } from '../../i18n/utils.js';
 const t = useTranslations(getLangFromUrl(Astro.url));
 ---
 
-<BaseLayout title={t('cv.title')}>
+<BaseLayout title={t('cv.title')} description={t('desc.cv')}>
   <CvPage />
 </BaseLayout>

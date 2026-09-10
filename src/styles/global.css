@@ -53,6 +53,8 @@
 
 html {
   scroll-behavior: smooth;
+  /* sticky 헤더(70px)가 앵커 대상 제목을 가리지 않도록 */
+  scroll-padding-top: 5.5rem;
   -webkit-text-size-adjust: 100%;
 }
 
