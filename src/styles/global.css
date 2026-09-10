@@ -87,6 +87,14 @@ video {
   display: block;
 }
 
+/* 위의 display: block 이 브라우저 기본값인 [hidden] 을 이겨 버린다.
+   hidden 을 붙인 이미지·영상은 실제로 감춰져야 한다. */
+img[hidden],
+svg[hidden],
+video[hidden] {
+  display: none;
+}
+
 h1,
 h2,
 h3,

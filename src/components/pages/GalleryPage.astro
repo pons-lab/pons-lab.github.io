@@ -312,19 +312,20 @@ const metaLabel = (e) =>
   const show = (i) => {
     index = (i + photos.length) % photos.length;
     const item = photos[index];
+    const isVideo = item.type === 'video';
 
-    // 사진에서 넘어올 때 재생 중이던 영상을 멈춘다.
+    // 슬라이드를 벗어나면 재생 중이던 영상을 멈춘다.
     video.pause();
 
-    if (item.type === 'video') {
+    // 한 번에 하나만 보여준다. 보이지 않는 쪽은 src 도 비워
+    // 플레이어가 남아 있거나 계속 내려받지 않게 한다.
+    img.hidden = isVideo;
+    video.hidden = !isVideo;
+    if (isVideo) {
       video.src = item.src;
-      video.hidden = false;
-      img.hidden = true;
       img.removeAttribute('src');
     } else {
       img.src = item.src;
-      img.hidden = false;
-      video.hidden = true;
       video.removeAttribute('src');
     }
 
