@@ -117,11 +117,18 @@ const kicker = lang === 'ko' ? site.name.display_ko : site.name.full_en;
     padding-block: clamp(3.5rem, 8vw, 6.5rem);
   }
 
+  /* 연구실 이름은 히어로에서 가장 먼저 읽히는 정보여야 한다.
+     작은 대문자 라벨로 두면 태그라인에 묻혀 버리므로, 크기를 본문 위로
+     올리고 대소문자를 살려 '라벨'이 아니라 '이름'으로 보이게 한다.
+     헤드라인과는 크기가 아니라 색으로 위계를 나눈다. */
   .copy .kicker {
-    color: var(--muted);
-    letter-spacing: 0.11em;
-    font-size: 0.735rem;
-    margin-bottom: 1.15rem;
+    font-size: clamp(1.02rem, 1.6vw, 1.2rem);
+    font-weight: 650;
+    letter-spacing: -0.005em;
+    text-transform: none;
+    line-height: 1.35;
+    color: var(--accent-deep);
+    margin-bottom: 0.9rem;
   }
 
   h1 {

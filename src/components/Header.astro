@@ -185,19 +185,18 @@ const otherHref = alternatePath(Astro.url.pathname, otherLang);
   }
   .brand-text strong {
     font-family: var(--font-display);
-    font-size: 1.16rem;
+    font-size: 1.24rem;
     font-weight: 700;
     letter-spacing: -0.015em;
     color: var(--ink);
   }
+  /* 연구실 정식 명칭은 줄이지 않는다. 말줄임표로 잘린 이름은
+     이름 구실을 못 한다. 좁아지면(480px) 아래에서 통째로 감춘다. */
   .brand-text small {
-    font-size: 0.685rem;
+    font-size: 0.735rem;
     color: var(--muted);
     letter-spacing: 0.01em;
     white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    max-width: 34ch;
   }
 
   .nav ul {
@@ -385,7 +384,9 @@ const otherHref = alternatePath(Astro.url.pathname, otherLang);
     color: var(--accent);
   }
 
-  @media (max-width: 1040px) {
+  /* 내비 8개 + 언어 토글 + 연구실 정식 명칭이 한 줄에 다 들어가려면
+     1140px 는 있어야 한다. 그 아래는 햄버거로 접는다. */
+  @media (max-width: 1140px) {
     .nav {
       display: none;
     }
