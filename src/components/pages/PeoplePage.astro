@@ -80,7 +80,7 @@ const piPhoto = asset(pi.photo);
 
     <!-- 학력·경력·학술활동은 사진 옆 좁은 칸이 아니라 컨테이너 전체 폭을 쓴다.
          칸이 좁으면 기관명 한가운데에서 줄이 바뀌어 읽기 어렵다. -->
-    <div class="grid grid-3 detail">
+    <div class="grid detail">
       <div>
         <h3>{t('people.education')}</h3>
         <ul class="entries">
@@ -330,10 +330,30 @@ const piPhoto = asset(pi.photo);
     margin: 0;
   }
 
+  /* 세 칸의 폭을 내용에 맞춘다.
+     한국어는 같은 내용이 훨씬 짧아서, 1fr 로 똑같이 삼등분하면 칸 안에
+     빈자리만 남고 특히 오른쪽 끝이 크게 비어 균형이 무너진다.
+     fit-content 는 "내용만큼, 다만 최대 이만큼"이라 칸이 내용에 따라
+     줄었다 늘었다 하고, 남는 자리는 space-between 이 칸 사이 간격으로
+     고르게 나눠 준다. 상한은 세 칸 + 간격이 한 줄을 넘지 않는 값이다. */
   .detail {
+    grid-template-columns: repeat(3, fit-content(calc((100% - 3rem) / 3)));
+    justify-content: space-between;
     margin-top: clamp(2.25rem, 4vw, 3rem);
     padding-top: clamp(1.75rem, 3vw, 2.25rem);
     border-top: 1px solid var(--line);
+  }
+
+  @media (max-width: 900px) {
+    .detail {
+      grid-template-columns: repeat(2, fit-content(calc((100% - 1.5rem) / 2)));
+    }
+  }
+
+  @media (max-width: 640px) {
+    .detail {
+      grid-template-columns: minmax(0, 1fr);
+    }
   }
 
   .detail h3 {
