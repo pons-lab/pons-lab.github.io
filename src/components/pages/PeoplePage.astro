@@ -4,6 +4,7 @@ import { Image } from 'astro:assets';
 import PageHero from '../PageHero.astro';
 import { members, awardsInOrder } from '../../lib/data.js';
 import { asset } from '../../lib/images.js';
+import { keepTogether } from '../../lib/text.js';
 import { getLangFromUrl, useTranslations, localizePath, pick } from '../../i18n/utils.js';
 
 const lang = getLangFromUrl(Astro.url);
@@ -74,124 +75,126 @@ const piPhoto = asset(pi.photo);
           <a class="btn btn-primary" href={localizePath('/cv', lang)}>{t('cv.title')}</a>
           <a class="btn btn-ghost" href={localizePath('/cv/short', lang)}>{t('cv.short_title')}</a>
         </p>
-
-        <div class="grid grid-3 detail">
-          <div>
-            <h3>{t('people.education')}</h3>
-            <ul class="entries">
-              {
-                pi.education.map((e) => (
-                  <li>
-                    <span class="period mono-num">
-                      {lang === 'ko' ? e.period_ko || e.period : e.period}
-                    </span>
-                    <strong>{pick(e, 'role', lang)}</strong>
-                    <span class="where">{pick(e, 'place', lang)}</span>
-                    {(e.note_en || e.note_ko) && <span class="note">{pick(e, 'note', lang)}</span>}
-                  </li>
-                ))
-              }
-            </ul>
-          </div>
-
-          <div>
-            <h3>{t('people.career')}</h3>
-            <ul class="entries">
-              {
-                pi.experience.map((e) => (
-                  <li>
-                    <span class="period mono-num">
-                      {lang === 'ko' ? e.period_ko || e.period : e.period}
-                    </span>
-                    <strong>{pick(e, 'role', lang)}</strong>
-                    <span class="where">{pick(e, 'place', lang)}</span>
-                    {(e.note_en || e.note_ko) && <span class="note">{pick(e, 'note', lang)}</span>}
-                  </li>
-                ))
-              }
-            </ul>
-          </div>
-
-          <div>
-            <h3>{t('people.service')}</h3>
-            <ul class="entries">
-              {
-                pi.service.map((e) => (
-                  <li>
-                    <span class="period mono-num">
-                      {lang === 'ko' ? e.period_ko || e.period : e.period}
-                    </span>
-                    <strong>{pick(e, 'role', lang)}</strong>
-                    <span class="where">{pick(e, 'org', lang)}</span>
-                  </li>
-                ))
-              }
-            </ul>
-          </div>
-        </div>
-
-        {/* 목록이 길어 접어둔다. details 라 자바스크립트 없이 동작한다. */}
-        <div class="foldouts">
-          <details class="fold">
-            <summary>
-              <h3>{t('people.talks')}</h3>
-              <span class="count mono-num">({pi.talks.length})</span>
-              <svg class="chev" width="12" height="12" viewBox="0 0 16 16" aria-hidden="true">
-                <path d="M4 6l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.9"
-                  stroke-linecap="round" stroke-linejoin="round" />
-              </svg>
-            </summary>
-            <ul class="entries">
-              {
-                pi.talks.map((k) => (
-                  <li>
-                    <span class="period mono-num">{k.date}</span>
-                    <strong>{pick(k, 'title', lang)}</strong>
-                    {(k.host_en || k.host_ko) && <span class="where">{pick(k, 'host', lang)}</span>}
-                  </li>
-                ))
-              }
-            </ul>
-          </details>
-
-          <details class="fold">
-            <summary>
-              <h3>{t('people.awards')}</h3>
-              <span class="count mono-num">({pi.awards.length})</span>
-              <svg class="chev" width="12" height="12" viewBox="0 0 16 16" aria-hidden="true">
-                <path d="M4 6l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.9"
-                  stroke-linecap="round" stroke-linejoin="round" />
-              </svg>
-            </summary>
-            <ul class="entries">
-              {
-                awardsInOrder().map((a) => (
-                  <li>
-                    <span class="period mono-num">
-                      {lang === 'ko' ? a.year_ko || a.year : a.year}
-                    </span>
-                    <strong>
-                      {pick(a, 'title', lang)}
-                      {(a.advisee_en || a.advisee_ko) && (
-                        <span class="advisee">{t('people.advisee')}</span>
-                      )}
-                    </strong>
-                    <span class="where">{pick(a, 'org', lang)}</span>
-                    {(a.advisee_en || a.advisee_ko) && (
-                      <span class="note">{pick(a, 'advisee', lang)}</span>
-                    )}
-                    {a.file && (
-                      <a class="doc" href={a.file} target="_blank" rel="noopener">
-                        {t('people.certificate')}
-                      </a>
-                    )}
-                  </li>
-                ))
-              }
-            </ul>
-          </details>
-        </div>
       </div>
+    </div>
+
+    <!-- 학력·경력·학술활동은 사진 옆 좁은 칸이 아니라 컨테이너 전체 폭을 쓴다.
+         칸이 좁으면 기관명 한가운데에서 줄이 바뀌어 읽기 어렵다. -->
+    <div class="grid grid-3 detail">
+      <div>
+        <h3>{t('people.education')}</h3>
+        <ul class="entries">
+          {
+            pi.education.map((e) => (
+              <li>
+                <span class="period mono-num">
+                  {lang === 'ko' ? e.period_ko || e.period : e.period}
+                </span>
+                <strong>{keepTogether(pick(e, 'role', lang))}</strong>
+                <span class="where">{keepTogether(pick(e, 'place', lang))}</span>
+                {(e.note_en || e.note_ko) && <span class="note">{pick(e, 'note', lang)}</span>}
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+
+      <div>
+        <h3>{t('people.career')}</h3>
+        <ul class="entries">
+          {
+            pi.experience.map((e) => (
+              <li>
+                <span class="period mono-num">
+                  {lang === 'ko' ? e.period_ko || e.period : e.period}
+                </span>
+                <strong>{keepTogether(pick(e, 'role', lang))}</strong>
+                <span class="where">{keepTogether(pick(e, 'place', lang))}</span>
+                {(e.note_en || e.note_ko) && <span class="note">{pick(e, 'note', lang)}</span>}
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+
+      <div>
+        <h3>{t('people.service')}</h3>
+        <ul class="entries">
+          {
+            pi.service.map((e) => (
+              <li>
+                <span class="period mono-num">
+                  {lang === 'ko' ? e.period_ko || e.period : e.period}
+                </span>
+                <strong>{keepTogether(pick(e, 'role', lang))}</strong>
+                <span class="where">{keepTogether(pick(e, 'org', lang))}</span>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+    </div>
+
+    {/* 목록이 길어 접어둔다. details 라 자바스크립트 없이 동작한다. */}
+    <div class="foldouts">
+      <details class="fold">
+        <summary>
+          <h3>{t('people.talks')}</h3>
+          <span class="count mono-num">({pi.talks.length})</span>
+          <svg class="chev" width="12" height="12" viewBox="0 0 16 16" aria-hidden="true">
+            <path d="M4 6l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.9"
+              stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
+        </summary>
+        <ul class="entries">
+          {
+            pi.talks.map((k) => (
+              <li>
+                <span class="period mono-num">{k.date}</span>
+                <strong>{pick(k, 'title', lang)}</strong>
+                {(k.host_en || k.host_ko) && <span class="where">{keepTogether(pick(k, 'host', lang))}</span>}
+              </li>
+            ))
+          }
+        </ul>
+      </details>
+
+      <details class="fold">
+        <summary>
+          <h3>{t('people.awards')}</h3>
+          <span class="count mono-num">({pi.awards.length})</span>
+          <svg class="chev" width="12" height="12" viewBox="0 0 16 16" aria-hidden="true">
+            <path d="M4 6l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.9"
+              stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
+        </summary>
+        <ul class="entries">
+          {
+            awardsInOrder().map((a) => (
+              <li>
+                <span class="period mono-num">
+                  {lang === 'ko' ? a.year_ko || a.year : a.year}
+                </span>
+                <strong>
+                  {pick(a, 'title', lang)}
+                  {(a.advisee_en || a.advisee_ko) && (
+                    <span class="advisee">{t('people.advisee')}</span>
+                  )}
+                </strong>
+                <span class="where">{keepTogether(pick(a, 'org', lang))}</span>
+                {(a.advisee_en || a.advisee_ko) && (
+                  <span class="note">{pick(a, 'advisee', lang)}</span>
+                )}
+                {a.file && (
+                  <a class="doc" href={a.file} target="_blank" rel="noopener">
+                    {t('people.certificate')}
+                  </a>
+                )}
+              </li>
+            ))
+          }
+        </ul>
+      </details>
     </div>
   </div>
 </section>
@@ -317,21 +320,20 @@ const piPhoto = asset(pi.photo);
   }
 
   .bio {
-    max-width: 66ch;
-    margin-bottom: 1.25rem;
+    margin-bottom: 1.5rem;
   }
 
   .cv-links {
     display: flex;
     flex-wrap: wrap;
     gap: 0.6rem;
-    margin: 0 0 1.75rem;
-    padding-bottom: 1.75rem;
-    border-bottom: 1px solid var(--line);
+    margin: 0;
   }
 
   .detail {
-    margin-top: 1.75rem;
+    margin-top: clamp(2.25rem, 4vw, 3rem);
+    padding-top: clamp(1.75rem, 3vw, 2.25rem);
+    border-top: 1px solid var(--line);
   }
 
   .detail h3 {
