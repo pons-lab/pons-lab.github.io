@@ -21,6 +21,33 @@
     'Noto Sans KR', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
   --font-display: var(--font-sans);
 
+  /* ── 글자 크기 스케일 ───────────────────────────────────────────────
+     본문(--text-base)이 16px 이고, 이 사이트 글자는 대부분 본문보다
+     작아서 아래쪽 단계가 촘촘하다. 한 단계는 0.8px 이다.
+
+     새 화면을 만들 때 font-size 는 반드시 이 중에서 고른다.
+     "조금만 더 작게" 같은 이유로 0.885rem 같은 값을 새로 만들지 않는다 —
+     0.1px 차이는 보이지 않고, 같은 성격의 요소가 화면마다 어긋나게 된다. */
+  --text-3xs: 0.7rem; /* 11.2px  배지·범례 */
+  --text-2xs: 0.75rem; /* 12.0px  kicker·태그·기간 */
+  --text-xs: 0.8rem; /* 12.8px  작은 메타 */
+  --text-sm: 0.85rem; /* 13.6px  보조 설명 */
+  --text-md: 0.9rem; /* 14.4px  카드·목록 본문 */
+  --text-lg: 0.95rem; /* 15.2px */
+  --text-base: 1rem; /* 16.0px  본문 */
+  --text-xl: 1.1rem; /* 17.6px  소제목 */
+  --text-2xl: 1.2rem; /* 19.2px  제목 */
+  --text-3xl: 1.35rem; /* 21.6px  큰 제목 */
+
+  /* 제목과 리드는 화면 폭에 따라 늘었다 줄었다 한다(clamp: 최소, 가변, 최대).
+     한 화면에서만 쓰는 크기는 그 컴포넌트에 두지만, 여러 곳이 같은 역할로
+     쓰는 크기는 전부 여기에 있다. */
+  --text-h1: clamp(2.3rem, 5.2vw, 3.6rem);
+  --text-h2: clamp(1.75rem, 3.4vw, 2.4rem);
+  --text-h3: clamp(1.12rem, 1.6vw, 1.3rem);
+  --text-block-title: clamp(1.35rem, 2.4vw, 1.75rem); /* 밴드·목록 묶음 제목 */
+  --text-lead: clamp(1.03rem, 1.5vw, 1.14rem);
+
   /* 레이아웃 */
   --container: 1140px;
   --container-narrow: 880px;
@@ -63,7 +90,7 @@ body {
   background: var(--page);
   color: var(--body);
   font-family: var(--font-sans);
-  font-size: 1rem;
+  font-size: var(--text-base);
   line-height: 1.72;
   letter-spacing: -0.003em;
   -webkit-font-smoothing: antialiased;
@@ -108,21 +135,21 @@ h4 {
 }
 
 h1 {
-  font-size: clamp(2.3rem, 5.2vw, 3.6rem);
+  font-size: var(--text-h1);
   letter-spacing: -0.03em;
 }
 h2 {
-  font-size: clamp(1.75rem, 3.4vw, 2.4rem);
+  font-size: var(--text-h2);
   letter-spacing: -0.026em;
 }
 h3 {
-  font-size: clamp(1.12rem, 1.6vw, 1.3rem);
+  font-size: var(--text-h3);
   font-weight: 650;
   line-height: 1.38;
   letter-spacing: -0.014em;
 }
 h4 {
-  font-size: 1.02rem;
+  font-size: var(--text-base);
   font-weight: 650;
   line-height: 1.42;
   letter-spacing: -0.01em;
@@ -218,7 +245,7 @@ hr {
   display: inline-flex;
   align-items: center;
   gap: 0.55rem;
-  font-size: 0.745rem;
+  font-size: var(--text-2xs);
   font-weight: 600;
   letter-spacing: 0.15em;
   text-transform: uppercase;
@@ -240,7 +267,7 @@ hr {
 }
 
 .lead {
-  font-size: clamp(1.03rem, 1.5vw, 1.14rem);
+  font-size: var(--text-lead);
   line-height: 1.75;
   color: var(--body);
   max-width: 62ch;
@@ -259,7 +286,7 @@ hr {
 }
 
 .small {
-  font-size: 0.875rem;
+  font-size: var(--text-sm);
 }
 
 .mono-num {
@@ -276,7 +303,7 @@ hr {
   gap: 0.5rem;
   padding: 0.78rem 1.4rem;
   border-radius: 999px;
-  font-size: 0.925rem;
+  font-size: var(--text-lg);
   font-weight: 550;
   line-height: 1;
   border: 1px solid transparent;
@@ -342,7 +369,7 @@ hr {
   display: inline-flex;
   align-items: center;
   gap: 0.4rem;
-  font-size: 0.9rem;
+  font-size: var(--text-md);
   font-weight: 550;
 }
 .link-arrow svg {
@@ -409,7 +436,7 @@ hr {
   border-radius: 999px;
   background: var(--accent-soft);
   color: var(--accent-deep);
-  font-size: 0.72rem;
+  font-size: var(--text-3xs);
   font-weight: 600;
   letter-spacing: 0.03em;
   line-height: 1.5;

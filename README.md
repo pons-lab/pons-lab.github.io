@@ -58,7 +58,7 @@
 | `public/docs/` | 내려받게 할 PDF (상장 등) |
 | `public/og-image.svg` · `og-image.png` | 카카오톡·페이스북 공유 미리보기 이미지. SVG 가 원본이고, 실제로 쓰이는 것은 PNG 입니다 — SVG 를 고쳤으면 PNG 를 다시 구워야 합니다 ("공유 이미지 다시 만들어줘") |
 | `src/i18n/ui.js` | 화면 문구(메뉴·버튼 등)의 영문·국문 |
-| `src/styles/global.css` | 색·글꼴·간격 토큰과 공통 클래스 |
+| `src/styles/global.css` | 색·글꼴·**글자 크기 스케일**·간격 토큰과 공통 클래스 |
 | `src/styles/cv-print.css` | **CV PDF 전용** 인쇄 스타일 |
 
 ### 잘 헷갈리는 것

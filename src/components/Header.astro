@@ -185,7 +185,7 @@ const otherHref = alternatePath(Astro.url.pathname, otherLang);
   }
   .brand-text strong {
     font-family: var(--font-display);
-    font-size: 1.24rem;
+    font-size: var(--text-2xl);
     font-weight: 700;
     letter-spacing: -0.015em;
     color: var(--ink);
@@ -193,7 +193,7 @@ const otherHref = alternatePath(Astro.url.pathname, otherLang);
   /* 연구실 정식 명칭은 줄이지 않는다. 말줄임표로 잘린 이름은
      이름 구실을 못 한다. 좁아지면(480px) 아래에서 통째로 감춘다. */
   .brand-text small {
-    font-size: 0.735rem;
+    font-size: var(--text-2xs);
     color: var(--muted);
     letter-spacing: 0.01em;
     white-space: nowrap;
@@ -209,7 +209,7 @@ const otherHref = alternatePath(Astro.url.pathname, otherLang);
     padding: 0.5rem 0.72rem;
     border-radius: 8px;
     color: var(--body);
-    font-size: 0.9rem;
+    font-size: var(--text-md);
     font-weight: 500;
     text-decoration: none;
     transition: color 0.15s ease, background-color 0.15s ease;
@@ -247,7 +247,7 @@ const otherHref = alternatePath(Astro.url.pathname, otherLang);
 
   /* 구성원 전용 링크는 공개 메뉴보다 한 단계 작고 조용하게 */
   .nav .members > a {
-    font-size: 0.82rem;
+    font-size: var(--text-xs);
     color: var(--muted);
   }
   .nav .members > a:hover,
@@ -295,7 +295,7 @@ const otherHref = alternatePath(Astro.url.pathname, otherLang);
     white-space: nowrap;
     padding: 0.5rem 0.7rem;
     border-radius: 8px;
-    font-size: 0.885rem;
+    font-size: var(--text-md);
   }
 
   .tools {
@@ -316,7 +316,7 @@ const otherHref = alternatePath(Astro.url.pathname, otherLang);
     border-radius: 999px;
     background: var(--card);
     color: var(--body);
-    font-size: 0.775rem;
+    font-size: var(--text-2xs);
     font-weight: 600;
     letter-spacing: 0.05em;
     text-decoration: none;
@@ -372,7 +372,7 @@ const otherHref = alternatePath(Astro.url.pathname, otherLang);
     display: block;
     padding: 0.72rem 0.2rem;
     color: var(--body);
-    font-size: 0.98rem;
+    font-size: var(--text-base);
     font-weight: 500;
     border-bottom: 1px solid var(--line);
     text-decoration: none;

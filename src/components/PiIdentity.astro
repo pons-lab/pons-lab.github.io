@@ -44,7 +44,7 @@ const name = lang === 'ko' ? `${pi.name_ko} (${pi.name_en})` : `${pi.name_en}, $
   /* 직함은 섹션 라벨과 같은 모양의 작은 대문자 라벨로 둔다. */
   .pi-title {
     margin: 0 0 0.5rem;
-    font-size: 0.78rem;
+    font-size: var(--text-xs);
     font-weight: 700;
     letter-spacing: 0.14em;
     text-transform: uppercase;
@@ -54,7 +54,7 @@ const name = lang === 'ko' ? `${pi.name_ko} (${pi.name_en})` : `${pi.name_en}, $
   .pi-affil {
     margin: 0 0 0.75rem;
     color: var(--body);
-    font-size: 0.95rem;
+    font-size: var(--text-lg);
     line-height: 1.55;
   }
 </style>

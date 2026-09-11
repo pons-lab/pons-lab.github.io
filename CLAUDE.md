@@ -72,6 +72,12 @@ src/content/news/*.md        # 뉴스 (파일 1개 = 글 1개)
 - **타이포**: **제목·본문 모두 Inter 하나**로 통일한다(`--font-display` 는 `--font-sans` 를 가리키는
   별칭). 세리프(Fraunces)는 쓰지 않는다. 굵기와 자간으로 위계를 만든다.
   한국어 페이지(`/ko/`)에서만 Noto Sans KR 을 추가로 로드하고, 한국어 본문은 `word-break: keep-all`.
+- **글자 크기는 반드시 `global.css` `:root` 의 스케일에서 고른다** — 고정 크기
+  `--text-3xs`(0.7rem) ~ `--text-3xl`(1.35rem) 10단계와, 화면 폭에 따라 늘어나는
+  `--text-h1/h2/h3/--text-block-title/--text-lead`. **새 `font-size: 0.885rem` 같은
+  값을 만들지 않는다.** 0.1px 차이는 보이지 않으면서 같은 성격의 요소가 화면마다
+  어긋나게 만든다. 한 컴포넌트에서만 쓰는 장식용 큰 글자(404 숫자, P·O·N·S 머리글자)는
+  예외로 그 컴포넌트에 둔다.
 - **레이아웃 토큰**: `--container 1140px`, `--container-narrow 880px`, `--radius 14px`,
   `--radius-lg 22px`, `--section-y clamp(4rem, 8vw, 7rem)`, 그림자 `--shadow-sm/--shadow-md`.
 - **공통 클래스**: `.container` / `.section` / `.section-tight` / `.card` `.card-hover` /

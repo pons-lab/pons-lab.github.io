@@ -395,7 +395,7 @@ const nameLang = (p) => (/[가-힣]/.test(p.inventors) ? 'ko' : 'en');
     flex-wrap: wrap;
     gap: 0.25rem 1.1rem;
     margin: 0;
-    font-size: 0.885rem;
+    font-size: var(--text-md);
     color: var(--muted);
   }
   .actions {
@@ -424,7 +424,7 @@ const nameLang = (p) => (/[가-힣]/.test(p.inventors) ? 'ko' : 'en');
     border-top: 0;
   }
   .cv-sec > h2 {
-    font-size: 0.78rem;
+    font-size: var(--text-xs);
     font-weight: 700;
     letter-spacing: 0.14em;
     text-transform: uppercase;
@@ -435,7 +435,7 @@ const nameLang = (p) => (/[가-힣]/.test(p.inventors) ? 'ko' : 'en');
      Investigator" 든 같은 위계이므로 같은 모양으로 둔다. */
   .cv-sec h3 {
     font-family: var(--font-sans);
-    font-size: 0.9rem;
+    font-size: var(--text-md);
     font-weight: 700;
     color: var(--accent);
     letter-spacing: 0.02em;
@@ -456,7 +456,7 @@ const nameLang = (p) => (/[가-힣]/.test(p.inventors) ? 'ko' : 'en');
     grid-template-columns: 10rem minmax(0, 1fr);
     grid-auto-flow: row;
     gap: 0.1rem 1.25rem;
-    font-size: 0.9rem;
+    font-size: var(--text-md);
     line-height: 1.55;
   }
   .entries li > :not(.period) {
@@ -465,7 +465,7 @@ const nameLang = (p) => (/[가-힣]/.test(p.inventors) ? 'ko' : 'en');
   .entries .period {
     grid-column: 1;
     grid-row: 1 / -1;
-    font-size: 0.78rem;
+    font-size: var(--text-xs);
     font-weight: 600;
     color: var(--accent);
   }
@@ -478,7 +478,7 @@ const nameLang = (p) => (/[가-힣]/.test(p.inventors) ? 'ko' : 'en');
   }
   .note {
     color: var(--muted);
-    font-size: 0.83rem;
+    font-size: var(--text-sm);
   }
   .lvl {
     color: var(--muted);
@@ -493,7 +493,7 @@ const nameLang = (p) => (/[가-힣]/.test(p.inventors) ? 'ko' : 'en');
   .grants li {
     display: grid;
     gap: 0.12rem;
-    font-size: 0.9rem;
+    font-size: var(--text-md);
     line-height: 1.5;
   }
   .g-title strong {
@@ -507,7 +507,7 @@ const nameLang = (p) => (/[가-힣]/.test(p.inventors) ? 'ko' : 'en');
     border-radius: 999px;
     border: 1px solid var(--line);
     background: var(--card);
-    font-size: 0.68rem;
+    font-size: var(--text-3xs);
     font-weight: 700;
     letter-spacing: 0.04em;
     text-transform: uppercase;
@@ -521,7 +521,7 @@ const nameLang = (p) => (/[가-힣]/.test(p.inventors) ? 'ko' : 'en');
     color: var(--accent-deep);
   }
   .g-meta {
-    font-size: 0.845rem;
+    font-size: var(--text-sm);
     color: var(--muted);
   }
 
@@ -533,7 +533,7 @@ const nameLang = (p) => (/[가-힣]/.test(p.inventors) ? 'ko' : 'en');
   .bullets li {
     position: relative;
     padding-left: 1rem;
-    font-size: 0.9rem;
+    font-size: var(--text-md);
     line-height: 1.6;
   }
   .bullets li::before {
@@ -553,7 +553,7 @@ const nameLang = (p) => (/[가-힣]/.test(p.inventors) ? 'ko' : 'en');
     grid-template-columns: 10rem minmax(0, 1fr);
     gap: 0.5rem 1.25rem;
     margin: 0;
-    font-size: 0.88rem;
+    font-size: var(--text-md);
   }
   .skills dt {
     font-weight: 620;
@@ -575,7 +575,7 @@ const nameLang = (p) => (/[가-힣]/.test(p.inventors) ? 'ko' : 'en');
     gap: 0.75rem;
     padding: 0.72rem 0;
     border-bottom: 1px solid var(--line);
-    font-size: 0.86rem;
+    font-size: var(--text-sm);
     line-height: 1.62;
   }
   .pubs li:last-child {
@@ -604,7 +604,7 @@ const nameLang = (p) => (/[가-힣]/.test(p.inventors) ? 'ko' : 'en');
   .pub-extra {
     display: block;
     margin-top: 0.15rem;
-    font-size: 0.785rem;
+    font-size: var(--text-xs);
     color: var(--muted);
   }
   .pub-extra .dot {

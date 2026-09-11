@@ -61,7 +61,7 @@ const statusLabel = pub.status ? t(`pub.${String(pub.status).replace(/-/g, '_')}
   }
 
   .num {
-    font-size: 0.8rem;
+    font-size: var(--text-xs);
     font-weight: 600;
     color: var(--accent);
     background: var(--accent-soft);
@@ -77,7 +77,7 @@ const statusLabel = pub.status ? t(`pub.${String(pub.status).replace(/-/g, '_')}
   h3.title,
   h4.title {
     font-family: var(--font-sans);
-    font-size: 1.015rem;
+    font-size: var(--text-base);
     font-weight: 600;
     line-height: 1.45;
     color: var(--ink);
@@ -95,13 +95,13 @@ const statusLabel = pub.status ? t(`pub.${String(pub.status).replace(/-/g, '_')}
 
   .authors-line {
     margin: 0 0 0.3rem;
-    font-size: 0.895rem;
+    font-size: var(--text-md);
     line-height: 1.62;
   }
 
   .meta {
     margin: 0;
-    font-size: 0.875rem;
+    font-size: var(--text-sm);
     color: var(--muted);
   }
   .venue {
@@ -116,7 +116,7 @@ const statusLabel = pub.status ? t(`pub.${String(pub.status).replace(/-/g, '_')}
     border-radius: 999px;
     background: #fff4e6;
     color: #9a5b12;
-    font-size: 0.72rem;
+    font-size: var(--text-3xs);
     font-weight: 600;
     font-style: normal;
   }
@@ -130,7 +130,7 @@ const statusLabel = pub.status ? t(`pub.${String(pub.status).replace(/-/g, '_')}
   }
 
   .doi {
-    font-size: 0.78rem;
+    font-size: var(--text-xs);
     font-weight: 550;
     color: var(--accent);
     word-break: break-all;
