@@ -172,7 +172,13 @@ const linkCache = new Map();
 
 for (const route of pages) {
   for (const vp of VIEWPORTS) {
-    const page = await browser.newPage({ viewport: { width: vp.width, height: vp.height } });
+    // 애니메이션이 끝난 모습으로 찍는다. 히어로 파형처럼 3초 넘게 그려지는 것이
+    // 있어서, 그냥 찍으면 스크린샷마다 중간 상태가 달라 눈으로 비교할 수 없다.
+    // 사이트가 prefers-reduced-motion 을 제대로 처리하고 있어 최종 상태가 나온다.
+    const page = await browser.newPage({
+      viewport: { width: vp.width, height: vp.height },
+      reducedMotion: 'reduce',
+    });
     const consoleErrors = [];
     page.on('console', (m) => m.type() === 'error' && consoleErrors.push(m.text()));
     page.on('pageerror', (e) => consoleErrors.push(String(e)));

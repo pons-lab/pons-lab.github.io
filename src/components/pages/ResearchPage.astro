@@ -211,8 +211,10 @@ const t = useTranslations(lang);
     display: flex;
     flex-direction: column;
   }
+  /* 본문을 늘려 칩을 카드 바닥에 붙이지 않는다. 설명이 짧은 카드에서
+     글과 칩 사이가 뻥 뚫려 보이고, 칩 위 구분선이 카드마다 다른 높이에
+     걸린다. 남는 자리는 카드 아래쪽에 두는 편이 훨씬 덜 튄다. */
   .topic p {
-    flex: 1;
     margin: 0;
     font-size: var(--text-md);
     color: var(--body);

@@ -344,15 +344,15 @@ const piPhoto = asset(pi.photo);
     border-top: 1px solid var(--line);
   }
 
+  /* 태블릿부터는 한 줄에 하나씩. 두 칸으로 두면 경력 칸만 길어서
+     그 옆이 통째로 비고, 학술활동이 아래 줄로 떨어져 더 어색하다.
+     한 칸이면 읽는 순서도 학력 → 경력 → 학술활동 그대로 남는다. */
   @media (max-width: 900px) {
     .detail {
-      grid-template-columns: repeat(2, fit-content(calc((100% - 1.5rem) / 2)));
-    }
-  }
-
-  @media (max-width: 640px) {
-    .detail {
       grid-template-columns: minmax(0, 1fr);
+      /* 나란히 있을 때보다 칸 사이를 벌려야 다음 제목이 앞 목록에
+         딸려 있는 것처럼 보이지 않는다. */
+      row-gap: 2.25rem;
     }
   }
 
