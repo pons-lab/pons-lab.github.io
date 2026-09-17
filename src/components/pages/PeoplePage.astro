@@ -239,6 +239,12 @@ const piPhoto = asset(pi.photo);
                   <p class="person-since mono-num">
                     {t('people.since')} {memberSince(m)}
                   </p>
+                  {m.prior_period && (
+                    <p class="person-prior">
+                      {pick(m, 'prior_role', lang)}{' '}
+                      <span class="mono-num">{m.prior_period}</span>
+                    </p>
+                  )}
                 </li>
               ))}
             </ul>
@@ -550,6 +556,15 @@ const piPhoto = asset(pi.photo);
     font-size: var(--text-2xs);
     color: var(--muted);
     letter-spacing: 0.02em;
+  }
+
+  /* 현재 직위 이전의 재적 이력 (예: 석사 입학 전 학부연구생 기간) */
+  .person-prior {
+    margin: 0.15rem 0 0;
+    font-size: var(--text-3xs);
+    color: var(--muted);
+    line-height: 1.45;
+    word-break: keep-all;
   }
 
   .alumni {

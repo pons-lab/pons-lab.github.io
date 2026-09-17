@@ -303,20 +303,28 @@ groups:
     title_en: M.S. Students
     title_ko: 석사과정
     members:
+      # 한글 음차 표기가 정해지면 name_ko 를 그 표기로 바꿔 주세요.
+      # (name_ko 가 name_en 과 다르면 한국어 페이지 카드에 영문 이름이
+      #  작은 글씨로 함께 표시됩니다. 같으면 지금처럼 한 줄만 나옵니다.)
       - name_en: Gabriel Joseph Mlingi
-        name_ko: Gabriel Joseph Mlingi
+        name_ko: Gabriel Joseph Mlingi   # TODO: 한글 음차 표기
         since: 2025 Spring
         since_ko: 2025년 1학기
         photo: ""
       - name_en: Woyesa Addisu Fayera
-        name_ko: Woyesa Addisu Fayera
+        name_ko: Woyesa Addisu Fayera   # TODO: 한글 음차 표기
         since: 2025 Fall
         since_ko: 2025년 2학기
         photo: ""
+      # prior_* 는 현재 직위 이전의 재적 이력입니다. 적으면 카드에
+      # "이전 직위 + 기간" 한 줄이 함께 표시됩니다. (없으면 안 나옵니다)
       - name_en: Davin Kim
         name_ko: 김다빈
         since: 2026 Fall
         since_ko: 2026년 2학기
+        prior_role_en: Undergraduate Researcher
+        prior_role_ko: 학부연구생
+        prior_period: 2026.01 – 2026.08
         photo: ""
 
   - id: undergraduate

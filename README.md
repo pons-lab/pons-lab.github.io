@@ -70,6 +70,9 @@
 - **진행 중인 과제**는 `research.yaml`, **끝난 과제**는 `cv.yaml` 입니다.
 - **학술 활동**은 `members.yaml` 의 `pi.service`, 심사 활동은 `cv.yaml` 의 `service`.
 - **Short CV에 실리는 논문 5편**은 `publications.yaml` 에서 `featured: true` 인 것들입니다.
+- **한 사람이 직위를 옮긴 경우**(예: 학부연구생 → 석사과정)는 `members.yaml` 의
+  그 멤버에 `prior_role_en` · `prior_role_ko` · `prior_period` 를 적으면 카드에
+  이전 이력이 한 줄 더 표시됩니다. 연구실을 떠난 사람은 `alumni:` 로 옮깁니다.
 
 ---
 
