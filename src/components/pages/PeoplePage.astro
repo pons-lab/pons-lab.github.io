@@ -153,6 +153,7 @@ const piPhoto = asset(pi.photo);
                 <span class="period mono-num">{k.date}</span>
                 <strong>{pick(k, 'title', lang)}</strong>
                 {(k.host_en || k.host_ko) && <span class="where">{keepTogether(pick(k, 'host', lang))}</span>}
+                {(k.note_en || k.note_ko) && <span class="note">{pick(k, 'note', lang)}</span>}
               </li>
             ))
           }

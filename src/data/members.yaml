@@ -128,60 +128,80 @@ pi:
 
   # ── 초청 강연 · 세미나 (최신순) ──────────────────────────────────────
   talks:
+    # 항목 제목은 모두 "초청 세미나"로 통일합니다.
+    # 실제 발표 제목이나 행사 이름은 note_en / note_ko 에 추가 정보로 적습니다.
     - date: 2026.09.18
-      title_en: >-
-        Next-Generation Healthcare and Human–Machine Interfaces Enabled by
-        Wireless Flexible Bioelectronics
-      title_ko: 무선 유연 바이오일렉트로닉스를 통한 차세대 헬스케어와 인간-기계 인터페이스
+      title_en: "Invited seminar"
+      title_ko: "초청 세미나"
       host_en: "Pusan National University, School of Biomedical Convergence Engineering"
       host_ko: "부산대학교 의생명융합공학부"
+      note_en: >-
+        Next-Generation Healthcare and Human–Machine Interfaces Enabled by
+        Wireless Flexible Bioelectronics
+      note_ko: 무선 유연 바이오일렉트로닉스를 통한 차세대 헬스케어와 인간-기계 인터페이스
     - date: 2026.05.20
-      title_en: "2026 Workshop on BRAIN & AI"
-      title_ko: "2026 BRAIN&AI 워크샵"
+      title_en: "Invited seminar"
+      title_ko: "초청 세미나"
       host_en: "Hanyang University"
       host_ko: "한양대학교"
+      note_en: "2026 Workshop on BRAIN & AI"
+      note_ko: "2026 BRAIN&AI 워크샵"
     - date: 2026.02.10
       title_en: "Invited seminar"
       title_ko: "초청 세미나"
       host_en: "Konkuk University Glocal Campus, Dept. of Biomedical Engineering"
       host_ko: "건국대학교 글로컬캠퍼스 의생명공학과"
     - date: 2025.12.06
-      title_en: >-
-        Persistent and Wearable EEG Technologies: Toward Next-Generation
-        Neurophysiological Monitoring
-      title_ko: 지속 착용형 뇌파 기술 — 차세대 신경생리 모니터링을 향하여
+      title_en: "Invited seminar"
+      title_ko: "초청 세미나"
       host_en: "2025 12th Workshop and Annual Conference, Korean Society for EEG and Neurophysiology"
       host_ko: 2025 제12회 대한뇌파신경생리학회 워크숍 및 연례학술대회
+      note_en: >-
+        Persistent and Wearable EEG Technologies: Toward Next-Generation
+        Neurophysiological Monitoring
+      note_ko: 지속 착용형 뇌파 기술 — 차세대 신경생리 모니터링을 향하여
     - date: 2025.11.24
-      title_en: "Convergence Research Meeting"
-      title_ko: "융합연구 미팅"
+      title_en: "Invited seminar"
+      title_ko: "초청 세미나"
       host_en: "Yonsei University Mirae Campus"
       host_ko: "연세대학교 미래캠퍼스"
+      note_en: "Convergence Research Meeting"
+      note_ko: "융합연구 미팅"
     - date: 2025.11.13
-      title_en: "Invited lecture, Advanced Topics in Biomedical Engineering"
-      title_ko: "「의공학 특론」 초청 강의"
+      title_en: "Invited seminar"
+      title_ko: "초청 세미나"
       host_en: "Gangnam Severance, Dept. of Medical Device Industry"
       host_ko: "강남세브란스 의료기기산업학과"
+      note_en: "Invited lecture, Advanced Topics in Biomedical Engineering"
+      note_ko: "「의공학 특론」 초청 강의"
     - date: 2025.11.12
-      title_en: "RLC, Biomedical Engineering student research club"
-      title_ko: "의공학부 학술동아리 RLC"
+      title_en: "Invited seminar"
+      title_ko: "초청 세미나"
       host_en: "Yonsei University Mirae Campus"
       host_ko: "연세대학교 미래캠퍼스"
+      note_en: "RLC, Biomedical Engineering student research club"
+      note_ko: "의공학부 학술동아리 RLC"
     - date: 2025.11.12
-      title_en: "Bio-Convergence Advanced Seminar 2"
-      title_ko: "바이오융합 고급세미나 2"
+      title_en: "Invited seminar"
+      title_ko: "초청 세미나"
       host_en: "HY-KIST Dept. of Bio-Convergence"
       host_ko: "HY-KIST 바이오융합학과"
+      note_en: "Bio-Convergence Advanced Seminar 2"
+      note_ko: "바이오융합 고급세미나 2"
     - date: 2025.11.11
-      title_en: "Invited lecture, Artificial Intelligence and Applications"
-      title_ko: "「인공지능과 응용」 초청 강의"
+      title_en: "Invited seminar"
+      title_ko: "초청 세미나"
       host_en: "Kyonggi University, Dept. of Electronics Engineering"
       host_ko: "경기대학교 전자공학과"
+      note_en: "Invited lecture, Artificial Intelligence and Applications"
+      note_ko: "「인공지능과 응용」 초청 강의"
     - date: 2025.10.10
-      title_en: "Graduate seminar"
-      title_ko: "대학원 세미나"
+      title_en: "Invited seminar"
+      title_ko: "초청 세미나"
       host_en: "Inha University, Dept. of Mechanical Engineering"
       host_ko: "인하대학교 기계공학과"
+      note_en: "Graduate seminar"
+      note_ko: "대학원 세미나"
     - date: 2025.09.25
       title_en: "Invited seminar"
       title_ko: "초청 세미나"
@@ -193,36 +213,50 @@ pi:
       host_en: "Seoul National University Hospital, Dept. of Biomedical Engineering"
       host_ko: "서울대학교병원 의공학과"
     - date: 2025.09.22
-      title_en: "AI Convergence Seminar 2"
-      title_ko: "AI융합 세미나 2"
+      title_en: "Invited seminar"
+      title_ko: "초청 세미나"
       host_en: "Hallym University, AI Convergence"
       host_ko: "한림대학교 AI융합"
+      note_en: "AI Convergence Seminar 2"
+      note_ko: "AI융합 세미나 2"
     - date: 2025.07.15
-      title_en: "K-BioHealth Regional Center industry–academia–hospital exchange"
-      title_ko: "K-바이오헬스 지역센터 산학병 교류회"
+      title_en: "Invited seminar"
+      title_ko: "초청 세미나"
       host_en: "Wonju Medical Device Industry Promotion Foundation"
       host_ko: "원주의료기기테크노밸리"
+      note_en: "K-BioHealth Regional Center industry–academia–hospital exchange"
+      note_ko: "K-바이오헬스 지역센터 산학병 교류회"
     - date: 2025.05.26
-      title_en: "Special Lecture on Bioengineering"
-      title_ko: "생체공학 특강"
+      title_en: "Invited seminar"
+      title_ko: "초청 세미나"
       host_en: "Hanyang University"
       host_ko: "한양대학교"
+      note_en: "Special Lecture on Bioengineering"
+      note_ko: "생체공학 특강"
     - date: 2025.05.23
-      title_en: "Mechanical Technology Seminar"
-      title_ko: "기계기술 세미나"
+      title_en: "Invited seminar"
+      title_ko: "초청 세미나"
       host_en: "Chungnam National University"
       host_ko: "충남대학교"
+      note_en: "Mechanical Technology Seminar"
+      note_ko: "기계기술 세미나"
     - date: 2025.05.09
-      title_en: "65th Spring Conference, Korean Society of Medical & Biological Engineering"
-      title_ko: "제65회 대한의용생체공학회 춘계학술대회"
+      title_en: "Invited seminar"
+      title_ko: "초청 세미나"
+      host_en: "65th Spring Conference, Korean Society of Medical & Biological Engineering"
+      host_ko: "제65회 대한의용생체공학회 춘계학술대회"
     - date: 2025.02.05
-      title_en: "2025 Brain and AI Symposium"
-      title_ko: "2025 뇌와 인공지능 심포지엄"
+      title_en: "Invited seminar"
+      title_ko: "초청 세미나"
       host_en: "Korean Brain Engineering Society"
       host_ko: "한국뇌공학회"
+      note_en: "2025 Brain and AI Symposium"
+      note_ko: "2025 뇌와 인공지능 심포지엄"
     - date: 2022.05.04
-      title_en: "2022 Virtual Spring Conference, Korean Society for EEG and Neurophysiology"
-      title_ko: "대한뇌파신경생리학회 2022 온라인 춘계학술대회"
+      title_en: "Invited seminar"
+      title_ko: "초청 세미나"
+      host_en: "2022 Virtual Spring Conference, Korean Society for EEG and Neurophysiology"
+      host_ko: "대한뇌파신경생리학회 2022 온라인 춘계학술대회"
 
   # ── 수상 및 장학 ─────────────────────────────────────────────────────
   awards:
