@@ -332,16 +332,15 @@ groups:
     title_en: M.S. Students
     title_ko: 석사과정
     members:
-      # 한글 음차 표기가 정해지면 name_ko 를 그 표기로 바꿔 주세요.
-      # (name_ko 가 name_en 과 다르면 한국어 페이지 카드에 영문 이름이
-      #  작은 글씨로 함께 표시됩니다. 같으면 지금처럼 한 줄만 나옵니다.)
+      # 외국인 구성원은 한국어 페이지에서도 영문 이름을 그대로 씁니다.
+      # (name_ko 를 name_en 과 같게 두면 카드에 이름이 한 줄만 나옵니다)
       - name_en: Gabriel Joseph Mlingi
-        name_ko: Gabriel Joseph Mlingi   # TODO: 한글 음차 표기
+        name_ko: Gabriel Joseph Mlingi
         since: 2025 Spring
         since_ko: 2025년 1학기
         photo: ""
       - name_en: Woyesa Addisu Fayera
-        name_ko: Woyesa Addisu Fayera   # TODO: 한글 음차 표기
+        name_ko: Woyesa Addisu Fayera
         since: 2025 Fall
         since_ko: 2025년 2학기
         photo: ""
