@@ -15,6 +15,11 @@
 # ============================================================================
 
 events:
+  - folder: 2026-09-pnu-colloquium
+    date: 2026-09
+    title_en: Invited talk at the Pusan National University colloquium
+    title_ko: 부산대학교 콜로퀴움 초청 강연
+
   - folder: 2026-09-birthday
     date: 2026-09
     title_en: Birthday party

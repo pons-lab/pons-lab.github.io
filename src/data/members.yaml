@@ -128,6 +128,13 @@ pi:
 
   # ── 초청 강연 · 세미나 (최신순) ──────────────────────────────────────
   talks:
+    - date: 2026.09.18
+      title_en: >-
+        Next-Generation Healthcare and Human–Machine Interfaces Enabled by
+        Wireless Flexible Bioelectronics
+      title_ko: 무선 유연 바이오일렉트로닉스를 통한 차세대 헬스케어와 인간-기계 인터페이스
+      host_en: "Pusan National University, School of Biomedical Convergence Engineering"
+      host_ko: "부산대학교 의생명융합공학부"
     - date: 2026.05.20
       title_en: "2026 Workshop on BRAIN & AI"
       title_ko: "2026 BRAIN&AI 워크샵"
