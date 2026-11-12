@@ -33,7 +33,7 @@
 
 간단한 수정은 Claude Code 없이 **웹 편집 화면**에서 직접 할 수 있습니다.
 
-1. https://app.pagescms.org 에 GitHub 계정으로 로그인하고 `pons-lab/pons-lab.github.io` 를 엽니다.
+1. 사이트 상단 **Members** 페이지의 **Website Editor** 카드를 누르거나 https://app.pagescms.org 로 가서 GitHub 계정으로 로그인하고 `pons-lab/pons-lab.github.io` 를 엽니다.
 2. 왼쪽 메뉴에서 항목(뉴스 · 논문 · 구성원 · 강의 · 갤러리 · 연구 · CV · 사이트 기본 정보)을 골라
    양식을 고치고 **Save** 를 누릅니다.
 3. 저장하면 자동으로 **형식 정리 → 검사 → 배포**가 진행됩니다. 2~3분 뒤 사이트에 반영됩니다.
