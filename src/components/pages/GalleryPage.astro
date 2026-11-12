@@ -349,9 +349,16 @@ const metaLabel = (e) =>
   next?.addEventListener('click', () => show(index + 1));
   dialog?.querySelector('.lb-close')?.addEventListener('click', () => dialog.close());
 
-  // 사진 바깥(배경)을 누르면 닫는다.
+  // 화살표를 빗나가도 창이 닫히지 않게, 화면 왼쪽 절반을 누르면 이전 사진,
+  // 오른쪽 절반을 누르면 다음 사진으로 넘긴다. 닫기는 X 버튼과 Esc 로만 한다.
+  // 사진이 한 장뿐이면 넘길 것이 없으므로 배경을 누르면 닫는다.
   dialog?.addEventListener('click', (e) => {
-    if (!e.target.closest('.lb-figure, .lb-nav, .lb-close')) dialog.close();
+    if (e.target.closest('.lb-nav, .lb-close, .lb-video')) return;
+    if (photos.length < 2) {
+      if (!e.target.closest('.lb-figure')) dialog.close();
+      return;
+    }
+    show(index + (e.clientX < window.innerWidth / 2 ? -1 : 1));
   });
 
   // 닫히면 눌렀던 카드로 초점을 돌려준다.
