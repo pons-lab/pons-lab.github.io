@@ -45,6 +45,18 @@ journals:
   - id: 29
     status: in-revision
     authors: >-
+      Ashok Chhetry1, Hodam Kim1, Jessenia Lopez, Matthew A. Levin,
+      Yun Soung Kim*
+    title: >-
+      A Modular, Sterilizable Wireless Multi-Lead ECG Patch for Continuous
+      Perioperative Monitoring with Clinical Validation in the Operating Room
+    venue: ""
+    detail: ""
+    doi: ""
+
+  - id: 28
+    status: accepted
+    authors: >-
       Hoon Yi1, Roxana C. Chicas1*, Hyunwoo Seo1, Yixuan Liu1, Hodam Kim,
       Tae Woog Kang, Seunghyeb Ban, Jimin Lee, Ka Ram Kim, Ernesto Ruiz,
       Jeff M. Sands, Chiehyeon Lim, Li Xiong, Vicki Hertzberg, and
@@ -52,18 +64,6 @@ journals:
     title: >-
       An All-in-One Wearable Platform Offers a Continuous Assessment and Early
       Diagnosis of Acute Kidney Injury for Outdoor Workers
-    venue: ""
-    detail: ""
-    doi: ""
-
-  - id: 28
-    status: in-revision
-    authors: >-
-      Ashok Chhetry1, Hodam Kim1, Jessenia Lopez, Matthew A. Levin,
-      Yun Soung Kim*
-    title: >-
-      A Modular, Sterilizable Wireless Multi-Lead ECG Patch for Continuous
-      Perioperative Monitoring with Clinical Validation in the Operating Room
     venue: ""
     detail: ""
     doi: ""
