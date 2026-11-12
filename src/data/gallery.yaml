@@ -15,6 +15,20 @@
 # ============================================================================
 
 events:
+  - folder: 2026-11-apcmbe
+    date: 2026-11
+    title_en: APCMBE 2026 (13th IFMBE Asian Pacific Conference)
+    title_ko: APCMBE 2026 국제학술대회
+
+  - folder: 2026-10-dinner
+    date: 2026-10
+    title_en: Lab dinner
+    title_ko: 연구실 회식
+
+  - folder: 2026-10-korea-bci-society
+    date: 2026-10
+    title_en: 1st Fall Conference of the Korea BCI Society
+    title_ko: 2026년 제1회 한국BCI학회 추계학술대회
   - folder: 2026-09-pnu-colloquium
     date: 2026-09
     title_en: Invited talk at the Pusan National University colloquium
