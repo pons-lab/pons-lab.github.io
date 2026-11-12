@@ -69,6 +69,8 @@
   `members.yaml` 에는 없습니다.
 - **진행 중인 과제**는 `research.yaml`, **끝난 과제**는 `cv.yaml` 입니다.
 - **학술 활동**은 `members.yaml` 의 `pi.service`, 심사 활동은 `cv.yaml` 의 `service`.
+- **Full CV의 논문 목록**은 출판된 논문과, `status` 가 `accepted` · `in-press` 인 논문만
+  싣습니다(맨 위 "Accepted" 묶음). 준비 중·심사 중 논문은 Publications 페이지에만 나옵니다.
 - **Short CV에 실리는 논문 5편**은 `publications.yaml` 에서 `featured: true` 인 것들입니다.
 - **한 사람이 직위를 옮긴 경우**(예: 학부연구생 → 석사과정)는 `members.yaml` 의
   그 멤버에 `prior_role_en` · `prior_role_ko` · `prior_period` 를 적으면 카드에

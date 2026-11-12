@@ -22,7 +22,12 @@ const t = useTranslations(lang);
 const pi = members.pi;
 const office = site.contact.office;
 // 준비 중·심사 중 원고는 Full CV 에 싣지 않는다 (Publications 페이지에는 그대로 있다).
-const { groups } = journalsByYear();
+// 게재 확정·게재 예정 논문만 연도 그룹 앞에 "Accepted" 묶음으로 싣는다.
+const { unpublished, groups: byYear } = journalsByYear();
+const accepted = unpublished.filter((p) => ['accepted', 'in-press'].includes(p.status));
+const groups = accepted.length
+  ? [{ year: t('pub.accepted'), items: accepted }, ...byYear]
+  : byYear;
 const { international, domestic } = conferencesByScope();
 
 // 과제는 어디서 왔든 같은 두 줄 구조로 그린다.
