@@ -1,0 +1,769 @@
+# ============================================================================
+# Pages CMS 편집 화면 설정 — https://app.pagescms.org
+#
+# 이 파일은 "어떤 데이터 파일의 어떤 칸을 편집 화면에 보여줄지"를 정한다.
+# 데이터 파일에 새 칸(key)을 만들면 여기에도 반드시 추가한다. 빠뜨리면
+# 편집 화면에 보이지 않는다. `npm run check` 가 빠진 칸을 찾아 알려준다.
+#
+# 저장하면 main 에 커밋되고, GitHub Actions 가 자동 정리·검사 후 배포한다.
+# ============================================================================
+
+settings:
+  content:
+    # 여기 적지 않은 칸이 데이터 파일에 있어도 저장할 때 지우지 않는다.
+    merge: true
+  commit:
+    templates:
+      create: "Add {path} from the editor"
+      update: "Update {path} from the editor"
+      delete: "Delete {path} from the editor"
+      rename: "Rename {oldPath} to {newPath} from the editor"
+
+media:
+  - name: people
+    label: 구성원 사진
+    input: src/assets/people
+    output: people
+    categories: [image]
+    rename: safe
+  - name: gallery
+    label: 갤러리 사진 (행사별 폴더)
+    input: src/assets/gallery
+    output: gallery
+    categories: [image]
+  - name: research
+    label: 연구 그림
+    input: src/assets/research
+    output: research
+    categories: [image]
+    rename: safe
+  - name: docs
+    label: 첨부 문서 (상장 PDF 등)
+    input: public/docs
+    output: /docs
+    categories: [document, image]
+    rename: safe
+
+content:
+  # ── 뉴스 ────────────────────────────────────────────────────────────────
+  - name: news
+    label: 뉴스
+    type: collection
+    path: src/content/news
+    format: yaml-frontmatter
+    filename:
+      template: "{year}-{month}-{primary}.md"
+      field: create
+    view:
+      primary: title
+      fields: [title_ko, date, tag]
+      sort: date
+      order: desc
+    fields:
+      - name: title
+        label: 제목 (영문)
+        type: string
+        required: true
+        description: "문장으로, 따뜻한 톤으로. 예: ○○ joined our lab as a master's student. Welcome!"
+      - name: title_ko
+        label: 제목 (국문)
+        type: string
+        required: true
+      - name: date
+        label: 날짜
+        type: date
+        required: true
+        options:
+          format: yyyy-MM-dd
+      - name: tag
+        label: 태그
+        type: select
+        description: 국문 태그는 비워두면 자동으로 채워집니다.
+        options:
+          values: [People, Award, Grant, Lab, Research, Service]
+      - name: tag_ko
+        label: 태그 (국문)
+        type: string
+      - name: summary
+        label: 요약 (영문)
+        type: text
+        required: true
+        description: 제목을 되풀이하지 말고 배경·의미를 덧붙입니다.
+      - name: summary_ko
+        label: 요약 (국문)
+        type: text
+        required: true
+      - name: file
+        label: 첨부 문서
+        type: file
+        options:
+          media: docs
+      - name: file_label
+        label: 첨부 문서 버튼 문구 (영문)
+        type: string
+      - name: file_label_ko
+        label: 첨부 문서 버튼 문구 (국문)
+        type: string
+
+  # ── 논문 · 학회 발표 ────────────────────────────────────────────────────
+  - name: publications
+    label: 논문 · 학회 발표
+    type: file
+    path: src/data/publications.yaml
+    format: yaml
+    fields:
+      - name: journals
+        label: 저널 논문
+        type: object
+        list:
+          collapsible:
+            collapsed: true
+            summary: "[{id}] {title}"
+        fields:
+          - name: id
+            label: 번호
+            type: number
+            description: 가장 큰 번호가 최신입니다. 비워두면 다음 번호가 자동으로 붙습니다.
+          - name: year
+            label: 출판 연도
+            type: number
+            description: 아직 출판 전이면 비우고 아래 상태를 고릅니다.
+          - name: status
+            label: 상태 (출판 전 논문만)
+            type: select
+            options:
+              values:
+                - { name: in-preparation, label: 준비 중 }
+                - { name: in-revision, label: 심사 중 }
+                - { name: accepted, label: 게재 확정 }
+                - { name: in-press, label: 게재 예정 }
+          - name: authors
+            label: 저자
+            type: text
+            required: true
+            description: "쉼표로 나열. 이름 뒤 1 = 제1저자, * = 교신저자. 예: Hodam Kim1, Chang-Hwan Im*"
+          - name: title
+            label: 제목
+            type: text
+            required: true
+          - name: venue
+            label: 저널명
+            type: string
+          - name: detail
+            label: 권(호), 페이지
+            type: string
+          - name: doi
+            label: DOI
+            type: string
+            description: "10. 으로 시작하는 부분. 주소 전체를 붙여 넣어도 자동으로 정리됩니다."
+          - name: metrics
+            label: IF · 분위
+            type: string
+          - name: featured
+            label: 대표 논문 (메인 화면 · Short CV)
+            type: boolean
+      - name: conferences
+        label: 학회 발표
+        type: object
+        list:
+          collapsible:
+            collapsed: true
+            summary: "{year} · {title}"
+        fields:
+          - name: year
+            label: 연도
+            type: number
+            required: true
+          - name: scope
+            label: 구분
+            type: select
+            required: true
+            options:
+              values:
+                - { name: international, label: 국제 }
+                - { name: domestic, label: 국내 }
+          - name: format
+            label: 발표 형식
+            type: select
+            required: true
+            options:
+              values:
+                - { name: oral, label: 구두 }
+                - { name: poster, label: 포스터 }
+          - name: authors
+            label: 저자
+            type: text
+            required: true
+          - name: title
+            label: 제목
+            type: text
+            required: true
+          - name: venue
+            label: 학회명
+            type: string
+            required: true
+          - name: place
+            label: 장소
+            type: string
+          - name: date
+            label: 날짜
+            type: string
+
+  # ── 구성원 ──────────────────────────────────────────────────────────────
+  - name: members
+    label: 구성원 · PI 프로필
+    type: file
+    path: src/data/members.yaml
+    format: yaml
+    fields:
+      - name: groups
+        label: 구성원
+        type: object
+        list:
+          collapsible:
+            collapsed: false
+            summary: "{title_ko}"
+        fields:
+          - name: id
+            label: 그룹 ID (바꾸지 않습니다)
+            type: string
+            readonly: true
+          - name: title_en
+            label: 그룹 이름 (영문)
+            type: string
+          - name: title_ko
+            label: 그룹 이름 (국문)
+            type: string
+          - name: members
+            label: 멤버
+            type: object
+            list:
+              collapsible:
+                collapsed: true
+                summary: "{name_en} {name_ko}"
+            fields:
+              - name: name_en
+                label: 이름 (영문)
+                type: string
+                required: true
+                description: 본인이 논문·여권에 쓰는 로마자 표기 그대로.
+              - name: name_ko
+                label: 이름 (국문)
+                type: string
+                description: 외국인 구성원은 영문 이름을 그대로 적습니다.
+              - name: since
+                label: 합류 시기
+                type: string
+                description: "예: 2026.03 또는 2026 Fall"
+              - name: since_ko
+                label: 합류 시기 (국문 표기가 다를 때만)
+                type: string
+              - name: photo
+                label: 사진
+                type: image
+                options:
+                  media: people
+              - name: prior_role_en
+                label: 이전 직위 (영문)
+                type: string
+              - name: prior_role_ko
+                label: 이전 직위 (국문)
+                type: string
+              - name: prior_period
+                label: 이전 직위 기간
+                type: string
+      - name: alumni
+        label: 알럼나이
+        type: object
+        list:
+          collapsible:
+            collapsed: true
+            summary: "{name_en} {name_ko}"
+        fields:
+          - { name: name_en, label: 이름 (영문), type: string, required: true }
+          - { name: name_ko, label: 이름 (국문), type: string }
+          - { name: role_en, label: 직위 (영문), type: string }
+          - { name: role_ko, label: 직위 (국문), type: string }
+          - { name: period, label: 기간, type: string }
+      - name: pi
+        label: PI 프로필
+        type: object
+        fields:
+          - { name: name_en, label: 이름 (영문), type: string, required: true }
+          - { name: name_ko, label: 이름 (국문), type: string, required: true }
+          - { name: degree, label: 학위, type: string }
+          - { name: title_en, label: 직위 (영문), type: string }
+          - { name: title_ko, label: 직위 (국문), type: string }
+          - { name: email, label: 이메일, type: string }
+          - { name: phone, label: 전화, type: string }
+          - { name: office_en, label: 연구실 위치 (영문), type: string }
+          - { name: office_ko, label: 연구실 위치 (국문), type: string }
+          - name: photo
+            label: 사진
+            type: image
+            options:
+              media: people
+          - { name: cv_url, label: CV 링크, type: string }
+          - { name: scholar_url, label: Google Scholar 링크, type: string }
+          - { name: orcid, label: ORCID, type: string }
+          - { name: bio_en, label: 소개 (영문), type: text }
+          - { name: bio_ko, label: 소개 (국문), type: text }
+          - name: education
+            label: 학력
+            type: object
+            list:
+              collapsible:
+                collapsed: true
+                summary: "{period} · {role_ko}"
+            fields:
+              - { name: period, label: 기간, type: string }
+              - { name: role_en, label: 학위 (영문), type: string }
+              - { name: role_ko, label: 학위 (국문), type: string }
+              - { name: place_en, label: 기관 (영문), type: text }
+              - { name: place_ko, label: 기관 (국문), type: text }
+              - { name: note_en, label: 비고 (영문), type: text }
+              - { name: note_ko, label: 비고 (국문), type: text }
+          - name: experience
+            label: 경력
+            type: object
+            list:
+              collapsible:
+                collapsed: true
+                summary: "{period} · {role_ko}"
+            fields:
+              - { name: period, label: 기간, type: string }
+              - { name: period_ko, label: 기간 (국문 표기), type: string }
+              - { name: role_en, label: 직위 (영문), type: string }
+              - { name: role_ko, label: 직위 (국문), type: string }
+              - { name: place_en, label: 기관 (영문), type: text }
+              - { name: place_ko, label: 기관 (국문), type: text }
+              - { name: note_en, label: 비고 (영문), type: text }
+              - { name: note_ko, label: 비고 (국문), type: text }
+          - name: service
+            label: 학술단체 활동
+            type: object
+            list:
+              collapsible:
+                collapsed: true
+                summary: "{period} · {org_ko}"
+            fields:
+              - { name: period, label: 기간, type: string }
+              - { name: period_ko, label: 기간 (국문 표기), type: string }
+              - { name: role_en, label: 직책 (영문), type: string }
+              - { name: role_ko, label: 직책 (국문), type: string }
+              - { name: org_en, label: 단체 (영문 공식 명칭), type: string }
+              - { name: org_ko, label: 단체 (국문), type: string }
+          - name: talks
+            label: 초청 강연 · 세미나
+            type: object
+            list:
+              collapsible:
+                collapsed: true
+                summary: "{date} · {host_ko}"
+            fields:
+              - { name: date, label: "날짜 (예: 2026.09.18)", type: string }
+              - { name: title_en, label: 행사 이름 (영문), type: text }
+              - { name: title_ko, label: 행사 이름 (국문), type: text }
+              - { name: host_en, label: 주최 (영문), type: string }
+              - { name: host_ko, label: 주최 (국문), type: string }
+              - { name: note_en, label: 발표 제목 (영문), type: text }
+              - { name: note_ko, label: 발표 제목 (국문), type: text }
+          - name: awards
+            label: 수상 · 장학
+            type: object
+            list:
+              collapsible:
+                collapsed: true
+                summary: "{year} · {title_ko}"
+            fields:
+              - { name: year, label: "시기 (예: 2026.05)", type: string }
+              - { name: year_ko, label: 시기 (국문 표기가 다를 때만), type: string }
+              - { name: title_en, label: 상 이름 (영문), type: string }
+              - { name: title_ko, label: 상 이름 (국문), type: string }
+              - { name: org_en, label: 수여 기관 (영문), type: string }
+              - { name: org_ko, label: 수여 기관 (국문), type: string }
+              - { name: advisee_en, label: 지도학생 수상 설명 (영문), type: text }
+              - { name: advisee_ko, label: 지도학생 수상 설명 (국문), type: text }
+              - name: file
+                label: 상장 파일
+                type: file
+                options:
+                  media: docs
+
+  # ── 강의 ────────────────────────────────────────────────────────────────
+  - name: lectures
+    label: 강의
+    type: file
+    path: src/data/lectures.yaml
+    format: yaml
+    fields:
+      - name: semesters
+        label: 학기 (최신 학기가 맨 위)
+        type: object
+        list:
+          collapsible:
+            collapsed: true
+            summary: "{term_ko}"
+        fields:
+          - name: id
+            label: "학기 ID (예: 2027-1)"
+            type: string
+            required: true
+            pattern:
+              regex: "^\\d{4}-[12]$"
+              message: "연도-학기 형식으로 적습니다. 예: 2027-1"
+          - { name: year, label: 연도, type: number, required: true }
+          - { name: term_en, label: "학기 (영문, 예: Spring 2027)", type: string, required: true }
+          - { name: term_ko, label: "학기 (국문, 예: 2027학년도 1학기)", type: string, required: true }
+          - name: courses
+            label: 과목
+            type: object
+            list:
+              collapsible:
+                collapsed: false
+                summary: "{title_ko}"
+            fields:
+              - name: level
+                label: 과정
+                type: select
+                required: true
+                options:
+                  values:
+                    - { name: undergraduate, label: 학부 }
+                    - { name: graduate, label: 대학원 }
+              - { name: title_ko, label: 과목명 (국문), type: string, required: true }
+              - { name: title_en, label: 과목명 (영문), type: string, required: true }
+              - name: language
+                label: 강의 언어
+                type: select
+                description: 영어 강의일 때만 고릅니다.
+                options:
+                  values:
+                    - { name: en, label: 영어 강의 }
+
+  # ── 갤러리 ──────────────────────────────────────────────────────────────
+  - name: gallery
+    label: 갤러리
+    type: file
+    path: src/data/gallery.yaml
+    format: yaml
+    fields:
+      - name: events
+        label: 행사 (최신 행사가 맨 위)
+        type: object
+        list:
+          collapsible:
+            collapsed: true
+            summary: "{date} · {title_ko}"
+        fields:
+          - name: folder
+            label: 사진 폴더 이름
+            type: string
+            required: true
+            description: "먼저 Media > 갤러리 사진 에서 폴더를 만들고 사진을 올린 뒤, 그 폴더 이름을 적습니다. 예: 2026-10-dinner"
+            pattern:
+              regex: "^[a-z0-9-]+$"
+              message: "영문 소문자·숫자·하이픈만 씁니다. 예: 2026-10-dinner"
+          - name: date
+            label: "시기 (예: 2026-10)"
+            type: string
+            required: true
+            pattern:
+              regex: "^\\d{4}-\\d{2}$"
+              message: "연도-월 형식으로 적습니다. 예: 2026-10"
+          - { name: title_en, label: 제목 (영문), type: string, required: true }
+          - { name: title_ko, label: 제목 (국문), type: string, required: true }
+          - name: video
+            label: 영상 경로 (있을 때만)
+            type: string
+            description: "영상은 편집 화면에서 올리지 않습니다. Claude Code 에 요청하세요."
+
+  # ── 연구 · 진행 과제 ────────────────────────────────────────────────────
+  - name: research
+    label: 연구 · 진행 중인 과제
+    type: file
+    path: src/data/research.yaml
+    format: yaml
+    fields:
+      - name: projects
+        label: 진행 중인 과제
+        type: object
+        list:
+          collapsible:
+            collapsed: true
+            summary: "{period} · {short_ko}"
+        fields:
+          - { name: period, label: 기간, type: string, required: true }
+          - { name: title_en, label: 과제명 (영문), type: text }
+          - { name: title_ko, label: 과제명 (국문), type: text }
+          - { name: short_en, label: 짧은 이름 (영문), type: string }
+          - { name: short_ko, label: 짧은 이름 (국문), type: string }
+          - name: role
+            label: 역할
+            type: select
+            required: true
+            options:
+              values:
+                - { name: pi, label: 연구책임자 }
+                - { name: researcher, label: 참여 연구자 }
+          - { name: funder_en, label: 지원 기관 (영문 공식 명칭), type: string }
+          - { name: funder_ko, label: 지원 기관 (국문), type: string }
+          - { name: program_en, label: 사업명 (영문), type: string }
+          - { name: program_ko, label: 사업명 (국문), type: string }
+      - name: axes
+        label: 연구 축
+        type: object
+        list:
+          collapsible:
+            collapsed: true
+            summary: "{title_ko}"
+        fields:
+          - { name: id, label: 축 ID (바꾸지 않습니다), type: string, readonly: true }
+          - { name: title_en, label: 제목 (영문), type: string }
+          - { name: title_ko, label: 제목 (국문), type: string }
+          - { name: lead_en, label: 소개 (영문), type: text }
+          - { name: lead_ko, label: 소개 (국문), type: text }
+          - name: image
+            label: 대표 그림
+            type: image
+            options:
+              media: research
+          - name: topics
+            label: 세부 주제
+            type: object
+            list:
+              collapsible:
+                collapsed: true
+                summary: "{title_ko}"
+            fields:
+              - { name: title_en, label: 제목 (영문), type: string }
+              - { name: title_ko, label: 제목 (국문), type: string }
+              - { name: text_en, label: 설명 (영문), type: text }
+              - { name: text_ko, label: 설명 (국문), type: text }
+              - name: image
+                label: 그림
+                type: image
+                options:
+                  media: research
+              - { name: image_credit, label: 그림 출처, type: string }
+              - name: refs
+                label: 관련 논문 번호
+                type: number
+                list: true
+
+  # ── CV 전용 항목 ────────────────────────────────────────────────────────
+  - name: cv
+    label: CV 항목 (특허 · 종료 과제 · 역량)
+    type: file
+    path: src/data/cv.yaml
+    format: yaml
+    fields:
+      - name: research_interests
+        label: 연구 관심사
+        type: object
+        list:
+          collapsible:
+            collapsed: true
+            summary: "{ko}"
+        fields:
+          - { name: en, label: 영문, type: string }
+          - { name: ko, label: 국문, type: string }
+      - name: skills
+        label: 연구 역량
+        type: object
+        list:
+          collapsible:
+            collapsed: true
+            summary: "{label_ko}"
+        fields:
+          - { name: label_en, label: 항목 (영문), type: string }
+          - { name: label_ko, label: 항목 (국문), type: string }
+          - { name: value_en, label: 내용 (영문), type: text }
+          - { name: value_ko, label: 내용 (국문), type: text }
+      - name: service
+        label: 심사 활동
+        type: object
+        list:
+          collapsible:
+            collapsed: true
+            summary: "{period} · {org_ko}"
+        fields:
+          - { name: period, label: 기간, type: string }
+          - { name: period_ko, label: 기간 (국문 표기), type: string }
+          - { name: role_en, label: 역할 (영문), type: string }
+          - { name: role_ko, label: 역할 (국문), type: string }
+          - { name: org_en, label: 저널·기관 (영문), type: string }
+          - { name: org_ko, label: 저널·기관 (국문), type: string }
+      - name: patents
+        label: 특허
+        type: object
+        list:
+          collapsible:
+            collapsed: true
+            summary: "[{no}] {title_ko}"
+        fields:
+          - { name: "no", label: 번호, type: number, required: true }
+          - { name: inventors, label: 발명자, type: string }
+          - { name: title_en, label: 명칭 (영문), type: text }
+          - { name: title_ko, label: 명칭 (국문), type: text }
+          - name: status
+            label: 상태
+            type: select
+            required: true
+            options:
+              values:
+                - { name: granted, label: 등록 }
+                - { name: application, label: 출원 }
+          - { name: number, label: 등록(출원)번호, type: string }
+          - { name: date, label: "등록(출원)일 (예: 2024.12.09)", type: string }
+          - { name: application_number, label: 출원번호 (등록 특허만), type: string }
+          - { name: application_date, label: 출원일 (등록 특허만), type: string }
+          - { name: country_en, label: 국가 (영문), type: string }
+          - { name: country_code, label: "국가 코드 (예: KR)", type: string }
+          - { name: country_ko, label: 국가 (국문), type: string }
+          - { name: assignee_en, label: 출원인 (영문), type: string }
+          - { name: assignee_ko, label: 출원인 (국문), type: string }
+      - name: past_projects
+        label: 종료된 과제
+        type: object
+        list:
+          collapsible:
+            collapsed: true
+            summary: "{period} · {title_ko}"
+        fields:
+          - { name: period, label: 기간, type: string }
+          - { name: title_en, label: 과제명 (영문), type: text }
+          - { name: title_ko, label: 과제명 (국문), type: text }
+          - { name: funder_en, label: 지원 기관 (영문), type: string }
+          - { name: funder_ko, label: 지원 기관 (국문), type: string }
+          - { name: role_en, label: 역할 (영문), type: string }
+          - { name: role_ko, label: 역할 (국문), type: string }
+
+  # ── 사이트 기본 정보 ────────────────────────────────────────────────────
+  - name: site
+    label: 사이트 기본 정보 (이름 · 연락처 · 모집)
+    type: file
+    path: src/data/site.yaml
+    format: yaml
+    fields:
+      - name: recruiting
+        label: 모집 안내
+        type: object
+        fields:
+          - { name: open, label: 모집 중, type: boolean }
+          - { name: en, label: 모집 문구 (영문), type: text }
+          - { name: ko, label: 모집 문구 (국문), type: text }
+          - { name: how_to_apply_en, label: 지원 방법 (영문), type: text }
+          - { name: how_to_apply_ko, label: 지원 방법 (국문), type: text }
+      - name: lab_authors
+        label: 논문 저자 목록에서 굵게 표시할 이름
+        type: string
+        list: true
+      - name: home_news_count
+        label: 메인 화면에 보일 뉴스 개수
+        type: number
+      - name: contact
+        label: 연락처
+        type: object
+        fields:
+          - { name: email, label: 이메일, type: string }
+          - { name: map_url, label: 지도 링크, type: string }
+          - name: address
+            label: 주소
+            type: object
+            fields:
+              - name: lines_en
+                label: 주소 (영문, 의미 단위로 한 줄씩)
+                type: string
+                list: true
+              - name: lines_ko
+                label: 주소 (국문, 의미 단위로 한 줄씩)
+                type: string
+                list: true
+              - { name: postal_code, label: 우편번호, type: string }
+              - { name: locality_en, label: 시 (영문), type: string }
+              - { name: region_en, label: 도 (영문), type: string }
+          - name: lab
+            label: 실험실
+            type: object
+            fields:
+              - { name: room_en, label: 위치 (영문), type: string }
+              - { name: room_ko, label: 위치 (국문), type: string }
+              - { name: phone, label: 전화 (국제 형식), type: string }
+              - { name: phone_display, label: 전화 (표시용), type: string }
+          - name: office
+            label: 교수 연구실
+            type: object
+            fields:
+              - { name: room_en, label: 위치 (영문), type: string }
+              - { name: room_ko, label: 위치 (국문), type: string }
+              - { name: phone, label: 전화 (국제 형식), type: string }
+              - { name: phone_display, label: 전화 (표시용), type: string }
+      - name: name
+        label: 연구실 이름
+        type: object
+        fields:
+          - { name: full_en, label: 영문 풀네임, type: string }
+          - { name: short_en, label: 영문 약칭, type: string }
+          - { name: full_ko, label: 국문 명칭, type: string }
+          - { name: short_ko, label: 국문 약칭, type: string }
+          - { name: display_ko, label: 국문 표기 (영문 약칭 병기), type: string }
+      - name: tagline
+        label: 태그라인
+        type: object
+        fields:
+          - { name: en, label: 영문, type: string }
+          - { name: ko, label: 국문, type: string }
+      - name: description
+        label: 사이트 설명 (검색 결과에 보이는 문구)
+        type: object
+        fields:
+          - { name: en, label: 영문, type: text }
+          - { name: ko, label: 국문, type: text }
+      - name: intro
+        label: 메인 화면 소개문
+        type: object
+        fields:
+          - { name: en, label: 영문, type: text }
+          - { name: ko, label: 국문, type: text }
+      - name: institution
+        label: 소속
+        type: object
+        fields:
+          - { name: university_en, label: 대학 (영문), type: string }
+          - { name: university_ko, label: 대학 (국문), type: string }
+          - { name: university_main_en, label: 대학 본교명 (영문), type: string }
+          - { name: university_main_ko, label: 대학 본교명 (국문), type: string }
+          - { name: department_en, label: 학부 (영문), type: string }
+          - { name: department_ko, label: 학부 (국문), type: string }
+          - { name: department_grad_en, label: 대학원 학과 (영문), type: string }
+          - { name: department_grad_ko, label: 대학원 학과 (국문), type: string }
+          - { name: affiliations_en, label: PI 소속 목록 (영문), type: string, list: true }
+          - { name: affiliations_ko, label: PI 소속 목록 (국문), type: string, list: true }
+      - name: brand
+        label: Why PONS? (이름 유래)
+        type: object
+        fields:
+          - name: story
+            label: 스토리
+            type: object
+            fields:
+              - { name: en, label: 영문, type: text }
+              - { name: ko, label: 국문, type: text }
+          - name: cards
+            label: P·O·N·S 카드
+            type: object
+            list:
+              collapsible:
+                collapsed: true
+                summary: "{letter} — {word}"
+            fields:
+              - { name: letter, label: 머리글자, type: string }
+              - { name: word, label: 단어 (영문), type: string }
+              - { name: word_ko, label: 단어 (국문), type: string }
+              - { name: text_en, label: 설명 (영문), type: text }
+              - { name: text_ko, label: 설명 (국문), type: text }
+      - name: join_background
+        label: Join 밴드 배경 그림 (바꾸지 않습니다)
+        type: string
+        readonly: true

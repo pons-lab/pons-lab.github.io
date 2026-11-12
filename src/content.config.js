@@ -7,7 +7,8 @@ const news = defineCollection({
   schema: z.object({
     title: z.string(),
     title_ko: z.string(),
-    date: z.date(),
+    // 편집 화면(Pages CMS)은 날짜를 문자열로 저장하므로 문자열도 받는다.
+    date: z.coerce.date(),
     tag: z.string().optional(),
     tag_ko: z.string().optional(),
     summary: z.string(),

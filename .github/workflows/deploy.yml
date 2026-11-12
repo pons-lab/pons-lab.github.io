@@ -8,7 +8,8 @@ on:
   workflow_dispatch: # Actions 탭에서 수동으로도 실행할 수 있게
 
 permissions:
-  contents: read
+  contents: write # 자동 정리한 내용을 저장소에 되돌려 커밋한다
+  issues: write # 고칠 수 없는 문제는 이슈로 알린다
   pages: write
   id-token: write
 
@@ -29,6 +30,54 @@ jobs:
           cache: npm
 
       - run: npm ci
+
+      # 편집 화면(Pages CMS)이나 GitHub 웹에서 들어온 내용의 형식을 정리하고 검사한다.
+      # 정리된 결과는 저장소에 되돌려 커밋한다. (이 커밋은 배포를 다시 일으키지 않고,
+      # 지금 실행이 정리된 내용으로 그대로 빌드한다.)
+      # 사람이 고쳐야 하는 문제가 남으면 여기서 실패해 배포까지 가지 않는다.
+      - name: Tidy and check content
+        id: content
+        run: |
+          node scripts/content-check.mjs --fix > check.log 2>&1 && ok=1 || ok=0
+          cat check.log
+          if [ -n "$(git status --porcelain -- src public)" ]; then
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git add src public
+            git commit -m "Tidy content after an edit"
+            git push origin HEAD:main || echo "push 실패 — 다음 배포 때 다시 정리합니다."
+          fi
+          [ "$ok" = 1 ]
+
+      # 무엇을 고쳐야 하는지 이슈로 남긴다. 사이트는 이전 상태 그대로 유지된다.
+      - name: Report content problems
+        if: failure() && steps.content.outcome == 'failure'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          {
+            echo "편집한 내용에 고쳐야 할 곳이 있어 **배포를 멈췄습니다.** 사이트는 이전 상태 그대로입니다."
+            echo
+            echo '```'
+            cat check.log
+            echo '```'
+            echo
+            echo "해당 항목을 고쳐 다시 저장하면 자동으로 다시 검사하고 배포합니다."
+          } > report.md
+          n=$(gh issue list --state open --search "콘텐츠 검사 실패 in:title" --json number -q '.[0].number')
+          if [ -n "$n" ]; then
+            gh issue comment "$n" --body-file report.md
+          else
+            gh issue create --title "콘텐츠 검사 실패" --body-file report.md
+          fi
+
+      - name: Close resolved content reports
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          for n in $(gh issue list --state open --search "콘텐츠 검사 실패 in:title" --json number -q '.[].number'); do
+            gh issue close "$n" --comment "고쳐졌습니다. 배포를 진행합니다."
+          done
 
       # CV 페이지를 인쇄해 dist/cv-full.pdf 와 dist/cv-short.pdf 를 만든다
       - run: npx playwright install --with-deps chromium
