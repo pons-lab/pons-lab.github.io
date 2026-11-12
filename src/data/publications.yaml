@@ -2,79 +2,95 @@ journals:
   - id: 31
     status: in-preparation
     authors: Hodam Kim1, Suhye Kim1, and Chang-Hwan Im*
-    title: Prediction of the individual's emotional modulation by emotionally
+    title: >-
+      Prediction of the individual's emotional modulation by emotionally
       arousing videos from resting-state EEG
     featured: false
   - id: 30
     status: in-preparation
     authors: Hodam Kim1, Suhye Kim, and Chang-Hwan Im*
-    title: Subject-independent emotion estimation based on EEG using continuously
+    title: >-
+      Subject-independent emotion estimation based on EEG using continuously
       indexed domain generalization
     featured: false
   - id: 29
     status: in-revision
-    authors: Ashok Chhetry1, Hodam Kim1, Jessenia Lopez, Matthew A. Levin, Yun Soung
+    authors: >-
+      Ashok Chhetry1, Hodam Kim1, Jessenia Lopez, Matthew A. Levin, Yun Soung
       Kim*
-    title: A Modular, Sterilizable Wireless Multi-Lead ECG Patch for Continuous
+    title: >-
+      A Modular, Sterilizable Wireless Multi-Lead ECG Patch for Continuous
       Perioperative Monitoring with Clinical Validation in the Operating Room
     featured: false
   - id: 28
     status: accepted
-    authors: Hoon Yi1, Roxana C. Chicas1*, Hyunwoo Seo1, Yixuan Liu1, Hodam Kim, Tae
+    authors: >-
+      Hoon Yi1, Roxana C. Chicas1*, Hyunwoo Seo1, Yixuan Liu1, Hodam Kim, Tae
       Woog Kang, Seunghyeb Ban, Jimin Lee, Ka Ram Kim, Ernesto Ruiz, Jeff M.
       Sands, Chiehyeon Lim, Li Xiong, Vicki Hertzberg, and Woon-Hong Yeo*
-    title: An All-in-One Wearable Platform Offers a Continuous Assessment and Early
+    title: >-
+      An All-in-One Wearable Platform Offers a Continuous Assessment and Early
       Diagnosis of Acute Kidney Injury for Outdoor Workers
     venue: Nature Communications
     featured: false
   - id: 27
     year: 2026
-    authors: Kang-Min Choi1, Hodam Kim1, Gamze Kilic-Berkmen, Yunuo Huang, Hyder A.
+    authors: >-
+      Kang-Min Choi1, Hodam Kim1, Gamze Kilic-Berkmen, Yunuo Huang, Hyder A.
       Jinnah* and Woon-Hong Yeo*
-    title: Integration of soft portable biosensors and artificial intelligence for
+    title: >-
+      Integration of soft portable biosensors and artificial intelligence for
       automatic detection of abnormal facial movements in blepharospasm
-    venue: "Biosensors and Bioelectronics: X"
+    venue: 'Biosensors and Bioelectronics: X'
     detail: 30, 100779
     doi: 10.1016/j.biosx.2026.100779
     featured: false
   - id: 26
     year: 2025
-    authors: Hojoong Kim1, Hodam Kim, Seungpyo Kang, Gamze Kilic-Berkmen, Kyoungmin
+    authors: >-
+      Hojoong Kim1, Hodam Kim, Seungpyo Kang, Gamze Kilic-Berkmen, Kyoungmin
       Min, Hyder A. Jinnah* and Woon-Hong Yeo*
-    title: Face-Wearable Integrated Bioelectronics for Quantitative, Automated
+    title: >-
+      Face-Wearable Integrated Bioelectronics for Quantitative, Automated
       Diagnosis of Blepharospasm
-    venue: "Biosensors and Bioelectronics: X"
+    venue: 'Biosensors and Bioelectronics: X'
     detail: 26, 100677
     doi: 10.1016/j.biosx.2025.100677
     featured: false
   - id: 25
     year: 2025
-    authors: Jaeho Lee1, Jimin Lee1, Yoon Jae Lee, Hodam Kim, Youngjin Kwon, Yunuo
+    authors: >-
+      Jaeho Lee1, Jimin Lee1, Yoon Jae Lee, Hodam Kim, Youngjin Kwon, Yunuo
       Huang, Matthew Kuczajda, Ira Soltis, and Woon-Hong Yeo*
-    title: Flexible Smart Insole and Plantar Pressure Monitoring Using
-      Screen-Printed Nanomaterials and Piezoresistive Sensors
+    title: >-
+      Flexible Smart Insole and Plantar Pressure Monitoring Using Screen-Printed
+      Nanomaterials and Piezoresistive Sensors
     venue: ACS Applied Materials & Interfaces
     detail: 17 (33), 47153–47161
-    doi: https://doi.org/10.1021/acsami.5c08296
+    doi: 10.1021/acsami.5c08296
     metrics: IF 8.2, Q1, 20%
     featured: false
   - id: 24
     year: 2025
-    authors: Hodam Kim1, Hojoong Kim, Yoon Jae Lee, Hoon Yi, Youngjin Kwon, Yunuo
+    authors: >-
+      Hodam Kim1, Hojoong Kim, Yoon Jae Lee, Hoon Yi, Youngjin Kwon, Yunuo
       Huang, Lynn Marie Trotti, Yun Soung Kim, and Woon-Hong Yeo*
-    title: Continuous Real-Time Detection and Management of Comprehensive Mental
+    title: >-
+      Continuous Real-Time Detection and Management of Comprehensive Mental
       States Using Wireless Soft Multifunctional Bioelectronics
     venue: Biosensors and Bioelectronics
-    detail: "117387"
+    detail: '117387'
     doi: 10.1016/j.bios.2025.117387
     metrics: IF 10.5, Q1, 5%
     featured: true
   - id: 23
     year: 2025
-    authors: Tae Woog Kang1, Ka Ram Kim1, Yoon Jae Lee1, Hodam Kim, Sung Hoon Lee,
+    authors: >-
+      Tae Woog Kang1, Ka Ram Kim1, Yoon Jae Lee1, Hodam Kim, Sung Hoon Lee,
       Youngjin Kwon, Hoon Yi, Hojoong Kim, Hyeon Seok Kim, Alec Harp, Jud Ready,
       Melinda Millard-Stafford, Woon-Hong Yeo*
-    title: Wireless Soft Athlete Bioelectronics for Monitoring Carbon Dioxide
+    title: >-
+      Wireless Soft Athlete Bioelectronics for Monitoring Carbon Dioxide
       Ventilation and Physiological Performance
     venue: Advanced Science
     detail: 12 (34), e03880
@@ -83,22 +99,26 @@ journals:
     featured: false
   - id: 22
     year: 2025
-    authors: Jimin Lee1, Allison Bateman1, Mi Hyeon Kim1, Bruno Rigo, Hodam Kim,
-      Jaeho Lee, Yun Hyeok Choi, Robert Herbert, Deok Hee Lee, Woon-Hong Yeo*
-    title: Non-Surgical, In-Stent Membrane Bioelectronics for Long-Term Intracranial
+    authors: >-
+      Jimin Lee1, Allison Bateman1, Mi Hyeon Kim1, Bruno Rigo, Hodam Kim, Jaeho
+      Lee, Yun Hyeok Choi, Robert Herbert, Deok Hee Lee, Woon-Hong Yeo*
+    title: >-
+      Non-Surgical, In-Stent Membrane Bioelectronics for Long-Term Intracranial
       Pressure Monitoring
     venue: Advanced Healthcare Materials
-    detail: "2404680"
+    detail: '2404680'
     doi: 10.1002/adhm.202404680
     metrics: IF 10.0, Q1, 5%
     featured: false
   - id: 21
     year: 2025
-    authors: Hodam Kim1, Ju Hyeon Kim1, Yoon Jae Lee1, Jimin Lee, Hyojeong Han, Hoon
+    authors: >-
+      Hodam Kim1, Ju Hyeon Kim1, Yoon Jae Lee1, Jimin Lee, Hyojeong Han, Hoon
       Yi, Hyeonseok Kim, Hojoong Kim, Tae Woog Kang, Suyeong Jeong, Seunghyeb
       Ban, Byeongjun Lee, Haran Lee, Chang-Hwan Im, Seong Jin Cho, Jung Woo
       Sohn, Ki Jun Yu, Tae June Kang*, and Woon-Hong Yeo*
-    title: Motion artifact–controlled micro–brain sensors between hair follicles for
+    title: >-
+      Motion artifact–controlled micro–brain sensors between hair follicles for
       persistent augmented reality brain–computer interfaces
     venue: Proceedings of the National Academy of Sciences
     detail: 122 (15), e2419304122
@@ -107,11 +127,13 @@ journals:
     featured: true
   - id: 20
     year: 2025
-    authors: Kangkyu Kwon1, Yoon Jae Lee1, Yeongju Jung, Ira Soltis, Chanyeong Choi,
+    authors: >-
+      Kangkyu Kwon1, Yoon Jae Lee1, Yeongju Jung, Ira Soltis, Chanyeong Choi,
       Yewon Na, Lissette Romero, Beomjune Shin, Myung Chul Kim, Nathan
       Rodeheaver, Hodam Kim, Michael S. Lloyd, Ziqing Zhuang, William King,
       Susan Xu, Seung-Hwan Ko*, Jinwoo Lee*, Woon-Hong Yeo*
-    title: Smart Filtering Facepiece Respirator with Self-Adaptive Fit and Wireless
+    title: >-
+      Smart Filtering Facepiece Respirator with Self-Adaptive Fit and Wireless
       Humidity Monitoring
     venue: Biomaterials
     detail: 314, 122866
@@ -120,9 +142,11 @@ journals:
     featured: false
   - id: 19
     year: 2025
-    authors: Tae Woog Kang1, Yoon Jae Lee1, Bruno Rigo, Hodam Kim, Tommy Wang, Eyas
+    authors: >-
+      Tae Woog Kang1, Yoon Jae Lee1, Bruno Rigo, Hodam Kim, Tommy Wang, Eyas
       Ayesh, Scott H. Kozin, Frank L. Hammond, and Woon-Hong Yeo*
-    title: Soft Nanomembrane Sensor-Enabled Wearable Multimodal Sensing and Feedback
+    title: >-
+      Soft Nanomembrane Sensor-Enabled Wearable Multimodal Sensing and Feedback
       System for Upper-Limb Sensory Impairment Assistance
     venue: ACS Nano
     detail: 19 (5), 5613–5628
@@ -131,10 +155,12 @@ journals:
     featured: false
   - id: 18
     year: 2024
-    authors: Yoon Jae Lee1, Cheoljeong Park1, Hodam Kim, Seong J. Cho* and Woon-Hong
+    authors: >-
+      Yoon Jae Lee1, Cheoljeong Park1, Hodam Kim, Seong J. Cho* and Woon-Hong
       Yeo*
-    title: "Artificial Intelligence on Biomedical Signals: Technologies,
-      Applications, and Future Directions"
+    title: >-
+      Artificial Intelligence on Biomedical Signals: Technologies, Applications,
+      and Future Directions
     venue: Med-X
     detail: 2 (1), 1–30
     doi: 10.1007/s44258-024-00043-1
@@ -151,7 +177,8 @@ journals:
   - id: 16
     year: 2024
     authors: Ka Ram Kim1, Tae Woog Kang1, Hodam Kim, Yoon Jae Lee, and Woon-Hong Yeo*
-    title: All-in-One, Wireless, Multi-Sensor Integrated Athlete Health Monitor for
+    title: >-
+      All-in-One, Wireless, Multi-Sensor Integrated Athlete Health Monitor for
       Real-Time Continuous Detection of Dehydration and Physiological Stress
     venue: Advanced Science
     detail: 11 (3), 2403238
@@ -160,10 +187,12 @@ journals:
     featured: false
   - id: 15
     year: 2024
-    authors: Maria Sattar1, Yoon Jae Lee, Hyeonseok Kim, Michael Adams, Matthew
-      Guess, Juhyeon Kim, Ira Soltis, Taewoog Kang, Hojoong Kim, Jimin Lee,
-      Hodam Kim, Shannon Yee, and Woon-Hong Yeo*
-    title: Flexible Thermoelectric Wearable Architecture for Wireless Continuous
+    authors: >-
+      Maria Sattar1, Yoon Jae Lee, Hyeonseok Kim, Michael Adams, Matthew Guess,
+      Juhyeon Kim, Ira Soltis, Taewoog Kang, Hojoong Kim, Jimin Lee, Hodam Kim,
+      Shannon Yee, and Woon-Hong Yeo*
+    title: >-
+      Flexible Thermoelectric Wearable Architecture for Wireless Continuous
       Physiological Monitoring
     venue: ACS Applied Materials & Interfaces
     detail: 16 (29), 37401–37417
@@ -172,9 +201,11 @@ journals:
     featured: false
   - id: 14
     year: 2024
-    authors: Hoon Yi1, Hodam Kim, Ju Hyeon Kim, Juhee Kim, Hyunjae Lee, Ka Ram Kim,
+    authors: >-
+      Hoon Yi1, Hodam Kim, Ju Hyeon Kim, Juhee Kim, Hyunjae Lee, Ka Ram Kim,
       Sanjeet Grewal, William D. Freeman, and Woon-Hong Yeo*
-    title: Flexible Low-Profile External Ventricular Drain Catheter for Real-Time
+    title: >-
+      Flexible Low-Profile External Ventricular Drain Catheter for Real-Time
       Brain Monitoring
     venue: Biosensors and Bioelectronics
     detail: 255, 116627
@@ -183,10 +214,12 @@ journals:
     featured: false
   - id: 13
     year: 2024
-    authors: Jimin Lee1, Ira Soltis, Sayre A. Tillery, Sung Hoon Lee, Hodam Kim, and
+    authors: >-
+      Jimin Lee1, Ira Soltis, Sayre A. Tillery, Sung Hoon Lee, Hodam Kim, and
       Woon-Hong Yeo*
-    title: Long-Term Stable pH Sensor Array with Synergistic Bilayer Structure for
-      2D Real-Time Mapping in Cell Culture Monitoring
+    title: >-
+      Long-Term Stable pH Sensor Array with Synergistic Bilayer Structure for 2D
+      Real-Time Mapping in Cell Culture Monitoring
     venue: Biosensors and Bioelectronics
     detail: 254, 116223
     doi: 10.1016/j.bios.2024.116223
@@ -194,10 +227,12 @@ journals:
     featured: false
   - id: 12
     year: 2024
-    authors: Gamze Kilic-Berkmen1, Hodam Kim, Dongdong Chen, Cameron I. Yeo, Ashok
-      R. Dinasarapu, Laura Scorr, Woon-Hong Yeo, David A. Peterson, Hilde
-      Williams, April Ruby, Rodger Mills, Hyder A. Jinnah*
-    title: An Exploratory, Randomized, Double-Blind Trial Addressing Safety and
+    authors: >-
+      Gamze Kilic-Berkmen1, Hodam Kim, Dongdong Chen, Cameron I. Yeo, Ashok R.
+      Dinasarapu, Laura Scorr, Woon-Hong Yeo, David A. Peterson, Hilde Williams,
+      April Ruby, Rodger Mills, Hyder A. Jinnah*
+    title: >-
+      An Exploratory, Randomized, Double-Blind Trial Addressing Safety and
       Efficacy of Dipraglurant for Blepharospasm
     venue: Movement Disorders
     detail: 39 (3), 738–745
@@ -206,11 +241,13 @@ journals:
     featured: false
   - id: 11
     year: 2024
-    authors: Jimin Lee1, Hojoong Kim1, Hyo-Ryoung Lim1, Yun-Soung Kim1, Thi Thai
-      Thanh Hoang, Jeongmoon Choi, Gun-Jae Jeong, Hodam Kim, Robert Herbert, Ira
+    authors: >-
+      Jimin Lee1, Hojoong Kim1, Hyo-Ryoung Lim1, Yun-Soung Kim1, Thi Thai Thanh
+      Hoang, Jeongmoon Choi, Gun-Jae Jeong, Hodam Kim, Robert Herbert, Ira
       Soltis, Karam Kim, Sung Hoon Lee, Youngjin Kwon, Yunki Lee, Young Charles
       Jang, and Woon-Hong Yeo*
-    title: Large-scale smart bioreactor with fully integrated wireless multivariate
+    title: >-
+      Large-scale smart bioreactor with fully integrated wireless multivariate
       sensors and electronics for long-term in situ monitoring of stem cell
       culture
     venue: Science Advances
@@ -220,9 +257,11 @@ journals:
     featured: false
   - id: 10
     year: 2024
-    authors: Hodam Kim1, Ho-Seung Cha1, Minseon Kim, Yoon Jae Lee, Hoon Yi, Sung
-      Hoon Lee, Ira Soltis, Hojoong Kim, Chang-Hwan Im* and Woon-Hong Yeo*
-    title: AR-Enabled Persistent Human-Machine Interfaces via a Scalable Soft
+    authors: >-
+      Hodam Kim1, Ho-Seung Cha1, Minseon Kim, Yoon Jae Lee, Hoon Yi, Sung Hoon
+      Lee, Ira Soltis, Hojoong Kim, Chang-Hwan Im* and Woon-Hong Yeo*
+    title: >-
+      AR-Enabled Persistent Human-Machine Interfaces via a Scalable Soft
       Electrode Array
     venue: Advanced Science
     detail: 11 (7), 2305871
@@ -231,10 +270,12 @@ journals:
     featured: true
   - id: 9
     year: 2023
-    authors: Shinjae Kwon1, Hyeon Seok Kim1, Kangkyu Kwon, Hodam Kim, Yun Soung Kim,
+    authors: >-
+      Shinjae Kwon1, Hyeon Seok Kim1, Kangkyu Kwon, Hodam Kim, Yun Soung Kim,
       Sung Hoon Lee, Young-Tae Kwon, Jae-Woong Jeong, Lynn Marie Trotti, Audrey
       Duarte, and Woon-Hong Yeo*
-    title: At-home wireless sleep monitoring patches for the clinical assessment of
+    title: >-
+      At-home wireless sleep monitoring patches for the clinical assessment of
       sleep quality and sleep apnea
     venue: Science Advances
     detail: 9 (21), eadg9671
@@ -244,7 +285,8 @@ journals:
   - id: 8
     year: 2023
     authors: Hodam Kim1, Yoon Jae Lee1, Garan Byun, Chanyoung Choi, and Woon-Hong Yeo*
-    title: Advances in Ultrathin Soft Sensors, Integrated Materials, and
+    title: >-
+      Advances in Ultrathin Soft Sensors, Integrated Materials, and
       Manufacturing Technologies for Enhanced Monitoring of Human Physiological
       Signals
     venue: Advanced Electronic Materials
@@ -255,7 +297,8 @@ journals:
   - id: 7
     year: 2023
     authors: Hodam Kim1, Younsoo Chae, Suhye Kim, and Chang-Hwan Im*
-    title: Development of a Computer-Aided Education System Inspired by Face-to-Face
+    title: >-
+      Development of a Computer-Aided Education System Inspired by Face-to-Face
       Learning by Incorporating EEG-Based Neurofeedback into Online Video
       Lectures
     venue: IEEE Transactions on Learning Technologies
@@ -266,9 +309,10 @@ journals:
   - id: 6
     year: 2022
     authors: Hodam Kim1, Suhye Kim, Hongin Kim, YoungSoo Ji, and Chang-Hwan Im*
-    title: "Modulation of driver's emotional states by manipulating in-vehicle
+    title: >-
+      Modulation of driver's emotional states by manipulating in-vehicle
       environment: Validation with biosignals recorded in an actual car
-      environment"
+      environment
     venue: IEEE Transactions on Affective Computing
     detail: 13 (4), 1783–1792
     doi: 10.1109/TAFFC.2022.3206222
@@ -277,7 +321,8 @@ journals:
   - id: 5
     year: 2022
     authors: Hodam Kim1, Dan Zhang, Laehyun Kim, and Chang-Hwan Im*
-    title: Classification of Individual's Discrete Emotions Reflected in Facial
+    title: >-
+      Classification of Individual's Discrete Emotions Reflected in Facial
       Microexpressions Using Electroencephalogram and Facial Electromyogram
     venue: Expert Systems with Applications
     detail: 188, Art. No. 116101
@@ -287,7 +332,8 @@ journals:
   - id: 4
     year: 2021
     authors: Hodam Kim1, and Chang-Hwan Im*
-    title: Influence of the number of channels and classification algorithm on the
+    title: >-
+      Influence of the number of channels and classification algorithm on the
       performance robustness to electrode shift in steady-state visual evoked
       potential-based brain–computer interfaces
     venue: Frontiers in Neuroinformatics
@@ -298,9 +344,10 @@ journals:
   - id: 3
     year: 2019
     authors: Hodam Kim1, Laehyun Kim, and Chang-Hwan Im*
-    title: "Machine-Learning-Based Detection of Craving for Gaming Using Multimodal
+    title: >-
+      Machine-Learning-Based Detection of Craving for Gaming Using Multimodal
       Physiological Signals: Validation of Test-Retest Reliability for Practical
-      Use"
+      Use
     venue: Sensors
     detail: 19, Art. No. 3475
     doi: 10.3390/s19163475
@@ -308,9 +355,11 @@ journals:
     featured: false
   - id: 2
     year: 2018
-    authors: Hodam Kim1, Jihyeon Ha, Won-Du Chang, Wanjoo Park, Laehyun Kim, and
+    authors: >-
+      Hodam Kim1, Jihyeon Ha, Won-Du Chang, Wanjoo Park, Laehyun Kim, and
       Chang-Hwan Im*
-    title: Detection of Craving for Gaming in Adolescents with Internet Gaming
+    title: >-
+      Detection of Craving for Gaming in Adolescents with Internet Gaming
       Disorder Using Multimodal Biosignals
     venue: Sensors
     detail: 18, Art. No. 102
@@ -320,7 +369,8 @@ journals:
   - id: 1
     year: 2016
     authors: Hodam Kim1, Jeong-Youn Kim and Chang-Hwan Im*
-    title: Fast and Robust Real-time Estimation of Respiratory Rate from
+    title: >-
+      Fast and Robust Real-time Estimation of Respiratory Rate from
       Photoplethysmography
     venue: Sensors
     detail: 16, Art. No. 1494
@@ -340,8 +390,9 @@ conferences:
     scope: international
     format: poster
     authors: Hoon Yi, Hodam Kim, and Woon-Hong Yeo
-    title: Wireless soft multifunctional biopatch for preventing heat-related
-      illness of construction workers
+    title: >-
+      Wireless soft multifunctional biopatch for preventing heat-related illness
+      of construction workers
     venue: SPIE
     date: March 25–28, 2024
   - year: 2024
@@ -355,7 +406,8 @@ conferences:
     scope: international
     format: poster
     authors: Suhye Kim, Hodam Kim, and Chang-Hwan Im*
-    title: Subject-independent EEG-based emotion classification using continuously
+    title: >-
+      Subject-independent EEG-based emotion classification using continuously
       indexed domain generalization (CIDG)
     venue: 44th Annual International Conference of the IEEE EMBS
     place: Glasgow, United Kingdom
@@ -364,7 +416,8 @@ conferences:
     scope: international
     format: poster
     authors: Seonghun Park, Ho-Seung Cha, Jinuk Kwon, Hodam Kim and Chang-Hwan Im*
-    title: Development of an Online Home Appliance Control System Using Augmented
+    title: >-
+      Development of an Online Home Appliance Control System Using Augmented
       Reality and an SSVEP-Based Brain-Computer Interface
     venue: 8th International Winter Conference on Brain-Computer Interface
     place: High1 Resort, Korea
@@ -373,7 +426,8 @@ conferences:
     scope: international
     format: poster
     authors: Hodam Kim, Younsoo Chae, and Chang-Hwan Im*
-    title: Validation of Test-Retest Reliability of Multimodal Biosignal-based
+    title: >-
+      Validation of Test-Retest Reliability of Multimodal Biosignal-based
       Craving Detection in Young Adults with Internet Gaming Disorder
     venue: 41st Annual International Conference of the IEEE EMBS
     place: Berlin, Germany
@@ -382,8 +436,9 @@ conferences:
     scope: international
     format: poster
     authors: Hodam Kim and Chang-Hwan Im*
-    title: Influence of Slight Changes in Electrode Locations upon the
-      Classification Accuracy of a SSVEP-Based BCI
+    title: >-
+      Influence of Slight Changes in Electrode Locations upon the Classification
+      Accuracy of a SSVEP-Based BCI
     venue: SMIT2018-IBEC2018 Joint Conference
     place: Seoul, Republic of Korea
     date: November 9, 2018
@@ -391,8 +446,9 @@ conferences:
     scope: international
     format: poster
     authors: Hodam Kim and Chang-Hwan Im*
-    title: Influence of Slight Changes in Electrode Locations upon the
-      Classification Accuracy of a SSVEP-Based BCI
+    title: >-
+      Influence of Slight Changes in Electrode Locations upon the Classification
+      Accuracy of a SSVEP-Based BCI
     venue: 40th Annual International Conference of the IEEE EMBS
     place: Honolulu, USA
     date: July 17–21, 2018
@@ -400,7 +456,8 @@ conferences:
     scope: international
     format: poster
     authors: Hodam Kim, Jihyeon Ha, Wanjoo Park, Laehyun Kim, and Chang-Hwan Im*
-    title: Detection of Game Craving in Young Individuals with Internet Gaming
+    title: >-
+      Detection of Game Craving in Young Individuals with Internet Gaming
       Addiction Using Multiple Biosignals
     venue: 39th Annual International Conference of the IEEE EMBS
     place: Jeju Island, Republic of Korea
@@ -409,7 +466,7 @@ conferences:
     scope: international
     format: poster
     authors: Hodam Kim, Jeong-Youn Kim, and Chang-Hwan Im*
-    title: "Massive EEG Hyperscanning: A New Tool for Social Neuroscience"
+    title: 'Massive EEG Hyperscanning: A New Tool for Social Neuroscience'
     venue: 8th International IEEE EMBS Conference on Neural Engineering
     place: Shanghai, China
     date: May 25–28, 2017
@@ -417,7 +474,8 @@ conferences:
     scope: domestic
     format: poster
     authors: Seoyeon Yoon1, Jihwan Park1, Hodam Kim*
-    title: Development of a Wearable PPG and Skin Temperature Sensing Device for
+    title: >-
+      Development of a Wearable PPG and Skin Temperature Sensing Device for
       Predictive Closed-Loop Control of Peripheral Blood Flow
     venue: 67th Spring Conference, Korean Society of Medical & Biological Engineering
     place: Republic of Korea
@@ -426,7 +484,8 @@ conferences:
     scope: domestic
     format: poster
     authors: Gabriel Joseph Mlingi1, Hodam Kim*
-    title: Hierarchical 3D Helical CNT Electrode with PEDOT:PSS–PVA/TA Interface for
+    title: >-
+      Hierarchical 3D Helical CNT Electrode with PEDOT:PSS–PVA/TA Interface for
       Stable Dry ECG Monitoring
     venue: 67th Spring Conference, Korean Society of Medical & Biological Engineering
     place: Republic of Korea
@@ -443,7 +502,8 @@ conferences:
     scope: domestic
     format: poster
     authors: Miju Chae1, Sanghyun Kim, Hodam Kim*
-    title: Multi-Channel Capacitive Wrist-Worn Sensing for Enhanced Spatial
+    title: >-
+      Multi-Channel Capacitive Wrist-Worn Sensing for Enhanced Spatial
       Deformation-Based Hand Motion Tracking
     venue: 67th Spring Conference, Korean Society of Medical & Biological Engineering
     place: Republic of Korea
@@ -452,9 +512,11 @@ conferences:
     scope: domestic
     format: oral
     authors: Hodam Kim
-    title: "Persistent and Wearable EEG Technologies: Toward Next-Generation
-      Neurophysiological Monitoring"
-    venue: 12th Workshop and Annual Conference, Korean Society for EEG and
+    title: >-
+      Persistent and Wearable EEG Technologies: Toward Next-Generation
+      Neurophysiological Monitoring
+    venue: >-
+      12th Workshop and Annual Conference, Korean Society for EEG and
       Neurophysiology
     place: Republic of Korea
     date: December 6, 2025
@@ -462,9 +524,11 @@ conferences:
     scope: domestic
     format: oral
     authors: Hodam Kim
-    title: Quantitative eye blink monitoring system for automated blepharospasm
+    title: >-
+      Quantitative eye blink monitoring system for automated blepharospasm
       assessment using wireless wearable bioelectronics
-    venue: 2025 ITFE Summer Conference, Korea Institute of Information &
+    venue: >-
+      2025 ITFE Summer Conference, Korea Institute of Information &
       Telecommunication Facilities Engineering
     place: Sokcho, Republic of Korea
     date: August 27–29, 2025
@@ -472,7 +536,8 @@ conferences:
     scope: domestic
     format: poster
     authors: Hodam Kim
-    title: Real-Time Monitoring of Multidimensional Mental States via Wireless Soft
+    title: >-
+      Real-Time Monitoring of Multidimensional Mental States via Wireless Soft
       Bioelectronic Systems
     venue: 2025 Summer Workshop, Korean Brain Engineering Society
     place: Jeju, Republic of Korea
@@ -481,8 +546,9 @@ conferences:
     scope: domestic
     format: poster
     authors: Gabriel Joseph Mlingi1, Hodam Kim*
-    title: Development of Soft Wireless Wearable Patches for Continuous Monitoring
-      of the Autonomic Nervous System
+    title: >-
+      Development of Soft Wireless Wearable Patches for Continuous Monitoring of
+      the Autonomic Nervous System
     venue: 65th Spring Conference, Korean Society of Medical & Biological Engineering
     place: Republic of Korea
     date: May 8, 2025
@@ -490,7 +556,8 @@ conferences:
     scope: domestic
     format: oral
     authors: Hodam Kim
-    title: Persistent brain-computer interfaces using soft multifunctional
+    title: >-
+      Persistent brain-computer interfaces using soft multifunctional
       bioelectronics & motion artifact-controlled micro-brain sensors
     venue: 2025 Brain and AI Symposium, Korean Brain Engineering Society
     place: Republic of Korea
@@ -499,7 +566,8 @@ conferences:
     scope: domestic
     format: oral
     authors: Hodam Kim and Chang-Hwan Im*
-    title: Recognition of user's emotions reflected in fast and subtle expressions
+    title: >-
+      Recognition of user's emotions reflected in fast and subtle expressions
       using Electroencephalogram and Facial Electromyogram
     venue: 2020 Virtual KOSOMBE Conference
     date: November 11–13, 2020
@@ -507,7 +575,8 @@ conferences:
     scope: domestic
     format: poster
     authors: Hodam Kim and Chang-Hwan Im*
-    title: Recognition of user's emotions reflected in fast and subtle expressions
+    title: >-
+      Recognition of user's emotions reflected in fast and subtle expressions
       using Electroencephalogram and Facial Electromyogram
     venue: 7th Symposium of Korean Society for EEG and Neurophysiology
     place: Online
@@ -516,17 +585,19 @@ conferences:
     scope: domestic
     format: poster
     authors: Hodam Kim and Chang-Hwan Im*
-    title: Influence of Slight Changes in Electrode Locations upon the
-      Classification Accuracy of a SSVEP-Based BCI
+    title: >-
+      Influence of Slight Changes in Electrode Locations upon the Classification
+      Accuracy of a SSVEP-Based BCI
     venue: 5th Symposium of Korean Society for EEG and Neurophysiology
     place: Seoul, Republic of Korea
-    date: "2018"
+    date: '2018'
   - year: 2017
     scope: domestic
     format: poster
     authors: Hodam Kim, Jeong-Youn Kim, and Chang-Hwan Im*
-    title: "Massive EEG Hyperscanning and Interbrain Spectral Synchronization: A New
-      Tool for Social Neuroscience"
+    title: >-
+      Massive EEG Hyperscanning and Interbrain Spectral Synchronization: A New
+      Tool for Social Neuroscience
     venue: 2017 KOSOMBE Fall Meeting
     place: Jeonbuk National University, Republic of Korea
     date: November 10–11, 2017
@@ -534,7 +605,7 @@ conferences:
     scope: domestic
     format: poster
     authors: Hodam Kim, Jeong-Youn Kim, and Chang-Hwan Im*
-    title: "Massive EEG Hyperscanning: A New Tool for Social Neuroscience"
+    title: 'Massive EEG Hyperscanning: A New Tool for Social Neuroscience'
     venue: 8th Annual Meeting of Korean Society for Computational Neuroscience
     place: Seoul, Republic of Korea
     date: August 29, 2017
@@ -542,7 +613,8 @@ conferences:
     scope: domestic
     format: poster
     authors: Hodam Kim and Chang-Hwan Im*
-    title: An Improved Method for the Real-time Estimation of Respiratory Rate from
+    title: >-
+      An Improved Method for the Real-time Estimation of Respiratory Rate from
       Photoplethysmography
     venue: 2016 KOSOMBE Spring Meeting
     place: Bukyeong University, Pusan, Republic of Korea
