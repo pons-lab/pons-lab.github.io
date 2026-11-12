@@ -135,10 +135,17 @@ pi:
     - date: 2026.11.05
       title_en: "Invited lecture, Multimodal Medical Data Processing"
       title_ko: "「멀티모달의료데이터처리」 초청 특강"
-      host_en: "Hallym University, School of Nursing"
-      host_ko: "한림대학교 간호학과"
+      host_en: "Hallym University, Division of AI Convergence"
+      host_ko: "한림대학교 인공지능융합학부"
       note_en: AI-Driven EEG-Based Neural Engineering for Real-World Applications
       note_ko: AI-Driven EEG-Based Neural Engineering for Real-World Applications
+    - date: 2026.10.08
+      title_en: "Seminar on Understanding and Recreating Humans in the MetaHuman Era"
+      title_ko: "「메타휴먼 시대의 인간 이해와 재현」 세미나"
+      host_en: "Korea University, School of Psychology"
+      host_ko: "고려대학교 심리학부"
+      note_en: Quantitative Approaches to Understanding Inner Human Changes and Emotions
+      note_ko: 인간 내부의 변화와 감정을 이해하는 정량적 접근
     - date: 2026.10.06
       title_en: "Invited seminar"
       title_ko: "초청 세미나"
@@ -161,7 +168,7 @@ pi:
         Next-Generation Healthcare and Human–Machine Interfaces Enabled by
         Wireless Flexible Bioelectronics
       note_ko: 무선 유연 바이오일렉트로닉스를 통한 차세대 헬스케어와 인간-기계 인터페이스
-    - date: 2026.05.20
+    - date: 2026.05.23
       title_en: "2026 Workshop on BRAIN & AI"
       title_ko: "2026 BRAIN&AI 워크샵"
       host_en: "Hanyang University"
@@ -232,8 +239,8 @@ pi:
     - date: 2025.09.22
       title_en: "AI Convergence Seminar 2"
       title_ko: "AI융합 세미나 2"
-      host_en: "Hallym University, AI Convergence"
-      host_ko: "한림대학교 AI융합"
+      host_en: "Hallym University, Division of AI Convergence"
+      host_ko: "한림대학교 인공지능융합학부"
     - date: 2025.07.15
       title_en: "K-BioHealth Regional Center industry–academia–hospital exchange"
       title_ko: "K-바이오헬스 지역센터 산학병 교류회"
@@ -262,6 +269,13 @@ pi:
       host_en: "Korean Brain Engineering Society"
       host_ko: "한국뇌공학회"
     - date: 2024.11.29
+      title_en: "Invited lecture, Understanding Biomedical and Brain Engineering"
+      title_ko: "「의공학 및 뇌공학의 이해」 초청 특강"
+      host_en: "Hanyang University ERICA, School of ICT Convergence"
+      host_ko: "한양대학교 ERICA ICT융합학부"
+      note_en: Neural Engineering toward Real-Life Applications
+      note_ko: Neural Engineering toward Real-Life Applications
+    - date: 2023.12.01
       title_en: "Invited lecture, Understanding Biomedical and Brain Engineering"
       title_ko: "「의공학 및 뇌공학의 이해」 초청 특강"
       host_en: "Hanyang University ERICA, School of ICT Convergence"
