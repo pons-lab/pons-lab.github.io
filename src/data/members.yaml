@@ -132,6 +132,22 @@ pi:
     #           그 이름을 적습니다. 이름 붙은 행사가 아니면 "초청 세미나".
     # host_*  = 주최 기관·학회
     # note_*  = 발표 제목 (있을 때만 적습니다)
+    - date: 2026.11.05
+      title_en: "Invited lecture, Multimodal Medical Data Processing"
+      title_ko: "「멀티모달의료데이터처리」 초청 특강"
+      host_en: "Hallym University, School of Nursing"
+      host_ko: "한림대학교 간호학과"
+      note_en: AI-Driven EEG-Based Neural Engineering for Real-World Applications
+      note_ko: AI-Driven EEG-Based Neural Engineering for Real-World Applications
+    - date: 2026.10.06
+      title_en: "Invited seminar"
+      title_ko: "초청 세미나"
+      host_en: "Incheon National University, Dept. of Biomedical & Robotics Engineering"
+      host_ko: "인천대학교 바이오-로봇시스템공학과"
+      note_en: >-
+        Next-Generation Healthcare and Human–Machine Interfaces Enabled by
+        Wireless Flexible Bioelectronics
+      note_ko: 무선 유연 바이오일렉트로닉스를 통한 차세대 헬스케어와 인간-기계 인터페이스
     - date: 2026.09.18
       title_en: >-
         2026 Convergence Research Project Colloquium on Grand Challenges in
@@ -171,6 +187,13 @@ pi:
       title_ko: "융합연구 미팅"
       host_en: "Yonsei University Mirae Campus"
       host_ko: "연세대학교 미래캠퍼스"
+    - date: 2025.11.20
+      title_en: "Invited lecture, Understanding Biomedical and Brain Engineering"
+      title_ko: "「의공학 및 뇌공학의 이해」 초청 특강"
+      host_en: "Hanyang University ERICA, School of ICT Convergence"
+      host_ko: "한양대학교 ERICA ICT융합학부"
+      note_en: Neural Engineering toward Real-Life Applications
+      note_ko: Neural Engineering toward Real-Life Applications
     - date: 2025.11.13
       title_en: "Invited lecture, Advanced Topics in Biomedical Engineering"
       title_ko: "「의공학 특론」 초청 강의"
@@ -191,7 +214,7 @@ pi:
       title_ko: "「인공지능과 응용」 초청 강의"
       host_en: "Kyonggi University, Dept. of Electronics Engineering"
       host_ko: "경기대학교 전자공학과"
-    - date: 2025.10.10
+    - date: 2025.11.10
       title_en: "Graduate seminar"
       title_ko: "대학원 세미나"
       host_en: "Inha University, Dept. of Mechanical Engineering"
@@ -238,6 +261,13 @@ pi:
       title_ko: "2025 뇌와 인공지능 심포지엄"
       host_en: "Korean Brain Engineering Society"
       host_ko: "한국뇌공학회"
+    - date: 2024.11.29
+      title_en: "Invited lecture, Understanding Biomedical and Brain Engineering"
+      title_ko: "「의공학 및 뇌공학의 이해」 초청 특강"
+      host_en: "Hanyang University ERICA, School of ICT Convergence"
+      host_ko: "한양대학교 ERICA ICT융합학부"
+      note_en: Neural Engineering toward Real-Life Applications
+      note_ko: Neural Engineering toward Real-Life Applications
     - date: 2022.05.04
       title_en: >-
         2022 Virtual Spring Conference, Korean Society for EEG and
