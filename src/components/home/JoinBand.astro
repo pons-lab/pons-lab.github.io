@@ -1,146 +1,70 @@
 ---
 import { site } from '../../lib/data.js';
-import { asset } from '../../lib/images.js';
 import { getLangFromUrl, useTranslations, localizePath } from '../../i18n/utils.js';
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 
 const how = lang === 'ko' ? site.recruiting.how_to_apply_ko : site.recruiting.how_to_apply_en;
-
-// 배경 사진. site.yaml 의 join_background 를 비우면 예전처럼 단색 밴드가 된다.
-const bg = asset(site.join_background)?.src ?? null;
 ---
 
-<section class="band-dark join" data-bg={bg ? '' : undefined}>
-  {bg && <div class="bg" style={`background-image:url(${bg})`} aria-hidden="true" />}
-  <div class="container inner">
-    <div class="copy">
-      {
-        /* 한국어 페이지에서는 별도 제목 없이 모집 문구만 보여준다. */
-        lang === 'ko' ? (
-          <h2 class="ko-heading">{site.recruiting.ko}</h2>
-        ) : (
-          <>
-            <h2>{t('home.join_title')}</h2>
-            <p class="who">{site.recruiting.en}</p>
-            <p class="how">{how}</p>
-          </>
-        )
-      }
-      <div class="btn-row">
-        <a class="btn btn-light" href={`mailto:${site.contact.email}`}>{t('cta.email')}</a>
-        <a class="btn btn-outline-light" href={localizePath('/contact', lang)}>
-          {t('cta.contact')}
-        </a>
-      </div>
+<section class="section">
+  <div class="container join">
+    {
+      /* 한국어 페이지에서는 별도 제목 없이 모집 문구만 보여준다. */
+      lang === 'ko' ? (
+        <h2 class="ko-heading">{site.recruiting.ko}</h2>
+      ) : (
+        <>
+          <h2>{t('home.join_title')}</h2>
+          <p class="who">{site.recruiting.en}</p>
+          <p class="how">{how}</p>
+        </>
+      )
+    }
+    <div class="btn-row">
+      <a class="t-btn t-btn--primary t-btn--lg" href={`mailto:${site.contact.email}`}>
+        {t('cta.email')}
+      </a>
+      <a class="t-btn t-btn--grey t-btn--lg" href={localizePath('/contact', lang)}>
+        {t('cta.contact')}
+      </a>
     </div>
   </div>
-
-  <svg class="deco" viewBox="0 0 600 300" aria-hidden="true" role="presentation">
-    <path
-      d="M0 150 C 90 60, 210 60, 300 150 C 390 240, 510 240, 600 150"
-      fill="none"
-      stroke="#7ea6ff"
-      stroke-width="1.4"
-      opacity="0.4"></path>
-    <path
-      d="M0 190 C 90 100, 210 100, 300 190 C 390 280, 510 280, 600 190"
-      fill="none"
-      stroke="#7ea6ff"
-      stroke-width="1.4"
-      opacity="0.22"></path>
-    <path
-      d="M0 110 C 90 20, 210 20, 300 110 C 390 200, 510 200, 600 110"
-      fill="none"
-      stroke="#7ea6ff"
-      stroke-width="1.4"
-      opacity="0.14"></path>
-  </svg>
 </section>
 
 <style>
-  /* 배경 사진 + 어두운 겹칩. 흰 글씨 가독성을 우선한다. */
-  .bg {
-    position: absolute;
-    inset: 0;
-    background-size: cover;
-    background-position: center;
-    opacity: 0.78;
-  }
-  .join[data-bg]::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(
-      100deg,
-      rgba(15, 25, 45, 0.86) 0%,
-      rgba(15, 25, 45, 0.7) 45%,
-      rgba(15, 25, 45, 0.34) 100%
-    );
-  }
-  .join[data-bg] .deco {
-    opacity: 0.35;
-  }
-
   .join {
-    position: relative;
-    padding-block: clamp(3.5rem, 7vw, 5.5rem);
-    background:
-      radial-gradient(700px 400px at 88% 110%, #1d3566 0%, rgba(29, 53, 102, 0) 62%),
-      var(--ink);
-  }
-
-  .inner {
-    position: relative;
-    z-index: 1;
-  }
-
-  .copy {
-    max-width: 44rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
   }
 
   h2 {
-    margin-bottom: 0.85rem;
-    max-width: 18ch;
+    margin-bottom: 0.75rem;
   }
 
-  /* 한국어: 모집 문구 자체가 제목 역할을 하므로 문장에 어울리는 크기로 */
   .ko-heading {
     font-size: var(--text-block-title);
-    line-height: 1.5;
     max-width: 30ch;
-    margin-bottom: 1.6rem;
+    margin-bottom: 1.5rem;
   }
 
   .who {
-    font-size: var(--text-lead);
-    color: rgba(255, 255, 255, 0.86);
-    margin-bottom: 0.55rem;
     max-width: 52ch;
+    margin-bottom: 0.5rem;
+    color: var(--text-3);
   }
 
   .how {
-    color: rgba(255, 255, 255, 0.6);
-    font-size: var(--text-lg);
-    margin-bottom: 1.8rem;
     max-width: 52ch;
+    margin-bottom: 2rem;
+    font-size: var(--text-md);
+    color: var(--text-4);
   }
 
-  .deco {
-    position: absolute;
-    right: -4%;
-    bottom: -12%;
-    width: min(52%, 620px);
-    height: auto;
-    pointer-events: none;
-  }
-
-  @media (max-width: 900px) {
-    .deco {
-      opacity: 0.5;
-      width: 90%;
-      right: -20%;
-    }
+  .btn-row {
+    justify-content: center;
   }
 </style>

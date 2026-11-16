@@ -11,6 +11,8 @@ export const ui = {
     'nav.home': 'Home',
     'nav.research': 'Research',
     'nav.people': 'People',
+    'nav.people_professor': 'Professor',
+    'nav.people_members': 'Members',
     'nav.publications': 'Publications',
     'nav.pub_journal': 'Journal Articles',
     'nav.pub_conference': 'Conference Presentations',
@@ -19,7 +21,7 @@ export const ui = {
     'nav.news': 'News',
     'nav.gallery': 'Gallery',
     'nav.contact': 'Contact',
-    'nav.members': 'Members',
+    'nav.members': 'Internal',
     'page.kicker.members': 'Internal',
     'members.title': 'For Lab Members',
     'members.lead':
@@ -43,18 +45,20 @@ export const ui = {
     'home.why_title': 'Why PONS?',
     'home.why_kicker': 'The name',
     'home.research_kicker': 'Research',
-    'home.research_title': 'Three axes, one system',
+    'home.research_title': 'Research areas',
     'home.research_lead':
       'Hardware that touches the body, interfaces that turn its signals into control, and the intelligence that reads what they mean.',
     'home.news_kicker': 'News',
-    'home.news_title': 'Latest from the lab',
+    'home.news_title': 'News',
     'home.news_lead': 'Announcements and milestones from the lab.',
     'home.pubs_kicker': 'Publications',
     'home.pubs_title': 'Selected publications',
     'home.pubs_lead':
       'Representative work from the lab. Superscript 1 marks a first author, * a corresponding author; lab members are shown in bold.',
-    'home.join_title': 'Build the bridge with us',
+    'home.join_title': 'Join the lab',
     'home.recruiting_label': 'Now recruiting',
+    'home.life_title': 'Life in the lab',
+    'cta.all_photos': 'All photos',
 
     'page.kicker.research': 'What we work on',
     'page.kicker.people': 'The team',
@@ -84,6 +88,7 @@ export const ui = {
     'people.alumni': 'Alumni',
     'people.members': 'Members',
     'people.since': 'Since',
+    'people.interests': 'Research interests',
     'people.no_alumni': 'No alumni yet.',
 
     'pub.title': 'Publications',
@@ -203,6 +208,8 @@ export const ui = {
     'nav.home': 'Home',
     'nav.research': 'Research',
     'nav.people': 'People',
+    'nav.people_professor': 'Professor',
+    'nav.people_members': 'Members',
     'nav.publications': 'Publications',
     'nav.pub_journal': 'Journal Articles',
     'nav.pub_conference': 'Conference Presentations',
@@ -211,7 +218,7 @@ export const ui = {
     'nav.news': 'News',
     'nav.gallery': 'Gallery',
     'nav.contact': 'Contact',
-    'nav.members': 'Members',
+    'nav.members': 'Internal',
     'page.kicker.members': 'Internal',
     'members.title': 'For Lab Members',
     'members.lead':
@@ -235,18 +242,20 @@ export const ui = {
     'home.why_title': 'Why PONS?',
     'home.why_kicker': 'The name',
     'home.research_kicker': 'Research',
-    'home.research_title': 'Three axes, one system',
+    'home.research_title': 'Research areas',
     'home.research_lead':
       '몸에 닿는 하드웨어, 그 신호를 제어로 바꾸는 인터페이스, 그리고 신호가 뜻하는 바를 읽어내는 지능. 세 축이 하나로 이어집니다.',
     'home.news_kicker': 'News',
-    'home.news_title': 'Latest from the lab',
+    'home.news_title': 'News',
     'home.news_lead': '연구실의 공지와 소식을 전합니다.',
     'home.pubs_kicker': 'Publications',
     'home.pubs_title': 'Selected publications',
     'home.pubs_lead':
       '연구실의 대표 논문입니다. 이름 뒤 1은 제1저자, *는 교신저자이며 연구실 구성원은 굵게 표시했습니다.',
-    'home.join_title': 'Build the bridge with us',
+    'home.join_title': 'Join the lab',
     'home.recruiting_label': 'Now recruiting',
+    'home.life_title': 'Life in the lab',
+    'cta.all_photos': 'All photos',
 
     'page.kicker.research': 'What we work on',
     'page.kicker.people': 'The team',
@@ -276,6 +285,7 @@ export const ui = {
     'people.alumni': 'Alumni',
     'people.members': 'Members',
     'people.since': 'Since',
+    'people.interests': '관심 분야',
     'people.no_alumni': '아직 등록된 알럼나이가 없습니다.',
 
     'pub.title': 'Publications',
@@ -388,7 +398,15 @@ export const ui = {
 // 상단 내비게이션 순서 (경로는 영문 기준, 한국어는 /ko 가 앞에 붙습니다)
 export const navItems = [
   { key: 'nav.research', path: '/research' },
-  { key: 'nav.people', path: '/people' },
+  {
+    key: 'nav.people',
+    path: '/people',
+    // 페이지는 하나이고, 두 항목은 같은 페이지의 해당 섹션으로 이동한다.
+    children: [
+      { key: 'nav.people_professor', path: '/people#professor' },
+      { key: 'nav.people_members', path: '/people#members' },
+    ],
+  },
   {
     key: 'nav.publications',
     path: '/publications/journal',

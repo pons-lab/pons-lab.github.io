@@ -66,11 +66,11 @@
 
 | 파일 | 들어 있는 내용 | 어디에 나오나 |
 |---|---|---|
-| `site.yaml` | 연구실 이름·태그라인·소속·**주소**·연락처·모집 안내 | 사이트 전체, 푸터, Contact, CV |
+| `site.yaml` | 연구실 이름·태그라인·소속·**주소**·연락처·모집 안내·메인 첫 화면 사진·GitHub 주소 | 사이트 전체, 푸터, Contact, CV |
 | `members.yaml` | PI 프로필(학력·경력·**학술 활동**·초청 강연·수상·ORCID), 멤버, 알럼나이 | People, CV |
 | `publications.yaml` | 저널 논문, 학회 발표 (구두/포스터 포함) | Publications, CV, 메인 |
 | `cv.yaml` | 연구 관심사, 연구 역량(Skills), 특허, 종료 과제, 심사 활동 | CV, Patents |
-| `research.yaml` | 연구 3축과 세부 주제, **진행 중인 과제** | Research, CV |
+| `research.yaml` | 연구 3축과 세부 주제, **진행 중인 과제**, 메인 카드 그림(`home_image`) | Research, CV |
 | `lectures.yaml` | 학기별 강의 | Lectures, CV |
 | `gallery.yaml` | 갤러리 행사와 사진 | Gallery |
 
@@ -101,6 +101,8 @@
 - **한 사람이 직위를 옮긴 경우**(예: 학부연구생 → 석사과정)는 `members.yaml` 의
   그 멤버에 `prior_role_en` · `prior_role_ko` · `prior_period` 를 적으면 카드에
   이전 이력이 한 줄 더 표시됩니다. 연구실을 떠난 사람은 `alumni:` 로 옮깁니다.
+- **멤버 프로필**(사진·전공·학력·관심 분야·이메일·LinkedIn 등 링크)은 모두 선택 항목입니다. 적은 것만
+  카드에 나타나며, 쓰는 형식은 `members.yaml` 맨 위 설명에 있습니다.
 
 ---
 

@@ -1,5 +1,6 @@
 ---
 import { site } from '../../lib/data.js';
+import { asset } from '../../lib/images.js';
 import { inlineMd } from '../../lib/text.js';
 import { getLangFromUrl, useTranslations, pick } from '../../i18n/utils.js';
 
@@ -7,88 +8,23 @@ const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 
 const story = inlineMd(site.brand.story[lang]);
+const figure = site.brand.figure;
 ---
 
-<section class="section why">
+<section class="section">
   <div class="container">
     <div class="top">
       <div class="story">
-        <p class="kicker">{t('home.why_kicker')}</p>
         <h2>{t('home.why_title')}</h2>
-        <p class="lead" set:html={story} />
+        <p class="body" set:html={story} />
       </div>
-
-      <!-- 뇌(brain) ↔ 몸(body) 을 잇는 다리 — 이름의 은유를 그림으로 -->
-      <figure class="bridge" aria-hidden="true">
-        <svg viewBox="0 0 460 190" role="presentation">
-          <defs>
-            <linearGradient id="strand-a" x1="0" x2="1">
-              <stop offset="0" stop-color="#2153c4"></stop>
-              <stop offset="1" stop-color="#5b8bf0"></stop>
-            </linearGradient>
-            <linearGradient id="strand-b" x1="1" x2="0">
-              <stop offset="0" stop-color="#2153c4"></stop>
-              <stop offset="1" stop-color="#8fb0ee"></stop>
-            </linearGradient>
-            <path
-              id="twist-a"
-              d="M96 95 C 132 40, 168 40, 204 95 S 276 150, 312 95 S 348 47, 364 95"></path>
-            <path
-              id="twist-b"
-              d="M96 95 C 132 150, 168 150, 204 95 S 276 40, 312 95 S 348 143, 364 95"></path>
-          </defs>
-
-          <!-- 뇌와 몸을 잇는 두 가닥이 서로를 감으며 지나간다 (pons = 잇는 다리) -->
-          <use href="#twist-b" class="strand" stroke="url(#strand-b)"></use>
-          <use href="#twist-a" class="strand" stroke="url(#strand-a)"></use>
-
-          <!-- 두 가닥이 만나는 지점 -->
-          <g fill="#fff" stroke="#2153c4" stroke-width="1.6">
-            <circle cx="204" cy="95" r="4"></circle>
-            <circle cx="312" cy="95" r="4"></circle>
-          </g>
-
-          <!-- 왼쪽: 뇌 -->
-          <g transform="translate(58 95)">
-            <circle cx="0" cy="0" r="30" fill="#e8eefc"></circle>
-            <path
-              d="M-12 7c-6-2-7-10-2-14-2-6 4-11 9-9 3-5 11-3 12 2 6 1 7 9 2 12 1 6-4 10-10 8-3 3-9 2-11 1Z"
-              fill="none" stroke="#2153c4" stroke-width="1.8" stroke-linejoin="round"></path>
-            <path d="M0-16v25M0-5h7M0 3h-7" stroke="#2153c4" stroke-width="1.4"
-              stroke-linecap="round" opacity="0.7"></path>
-          </g>
-
-          <!-- 오른쪽: 몸(심장) -->
-          <g transform="translate(402 95)">
-            <circle cx="0" cy="0" r="30" fill="#e8eefc"></circle>
-            <path
-              d="M0 12c-9-7-15-11-15-18a7.5 7.5 0 0 1 15-2 7.5 7.5 0 0 1 15 2c0 7-6 11-15 18Z"
-              fill="none" stroke="#2153c4" stroke-width="1.8" stroke-linejoin="round"></path>
-          </g>
-
-          <!-- 신호가 두 가닥을 서로 반대 방향으로 오간다 -->
-          <circle class="pulse pulse-a" r="4.5" fill="#16233b">
-            <animateMotion dur="5s" repeatCount="indefinite" keyPoints="0;1"
-              keyTimes="0;1" calcMode="linear">
-              <mpath href="#twist-a"></mpath>
-            </animateMotion>
-          </circle>
-          <circle class="pulse pulse-b" r="4" fill="#2153c4">
-            <animateMotion dur="5s" begin="2.5s" repeatCount="indefinite" keyPoints="1;0"
-              keyTimes="0;1" calcMode="linear">
-              <mpath href="#twist-b"></mpath>
-            </animateMotion>
-          </circle>
-        </svg>
-        <figcaption class="bridge-cap">
-          <span>brain</span>
-          <span class="bridge-word">pons · bridge</span>
-          <span>body</span>
-        </figcaption>
+      <figure class="pons-figure">
+        <img src={asset(figure.image)?.src} alt={pick(figure, 'alt', lang)} loading="lazy" />
+        <figcaption lang="en">{figure.credit}</figcaption>
       </figure>
     </div>
 
-    <ul class="grid grid-4 cards">
+    <ul class="grid grid-4">
       {
         site.brand.cards.map((card) => (
           <li class="card pons-card">
@@ -105,145 +41,70 @@ const story = inlineMd(site.brand.story[lang]);
 </section>
 
 <style>
-  .why {
-    background:
-      radial-gradient(900px 420px at 92% 4%, #eff3fc 0%, rgba(239, 243, 252, 0) 66%),
-      #f6f8fc;
-    border-block: 1px solid var(--line);
-  }
-
   .top {
     display: grid;
-    grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+    grid-template-columns: minmax(0, 1fr) 280px;
     align-items: center;
-    gap: clamp(1.75rem, 4vw, 3.5rem);
-    margin-bottom: clamp(2.25rem, 4vw, 3.25rem);
+    gap: clamp(2rem, 5vw, 4rem);
+    margin-bottom: 2.25rem;
   }
-
-  .story h2 {
-    margin-bottom: 0.9rem;
-  }
-
-  .story .lead {
-    max-width: 56ch;
-    margin-bottom: 0;
-  }
-
-  .story .lead :global(strong) {
-    font-weight: 700;
-    color: var(--ink);
-    letter-spacing: 0.01em;
-  }
-  .story .lead :global(em) {
-    font-style: italic;
-    color: var(--body);
-  }
-
-  .bridge {
+  .pons-figure {
     margin: 0;
   }
-  .bridge svg {
+  .pons-figure img {
     width: 100%;
     height: auto;
-    overflow: visible;
   }
-
-  .strand {
-    fill: none;
-    stroke-width: 2.6;
-    stroke-linecap: round;
-    stroke-dasharray: 620;
-    stroke-dashoffset: 620;
-    animation: weave 1.8s ease-out forwards;
+  .pons-figure figcaption {
+    margin-top: 0.5rem;
+    font-size: var(--text-3xs);
+    line-height: 1.45;
+    color: var(--text-4);
   }
-  .strand + .strand {
-    animation-delay: 0.25s;
-  }
-  @keyframes weave {
-    to {
-      stroke-dashoffset: 0;
+  @media (max-width: 760px) {
+    .top {
+      grid-template-columns: minmax(0, 1fr);
+    }
+    .pons-figure {
+      max-width: 260px;
     }
   }
-
-  .pulse {
-    opacity: 0.85;
+  .story h2 {
+    margin-bottom: 0.75rem;
   }
-
-  .bridge-cap {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 0.6rem;
-    margin-top: 0.35rem;
-    padding-inline: 0.4rem;
-    font-size: var(--text-3xs);
-    font-weight: 600;
-    letter-spacing: 0.13em;
-    text-transform: uppercase;
-    color: var(--muted);
+  .body {
+    max-width: 68ch;
+    margin: 0;
+    color: var(--text-3);
   }
-  .bridge-word {
-    color: var(--accent);
-    font-family: var(--font-display);
-    text-transform: none;
-    letter-spacing: 0.02em;
-    font-size: var(--text-sm);
-    font-style: italic;
-  }
-
-  .cards {
-    align-items: stretch;
+  .body :global(strong) {
+    font-weight: 700;
+    color: var(--text-1);
   }
 
   .pons-card {
     display: flex;
     flex-direction: column;
-    gap: 0.15rem;
   }
 
   .letter {
-    font-family: var(--font-display);
-    font-size: 2.6rem;
+    margin-bottom: 0.75rem;
+    font-size: var(--text-h2);
     font-weight: 700;
-    line-height: 1;
-    color: var(--accent);
-    letter-spacing: -0.03em;
-    margin-bottom: 0.55rem;
+    line-height: 1.2;
+    color: var(--text-1);
   }
 
   .pons-card h3 {
-    font-family: var(--font-sans);
-    font-size: var(--text-2xs);
-    font-weight: 650;
-    letter-spacing: 0.11em;
-    text-transform: uppercase;
-    color: var(--ink);
     margin-bottom: 0.5rem;
+    font-size: var(--text-md);
+    font-weight: 700;
+    color: var(--text-2);
   }
 
   .pons-card p {
     margin: 0;
     font-size: var(--text-md);
-    line-height: 1.62;
-    color: var(--body);
-  }
-
-  @media (max-width: 900px) {
-    .top {
-      grid-template-columns: minmax(0, 1fr);
-    }
-    .bridge {
-      max-width: 460px;
-    }
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    .strand {
-      stroke-dashoffset: 0;
-      animation: none;
-    }
-    .pulse {
-      display: none;
-    }
+    color: var(--text-4);
   }
 </style>

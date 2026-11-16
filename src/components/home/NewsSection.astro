@@ -16,17 +16,14 @@ const items = (await getCollection('news'))
 <section class="section">
   <div class="container">
     <div class="section-head head-row">
-      <div>
-        <p class="kicker">{t('home.news_kicker')}</p>
-        <h2>{t('home.news_title')}</h2>
-      </div>
+      <h2>{t('home.news_title')}</h2>
       <a class="link-arrow" href={localizePath('/news', lang)}>
         {t('cta.all_news')}
-        <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
           <path
-            d="M3 8h9m0 0L8.5 4.5M12 8l-3.5 3.5"
+            d="m9 18 6-6-6-6"
             stroke="currentColor"
-            stroke-width="1.6"
+            stroke-width="2"
             stroke-linecap="round"
             stroke-linejoin="round"></path>
         </svg>
@@ -42,20 +39,5 @@ const items = (await getCollection('news'))
 <style>
   .news-list {
     display: grid;
-    border-top: 1px solid var(--line);
-  }
-
-  .head-row {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: flex-end;
-    justify-content: space-between;
-    gap: 1rem;
-  }
-  .head-row h2 {
-    margin-bottom: 0;
-  }
-  .head-row .link-arrow {
-    padding-bottom: 0.4rem;
   }
 </style>

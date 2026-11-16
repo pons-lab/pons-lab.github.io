@@ -1,4 +1,5 @@
 ---
+import LogoMark from './LogoMark.astro';
 import { site } from '../lib/data.js';
 import { navItems } from '../i18n/ui.js';
 import { getLangFromUrl, useTranslations, localizePath, alternatePath } from '../i18n/utils.js';
@@ -10,6 +11,8 @@ const home = localizePath('/', lang);
 const current = Astro.url.pathname.replace(/\/$/, '') || '/';
 
 const isActive = (item) => {
+  // 같은 페이지 안의 섹션 링크는 현재 위치로 표시하지 않는다 (상위 메뉴만 표시).
+  if (typeof item !== 'string' && item.path?.includes('#')) return false;
   const path = typeof item === 'string' ? item : (item.matchPrefix ?? item.path);
   const target = localizePath(path, lang).replace(/\/$/, '');
   return current === target || current.startsWith(`${target}/`);
@@ -23,17 +26,7 @@ const otherHref = alternatePath(Astro.url.pathname, otherLang);
 <header class="site-header">
   <div class="container bar">
     <a class="brand" href={home}>
-      <span class="brand-mark" aria-hidden="true">
-        <svg viewBox="0 0 32 32" width="32" height="32" fill="none">
-          <rect width="32" height="32" rx="9" fill="var(--ink)"></rect>
-          <path
-            d="M7 21c3.2 0 3.6-9 6.6-9 2.4 0 2.6 6.2 4.9 6.2 2.1 0 2.4-4.6 4.3-4.6"
-            stroke="#7ea6ff"
-            stroke-width="2.1"
-            stroke-linecap="round"
-            stroke-linejoin="round"></path>
-        </svg>
-      </span>
+      <LogoMark size={36} />
       <span class="brand-text">
         <strong>{site.name.short_en}</strong>
         <small>{lang === 'ko' ? site.name.full_ko : site.name.full_en}</small>
@@ -96,10 +89,10 @@ const otherHref = alternatePath(Astro.url.pathname, otherLang);
     </nav>
 
     <div class="tools">
-      <a class="lang-switch" href={otherHref} lang={otherLang} aria-label={t('a11y.lang')}>
+      <a class="t-btn t-btn--grey t-btn--sm lang-switch" href={otherHref} lang={otherLang} aria-label={t('a11y.lang')}>
         {otherLabel}
       </a>
-      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="mobile-nav">
+      <button class="t-iconbtn menu-toggle" type="button" aria-expanded="false" aria-controls="mobile-nav">
         <span class="sr-only">{t('nav.menu')}</span>
         <span class="bars" aria-hidden="true"><i></i><i></i><i></i></span>
       </button>
@@ -148,46 +141,42 @@ const otherHref = alternatePath(Astro.url.pathname, otherLang);
     position: sticky;
     top: 0;
     z-index: 50;
-    background: rgba(251, 252, 254, 0.86);
-    backdrop-filter: saturate(150%) blur(10px);
-    border-bottom: 1px solid var(--line);
+    background: var(--bg);
+    border-bottom: 1px solid transparent;
+    transition: border-bottom 0.3s ease-in-out;
+  }
+  .site-header[data-scrolled='true'] {
+    border-bottom-color: var(--op-100);
   }
 
   .bar {
     display: flex;
     align-items: center;
-    gap: 1.25rem;
-    min-height: 70px;
+    gap: 1rem;
+    min-height: 60px;
   }
 
   .brand {
     display: flex;
     align-items: center;
-    gap: 0.65rem;
-    color: var(--ink);
-    text-decoration: none;
+    gap: 0.5625rem;
     margin-right: auto;
     flex: none;
+    color: var(--ink);
   }
   .brand:hover {
     text-decoration: none;
   }
 
-  .brand-mark {
-    display: block;
-    flex: none;
-  }
-
   .brand-text {
+    font-family: var(--font-logo);
     display: flex;
     flex-direction: column;
-    line-height: 1.2;
+    line-height: 1.25;
   }
   .brand-text strong {
-    font-family: var(--font-display);
-    font-size: var(--text-2xl);
+    font-size: var(--text-base);
     font-weight: 700;
-    letter-spacing: -0.015em;
     color: var(--ink);
   }
   /* 연구실 정식 명칭은 줄이지 않는다. 말줄임표로 잘린 이름은
@@ -195,33 +184,31 @@ const otherHref = alternatePath(Astro.url.pathname, otherLang);
   .brand-text small {
     font-size: var(--text-2xs);
     color: var(--muted);
-    letter-spacing: 0.01em;
     white-space: nowrap;
   }
 
   .nav ul {
     display: flex;
     align-items: center;
-    gap: 0.15rem;
+    gap: 0.125rem;
   }
   .nav a {
     display: block;
-    padding: 0.5rem 0.72rem;
-    border-radius: 8px;
-    color: var(--body);
+    padding: 0.5625rem 0.625rem;
+    border-radius: 10px;
+    color: var(--text-btn);
     font-size: var(--text-md);
-    font-weight: 500;
-    text-decoration: none;
-    transition: color 0.15s ease, background-color 0.15s ease;
+    line-height: 1.375rem;
+    font-weight: 600;
+    white-space: nowrap;
+    transition: color 0.15s, background-color 0.15s;
   }
   .nav a:hover {
-    color: var(--ink);
-    background: #eef2f9;
+    background: var(--fill-100);
     text-decoration: none;
   }
   .nav a.active {
-    color: var(--accent);
-    background: var(--accent-soft);
+    color: var(--accent-fg);
   }
 
   /* ── Publications 드롭다운 ─────────────────────────────────────────
@@ -233,11 +220,11 @@ const otherHref = alternatePath(Astro.url.pathname, otherLang);
   .has-menu > a {
     display: inline-flex;
     align-items: center;
-    gap: 0.28rem;
+    gap: 0.25rem;
   }
   .caret {
     opacity: 0.55;
-    transition: transform 0.18s ease;
+    transition: transform 0.2s;
   }
   .has-menu:hover .caret,
   .has-menu:focus-within .caret {
@@ -245,14 +232,14 @@ const otherHref = alternatePath(Astro.url.pathname, otherLang);
     opacity: 1;
   }
 
-  /* 구성원 전용 링크는 공개 메뉴보다 한 단계 작고 조용하게 */
+  /* 구성원 전용 링크는 공개 메뉴보다 조용하게 */
   .nav .members > a {
-    font-size: var(--text-xs);
-    color: var(--muted);
+    color: var(--text-5);
+    font-weight: 500;
   }
   .nav .members > a:hover,
   .nav .members > a.active {
-    color: var(--accent);
+    color: var(--accent-fg);
   }
 
   .submenu {
@@ -261,24 +248,21 @@ const otherHref = alternatePath(Astro.url.pathname, otherLang);
     left: 0;
     z-index: 60;
     display: grid !important;
-    gap: 0.1rem;
+    gap: 0;
     min-width: 14rem;
-    margin-top: 0.3rem;
-    padding: 0.4rem;
-    background: var(--card);
-    border: 1px solid var(--line);
+    margin-top: 0.25rem;
+    padding: 0.375rem;
+    background: var(--elevated);
     border-radius: 12px;
-    box-shadow: var(--shadow-md);
+    box-shadow: var(--shadow-float);
     opacity: 0;
     visibility: hidden;
-    transform: translateY(-4px);
-    transition: opacity 0.15s ease, transform 0.15s ease, visibility 0.15s;
+    transition: opacity 0.15s, visibility 0.15s;
   }
   .has-menu:hover .submenu,
   .has-menu:focus-within .submenu {
     opacity: 1;
     visibility: visible;
-    transform: translateY(0);
   }
   /* 메뉴와 상위 항목 사이의 빈 틈에서 마우스가 빠지지 않도록 */
   .has-menu::after {
@@ -291,53 +275,19 @@ const otherHref = alternatePath(Astro.url.pathname, otherLang);
   }
 
   .submenu a {
-    display: block;
-    white-space: nowrap;
-    padding: 0.5rem 0.7rem;
     border-radius: 8px;
-    font-size: var(--text-md);
+    font-weight: 400;
   }
 
   .tools {
     display: flex;
     align-items: center;
-    gap: 0.4rem;
+    gap: 0.25rem;
     flex: none;
-  }
-
-  .lang-switch {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    min-width: 44px;
-    height: 34px;
-    padding-inline: 0.6rem;
-    border: 1px solid var(--line);
-    border-radius: 999px;
-    background: var(--card);
-    color: var(--body);
-    font-size: var(--text-2xs);
-    font-weight: 600;
-    letter-spacing: 0.05em;
-    text-decoration: none;
-    transition: border-color 0.15s ease, color 0.15s ease;
-  }
-  .lang-switch:hover {
-    border-color: var(--accent);
-    color: var(--accent);
-    text-decoration: none;
   }
 
   .menu-toggle {
     display: none;
-    width: 40px;
-    height: 36px;
-    align-items: center;
-    justify-content: center;
-    background: var(--card);
-    border: 1px solid var(--line);
-    border-radius: 9px;
-    cursor: pointer;
   }
   .bars {
     display: grid;
@@ -345,9 +295,9 @@ const otherHref = alternatePath(Astro.url.pathname, otherLang);
   }
   .bars i {
     display: block;
-    width: 17px;
-    height: 1.8px;
-    background: var(--ink);
+    width: 18px;
+    height: 2px;
+    background: var(--text-3);
     border-radius: 2px;
   }
 
@@ -361,27 +311,26 @@ const otherHref = alternatePath(Astro.url.pathname, otherLang);
   }
 
   .mobile-nav {
-    border-top: 1px solid var(--line);
-    background: var(--card);
-    padding-block: 0.5rem 0.9rem;
+    background: var(--bg);
+    padding-block: 0.25rem 1rem;
+    box-shadow: 0 8px 12px -8px var(--op-200);
   }
   .mobile-nav ul {
     display: grid;
   }
   .mobile-nav a {
     display: block;
-    padding: 0.72rem 0.2rem;
-    color: var(--body);
+    padding: 0.75rem 0;
+    color: var(--text-2);
     font-size: var(--text-base);
-    font-weight: 500;
-    border-bottom: 1px solid var(--line);
+    font-weight: 600;
+  }
+  .mobile-nav a:hover {
+    color: var(--accent-fg);
     text-decoration: none;
   }
-  .mobile-nav li:last-child a {
-    border-bottom: 0;
-  }
   .mobile-nav a.active {
-    color: var(--accent);
+    color: var(--accent-fg);
   }
 
   /* 내비 8개 + 언어 토글 + 연구실 정식 명칭이 한 줄에 다 들어가려면
@@ -403,6 +352,17 @@ const otherHref = alternatePath(Astro.url.pathname, otherLang);
 </style>
 
 <script>
+  // 같은 페이지 안으로 이동하는 항목을 누르면 초점을 풀어 드롭다운이 닫히게 한다.
+  document.querySelectorAll('.submenu a[href*="#"]').forEach((link) => {
+    link.addEventListener('click', () => link.blur());
+  });
+
+  // 스크롤을 시작하면 헤더 아래 경계선이 나타난다.
+  const header = document.querySelector('.site-header');
+  const syncScrolled = () => header?.setAttribute('data-scrolled', String(window.scrollY > 0));
+  syncScrolled();
+  addEventListener('scroll', syncScrolled, { passive: true });
+
   const toggle = document.querySelector('.menu-toggle');
   const panel = document.getElementById('mobile-nav');
   const setOpen = (open) => {
@@ -438,7 +398,7 @@ const otherHref = alternatePath(Astro.url.pathname, otherLang);
   });
 
   // 데스크톱 폭으로 넓어지면 열린 패널이 남지 않도록 정리한다.
-  matchMedia('(min-width: 1041px)').addEventListener('change', (e) => {
+  matchMedia('(min-width: 1141px)').addEventListener('change', (e) => {
     if (e.matches) setOpen(false);
   });
 </script>

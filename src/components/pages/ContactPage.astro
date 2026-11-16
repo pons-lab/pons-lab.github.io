@@ -1,4 +1,5 @@
 ---
+import ServiceIcon from '../ServiceIcon.astro';
 import Affiliation from '../Affiliation.astro';
 import PageHero from '../PageHero.astro';
 import Address from '../Address.astro';
@@ -22,7 +23,7 @@ const how = lang === 'ko' ? site.recruiting.how_to_apply_ko : site.recruiting.ho
     <div class="info">
       <dl class="rows">
         <div class="row">
-          <dt>{t('contact.lab')}</dt>
+          <dt><ServiceIcon name="pin" size={18} />{t('contact.lab')}</dt>
           <dd>
             <p class="strongish">{labRoom}</p>
             <p><Address place={lab} /></p>
@@ -37,27 +38,20 @@ const how = lang === 'ko' ? site.recruiting.how_to_apply_ko : site.recruiting.ho
                 target="_blank"
                 rel="noopener"
               >
+                <ServiceIcon name="maps" size={18} />
                 {t('contact.map')}
-                <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-                  <path
-                    d="M3 8h9m0 0L8.5 4.5M12 8l-3.5 3.5"
-                    stroke="currentColor"
-                    stroke-width="1.6"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"></path>
-                </svg>
               </a>
             </p>
           </dd>
         </div>
 
         <div class="row">
-          <dt>{t('contact.email')}</dt>
+          <dt><ServiceIcon name="mail" size={18} />{t('contact.email')}</dt>
           <dd><a href={`mailto:${site.contact.email}`}>{site.contact.email}</a></dd>
         </div>
 
         <div class="row">
-          <dt>{t('contact.office')}</dt>
+          <dt><ServiceIcon name="building" size={18} />{t('contact.office')}</dt>
           <dd>
             <p class="strongish">{officeRoom}</p>
             <p><Address place={office} /></p>
@@ -71,7 +65,7 @@ const how = lang === 'ko' ? site.recruiting.how_to_apply_ko : site.recruiting.ho
       <h2>{t('contact.join_title')}</h2>
       <p>{site.recruiting[lang]}</p>
       <p class="muted">{how}</p>
-      <a class="btn btn-primary" href={`mailto:${site.contact.email}`}>{t('cta.email')}</a>
+      <a class="t-btn t-btn--primary" href={`mailto:${site.contact.email}`}>{t('cta.email')}</a>
     </aside>
   </div>
 </section>
@@ -94,19 +88,21 @@ const how = lang === 'ko' ? site.recruiting.how_to_apply_ko : site.recruiting.ho
     grid-template-columns: minmax(6.5rem, 9rem) minmax(0, 1fr);
     gap: 0.4rem 1.5rem;
     padding: 1.25rem 0;
-    border-bottom: 1px solid var(--line);
   }
   .row:first-child {
     padding-top: 0;
   }
 
   dt {
-    font-size: var(--text-3xs);
-    font-weight: 650;
-    letter-spacing: 0.13em;
-    text-transform: uppercase;
+    display: flex;
+    align-items: flex-start;
+    gap: 0.5rem;
+    font-size: var(--text-md);
+    font-weight: 600;
     color: var(--muted);
-    padding-top: 0.24rem;
+  }
+  dt :global(.svc-icon) {
+    margin-top: 0.15em;
   }
 
   dd {
@@ -121,7 +117,7 @@ const how = lang === 'ko' ? site.recruiting.how_to_apply_ko : site.recruiting.ho
   }
 
   .strongish {
-    font-weight: 620;
+    font-weight: 600;
     color: var(--ink);
   }
 
@@ -130,8 +126,6 @@ const how = lang === 'ko' ? site.recruiting.how_to_apply_ko : site.recruiting.ho
   }
 
   .join {
-    background: linear-gradient(160deg, #f2f6fd 0%, var(--card) 55%);
-    border-color: #d8e2f5;
   }
 
   .join h2 {
@@ -144,7 +138,7 @@ const how = lang === 'ko' ? site.recruiting.how_to_apply_ko : site.recruiting.ho
     margin-bottom: 0.7rem;
   }
 
-  .join .btn {
+  .join .t-btn {
     margin-top: 0.6rem;
   }
 

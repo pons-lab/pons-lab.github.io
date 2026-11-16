@@ -1,7 +1,9 @@
 ---
+import ServiceIcon from '../ServiceIcon.astro';
 import PiIdentity from '../PiIdentity.astro';
 import { Image } from 'astro:assets';
 import PageHero from '../PageHero.astro';
+import MemberCard from '../MemberCard.astro';
 import { members, awardsInOrder } from '../../lib/data.js';
 import { asset } from '../../lib/images.js';
 import { keepTogether } from '../../lib/text.js';
@@ -23,7 +25,6 @@ const initials = (name) =>
     .toUpperCase();
 
 const memberName = (m) => (lang === 'ko' ? m.name_ko || m.name_en : m.name_en);
-const memberSince = (m) => (lang === 'ko' ? m.since_ko || m.since : m.since);
 
 const piPhoto = asset(pi.photo);
 ---
@@ -31,7 +32,7 @@ const piPhoto = asset(pi.photo);
 <PageHero kicker={t('page.kicker.people')} title={t('people.title')} />
 
 <!-- ── Principal Investigator ─────────────────────────────────────────── -->
-<section class="section-tight">
+<section class="section-tight" id="professor">
   <div class="container">
     <p class="kicker">{t('people.pi')}</p>
 
@@ -51,18 +52,18 @@ const piPhoto = asset(pi.photo);
       <div class="pi-body">
         <PiIdentity size="md" level={2}>
           <ul class="pi-contact">
-          <li><a href={`mailto:${pi.email}`}>{pi.email}</a></li>
-          {pi.phone && <li><a href={`tel:${pi.phone}`}>{pi.phone}</a></li>}
-          <li class="muted">{pick(pi, 'office', lang)}</li>
+          <li><a href={`mailto:${pi.email}`}><ServiceIcon name="mail" />{pi.email}</a></li>
+          {pi.phone && <li><a href={`tel:${pi.phone}`}><ServiceIcon name="phone" />{pi.phone}</a></li>}
+          <li class="muted"><ServiceIcon name="building" />{pick(pi, 'office', lang)}</li>
           {pi.scholar_url && (
             <li>
-              <a href={pi.scholar_url} target="_blank" rel="noopener">Google Scholar</a>
+              <a href={pi.scholar_url} target="_blank" rel="noopener"><ServiceIcon name="scholar" />Google Scholar</a>
             </li>
           )}
           {pi.orcid && (
             <li>
               <a href={`https://orcid.org/${pi.orcid}`} target="_blank" rel="noopener">
-                ORCID <span class="mono-num">{pi.orcid}</span>
+                <ServiceIcon name="orcid" />ORCID <span class="mono-num">{pi.orcid}</span>
               </a>
             </li>
           )}
@@ -72,8 +73,8 @@ const piPhoto = asset(pi.photo);
         <p class="bio">{piBio}</p>
 
         <p class="cv-links">
-          <a class="btn btn-primary" href={localizePath('/cv', lang)}>{t('cv.title')}</a>
-          <a class="btn btn-ghost" href={localizePath('/cv/short', lang)}>{t('cv.short_title')}</a>
+          <a class="t-btn t-btn--primary" href={localizePath('/cv', lang)}>{t('cv.title')}</a>
+          <a class="t-btn t-btn--grey" href={localizePath('/cv/short', lang)}>{t('cv.short_title')}</a>
         </p>
       </div>
     </div>
@@ -201,10 +202,9 @@ const piPhoto = asset(pi.photo);
 </section>
 
 <!-- ── Members ────────────────────────────────────────────────────────── -->
-<section class="section members-band">
+<section class="section members-band" id="members">
   <div class="container">
     <div class="section-head">
-      <p class="kicker">{t('people.members')}</p>
       <h2>{t('people.members')}</h2>
     </div>
 
@@ -216,38 +216,8 @@ const piPhoto = asset(pi.photo);
               {pick(group, 'title', lang)}
               <span class="count mono-num">{group.members.length}</span>
             </h3>
-            <ul class="grid grid-4">
-              {group.members.map((m) => (
-                <li class="card person">
-                  {asset(m.photo) ? (
-                    <Image
-                      class="avatar-img"
-                      src={asset(m.photo)}
-                      alt={memberName(m)}
-                      width={62}
-                      densities={[1, 2]}
-                      loading="lazy"
-                    />
-                  ) : (
-                    <div class="avatar" aria-hidden="true">
-                      {initials(m.name_en)}
-                    </div>
-                  )}
-                  <p class="person-name">{memberName(m)}</p>
-                  {lang === 'ko' && m.name_ko !== m.name_en && (
-                    <p class="person-sub">{m.name_en}</p>
-                  )}
-                  <p class="person-since mono-num">
-                    {t('people.since')} {memberSince(m)}
-                  </p>
-                  {m.prior_period && (
-                    <p class="person-prior">
-                      {pick(m, 'prior_role', lang)}{' '}
-                      <span class="mono-num">{m.prior_period}</span>
-                    </p>
-                  )}
-                </li>
-              ))}
+            <ul class="grid grid-3">
+              {group.members.map((m) => <MemberCard member={m} />)}
             </ul>
           </div>
         ))
@@ -291,8 +261,7 @@ const piPhoto = asset(pi.photo);
 
   .pi-photo :global(img) {
     width: 100%;
-    border-radius: var(--radius-lg);
-    border: 1px solid var(--line);
+    border-radius: var(--radius);
     object-fit: cover;
     aspect-ratio: 4 / 5;
   }
@@ -302,12 +271,11 @@ const piPhoto = asset(pi.photo);
     place-items: center;
     aspect-ratio: 1;
     border-radius: 50%;
-    background: var(--accent-soft);
-    color: var(--accent);
+    background: var(--bg);
+    color: var(--text-4);
     font-family: var(--font-display);
     font-weight: 700;
     font-size: var(--text-xl);
-    letter-spacing: 0.02em;
     width: 62px;
   }
 
@@ -318,6 +286,12 @@ const piPhoto = asset(pi.photo);
     font-size: clamp(2.5rem, 6vw, 3.6rem);
   }
 
+  .pi-contact :global(.svc-icon) {
+    margin-right: 0.375rem;
+  }
+  .pi-contact a {
+    white-space: nowrap;
+  }
   .pi-contact {
     display: flex;
     flex-wrap: wrap;
@@ -365,10 +339,8 @@ const piPhoto = asset(pi.photo);
 
   .detail h3 {
     font-family: var(--font-sans);
-    font-size: var(--text-3xs);
-    font-weight: 650;
-    letter-spacing: 0.13em;
-    text-transform: uppercase;
+    font-size: var(--text-base);
+    font-weight: 700;
     color: var(--muted);
     margin-bottom: 1rem;
   }
@@ -388,8 +360,7 @@ const piPhoto = asset(pi.photo);
   .period {
     font-size: var(--text-2xs);
     font-weight: 600;
-    color: var(--accent);
-    letter-spacing: 0.03em;
+    color: var(--text-5);
   }
 
   .entries strong {
@@ -411,12 +382,11 @@ const piPhoto = asset(pi.photo);
     display: inline-block;
     margin-left: 0.4rem;
     padding: 0.05rem 0.42rem;
-    border-radius: 999px;
-    background: var(--accent-soft);
-    color: var(--accent-deep);
+    border-radius: 8px;
+    background: var(--surface);
+    color: var(--text-4);
     font-size: var(--text-3xs);
-    font-weight: 650;
-    letter-spacing: 0.02em;
+    font-weight: 600;
     vertical-align: 1px;
   }
 
@@ -464,7 +434,6 @@ const piPhoto = asset(pi.photo);
     font-size: var(--text-3xs);
     font-weight: 600;
     color: var(--muted);
-    letter-spacing: 0;
   }
   .fold .chev {
     margin-left: auto;
@@ -485,8 +454,7 @@ const piPhoto = asset(pi.photo);
   }
 
   .members-band {
-    background: #f6f8fc;
-    border-block: 1px solid var(--line);
+    background: var(--bg);
   }
 
   .groups {
@@ -499,14 +467,10 @@ const piPhoto = asset(pi.photo);
     align-items: center;
     gap: 0.6rem;
     font-family: var(--font-sans);
-    font-size: var(--text-xs);
-    font-weight: 650;
-    letter-spacing: 0.13em;
-    text-transform: uppercase;
+    font-size: var(--text-xl);
+    font-weight: 700;
     color: var(--ink);
-    margin-bottom: 1.1rem;
-    padding-bottom: 0.7rem;
-    border-bottom: 1px solid var(--line);
+    margin-bottom: 1rem;
   }
 
   .count {
@@ -516,56 +480,10 @@ const piPhoto = asset(pi.photo);
     min-width: 1.35rem;
     height: 1.35rem;
     padding-inline: 0.35rem;
-    border-radius: 999px;
-    background: var(--accent-soft);
-    color: var(--accent);
+    border-radius: 8px;
+    background: var(--surface);
+    color: var(--text-4);
     font-size: var(--text-3xs);
-    letter-spacing: 0;
-  }
-
-  .person {
-    display: grid;
-    justify-items: center;
-    text-align: center;
-    gap: 0.15rem;
-    padding-block: 1.5rem;
-  }
-
-  :global(.avatar-img) {
-    width: 62px;
-    height: 62px;
-    border-radius: 50%;
-    object-fit: cover;
-    border: 1px solid var(--line);
-  }
-
-  .person-name {
-    margin: 0.75rem 0 0;
-    font-size: var(--text-base);
-    font-weight: 620;
-    color: var(--ink);
-  }
-
-  .person-sub {
-    margin: 0.05rem 0 0;
-    font-size: var(--text-xs);
-    color: var(--muted);
-  }
-
-  .person-since {
-    margin: 0.3rem 0 0;
-    font-size: var(--text-2xs);
-    color: var(--muted);
-    letter-spacing: 0.02em;
-  }
-
-  /* 현재 직위 이전의 재적 이력 (예: 석사 입학 전 학부연구생 기간) */
-  .person-prior {
-    margin: 0.15rem 0 0;
-    font-size: var(--text-3xs);
-    color: var(--muted);
-    line-height: 1.45;
-    word-break: keep-all;
   }
 
   .alumni {

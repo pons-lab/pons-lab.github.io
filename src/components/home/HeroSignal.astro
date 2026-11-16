@@ -1,0 +1,494 @@
+---
+/**
+ * 메인 히어로 (뇌 배경 시안).
+ *
+ * 글자 뒤에 점으로 그린 큰 뇌를 깔고, 뇌교(pons)만 진한 색으로 표시한다.
+ * 점마다 제자리로 돌아가는 탄성을 주어, 호버하면 밀려나고 물결이 퍼진다.
+ * 가만히 있을 때는 뇌교에서 박동이 퍼져 나간다.
+ * 뇌 모양은 해부 도식(brain-pons.svg)을 읽어 점으로 옮긴 것이다.
+ * 스크립트가 없어도 제목과 버튼은 그대로 보인다.
+ */
+import { site } from '../../lib/data.js';
+import { asset } from '../../lib/images.js';
+import { getLangFromUrl, useTranslations, localizePath } from '../../i18n/utils.js';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+// 연구실 정식 명칭. 한국어에서는 국문명 + 영문 약칭 병기.
+const labName = lang === 'ko' ? site.name.display_ko : site.name.full_en;
+const brainSrc = asset(site.brand.figure.image)?.src;
+---
+
+<section class="hero" data-signal-hero>
+  <canvas class="field" aria-hidden="true" data-src={brainSrc}></canvas>
+
+  <div class="container inner">
+    <div class="copy">
+      <p class="lab">{labName}</p>
+      <h1>{site.tagline[lang]}</h1>
+      <p class="intro">{site.intro[lang]}</p>
+      <div class="btn-row">
+        <a class="t-btn t-btn--primary t-btn--lg" href={localizePath('/research', lang)}>
+          {t('cta.research')}
+        </a>
+        <a class="t-btn t-btn--grey t-btn--lg" href={localizePath('/contact', lang)}>
+          {t('cta.join')}
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .field {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  .inner {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    /* 첫 화면을 꽉 채운다 (60px 은 헤더 높이) */
+    min-height: max(600px, calc(100svh - 60px));
+    padding-block: 2.5rem;
+    /* 캔버스 위에서도 글자를 고르고 링크를 누를 수 있게 한다 */
+    pointer-events: none;
+  }
+  .inner a {
+    pointer-events: auto;
+  }
+
+  .copy {
+    max-width: 540px;
+  }
+
+  .lab {
+    margin: 0 0 0.75rem;
+    font-weight: 600;
+    color: var(--text-4);
+  }
+
+  h1 {
+    margin-bottom: 1.25rem;
+    text-wrap: balance;
+  }
+
+  .intro {
+    margin-bottom: 2rem;
+    color: var(--text-3);
+  }
+
+  /* 뒤의 점이 비치지 않도록 불투명한 면을 쓴다 */
+  .btn-row .t-btn--grey {
+    background: var(--surface);
+  }
+  .btn-row .t-btn--grey:hover {
+    background: var(--surface-hover);
+  }
+
+  /* 좁은 화면: 글자 아래에 뇌교가 보일 자리를 비운다 */
+  @media (max-width: 860px) {
+    .inner {
+      justify-content: flex-start;
+      min-height: 0;
+      padding-block: 2.5rem 0;
+    }
+    .copy {
+      margin-bottom: clamp(220px, 58vw, 420px);
+      max-width: none;
+    }
+  }
+</style>
+
+<script>
+  const hero = document.querySelector('[data-signal-hero]');
+  const canvas = hero?.querySelector('canvas');
+  const copy = hero?.querySelector('.copy');
+  const ctx = canvas?.getContext('2d');
+
+  if (hero && canvas && copy && ctx && canvas.dataset.src) {
+    const reduce = matchMedia('(prefers-reduced-motion: reduce)');
+    const GREY = '107,118,132';
+    // 뇌의 강조색. 버튼의 파랑과 겹치지 않게 글자색과 같은 진한 색을 쓴다.
+    const HIGHLIGHT = '25,31,40';
+    const LABEL = '#191f28';
+    const HOVER = '232,84,44'; // 호버로 크게 밀려난 점의 색
+    const MASK = 900; // 도식을 읽어 들이는 크기
+    // 도식 안에서 뇌교의 위치 (0~1)
+    const PONS = { u: 0.528, v: 0.585, ru: 0.082, rv: 0.088 };
+    const LEVELS = 6;
+    const BEAT = 1.5; // 뇌교 박동 간격(초)
+
+    let mask = null;
+    let W = 0;
+    let H = 0;
+    let N = 0;
+    // 점마다 제자리(hx, hy), 밀려난 거리(ox, oy), 속도(vx, vy), 종류, 기본 진하기
+    let hx, hy, ox, oy, vx, vy, kind, base, ponsDist;
+    // 뇌교 호버: 주황색이 뇌교에서 뇌 전체로 한 번 퍼졌다가 돌아온다
+    const flash = { age: -1, duration: 0, armed: true };
+    const FLASH_SPEED = 1000; // 퍼지는 속도 (px/초)
+    const FLASH_HOLD = 0.3; // 물든 채로 머무는 시간
+    const FLASH_FADE = 0.7; // 회색으로 돌아가는 시간
+    let pons = { x: 0, y: 0, r: 0 };
+    let wide = true;
+    let fontFamily = 'sans-serif';
+    let running = false;
+    let visible = true;
+    let raf = 0;
+    let last = 0;
+    let time = 0;
+    let nextBeat = 0;
+    const ripples = [];
+    const pointer = { x: -999, y: -999, active: false, speed: 0, lastX: 0, lastY: 0, lastT: 0, lastRipple: 0 };
+
+    const smooth = (x) => {
+      const c = Math.max(0, Math.min(1, x));
+      return c * c * (3 - 2 * c);
+    };
+
+    /** 도식 픽셀을 읽어 뇌 모양의 점을 만든다. 윤곽선과 글자 자리는 비워 주름이 드러난다. */
+    function build() {
+      if (!mask) return;
+      const rect = hero.getBoundingClientRect();
+      const copyRect = copy.getBoundingClientRect();
+      const dpr = Math.min(devicePixelRatio || 1, 2);
+      W = rect.width;
+      H = rect.height;
+      canvas.width = Math.round(W * dpr);
+      canvas.height = Math.round(H * dpr);
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      wide = W > 860;
+
+      // 넓은 화면: 뇌교가 글자 오른쪽에 오도록 놓는다. 좁은 화면: 글자 아래에 놓는다.
+      const copyBottom = copyRect.bottom - rect.top;
+      const copyRight = copyRect.right - rect.left;
+      // 화면을 채우는 크기. 위아래와 좌우가 잘려도 뇌교만 보이면 된다.
+      const size = wide ? Math.max(H * 1.35, W * 0.86) : Math.max(W * 1.55, H * 0.72);
+      const ponsR = PONS.ru * size;
+      const ponsX = wide ? Math.max(copyRight + ponsR * 1.25, W * 0.57) : W * 0.56;
+      const ponsY = wide ? Math.min(H - ponsR * 2, H * 0.72) : copyBottom + ponsR + 28;
+      const left = ponsX - PONS.u * size;
+      const top = ponsY - PONS.v * size;
+      pons = { x: ponsX, y: ponsY, r: PONS.ru * size };
+
+      const spacing = Math.max(wide ? 5 : 4.4, size / 170);
+      const reach = Math.max(2, Math.round((spacing * 0.42 * MASK) / size)); // 주름을 찾는 범위
+      const lum = (i) => 0.3 * mask[i] + 0.59 * mask[i + 1] + 0.11 * mask[i + 2];
+      const nearLine = (px, py) => {
+        for (let dy = -reach; dy <= reach; dy += reach) {
+          for (let dx = -reach; dx <= reach; dx += reach) {
+            const qx = px + dx;
+            const qy = py + dy;
+            if (qx < 0 || qy < 0 || qx >= MASK || qy >= MASK) continue;
+            const q = (qy * MASK + qx) * 4;
+            if (mask[q + 3] > 128 && lum(q) < 120) return true;
+          }
+        }
+        return false;
+      };
+
+      const list = [];
+      const rowH = spacing * 0.866;
+      let row = 0;
+      for (let y = Math.max(-spacing, top); y < Math.min(H + spacing, top + size); y += rowH, row++) {
+        for (let x = Math.max(0, left) + (row % 2 ? spacing / 2 : 0); x < Math.min(W, left + size); x += spacing) {
+          const u = (x - left) / size;
+          const v = (y - top) / size;
+          const px = Math.floor(u * MASK);
+          const py = Math.floor(v * MASK);
+          if (px < 0 || py < 0 || px >= MASK || py >= MASK) continue;
+          const i = (py * MASK + px) * 4;
+          const [r, g, b, a] = [mask[i], mask[i + 1], mask[i + 2], mask[i + 3]];
+          if (a < 128 || (r > 238 && g > 238 && b > 238)) continue; // 배경
+          if (v > 0.62 && u < 0.46) continue; // 바깥 이름표 자리
+          const inPons = ((u - PONS.u) / PONS.ru) ** 2 + ((v - PONS.v) / PONS.rv) ** 2 < 1;
+          let type;
+          if (inPons) {
+            // 도식의 뇌교 안 글자("Pons") 자리까지 메운다
+            if (!(r - b > 70 || lum(i) < 120)) continue;
+            type = 2;
+          } else {
+            if (nearLine(px, py)) continue; // 윤곽선과 주름은 비운다
+            type = r - b > 70 ? 1 : 0;
+          }
+          // 글자 뒤쪽은 옅게 해서 읽기 쉽게 한다
+          const fade = wide
+            ? 0.3 + 0.7 * smooth((x - copyRight * 0.78) / (copyRight * 0.34))
+            : 0.22 + 0.78 * smooth((y - copyBottom + 10) / 60);
+          list.push(x, y, type, (type === 1 ? 0.56 : 0.42) * fade);
+        }
+      }
+
+      N = list.length / 4;
+      hx = new Float32Array(N);
+      hy = new Float32Array(N);
+      ox = new Float32Array(N);
+      oy = new Float32Array(N);
+      vx = new Float32Array(N);
+      vy = new Float32Array(N);
+      kind = new Uint8Array(N);
+      base = new Float32Array(N);
+      ponsDist = new Float32Array(N);
+      for (let i = 0; i < N; i++) {
+        hx[i] = list[i * 4];
+        hy[i] = list[i * 4 + 1];
+        kind[i] = list[i * 4 + 2];
+        base[i] = list[i * 4 + 3];
+        ponsDist[i] = Math.hypot(hx[i] - pons.x, hy[i] - pons.y);
+      }
+    }
+
+    /** 뇌교 안에 들어오면 한 번만 켠다. 벗어났다가 다시 들어와야 다시 켜진다. */
+    function checkPons(x, y) {
+      const inside = Math.hypot(x - pons.x, y - pons.y) < pons.r * 1.1;
+      if (!inside) {
+        flash.armed = true;
+        return;
+      }
+      if (!flash.armed || flash.age >= 0 || reduce.matches) return;
+      flash.armed = false;
+      flash.age = 0;
+      flash.duration = Math.hypot(Math.max(pons.x, W - pons.x), Math.max(pons.y, H - pons.y)) / FLASH_SPEED + FLASH_HOLD + FLASH_FADE;
+      addRipple(pons.x, pons.y, 1.3);
+    }
+
+    /** 물결을 하나 만든다. 많이 쌓이면 오래된 것부터 지운다. */
+    function addRipple(x, y, power) {
+      ripples.push({ x, y, age: 0, power });
+      if (ripples.length > 7) ripples.shift();
+    }
+
+    function step(dt) {
+      const f = dt * 60;
+      const damp = Math.pow(0.87, f);
+      const spring = 0.05 * f;
+      const reachP = wide ? 170 : 120;
+      const speedBoost = Math.min(2.4, pointer.speed / 900);
+
+      for (const r of ripples) r.age += dt;
+      while (ripples.length && ripples[0].age > 1.5) ripples.shift();
+
+      for (let i = 0; i < N; i++) {
+        const x = hx[i] + ox[i];
+        const y = hy[i] + oy[i];
+        let ax = -ox[i] * spring;
+        let ay = -oy[i] * spring;
+
+        // 가만히 있어도 뇌 전체가 천천히 출렁인다
+        ax += Math.sin(hy[i] * 0.017 + time * 1.3) * 0.16 * f;
+        ay += Math.cos(hx[i] * 0.015 - time * 1.1) * 0.16 * f;
+
+        // 포인터: 밀어내면서 소용돌이친다. 빠르게 움직일수록 세다.
+        if (pointer.active) {
+          const dx = x - pointer.x;
+          const dy = y - pointer.y;
+          const d2 = dx * dx + dy * dy;
+          if (d2 < reachP * reachP && d2 > 0.01) {
+            const d = Math.sqrt(d2);
+            const near = 1 - d / reachP;
+            const push = near * near * (2.2 + speedBoost * 2) * f;
+            ax += (dx / d) * push - (dy / d) * push * 0.45;
+            ay += (dy / d) * push + (dx / d) * push * 0.45;
+          }
+        }
+
+        // 물결: 지나가는 순간 바깥쪽으로 튕겨 낸다
+        for (let k = 0; k < ripples.length; k++) {
+          const r = ripples[k];
+          const front = r.age * (wide ? 430 : 300);
+          const dx = hx[i] - r.x;
+          const dy = hy[i] - r.y;
+          const d = Math.sqrt(dx * dx + dy * dy) + 0.001;
+          const gap = d - front;
+          if (gap > 60 || gap < -60) continue;
+          const w = 1 - Math.abs(gap) / 60;
+          const push = w * w * r.power * (1 - r.age / 1.5) * f;
+          ax += (dx / d) * push;
+          ay += (dy / d) * push;
+        }
+
+        vx[i] = (vx[i] + ax) * damp;
+        vy[i] = (vy[i] + ay) * damp;
+        ox[i] += vx[i] * f;
+        oy[i] += vy[i] * f;
+      }
+    }
+
+    function draw() {
+      ctx.clearRect(0, 0, W, H);
+      const baseR = wide ? 1.35 : 1.15;
+      const phase = (time % BEAT) / BEAT;
+      const beat = Math.exp(-phase * 7);
+      const grey = Array.from({ length: LEVELS }, () => []);
+      const active = [[], []];
+      const ponsDots = [];
+      const tinted = Array.from({ length: 4 }, () => []);
+
+      for (let i = 0; i < N; i++) {
+        const x = hx[i] + ox[i];
+        const y = hy[i] + oy[i];
+        const moved = Math.min(1, Math.hypot(ox[i], oy[i]) / 22);
+        // 뇌교 호버로 퍼지는 주황색
+        let tint = 0;
+        if (flash.age >= 0) {
+          const since = flash.age - ponsDist[i] / FLASH_SPEED;
+          if (since > 0) tint = since < FLASH_HOLD ? 1 : Math.max(0, 1 - (since - FLASH_HOLD) / FLASH_FADE);
+        }
+        if (tint > 0.06) {
+          // 글자 뒤쪽은 물들어도 옅게 둔다
+          const strength = kind[i] === 2 ? 1 : Math.min(1, base[i] / 0.42);
+          const level = Math.min(3, Math.floor(tint * strength * 4));
+          const size = kind[i] === 2 ? 1.25 : 1 + tint * 0.3;
+          tinted[level].push(x, y, baseR * size);
+        } else if (kind[i] === 2) {
+          ponsDots.push(x, y, baseR * (1.2 + beat * 0.55 + moved * 0.4));
+        } else if (moved > 0.8) {
+          // 크게 밀려난 점만 주황색으로 빛난다
+          active[moved > 0.95 ? 1 : 0].push(x, y, baseR * (1 + moved * 0.75));
+        } else {
+          const alpha = Math.min(0.98, base[i] + moved * 0.6);
+          grey[Math.min(LEVELS - 1, Math.floor(alpha * LEVELS))].push(x, y, baseR * (1 + moved * 0.6));
+        }
+      }
+
+      const paint = (list, style) => {
+        if (!list.length) return;
+        ctx.fillStyle = style;
+        ctx.beginPath();
+        for (let k = 0; k < list.length; k += 3) {
+          ctx.moveTo(list[k] + list[k + 2], list[k + 1]);
+          ctx.arc(list[k], list[k + 1], list[k + 2], 0, Math.PI * 2);
+        }
+        ctx.fill();
+      };
+      grey.forEach((list, level) => paint(list, `rgba(${GREY},${(level + 0.6) / LEVELS})`));
+      tinted.forEach((list, level) => paint(list, `rgba(${HOVER},${(level + 1) / 4})`));
+      paint(active[0], `rgba(${HOVER},0.6)`);
+      paint(active[1], `rgb(${HOVER})`);
+      paint(ponsDots, `rgb(${HIGHLIGHT})`);
+
+      // 이름표
+      ctx.font = `600 ${wide ? 14 : 13}px ${fontFamily}`;
+      ctx.fillStyle = LABEL;
+      ctx.textAlign = 'center';
+      ctx.fillText('pons', pons.x, pons.y + pons.r + (wide ? 26 : 22));
+    }
+
+    function frame(now) {
+      if (!running) return;
+      const dt = Math.min(0.033, (now - last) / 1000 || 0.016);
+      last = now;
+      time += dt;
+      pointer.speed *= Math.pow(0.9, dt * 60);
+      if (flash.age >= 0) {
+        flash.age += dt;
+        if (flash.age > flash.duration) flash.age = -1;
+      }
+      if (time >= nextBeat) {
+        addRipple(pons.x, pons.y, 0.95);
+        nextBeat = time + BEAT;
+      }
+      step(dt);
+      draw();
+      raf = requestAnimationFrame(frame);
+    }
+
+    function start() {
+      if (running || !mask || reduce.matches || !visible || document.hidden) return;
+      running = true;
+      last = performance.now();
+      raf = requestAnimationFrame(frame);
+    }
+
+    function stop() {
+      running = false;
+      cancelAnimationFrame(raf);
+    }
+
+    function refresh() {
+      if (!mask) return;
+      build();
+      if (reduce.matches) {
+        stop();
+        draw();
+      } else {
+        if (!running) draw();
+        start();
+      }
+    }
+
+    fontFamily = getComputedStyle(document.body).fontFamily;
+
+    // 도식 불러오기. 실패하면 뇌 없이 글자만 보인다.
+    const image = new Image();
+    image.onload = () => {
+      const off = document.createElement('canvas');
+      off.width = MASK;
+      off.height = MASK;
+      const octx = off.getContext('2d', { willReadFrequently: true });
+      octx.drawImage(image, 0, 0, MASK, MASK);
+      mask = octx.getImageData(0, 0, MASK, MASK).data;
+      refresh();
+    };
+    image.src = canvas.dataset.src;
+
+    const local = (e) => {
+      const rect = hero.getBoundingClientRect();
+      return { x: e.clientX - rect.left, y: e.clientY - rect.top };
+    };
+
+    // 호버: 점을 밀어내고, 움직인 자리마다 물결을 남긴다. 터치는 스크롤을 막지 않는다.
+    hero.addEventListener(
+      'pointermove',
+      (e) => {
+        const { x, y } = local(e);
+        const now = performance.now();
+        const gap = Math.max(1, now - pointer.lastT);
+        const moved = Math.hypot(x - pointer.lastX, y - pointer.lastY);
+        pointer.speed = Math.max(pointer.speed, (moved / gap) * 1000);
+        Object.assign(pointer, { x, y, active: true, lastX: x, lastY: y, lastT: now });
+        checkPons(x, y);
+        if (now - pointer.lastRipple > 170 && moved > 3) {
+          addRipple(x, y, 0.45 + Math.min(0.6, pointer.speed / 2500));
+          pointer.lastRipple = now;
+        }
+      },
+      { passive: true }
+    );
+    hero.addEventListener('pointerleave', () => {
+      pointer.active = false;
+      flash.armed = true;
+    });
+    // 클릭·터치: 큰 파동
+    hero.addEventListener(
+      'pointerdown',
+      (e) => {
+        const { x, y } = local(e);
+        addRipple(x, y, 2.2);
+        checkPons(x, y);
+      },
+      { passive: true }
+    );
+
+    // 화면 밖이거나 탭이 숨겨지면 멈춘다
+    new IntersectionObserver(([entry]) => {
+      visible = entry.isIntersecting;
+      visible ? start() : stop();
+    }).observe(hero);
+    document.addEventListener('visibilitychange', () => (document.hidden ? stop() : start()));
+    reduce.addEventListener('change', refresh);
+    new ResizeObserver(refresh).observe(hero);
+    document.fonts?.ready.then(() => mask && refresh());
+  }
+</script>

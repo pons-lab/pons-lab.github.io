@@ -35,7 +35,7 @@ const levelLabel = (level) =>
                     <strong>
                       {pick(c, 'title', lang)}
                       {c.language === 'en' && (
-                        <span class="tag lang">{t('lectures.in_english')}</span>
+                        <span class="t-tag lang">{t('lectures.in_english')}</span>
                       )}
                     </strong>
                     {lang === 'ko' ? (
@@ -61,7 +61,7 @@ const levelLabel = (level) =>
   }
 
   /* 영어 강의 배지 — 뉴스 태그와 같은 모양. 제목 옆에 붙는다. */
-  .tag.lang {
+  .t-tag.lang {
     margin-left: 0.5rem;
     white-space: nowrap;
     vertical-align: 0.08em;
@@ -73,9 +73,7 @@ const levelLabel = (level) =>
     justify-content: space-between;
     gap: 1rem;
     font-size: var(--text-xl);
-    padding-bottom: 0.7rem;
-    border-bottom: 1px solid var(--line);
-    margin-bottom: 1.1rem;
+    margin-bottom: 1rem;
   }
 
   .term-name {
@@ -87,11 +85,10 @@ const levelLabel = (level) =>
     font-family: var(--font-sans);
     font-size: var(--text-2xs);
     font-weight: 600;
-    letter-spacing: 0.08em;
-    color: var(--accent);
-    background: var(--accent-soft);
+    color: var(--text-4);
+    background: var(--surface);
     padding: 0.25rem 0.6rem;
-    border-radius: 999px;
+    border-radius: 8px;
   }
 
   .courses {
@@ -115,18 +112,17 @@ const levelLabel = (level) =>
     justify-content: center;
     width: 100%;
     padding: 0.28rem 0.6rem;
-    border-radius: 999px;
+    border-radius: 8px;
     font-size: var(--text-3xs);
-    font-weight: 650;
-    letter-spacing: 0.04em;
+    font-weight: 600;
   }
   .level.undergraduate {
-    background: #eef2f9;
+    background: var(--bg);
     color: var(--body);
   }
   .level.graduate {
-    background: var(--accent-soft);
-    color: var(--accent-deep);
+    background: var(--accent-weak);
+    color: var(--accent-fg);
   }
 
   .titles {

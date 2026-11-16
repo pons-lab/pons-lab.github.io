@@ -4,6 +4,11 @@
 // 두 글꼴 모두 가변(variable) 판이라 550·620 같은 중간 굵기도 그대로 나온다.
 import '@fontsource-variable/inter';
 import '@fontsource-variable/noto-sans-kr';
+// 화면용 글꼴. Inter·Noto 는 PDF용 CV(cv-print.css)에서만 쓴다.
+import 'pretendard/dist/web/variable/pretendardvariable-dynamic-subset.css';
+// 로고 글자 전용 글꼴 (본문에는 쓰지 않는다).
+import 'wanted-sans/fonts/webfonts/variable/split/WantedSansVariable.css';
+import '../styles/clean.css';
 import '../styles/global.css';
 import '../styles/cv-print.css';
 import Header from '../components/Header.astro';

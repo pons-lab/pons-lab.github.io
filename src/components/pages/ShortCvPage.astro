@@ -52,8 +52,8 @@ const oneLine = (e) => ({
       </PiIdentity>
       <p class="summary">{summary}</p>
       <p class="actions">
-        <a class="btn btn-primary" href="/cv-short.pdf" download>{t('cv.download_short')}</a>
-        <a class="btn btn-ghost" href={localizePath('/cv', lang)}>{t('cv.full_title')}</a>
+        <a class="t-btn t-btn--primary" href="/cv-short.pdf" download>{t('cv.download_short')}</a>
+        <a class="t-btn t-btn--grey" href={localizePath('/cv', lang)}>{t('cv.full_title')}</a>
       </p>
     </div>
   </header>
@@ -177,9 +177,7 @@ const oneLine = (e) => ({
   .cv-head {
     padding-block: clamp(2.25rem, 5vw, 3.25rem) clamp(1.25rem, 2.5vw, 1.75rem);
     border-bottom: 1px solid var(--line);
-    background:
-      radial-gradient(1100px 340px at 8% -30%, #eef3fd 0%, rgba(238, 243, 253, 0) 70%),
-      var(--page);
+    background: var(--bg);
   }
   .cv-head .container,
   .body {
@@ -291,6 +289,28 @@ const oneLine = (e) => ({
     .rows li {
       grid-template-columns: minmax(0, 1fr);
       gap: 0.1rem;
+    }
+  }
+
+  /* 화면 전용. PDF 모양은 cv-print.css 가 정한다. */
+  @media screen {
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+    .cv-sec > h2 {
+      font-size: var(--text-xl);
+      font-weight: 700;
+      letter-spacing: normal;
+      text-transform: none;
+      color: var(--ink);
+    }
+    .summary {
+      color: var(--text-3);
+    }
+    .period {
+      color: var(--text-4);
     }
   }
 </style>

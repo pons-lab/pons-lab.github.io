@@ -1,16 +1,16 @@
 ---
 import { getLangFromUrl } from '../i18n/utils.js';
 
-const { kicker, title, lead } = Astro.props;
+// kicker 는 호출하는 쪽과의 호환을 위해 받기만 하고 그리지 않는다.
+const { title, lead } = Astro.props;
 
-// 라벨과 페이지 이름은 한국어 페이지에서도 영어로 두기로 했다(사용자 결정).
-// 문서 언어가 한국어일 때 그 두 줄에만 lang="en" 을 붙여 준다. 아래 설명문은 한국어다.
+// 페이지 이름은 한국어 페이지에서도 영어로 두기로 했다(사용자 결정).
+// 문서 언어가 한국어일 때 그 줄에만 lang="en" 을 붙여 준다. 아래 설명문은 한국어다.
 const titleLang = getLangFromUrl(Astro.url) === 'ko' ? 'en' : undefined;
 ---
 
 <section class="page-hero">
   <div class="container">
-    {kicker && <p class="kicker" lang={titleLang}>{kicker}</p>}
     <h1 lang={titleLang}>{title}</h1>
     {lead && <p class="lead">{lead}</p>}
     <slot />
@@ -19,15 +19,15 @@ const titleLang = getLangFromUrl(Astro.url) === 'ko' ? 'en' : undefined;
 
 <style>
   .page-hero {
-    padding-block: clamp(3rem, 7vw, 5.25rem) clamp(2.25rem, 4vw, 3rem);
-    border-bottom: 1px solid var(--line);
-    background:
-      radial-gradient(1100px 340px at 8% -30%, #eef3fd 0%, rgba(238, 243, 253, 0) 70%),
-      var(--page);
+    padding-block: clamp(2.5rem, 5vw, 4rem) 0;
   }
 
   h1 {
-    max-width: 20ch;
-    margin-bottom: 0.65rem;
+    font-size: var(--text-page-title);
+    margin-bottom: 0.5rem;
+  }
+
+  .lead {
+    margin-bottom: 0;
   }
 </style>

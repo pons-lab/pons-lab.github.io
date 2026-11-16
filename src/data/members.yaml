@@ -4,7 +4,7 @@
 # 멤버가 들어오거나 나가면 이 파일만 고치면 됩니다.
 #   - 새 멤버: 해당 그룹의 members: 아래에 한 항목 추가
 #   - 졸업/수료: 해당 항목을 alumni: 로 옮기고 `until` 을 채우기
-#   - photo: public/images/people/ 안의 파일 이름 (없으면 이니셜 아바타가 표시됩니다)
+#   - photo: 아래 "사진" 설명 참고 (없으면 이니셜 아바타가 표시됩니다)
 #
 # 이름 표기: name_ko = 한글 이름, name_en = 영문(로마자) 이름.
 #   - 영문(/) 페이지에는 name_en, 한국어(/ko/) 페이지에는 name_ko 가 표시됩니다.
@@ -12,7 +12,28 @@
 #     쓰는 표기가 다르면 name_en 만 고치면 됩니다. (예: name_en: Seo-Yeon Yun)
 #
 # 사진: src/assets/people/ 에 파일을 넣고 photo: people/파일명.jpg 로 적으면 됩니다.
-# 비워두면 이름 이니셜이 동그라미로 표시됩니다.
+# 비워두면 이름 이니셜이 표시됩니다.
+#
+# 멤버 프로필: 아래 항목은 모두 선택이며, 적은 것만 카드에 나타납니다.
+# 내용은 본인에게 확인받아 적고, 공개 여부(특히 이메일)도 함께 확인합니다.
+#
+#   - name_en: Gildong Hong
+#     name_ko: 홍길동
+#     since: 2026 Fall
+#     since_ko: 2026년 2학기
+#     photo: people/gildong-hong.jpg     # 세로 4:5 비율이 가장 잘 맞습니다
+#     major_en: Biomedical Engineering   # 전공
+#     major_ko: 의공학
+#     education_en: B.S., OO University  # 학력
+#     education_ko: OO대학교 학사
+#     interests_en: [Wearable sensors, EEG, Machine learning]   # 관심 분야
+#     interests_ko: [웨어러블 센서, 뇌파, 머신러닝]
+#     email: name@yonsei.ac.kr
+#     scholar_url: https://scholar.google.com/citations?user=...
+#     orcid: 0000-0000-0000-0000
+#     linkedin_url: https://www.linkedin.com/in/...
+#     github_url: https://github.com/...
+#     website_url: https://...
 # ============================================================================
 
 pi:

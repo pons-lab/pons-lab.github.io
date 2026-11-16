@@ -92,9 +92,14 @@ contact:
 # 뉴스가 쌓이면 이 숫자만 바꾸면 됩니다.
 home_news_count: 5
 
-# 메인 페이지 Join 밴드의 배경 사진 (src/assets/ 아래 경로).
-# 비워두면 배경 사진 없이 예전처럼 단색 밴드가 됩니다.
-join_background: join-circuit.webp
+# 연구실 GitHub 조직 주소 (푸터·Members 페이지)
+github_url: https://github.com/pons-lab
+
+# 메인 페이지 첫 화면 사진 (src/assets/ 아래 경로). 실제 연구실 사진을 쓴다.
+home_hero:
+  image: gallery/2026-01-lab-setup/02.jpg
+  alt_en: The PONS Lab research space, with a meeting table and shelves of equipment
+  alt_ko: 회의 테이블과 장비 선반이 놓인 PONS Lab 연구 공간
 
 # 대학원생·학부연구생 모집 안내 (메인 페이지 리본 + Join 밴드 + Contact 페이지)
 recruiting:
@@ -128,6 +133,12 @@ intro:
 # 브랜드 스토리 "Why PONS?" — 메인 페이지 Why PONS? 밴드에 사용
 # ---------------------------------------------------------------------------
 brand:
+  # Why PONS? 옆의 뇌교 그림. 원본: commons.wikimedia.org/wiki/File:Brain_bulbar_region.svg
+  figure:
+    image: research/brain-pons.svg
+    alt_en: Side-section diagram of the human brain with the pons, medulla, spinal cord and cerebellum labeled
+    alt_ko: 뇌교, 연수, 척수, 소뇌가 표시된 사람 뇌의 시상면 도식
+    credit: Patrick J. Lynch, DO11.10, Fvasconcellos, via Wikimedia Commons (CC BY 2.5)
   story:
     en: >-
       Our name, **PONS**, stands for *Physiological & On-body Neural Systems* —

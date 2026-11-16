@@ -272,6 +272,18 @@ content:
               - name: prior_period
                 label: 이전 직위 기간
                 type: string
+              - { name: major_en, label: 전공 (영문), type: string }
+              - { name: major_ko, label: 전공 (국문), type: string }
+              - { name: education_en, label: 학력 한 줄 (영문), type: string }
+              - { name: education_ko, label: 학력 한 줄 (국문), type: string }
+              - { name: interests_en, label: 관심 분야 (영문), type: string, list: true }
+              - { name: interests_ko, label: 관심 분야 (국문), type: string, list: true }
+              - { name: email, label: 이메일, type: string }
+              - { name: scholar_url, label: Google Scholar 링크, type: string }
+              - { name: orcid, label: ORCID (숫자만), type: string }
+              - { name: linkedin_url, label: LinkedIn 링크, type: string }
+              - { name: github_url, label: GitHub 링크, type: string }
+              - { name: website_url, label: 개인 웹사이트, type: string }
       - name: alumni
         label: 알럼나이
         type: object
@@ -528,6 +540,12 @@ content:
             type: image
             options:
               media: research
+          - name: home_image
+            label: 메인 화면 카드 그림
+            type: image
+            options:
+              media: research
+          - { name: home_image_credit, label: 메인 카드 그림 출처, type: string }
           - name: topics
             label: 세부 주제
             type: object
@@ -662,6 +680,18 @@ content:
       - name: home_news_count
         label: 메인 화면에 보일 뉴스 개수
         type: number
+      - { name: github_url, label: 연구실 GitHub 링크, type: string }
+      - name: home_hero
+        label: 메인 첫 화면 사진 (현재 화면에는 쓰지 않음)
+        type: object
+        fields:
+          - name: image
+            label: 사진
+            type: image
+            options:
+              media: gallery
+          - { name: alt_en, label: 사진 설명 (영문), type: string }
+          - { name: alt_ko, label: 사진 설명 (국문), type: string }
       - name: contact
         label: 연락처
         type: object
@@ -763,7 +793,15 @@ content:
               - { name: word_ko, label: 단어 (국문), type: string }
               - { name: text_en, label: 설명 (영문), type: text }
               - { name: text_ko, label: 설명 (국문), type: text }
-      - name: join_background
-        label: Join 밴드 배경 그림 (바꾸지 않습니다)
-        type: string
-        readonly: true
+          - name: figure
+            label: 뇌교 그림
+            type: object
+            fields:
+              - name: image
+                label: 그림
+                type: image
+                options:
+                  media: research
+              - { name: alt_en, label: 그림 설명 (영문), type: string }
+              - { name: alt_ko, label: 그림 설명 (국문), type: string }
+              - { name: credit, label: 그림 출처, type: string }

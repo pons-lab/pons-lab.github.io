@@ -10,6 +10,10 @@
 axes:
   # ── 1. 몸에 닿는 하드웨어 ────────────────────────────────────────────
   - id: onbody
+    # 메인 페이지 카드 그림과 출처. 기존 연구실 사이트의 이미지를 그대로 쓴다.
+    # 원 출처: doi.org/10.1002/advs.202305871
+    home_image: research/site-soft-patch.webp
+    home_image_credit: Kim et al., Adv. Sci. 2024 (CC BY 4.0)
     title_en: Soft On-body Bioelectronics & Sensors
     title_ko: 소프트 온바디 바이오일렉트로닉스 & 센서
     lead_en: >-
@@ -34,7 +38,8 @@ axes:
           심박·호흡·체온·움직임을 하나의 무선 플랫폼에서 동시에 측정합니다.
           탈수나 온열 스트레스, 야외 작업자의 초기 신장 손상처럼 센서 하나로는
           잡히지 않는 상태는 여러 신호를 함께 읽을 때 비로소 드러납니다.
-        image: research/multi-sensor.webp
+        image: research/home-chest-patch.webp
+        image_credit: Adapted from Kang et al., Adv. Sci. 2025 (CC BY 4.0)
         refs: [16, 23, 15]
 
       - title_en: Soft Physiological Signal Patch
@@ -50,7 +55,9 @@ axes:
           패치입니다. 집에서 하룻밤 수면과 수면무호흡을 측정하는 등 병원 밖에서
           오래 쓰는 것을 목표로 합니다. 이런 환경에서는 착용감이 곧 데이터가
           모이느냐 마느냐를 결정합니다.
-        image: research/soft-patch.svg
+        # 원 출처: doi.org/10.1126/sciadv.adg9671, Figure 1E·F
+        image: research/topic-patch-photos.webp
+        image_credit: Adapted from Kwon et al., Sci. Adv. 2023 (CC BY-NC 4.0)
         refs: [9, 19, 8]
 
       - title_en: Clinical & Bio-Interface Sensing Systems
@@ -67,11 +74,16 @@ axes:
           줄기세포 배양을 지켜보는 바이오리액터, 수술 내내 환자에게 붙어 있는
           심전도 패치가 그 예입니다. 무언가를 측정하기 전에 먼저 그 환경을 견뎌야
           하는 센서들입니다.
-        image: research/clinical-sensing.svg
+        # 원 출처: doi.org/10.1002/adhm.202404680, Figure 2B·C
+        image: research/topic-stent-sensor.webp
+        image_credit: Adapted from Lee et al., Adv. Healthc. Mater. 2025 (CC BY-NC 4.0)
         refs: [22, 20, 11, 28]
 
   # ── 2. 신경·근육 신호로 기계를 잇다 ──────────────────────────────────
   - id: interface
+    # 원 출처: doi.org/10.1073/pnas.2419304122. 라이선스가 수정 금지(ND)이므로 이미지를 고치지 않는다.
+    home_image: research/site-brain-sensor.webp
+    home_image_credit: Kim et al., PNAS 2025 (CC BY-NC-ND 4.0)
     title_en: Neural & Human–Machine Interfaces
     title_ko: 뇌·신경 및 인간-기계 인터페이스
     lead_en: >-
@@ -95,8 +107,8 @@ axes:
           동안에도 뇌파가 흔들리지 않습니다. 이렇게 동작 잡음을 잡아야 뇌-컴퓨터
           인터페이스가 실험실에서의 몇 분이 아니라 몇 시간 쓸 수 있는 기술이
           됩니다.
-        image: research/brain-sensor.webp
-        image_credit: Adapted from Kim et al., PNAS 2025
+        image: research/site-brain-sensor.webp
+        image_credit: Kim et al., PNAS 2025 (CC BY-NC-ND 4.0)
         refs: [21, 14]
 
       - title_en: Human / Brain–Machine Interfaces
@@ -119,6 +131,8 @@ axes:
 
   # ── 3. 측정한 신호를 판단으로 ────────────────────────────────────────
   - id: intelligence
+    # 기존 연구실 사이트의 응용 분야 콜라주. 각 조각의 논문 출처는 아직 확인하지 못했다.
+    home_image: research/site-applications.webp
     title_en: Biosignal Intelligence for Mental & Physical Health
     title_ko: 정신·신체 건강을 위한 생체신호 지능
     lead_en: >-
@@ -143,6 +157,8 @@ axes:
           끊임없이 들어오는 신호를 임상적 판단으로 바꿉니다. 집에서 재는 수면의
           질과 수면무호흡, 스텐트 시술 후의 두개내압, 그리고 관찰이 아니라
           측정으로 판정하는 약물 임상시험 지표 등을 다룹니다.
+        image: research/topic-sleep-patch.webp
+        image_credit: Adapted from Kwon et al., Sci. Adv. 2023 (CC BY-NC 4.0)
         refs: [9, 22, 12]
 
       - title_en: Mental & Physical State and Performance
@@ -160,6 +176,8 @@ axes:
           유지시키는 EEG 뉴로피드백, 운동 중인 선수의 환기량·수분 상태 추적이 그
           예입니다. 읽은 결과를 기록만 하지 않고 곧바로 개입으로 되돌릴 때 비로소
           폐루프가 완성됩니다.
+        image: research/home-motion-signals.webp
+        image_credit: Adapted from Kim et al., Adv. Sci. 2024 (CC BY 4.0)
         refs: [24, 9, 7, 23, 16]
 
       - title_en: Emotion Recognition
@@ -173,6 +191,8 @@ axes:
           표정까지 다루며, 같은 사람에게 몇 주 뒤에도 모델이 동작하는지를 함께
           검증합니다. 대부분의 감정 인식 시스템이 무너지는 지점이 바로
           여기입니다.
+        image: research/topic-gaming-paradigm.webp
+        image_credit: Kim et al., Sensors 2019 (CC BY 4.0)
         refs: [5, 6, 3]
 
 # ---------------------------------------------------------------------------

@@ -20,14 +20,11 @@ const t = useTranslations(lang);
 <section class="section">
   <div class="container axes">
     {
-      research.axes.map((axis, i) => (
+      research.axes.map((axis) => (
         <article class="axis">
           <header class="axis-head">
-            <span class="num mono-num">{String(i + 1).padStart(2, '0')}</span>
-            <div>
-              <h2>{pick(axis, 'title', lang)}</h2>
-              <p class="lead">{pick(axis, 'lead', lang)}</p>
-            </div>
+            <h2>{pick(axis, 'title', lang)}</h2>
+            <p class="lead">{pick(axis, 'lead', lang)}</p>
           </header>
 
           {figure(axis.image) && (
@@ -52,7 +49,7 @@ const t = useTranslations(lang);
 
                 {topic.refs?.length && (
                   <ul class="refs" lang="en">
-                    {topic.refs.map((id) => paperById(id)).filter(Boolean).map((paper) => (
+                    {topic.refs.map((id) => paperById(id)).filter((p) => p?.venue).map((paper) => (
                       <li>
                         {doiUrl(paper.doi) ? (
                           <a href={doiUrl(paper.doi)} target="_blank" rel="noopener">
@@ -93,7 +90,7 @@ const t = useTranslations(lang);
               </span>
             </span>
             <h3>{pick(p, 'title', lang)}</h3>
-            <span class="tag">{pick(p, 'short', lang)}</span>
+            <span class="t-tag">{pick(p, 'short', lang)}</span>
           </li>
         ))
       }
@@ -108,27 +105,11 @@ const t = useTranslations(lang);
   }
 
   .axis-head {
-    display: grid;
-    grid-template-columns: auto minmax(0, 1fr);
-    gap: 1rem;
-    align-items: start;
-    margin-bottom: clamp(1.5rem, 3vw, 2rem);
-  }
-
-  .num {
-    font-family: var(--font-display);
-    font-size: var(--text-sm);
-    font-weight: 600;
-    color: var(--accent);
-    background: var(--accent-soft);
-    border-radius: 8px;
-    padding: 0.35rem 0.6rem;
-    line-height: 1;
-    margin-top: 0.5rem;
+    margin-bottom: 2.25rem;
   }
 
   .axis-head h2 {
-    font-size: clamp(1.5rem, 2.6vw, 2rem);
+    font-size: var(--text-h2);
     margin-bottom: 0.5rem;
   }
 
@@ -137,11 +118,10 @@ const t = useTranslations(lang);
   }
 
   .axis-figure {
-    margin: 0 0 clamp(1.25rem, 2.5vw, 1.75rem);
-    border: 1px solid var(--line);
+    margin: 0 0 1.5rem;
     border-radius: var(--radius);
     overflow: hidden;
-    background: #f4f7fd;
+    background: var(--surface-2);
   }
   .axis-figure img {
     width: 100%;
@@ -149,9 +129,8 @@ const t = useTranslations(lang);
   }
 
   .topic-figure {
-    margin: calc(-1 * clamp(1.4rem, 2.4vw, 1.9rem)) calc(-1 * clamp(1.4rem, 2.4vw, 1.9rem)) 1.15rem;
-    border-bottom: 1px solid var(--line);
-    background: #f4f7fd;
+    margin: -1.5rem -1.5rem 1.25rem;
+    background: var(--surface-2);
   }
   .topic-figure img {
     width: 100%;
@@ -162,20 +141,18 @@ const t = useTranslations(lang);
 
   /* 논문 도면을 가져다 쓴 경우 출처를 작게 밝힌다 */
   .topic-figure figcaption {
-    padding: 0.45rem clamp(1.4rem, 2.4vw, 1.9rem) 0.5rem;
+    padding: 0.5rem 1.5rem;
     font-size: var(--text-3xs);
     line-height: 1.4;
     color: var(--muted);
-    background: var(--card);
-    border-top: 1px solid var(--line);
+    background: var(--surface-2);
   }
 
   .topic h3 {
     font-family: var(--font-sans);
     font-size: var(--text-base);
-    font-weight: 620;
+    font-weight: 700;
     margin-bottom: 0.5rem;
-    letter-spacing: -0.008em;
   }
 
   /* 주제마다 근거가 되는 실제 논문을 저널명 + 연도 칩으로 보여준다. */
@@ -183,9 +160,7 @@ const t = useTranslations(lang);
     display: flex;
     flex-wrap: wrap;
     gap: 0.4rem;
-    margin-top: 0.9rem;
-    padding-top: 0.85rem;
-    border-top: 1px solid var(--line);
+    margin-top: 1rem;
   }
   .refs li {
     font-size: var(--text-2xs);
@@ -196,20 +171,21 @@ const t = useTranslations(lang);
   .refs span {
     display: inline-block;
     padding: 0.24rem 0.55rem;
-    border-radius: 999px;
-    background: var(--accent-soft);
-    color: var(--accent-deep);
+    border-radius: 8px;
+    background: var(--bg);
+    color: var(--text-4);
     text-decoration: none;
+    transition: color 0.2s;
   }
   .refs a:hover {
-    background: var(--accent);
-    color: #fff;
+    color: var(--accent-fg);
     text-decoration: none;
   }
 
   .topic {
     display: flex;
     flex-direction: column;
+    overflow: hidden;
   }
   /* 본문을 늘려 칩을 카드 바닥에 붙이지 않는다. 설명이 짧은 카드에서
      글과 칩 사이가 뻥 뚫려 보이고, 칩 위 구분선이 카드마다 다른 높이에
@@ -222,8 +198,7 @@ const t = useTranslations(lang);
   }
 
   .projects-band {
-    background: #f6f8fc;
-    border-top: 1px solid var(--line);
+    background: var(--bg);
   }
 
   .projects {
@@ -243,24 +218,22 @@ const t = useTranslations(lang);
     gap: 0.5rem;
     font-size: var(--text-xs);
     font-weight: 600;
-    letter-spacing: 0.04em;
-    color: var(--accent);
+    color: var(--text-4);
   }
 
   /* 연구책임자 / 참여연구원 구분 */
   .role {
     padding: 0.1rem 0.5rem;
-    border-radius: 999px;
+    border-radius: 8px;
     font-size: var(--text-3xs);
-    font-weight: 650;
-    letter-spacing: 0.02em;
+    font-weight: 600;
   }
   .role.pi {
-    background: var(--accent);
-    color: #fff;
+    background: var(--accent-weak);
+    color: var(--accent-fg);
   }
   .role.researcher {
-    background: #eef2f9;
+    background: var(--bg);
     color: var(--body);
   }
 

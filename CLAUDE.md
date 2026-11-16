@@ -64,37 +64,39 @@ src/content/news/*.md        # 뉴스 (파일 1개 = 글 1개)
 > 초기 시안 `design-reference.html` 은 역할이 끝나 저장소에서 삭제했다.
 > 필요하면 git 이력(`git show 29e9b7d:design-reference.html`)에서 꺼내볼 수 있다.
 
-- **톤**: 라이트 아카데믹 — 밝은 배경, 학술적 신뢰감 + 현대적 미니멀. 다크모드 없음.
-- **색상 토큰** (`global.css` `:root`): 잉크 `--ink #16233b`, 본문 `--body #44536e`,
-  뮤트 `--muted #6b7a94`, 포인트 `--accent #2153c4`, 진한 포인트 `--accent-deep #17408f`,
-  포인트 배경 `--accent-soft #e8eefc`, 페이지 `--page #fbfcfe`, 카드 `--card #ffffff`,
-  라인 `--line #e3e9f2`. 밴드 배경 `#f6f8fc` (섹션 교차용, 아직 토큰 아님).
-- **타이포**: **제목·본문 모두 Inter 하나**로 통일한다(`--font-display` 는 `--font-sans` 를 가리키는
-  별칭). 세리프(Fraunces)는 쓰지 않는다. 굵기와 자간으로 위계를 만든다.
-  한국어 페이지(`/ko/`)에서만 Noto Sans KR 을 추가로 로드하고, 한국어 본문은 `word-break: keep-all`.
+- **기반**: clean design 토큰과 부품(`src/styles/clean.css`, 수정하지 않고 그대로 둔다)을
+  응용했다. 사이트별 값과 공통 클래스는 그 뒤에 불러오는 `global.css` 에 있다.
+- **톤**: 흰 배경, 회색 단계로 만드는 위계, 큰 여백. 다크모드 없음.
+- **색**: 글자는 `--text-1`~`--text-5`, 면은 `--surface` `--surface-2`. 포인트 파랑
+  `--accent #2153c4`(연구실 고유색)는 **버튼·링크·호버·선택 상태에만** 쓰고 장식에 쓰지 않는다.
+  옛 이름 `--ink` `--body` `--muted` `--page` `--card` 는 역할 토큰의 별칭으로 남아 있다.
+- **타이포**: 화면은 **Pretendard 하나**, 헤더 로고 글자만 Wanted Sans(`--font-logo`, SIL OFL). 제목 700, 항목명 600, 본문 400. 자간과 대문자 라벨은 쓰지 않는다.
+  PDF용 CV 만 `cv-print.css` 에서 Inter·Noto Sans KR 을 쓴다. 한국어는 `word-break: keep-all`.
 - **글자 크기는 반드시 `global.css` `:root` 의 스케일에서 고른다** — 고정 크기
-  `--text-3xs`(0.7rem) ~ `--text-3xl`(1.35rem) 10단계와, 화면 폭에 따라 늘어나는
-  `--text-h1/h2/h3/--text-block-title/--text-lead`. **새 `font-size: 0.885rem` 같은
-  값을 만들지 않는다.** 0.1px 차이는 보이지 않으면서 같은 성격의 요소가 화면마다
-  어긋나게 만든다. 한 컴포넌트에서만 쓰는 장식용 큰 글자(404 숫자, P·O·N·S 머리글자)는
-  예외로 그 컴포넌트에 둔다.
-- **레이아웃 토큰**: `--container 1140px`, `--container-narrow 880px`, `--radius 14px`,
-  `--radius-lg 22px`, `--section-y clamp(4rem, 8vw, 7rem)`, 그림자 `--shadow-sm/--shadow-md`.
-- **공통 클래스**: `.container` / `.section` / `.section-tight` / `.card` `.card-hover` /
-  `.btn`(`-primary` `-ghost` `-light` `-outline-light`, 알약형) / `.kicker`(대문자 트래킹 라벨,
-  앞에 짧은 선) / `.lead` / `.tag` `.tag-quiet` / `.link-arrow`(호버 시 화살표 이동) /
-  `.band-dark` / `.grid` `.grid-2~4` / `.mono-num`.
-- **메인 페이지 섹션 순서 (현행)**: ① 히어로(연구실명 kicker + 태그라인 헤드라인 + 소개문 + CTA 2개 +
-  EEG·ECG·RESP·EMG 4채널 파형 SVG + 신호 범례) → ② 모집 리본(연한 파란 띠) → ③ Research(2축 카드) →
-  ④ Why PONS? 밴드(스토리 + 브릿지 일러스트 + P·O·N·S 카드 4개) → ⑤ News(최신 3건) →
-  ⑥ Selected Publications(최신 3편) → ⑦ Join 밴드(다크 CTA) → ⑧ 푸터(다크).
-  한국어 Join 밴드는 제목·부연 없이 모집 문구 한 줄 + 버튼만 두는 단순형이다.
-- **서브 페이지 패턴**: 모두 `PageHero`(kicker + h1 + lead, 옅은 그라데이션 + 하단 라인)로 시작하고,
-  본문은 흰 배경 섹션과 `#f6f8fc` 밴드를 번갈아 쌓는다.
-- **헤더**: sticky + 반투명 blur, 좌측 브랜드(로고 마크 + `PONS Lab` + 풀네임), 우측 내비 + EN/KO 토글.
-  1040px 이하에서 내비가 햄버거 패널로 접힌다.
-- **모션**: 절제해서 쓴다 — 히어로 파형 그려지기, 모집 배지 펄스, 브릿지 위 신호 이동,
-  카드 호버 살짝 올라오기 정도. 새 애니메이션을 넣을 때도 `prefers-reduced-motion` 처리를 반드시 포함.
+  `--text-3xs`(12px) ~ `--text-3xl`(24px)과, 화면 폭에 따라 늘어나는
+  `--text-h1/h2/page-title/lead`. 임의의 `font-size` 값을 새로 만들지 않는다.
+- **구분**: 선과 그림자보다 회색 면을 먼저 쓴다. 그림자는 떠 있는 층(드롭다운)에만 쓴다.
+  호버는 색 변화로 끝낸다(제목 강조색, 면 한 단계, 사진 확대). 카드를 띄우지 않는다.
+- **그림**: 홈은 실제 연구실 사진을 쓴다. 첫 화면 사진은 `site.yaml` 의 `home_hero`,
+  Life in the lab 은 `gallery.yaml` 맨 위 3건이 자동으로 나온다.
+- **로고·아이콘**: `ServiceIcon.astro` 한곳에서 관리한다. 서비스 로고(drive, github, linkedin, scholar, orcid, maps)는
+  링크가 실제로 그 서비스로 갈 때만 쓰고, 나머지는 회색 선 아이콘을 쓴다. PDF용 CV에는 나오지 않는다.
+  메인 연구 카드 그림과 출처는 `research.yaml` 의 `home_image`, `home_image_credit` 로 정한다.
+  논문 그림을 새로 넣을 때는 라이선스를 먼저 확인하고(CC BY 우선), 출처를 함께 표기한다.
+- **레이아웃 토큰**: `--container 1140px`(안쪽 1092), `--container-narrow 880px`, `--radius 16px`,
+  `--radius-lg 24px`, `--section-y` 48→76px. 이어지는 `.section` 사이 간격은 한 번만 준다.
+- **공통 클래스**: 버튼은 `.t-btn` + `--primary`/`--grey`(화면당 파란 버튼 하나), 태그는 `.t-tag`.
+  그 밖에 `.container` / `.section` / `.card` `.card-hover` / `.kicker` / `.lead` / `.head-row` /
+  `.link-arrow` / `.grid` `.grid-2~4` / `.mono-num`.
+- **메인 페이지 섹션 순서 (현행)**: ① 히어로(연구실명 + 태그라인 + 소개문 + 버튼 2개 + 연구실 사진) →
+  ② 모집 안내(회색 띠) → ③ Research areas(3축 카드) → ④ Why PONS?(스토리 + P·O·N·S 카드 4개) →
+  ⑤ Life in the lab(갤러리 3건) → ⑥ News(`home_news_count` 건) → ⑦ Selected Publications →
+  ⑧ Join(가운데 정렬) → ⑨ 밝은 푸터.
+  한국어 Join 은 제목·부연 없이 모집 문구 한 줄 + 버튼만 두는 단순형이다.
+- **서브 페이지 패턴**: 모두 `PageHero`(h1 + lead)로 시작하고, 본문은 흰 바탕 위에 쌓는다.
+- **헤더**: sticky 흰 면, 높이 60px, 스크롤하면 아래 경계선이 나타난다. 좌측 로고 심볼(`LogoMark.astro`, 색은 `--logo-color`) + `PONS Lab` + 풀네임,
+  우측 내비 + EN/KO 토글. 1140px 이하에서 내비가 햄버거 패널로 접힌다.
+- **모션**: 호버 색 변화와 사진 확대 정도만 쓴다. 새 애니메이션에는 `prefers-reduced-motion` 처리를 반드시 포함.
 - **참고**: 신뢰 지표(숫자 통계) 스트립은 사용자 결정으로 제외함 — 넣지 말 것
 - 반응형 필수(모바일 우선 점검)
 - 성능: 이미지는 `astro:assets` 의 `<Image>` 로 최적화, Lighthouse 90점 이상 목표

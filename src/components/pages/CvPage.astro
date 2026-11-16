@@ -1,4 +1,5 @@
 ---
+import ServiceIcon from '../ServiceIcon.astro';
 import PiIdentity from '../PiIdentity.astro';
 import Address from '../Address.astro';
 import Authors from '../Authors.astro';
@@ -71,22 +72,22 @@ const nameLang = (p) => (/[가-힣]/.test(p.inventors) ? 'ko' : 'en');
       <PiIdentity size="lg" level={1} />
       <p class="contact">
         <span><Address place={office} /></span>
-        <span><a href={`mailto:${site.contact.email}`}>{site.contact.email}</a></span>
-        <span><a href={`tel:${office.phone}`}>{office.phone_display}</a></span>
+        <span><a href={`mailto:${site.contact.email}`}><ServiceIcon name="mail" />{site.contact.email}</a></span>
+        <span><a href={`tel:${office.phone}`}><ServiceIcon name="phone" />{office.phone_display}</a></span>
         {pi.scholar_url && (
-          <span><a href={pi.scholar_url} target="_blank" rel="noopener">Google Scholar</a></span>
+          <span><a href={pi.scholar_url} target="_blank" rel="noopener"><ServiceIcon name="scholar" />Google Scholar</a></span>
         )}
         {pi.orcid && (
           <span>
             <a href={`https://orcid.org/${pi.orcid}`} target="_blank" rel="noopener">
-              ORCID <span class="mono-num">{pi.orcid}</span>
+              <ServiceIcon name="orcid" />ORCID <span class="mono-num">{pi.orcid}</span>
             </a>
           </span>
         )}
       </p>
       <p class="actions">
-        <a class="btn btn-primary" href="/cv-full.pdf" download>{t('cv.download_full')}</a>
-        <a class="btn btn-ghost" href={localizePath('/cv/short', lang)}>{t('cv.short_title')}</a>
+        <a class="t-btn t-btn--primary" href="/cv-full.pdf" download>{t('cv.download_full')}</a>
+        <a class="t-btn t-btn--grey" href={localizePath('/cv/short', lang)}>{t('cv.short_title')}</a>
       </p>
     </div>
   </header>
@@ -391,9 +392,7 @@ const nameLang = (p) => (/[가-힣]/.test(p.inventors) ? 'ko' : 'en');
   .cv-head {
     padding-block: clamp(2.5rem, 6vw, 4rem) clamp(1.75rem, 3vw, 2.25rem);
     border-bottom: 1px solid var(--line);
-    background:
-      radial-gradient(1100px 340px at 8% -30%, #eef3fd 0%, rgba(238, 243, 253, 0) 70%),
-      var(--page);
+    background: var(--bg);
   }
   .contact {
     display: flex;
@@ -636,4 +635,42 @@ const nameLang = (p) => (/[가-힣]/.test(p.inventors) ? 'ko' : 'en');
 
   /* ── 인쇄 / PDF ─────────────────────────────────────────────────
      화면용 크기는 rem, 인쇄용은 pt 로 다시 정한다. 둘을 섞으면 rem 로 적힌
+
+  /* 화면 전용. PDF 모양은 cv-print.css 가 정한다. */
+  @media screen {
+    .contact :global(.svc-icon) {
+      margin-right: 0.375rem;
+    }
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+    .cv-sec > h2 {
+      font-size: var(--text-xl);
+      font-weight: 700;
+      letter-spacing: normal;
+      text-transform: none;
+      color: var(--ink);
+    }
+    .cv-sec h3 {
+      letter-spacing: normal;
+      color: var(--ink);
+    }
+    .entries .period {
+      color: var(--text-4);
+    }
+    .g-badge {
+      letter-spacing: normal;
+      text-transform: none;
+      border-radius: 8px;
+    }
+    .g-badge.pi {
+      background: var(--accent-weak);
+      color: var(--accent-fg);
+    }
+    .bullets li::before {
+      background: var(--text-6);
+    }
+  }
 </style>

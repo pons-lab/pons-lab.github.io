@@ -19,6 +19,10 @@ const events = await Promise.all(
       large: await Promise.all(
         e.photos.map((photo) => getImage({ src: photo, width: 1400, format: 'webp' }))
       ),
+      // 카드에서 자동으로 넘겨 보여줄 사진
+      thumbs: await Promise.all(
+        e.photos.map((photo) => getImage({ src: photo, width: 800, format: 'webp' }))
+      ),
     }))
 );
 
@@ -48,6 +52,7 @@ const metaLabel = (e) =>
                 ...(e.video ? [{ type: 'video', src: e.video }] : []),
               ])}
               data-title={pick(e, 'title', lang)}
+              data-slides={e.thumbs.length > 1 ? JSON.stringify(e.thumbs.map((p) => p.src)) : undefined}
             >
               <span class="cover">
                 <Image
@@ -57,6 +62,7 @@ const metaLabel = (e) =>
                   densities={[1, 2]}
                   loading="lazy"
                 />
+                {e.thumbs.length > 1 && <span class="dots" aria-hidden="true" />}
                 <span class="count mono-num">{e.photos.length + (e.video ? 1 : 0)}</span>
                 {e.video && (
                   <span class="has-video" aria-hidden="true">
@@ -125,9 +131,9 @@ const metaLabel = (e) =>
     flex-direction: column;
     width: 100%;
     padding: 0;
-    overflow: hidden;
-    border: 1px solid var(--line);
-    background: var(--card);
+    border: 0;
+    border-radius: 0;
+    background: none;
     text-align: left;
     font: inherit;
     color: inherit;
@@ -138,7 +144,7 @@ const metaLabel = (e) =>
     position: relative;
     display: block;
     aspect-ratio: 4 / 3;
-    border-bottom: 1px solid var(--line);
+    border-radius: var(--radius);
     overflow: hidden;
   }
   /* 영상이 있는 행사에는 재생 표시를 얹는다. */
@@ -160,10 +166,45 @@ const metaLabel = (e) =>
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: transform 0.3s ease;
+    transition: transform 0.3s ease, opacity 0.8s ease;
+  }
+  /* 자동으로 넘어갈 때 다음 사진이 위에 겹쳐 서서히 나타난다 */
+  .cover :global(img.next) {
+    position: absolute;
+    inset: 0;
+  }
+  .count,
+  .has-video,
+  .dots {
+    z-index: 1;
+  }
+  /* 지금 몇 번째 사진인지 보여주는 점 */
+  .dots {
+    position: absolute;
+    left: 50%;
+    bottom: 0.75rem;
+    display: flex;
+    gap: 0.25rem;
+    transform: translateX(-50%);
+  }
+  .dots :global(i) {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.55);
+    transition: background-color 0.3s;
+  }
+  .dots :global(i.on) {
+    background: #fff;
+  }
+  .event:hover {
+    background: none;
   }
   .event:hover .cover :global(img) {
-    transform: scale(1.04);
+    transform: scale(1.2);
+  }
+  .event:hover .ev-title {
+    color: var(--accent-fg);
   }
 
   .count {
@@ -171,7 +212,7 @@ const metaLabel = (e) =>
     right: 0.6rem;
     bottom: 0.6rem;
     padding: 0.15rem 0.5rem;
-    border-radius: 999px;
+    border-radius: 8px;
     background: rgba(10, 16, 28, 0.72);
     color: #fff;
     font-size: var(--text-3xs);
@@ -180,15 +221,15 @@ const metaLabel = (e) =>
 
   .body {
     display: block;
-    padding: 1rem clamp(1rem, 2vw, 1.25rem) 1.15rem;
+    padding: 0.75rem 0 0;
   }
   .ev-title {
     display: block;
     font-size: var(--text-base);
-    font-weight: 620;
+    font-weight: 600;
     line-height: 1.45;
     color: var(--ink);
-    letter-spacing: -0.008em;
+    transition: color 0.2s;
   }
   .ev-meta {
     display: block;
@@ -272,7 +313,7 @@ const metaLabel = (e) =>
     right: 0.9rem;
   }
   .lightbox :focus-visible {
-    outline: 2px solid #7ea6ff;
+    outline: 2px solid #fff;
     outline-offset: 3px;
   }
 
@@ -302,6 +343,74 @@ const metaLabel = (e) =>
   const cap = dialog?.querySelector('.lb-cap');
   const prev = dialog?.querySelector('.lb-prev');
   const next = dialog?.querySelector('.lb-next');
+
+  // ── 카드 사진 자동 넘김 ──────────────────────────────────────────────
+  // 화면에 보이는 카드만, 카드마다 시작 시점을 달리해 넘긴다.
+  // 마우스를 올리거나 크게 보기를 열면 멈추고, 움직임 최소화 설정이면 넘기지 않는다.
+  const INTERVAL = 3500;
+  const slideCards = [...document.querySelectorAll('.event[data-slides]')];
+  const noMotion = matchMedia('(prefers-reduced-motion: reduce)');
+
+  slideCards.forEach((card, order) => {
+    const slides = JSON.parse(card.dataset.slides);
+    const cover = card.querySelector('.cover');
+    const marks = cover.querySelector('.dots');
+    marks.innerHTML = slides.map((_, i) => `<i class="${i === 0 ? 'on' : ''}"></i>`).join('');
+    let current = 0;
+    let timer = 0;
+    let onScreen = false;
+    let hovering = false;
+
+    const advance = () => {
+      const target = (current + 1) % slides.length;
+      const nextImg = new Image();
+      nextImg.alt = '';
+      nextImg.className = 'next';
+      nextImg.style.opacity = '0';
+      nextImg.src = slides[target];
+      nextImg.decode?.().catch(() => {}).finally(() => {
+        if (!card.isConnected) return;
+        cover.insertBefore(nextImg, marks);
+        requestAnimationFrame(() => (nextImg.style.opacity = '1'));
+        current = target;
+        card.dataset.current = String(current);
+        [...marks.children].forEach((m, i) => m.classList.toggle('on', i === current));
+        // 이전 사진은 전환이 끝난 뒤 지운다
+        setTimeout(() => {
+          [...cover.querySelectorAll('img')].filter((im) => im !== nextImg).forEach((im) => im.remove());
+          schedule();
+        }, 850);
+      });
+    };
+
+    const schedule = () => {
+      clearTimeout(timer);
+      if (!onScreen || hovering || noMotion.matches || dialog?.open || document.hidden) return;
+      timer = setTimeout(advance, INTERVAL);
+    };
+
+    card.addEventListener('pointerenter', () => {
+      hovering = true;
+      clearTimeout(timer);
+    });
+    card.addEventListener('pointerleave', () => {
+      hovering = false;
+      schedule();
+    });
+    dialog?.addEventListener('close', schedule);
+    document.addEventListener('visibilitychange', schedule);
+
+    new IntersectionObserver(([entry]) => {
+      onScreen = entry.isIntersecting;
+      if (!onScreen) {
+        clearTimeout(timer);
+        return;
+      }
+      // 처음 한 번은 카드 순서만큼 늦춰 한꺼번에 바뀌지 않게 한다
+      clearTimeout(timer);
+      timer = setTimeout(schedule, (order % 3) * 900);
+    }).observe(card);
+  });
 
   // 카드 하나가 한 행사. 그 행사의 사진 목록 안에서만 앞뒤로 넘긴다.
   let photos = [];
@@ -340,7 +449,8 @@ const metaLabel = (e) =>
       photos = JSON.parse(card.dataset.gallery);
       title = card.dataset.title ?? '';
       opener = card;
-      show(0);
+      // 카드에 지금 보이는 사진부터 연다
+      show(Number(card.dataset.current || 0));
       dialog.showModal();
     });
   });

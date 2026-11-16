@@ -8,20 +8,19 @@ const t = useTranslations(lang);
 
 {
   site.recruiting?.open && (
-    <aside class="ribbon">
-      <div class="container inner">
-        <span class="badge">
-          <span class="pulse" aria-hidden="true" />
-          {t('home.recruiting_label')}
-        </span>
-        <p class="text">{site.recruiting[lang]}</p>
+    <aside class="container">
+      <div class="notice">
+        <p class="text">
+          <strong>{t('home.recruiting_label')}</strong>
+          <span>{site.recruiting[lang]}</span>
+        </p>
         <a class="link-arrow" href={localizePath('/contact', lang)}>
           {t('cta.join')}
-          <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
             <path
-              d="M3 8h9m0 0L8.5 4.5M12 8l-3.5 3.5"
+              d="m9 18 6-6-6-6"
               stroke="currentColor"
-              stroke-width="1.6"
+              stroke-width="2"
               stroke-linecap="round"
               stroke-linejoin="round"
             />
@@ -33,61 +32,38 @@ const t = useTranslations(lang);
 }
 
 <style>
-  .ribbon {
-    background: var(--accent-soft);
-    border-bottom: 1px solid #d6e0f7;
-  }
-
-  .inner {
+  .notice {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-    gap: 0.65rem 1.15rem;
-    padding-block: 0.95rem;
-  }
-
-  .badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.45rem;
-    flex: none;
-    padding: 0.28rem 0.72rem;
-    border-radius: 999px;
-    background: var(--accent);
-    color: #fff;
-    font-size: var(--text-3xs);
-    font-weight: 650;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-  }
-
-  .pulse {
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    background: #fff;
-    box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.85);
-    animation: pulse 2.1s ease-out infinite;
-  }
-  @keyframes pulse {
-    70% {
-      box-shadow: 0 0 0 7px rgba(255, 255, 255, 0);
-    }
-    100% {
-      box-shadow: 0 0 0 0 rgba(255, 255, 255, 0);
-    }
+    justify-content: space-between;
+    gap: 0.5rem 1.5rem;
+    padding: 1rem 1.5rem;
+    border-radius: var(--radius);
+    background: var(--surface);
   }
 
   .text {
-    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0 0.75rem;
     flex: 1 1 22rem;
     min-width: 0;
-    font-size: var(--text-lg);
-    color: #1a3872;
+    margin: 0;
+    font-size: var(--text-md);
+    color: var(--text-3);
+  }
+  .text strong {
+    font-weight: 700;
+    color: var(--text-1);
+    white-space: nowrap;
+  }
+  .text span {
+    flex: 1 1 18rem;
+    min-width: 0;
   }
 
   .link-arrow {
-    color: var(--accent-deep);
     flex: none;
   }
 </style>

@@ -7,6 +7,8 @@
  * 실제 접근 제어는 구글 드라이브·GitHub 쪽 권한이 한다.
  */
 import PageHero from '../PageHero.astro';
+import ServiceIcon from '../ServiceIcon.astro';
+import { site } from '../../lib/data.js';
 import { getLangFromUrl, useTranslations } from '../../i18n/utils.js';
 
 const lang = getLangFromUrl(Astro.url);
@@ -15,18 +17,21 @@ const t = useTranslations(lang);
 const links = [
   {
     key: 'drive',
+    icon: 'drive',
     title: 'Shared Drive',
     desc: 'Data · Hardware · Firmware · Software · Documents · Lab meeting',
     href: 'https://drive.google.com/drive/folders/1PyUWYZjl8rHWmj7B0QRNHtViHDcEROWo',
   },
   {
     key: 'github',
+    icon: 'github',
     title: 'Lab GitHub',
     desc: 'Code repositories',
-    href: 'https://github.com/pons-lab',
+    href: site.github_url,
   },
   {
     key: 'status',
+    icon: 'checklist',
     title: 'Research Status',
     desc: 'Check and record research status',
     href: 'https://script.google.com/a/macros/yonsei.ac.kr/s/AKfycbwDLXJCC6GFHpqVSJN8u8-2noVmxLPfj-KzGv9QoV31hWOjPRzytyQpiyYjcGJLQV0V/exec',
@@ -80,21 +85,24 @@ const rules = [
         links.map((l) => (
           <li>
             <a class="card card-hover" href={l.href} target="_blank" rel="noopener noreferrer">
-              <span class="head">
+              <span class="logo">
+                <ServiceIcon name={l.icon} size={26} />
+              </span>
+              <span class="text">
                 <span class="title">{l.title}</span>
-                <svg width="15" height="15" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-                  <path
-                    d="M6 3h7v7M13 3L4 12"
-                    stroke="currentColor"
-                    stroke-width="1.7"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  />
-                </svg>
+                <span class="desc" lang="en">
+                  {l.desc}
+                </span>
               </span>
-              <span class="desc" lang="en">
-                {l.desc}
-              </span>
+              <svg class="out" width="15" height="15" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                <path
+                  d="M6 3h7v7M13 3L4 12"
+                  stroke="currentColor"
+                  stroke-width="1.7"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
             </a>
           </li>
         ))
@@ -123,10 +131,10 @@ const rules = [
 
   .card {
     display: flex;
-    flex-direction: column;
-    gap: 0.45rem;
+    align-items: center;
+    gap: 1rem;
     width: 100%;
-    padding: 1.5rem 1.6rem;
+    padding: 1.25rem 1.5rem;
     text-decoration: none;
     color: inherit;
   }
@@ -134,16 +142,29 @@ const rules = [
     text-decoration: none;
   }
 
-  .head {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 1rem;
-    color: var(--accent);
+  .logo {
+    flex: none;
+    display: grid;
+    place-items: center;
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+    background: var(--bg);
+    color: var(--text-3);
+  }
+  .text {
+    flex: 1 1 auto;
+    min-width: 0;
+    display: grid;
+    gap: 0.125rem;
+  }
+  .out {
+    flex: none;
+    color: var(--text-5);
   }
   .title {
     font-size: var(--text-xl);
-    font-weight: 650;
+    font-weight: 600;
     color: var(--ink);
   }
   .card:hover .title {
@@ -162,11 +183,9 @@ const rules = [
     border-top: 1px solid var(--line);
   }
   .rules h2 {
-    font-size: var(--text-xs);
+    font-size: var(--text-xl);
     font-weight: 700;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: var(--accent);
+    color: var(--ink);
     margin-bottom: 1.1rem;
   }
   .rules ol {
@@ -196,8 +215,8 @@ const rules = [
     width: 1.35rem;
     height: 1.35rem;
     border-radius: 50%;
-    background: var(--accent-soft);
-    color: var(--accent-deep);
+    background: var(--surface);
+    color: var(--text-4);
     font-size: var(--text-3xs);
     font-weight: 700;
   }
