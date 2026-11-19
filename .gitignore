@@ -52,3 +52,6 @@ gallery-inbox/
 
 # 컴퓨터마다 다른 로컬 경로 (구글 드라이브 등)
 local.paths.json
+
+# Hallmark skill output
+.hallmark/

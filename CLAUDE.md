@@ -5,11 +5,12 @@
 - **국문 명칭**: 뇌·신체·기계 인터페이스 연구실. 국문명은 영문 직역이 아니라 같은 철학(뇌+몸+잇기)을 담은 별도 명칭이다.
 - **병기 원칙 (중요)**: 국문명을 표기할 때는 항상 "뇌·신체·기계 인터페이스 연구실(PONS Lab)"처럼 영문 약칭을 병기한다. 한국어 페이지(/ko/)의 사이트 제목·푸터·소개문 전부 이 원칙을 따른다.
 
-- **태그라인**: "Bridging brain, body, and technology" — 메인 페이지 히어로와 사이트 메타 설명에 사용. pons는 뇌교(라틴어로 '다리')라는 뇌 구조에서 따온 이름이므로 이 은유를 브랜딩에 살릴 것.
+- **태그라인**: "Bridging brain, body, and technology" — 메인 페이지 히어로와 사이트 메타 설명에 사용. pons는 뇌와 몸 사이 신호를 잇는 뇌 구조 뇌교에서 따온 이름이다. 다리 비유는 문구에 쓰지 않는다.
 - **브랜드 스토리 ("Why PONS?")**: 메인 페이지 히어로 아래(또는 연구실 소개 섹션)에 이름의 유래를 소개하는 짧은 섹션을 넣는다. 아래 문구를 그대로 사용 (site.yaml 또는 i18n 딕셔너리에 저장):
-  - EN: "Our name, **PONS**, stands for *Physiological & On-body Neural Systems* — and it is also the brainstem structure that relays signals between the brain and the body. In Latin, *pons* means 'bridge.' True to its name, our lab builds bridges: between brain and body signals, between humans and machines, and between everyday life and healthcare technology."
-  - KO: "연구실 이름 **PONS**는 *Physiological & On-body Neural Systems*의 약자이자, 뇌와 몸 사이의 신호를 이어주는 뇌 구조 '뇌교(pons)'의 이름이기도 합니다. 라틴어로 pons는 '다리'를 뜻합니다. 이름 그대로 우리 연구실은 뇌와 몸의 신호, 사람과 기계, 일상과 헬스케어 기술을 잇는 다리를 만듭니다."
-- **이름 풀이 카드 (P·O·N·S)**: "Why PONS?" 스토리 바로 아래에 4개 카드 그리드로 배치 (모바일에서는 세로 스택). 각 카드는 머리글자를 크게 강조하고 아래 문구 사용:
+  - EN: "Our name, **PONS**, stands for *Physiological & On-body Neural Systems*. It is also the name of the brainstem structure that relays signals between the brain and the body. Our lab measures and interprets brain and body signals, and connects people with machines and everyday life with healthcare technology."
+  - KO: "연구실 이름 **PONS**는 *Physiological & On-body Neural Systems*의 약자이자, 뇌와 몸 사이의 신호를 이어주는 뇌 구조 '뇌교(pons)'의 이름이기도 합니다. 우리 연구실은 뇌와 몸의 신호를 측정하고 해석해, 사람과 기계, 일상과 헬스케어 기술을 연결합니다."
+  - 다리(bridge) 비유는 쓰지 않는다 (2026-11 사용자 결정).
+- **이름 풀이 (P·O·N·S)**: "Why PONS?" 스토리 바로 아래에 4칸으로 배치 (머리글자가 한 선 위에 선다. 모바일에서는 2×2). 각 칸은 머리글자를 크게 강조하고 아래 문구 사용:
   - **P — Physiological**: EN "We measure the body's vital signals — cardiac, respiratory, muscular, and beyond." / KO "심박·호흡·근육 등 몸이 보내는 생리신호를 측정합니다."
   - **O — On-body**: EN "We build soft, skin-conformal wearable devices for everyday life." / KO "일상에서 편안하게 착용하는 소프트 웨어러블 기기를 만듭니다."
   - **N — Neural**: EN "We sense and decode brain signals, from EEG to brain–computer interfaces." / KO "EEG부터 뇌-컴퓨터 인터페이스까지, 뇌·신경 신호를 측정하고 해석합니다."
@@ -65,36 +66,41 @@ src/content/news/*.md        # 뉴스 (파일 1개 = 글 1개)
 > 필요하면 git 이력(`git show 29e9b7d:design-reference.html`)에서 꺼내볼 수 있다.
 
 - **톤**: 라이트 아카데믹 — 밝은 배경, 학술적 신뢰감 + 현대적 미니멀. 다크모드 없음.
-- **색상 토큰** (`global.css` `:root`): 잉크 `--ink #16233b`, 본문 `--body #44536e`,
-  뮤트 `--muted #6b7a94`, 포인트 `--accent #2153c4`, 진한 포인트 `--accent-deep #17408f`,
-  포인트 배경 `--accent-soft #e8eefc`, 페이지 `--page #fbfcfe`, 카드 `--card #ffffff`,
-  라인 `--line #e3e9f2`. 밴드 배경 `#f6f8fc` (섹션 교차용, 아직 토큰 아님).
-- **타이포**: **제목·본문 모두 Inter 하나**로 통일한다(`--font-display` 는 `--font-sans` 를 가리키는
-  별칭). 세리프(Fraunces)는 쓰지 않는다. 굵기와 자간으로 위계를 만든다.
-  한국어 페이지(`/ko/`)에서만 Noto Sans KR 을 추가로 로드하고, 한국어 본문은 `word-break: keep-all`.
+- **색상 토큰** (`global.css` `:root`): 잉크 `--ink #0e1525`, 본문 `--body #44536e`,
+  뮤트 `--muted #5f6d86`, 포인트 `--accent #2153c4`, 진한 포인트 `--accent-deep #17408f`,
+  포인트 배경 `--accent-soft #e8eefc`, 페이지 `--page #ffffff`, 카드 `--card #ffffff`,
+  라인 `--line #e3e9f2`, 밴드 배경 `--tint #f3f5f9` (섹션 교차용). 청록 등 다른 강조색은 쓰지 않는다.
+- **AI 티 금지 (2026-11 리디자인)**: 배경 번짐(radial-gradient)·글로우, 모든 제목 위의 대문자 트래킹
+  라벨(kicker), 01/02/03 번호 카드, 깜빡이는 점, 호버 시 떠오르기, 스톡 이미지를 쓰지 않는다.
+  구분은 카드 테두리보다 굵은 잉크 선(2px)과 가는 라인으로 한다. 그림은 연구실 논문 그림만 쓴다.
+- **타이포**: **영문·국문, 제목·본문 모두 Pretendard 하나**로 통일한다(npm `pretendard` 패키지의
+  가변 동적 서브셋을 `BaseLayout.astro` 에서 불러온다. `--font-display` 는 `--font-sans` 별칭).
+  세리프는 쓰지 않는다. 굵기와 자간으로 위계를 만든다. 한국어 본문은 `word-break: keep-all`.
 - **글자 크기는 반드시 `global.css` `:root` 의 스케일에서 고른다** — 고정 크기
   `--text-3xs`(0.7rem) ~ `--text-3xl`(1.35rem) 10단계와, 화면 폭에 따라 늘어나는
   `--text-h1/h2/h3/--text-block-title/--text-lead`. **새 `font-size: 0.885rem` 같은
   값을 만들지 않는다.** 0.1px 차이는 보이지 않으면서 같은 성격의 요소가 화면마다
   어긋나게 만든다. 한 컴포넌트에서만 쓰는 장식용 큰 글자(404 숫자, P·O·N·S 머리글자)는
   예외로 그 컴포넌트에 둔다.
-- **레이아웃 토큰**: `--container 1140px`, `--container-narrow 880px`, `--radius 14px`,
+- **레이아웃 토큰**: `--container 1200px`, `--container-narrow 880px`, `--radius 14px`,
   `--radius-lg 22px`, `--section-y clamp(4rem, 8vw, 7rem)`, 그림자 `--shadow-sm/--shadow-md`.
 - **공통 클래스**: `.container` / `.section` / `.section-tight` / `.card` `.card-hover` /
-  `.btn`(`-primary` `-ghost` `-light` `-outline-light`, 알약형) / `.kicker`(대문자 트래킹 라벨,
-  앞에 짧은 선) / `.lead` / `.tag` `.tag-quiet` / `.link-arrow`(호버 시 화살표 이동) /
+  `.btn`(`-primary` 잉크색 채움 `-ghost` 잉크 테두리 `-light` `-outline-light`, 알약형) /
+  `.kicker`(작은 회색 소제목 라벨. 대문자·앞 선 없음, 꼭 필요할 때만) / `.lead` / `.tag` `.tag-quiet` / `.link-arrow`(호버 시 화살표 이동) /
   `.band-dark` / `.grid` `.grid-2~4` / `.mono-num`.
-- **메인 페이지 섹션 순서 (현행)**: ① 히어로(연구실명 kicker + 태그라인 헤드라인 + 소개문 + CTA 2개 +
-  EEG·ECG·RESP·EMG 4채널 파형 SVG + 신호 범례) → ② 모집 리본(연한 파란 띠) → ③ Research(2축 카드) →
-  ④ Why PONS? 밴드(스토리 + 브릿지 일러스트 + P·O·N·S 카드 4개) → ⑤ News(최신 3건) →
-  ⑥ Selected Publications(최신 3편) → ⑦ Join 밴드(다크 CTA) → ⑧ 푸터(다크).
-  한국어 Join 밴드는 제목·부연 없이 모집 문구 한 줄 + 버튼만 두는 단순형이다.
-- **서브 페이지 패턴**: 모두 `PageHero`(kicker + h1 + lead, 옅은 그라데이션 + 하단 라인)로 시작하고,
-  본문은 흰 배경 섹션과 `#f6f8fc` 밴드를 번갈아 쌓는다.
+- **메인 페이지 섹션 순서 (현행)**: ① 히어로(아주 큰 태그라인 h1 → 굵은 잉크 선 → 왼쪽 소속 두 줄 +
+  소개문 + 버튼 2개, 오른쪽 EEG·ECG·RESP·EMG 4채널 파형 SVG(단색 선, 꾸밈 없음) + 신호 범례) →
+  ② 모집 리본(`--tint` 띠, "모집 중"/"Now recruiting" 굵은 글씨) → ③ Research(2단 머리: 제목 + 리드,
+  굵은 선 아래 세 연구 축 기둥) → ④ Why PONS? 밴드(스토리 + P·O·N·S 큰 머리글자가 한 선 위에 서는
+  4칸, 모바일 2×2) → ⑤ 최근 소식 · 대표 논문 나란히(좁으면 위아래, 논문은 제목·저널·연도만) →
+  ⑥ Join 밴드(다크, 제목 "함께할 연구원을 모집합니다"/"Join our lab" + 모집·지원 방법 + 버튼, 두 언어 같은 구조. 제목에 다리 비유를 쓰지 않는다) → ⑦ 푸터(다크).
+  Join 밴드 배경 그림(`site.yaml` `join_background`)은 비워 두었다. 논문 그림을 받으면 넣는다.
+- **서브 페이지 패턴**: 모두 `PageHero`(h1 + lead, 흰 배경 + 하단 라인, kicker 없음)로 시작하고,
+  본문은 흰 배경 섹션과 `--tint` 밴드를 번갈아 쌓는다.
 - **헤더**: sticky + 반투명 blur, 좌측 브랜드(로고 마크 + `PONS Lab` + 풀네임), 우측 내비 + EN/KO 토글.
   1040px 이하에서 내비가 햄버거 패널로 접힌다.
-- **모션**: 절제해서 쓴다 — 히어로 파형 그려지기, 모집 배지 펄스, 브릿지 위 신호 이동,
-  카드 호버 살짝 올라오기 정도. 새 애니메이션을 넣을 때도 `prefers-reduced-motion` 처리를 반드시 포함.
+- **모션**: 절제해서 쓴다 — 히어로 파형 그려지기 정도. 반복 애니메이션(펄스·신호 이동)과
+  호버 떠오르기는 쓰지 않는다. 새 애니메이션을 넣을 때도 `prefers-reduced-motion` 처리를 반드시 포함.
 - **참고**: 신뢰 지표(숫자 통계) 스트립은 사용자 결정으로 제외함 — 넣지 말 것
 - 반응형 필수(모바일 우선 점검)
 - 성능: 이미지는 `astro:assets` 의 `<Image>` 로 최적화, Lighthouse 90점 이상 목표

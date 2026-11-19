@@ -12,7 +12,6 @@ const t = useTranslations(lang);
 ---
 
 <PageHero
-  kicker={t('page.kicker.research')}
   title={t('research.title')}
   lead={t('research.lead')}
 />
@@ -222,7 +221,7 @@ const t = useTranslations(lang);
   }
 
   .projects-band {
-    background: #f6f8fc;
+    background: var(--tint);
     border-top: 1px solid var(--line);
   }
 

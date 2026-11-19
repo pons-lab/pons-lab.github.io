@@ -14,6 +14,24 @@ import JoinBand from './home/JoinBand.astro';
 <RecruitRibbon />
 <ResearchSection />
 <WhyPons />
-<NewsSection />
-<PublicationsSection />
+<section class="section">
+  <div class="container two">
+    <NewsSection />
+    <PublicationsSection />
+  </div>
+</section>
 <JoinBand />
+
+<style>
+  /* 최근 소식과 대표 논문을 나란히. 좁은 화면에서는 위아래로 쌓는다. */
+  .two {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: clamp(3rem, 6vw, 4.5rem);
+  }
+  @media (max-width: 900px) {
+    .two {
+      grid-template-columns: minmax(0, 1fr);
+    }
+  }
+</style>

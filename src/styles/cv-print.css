@@ -22,7 +22,7 @@
 @media print {
   /* ── 바탕 ────────────────────────────────────────────────────────── */
   article.cv {
-    font-family: 'Inter Variable', 'Noto Sans KR Variable', sans-serif !important;
+    font-family: 'Pretendard Variable', Pretendard, sans-serif !important;
     font-size: 9.2pt !important;
     line-height: 1.42 !important;
     color: #1c2942 !important;

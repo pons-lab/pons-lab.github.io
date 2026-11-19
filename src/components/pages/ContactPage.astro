@@ -15,7 +15,7 @@ const officeRoom = lang === 'ko' ? office.room_ko : office.room_en;
 const how = lang === 'ko' ? site.recruiting.how_to_apply_ko : site.recruiting.how_to_apply_en;
 ---
 
-<PageHero kicker={t('page.kicker.contact')} title={t('contact.title')} lead={t('contact.lead')} />
+<PageHero title={t('contact.title')} lead={t('contact.lead')} />
 
 <section class="section">
   <div class="container layout">
@@ -130,7 +130,7 @@ const how = lang === 'ko' ? site.recruiting.how_to_apply_ko : site.recruiting.ho
   }
 
   .join {
-    background: linear-gradient(160deg, #f2f6fd 0%, var(--card) 55%);
+    background: var(--tint);
     border-color: #d8e2f5;
   }
 

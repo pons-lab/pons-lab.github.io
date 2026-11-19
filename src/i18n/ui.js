@@ -20,7 +20,6 @@ export const ui = {
     'nav.gallery': 'Gallery',
     'nav.contact': 'Contact',
     'nav.members': 'Members',
-    'page.kicker.members': 'Internal',
     'members.title': 'For Lab Members',
     'members.lead':
       "Resources for lab members. You need to be signed in with your lab (university) account to open them — ask the PI for access. Please keep new folders and important files owned by the PI's account.",
@@ -41,28 +40,17 @@ export const ui = {
     'cta.back_home': 'Back to home',
 
     'home.why_title': 'Why PONS?',
-    'home.why_kicker': 'The name',
-    'home.research_kicker': 'Research',
-    'home.research_title': 'Three axes, one system',
+    'home.research_title': 'From devices on the skin to models that read them',
     'home.research_lead':
       'Hardware that touches the body, interfaces that turn its signals into control, and the intelligence that reads what they mean.',
-    'home.news_kicker': 'News',
-    'home.news_title': 'Latest from the lab',
+    'home.news_title': 'News',
     'home.news_lead': 'Announcements and milestones from the lab.',
-    'home.pubs_kicker': 'Publications',
-    'home.pubs_title': 'Selected publications',
+    'home.pubs_title': 'Selected papers',
     'home.pubs_lead':
       'Representative work from the lab. Superscript 1 marks a first author, * a corresponding author; lab members are shown in bold.',
-    'home.join_title': 'Build the bridge with us',
+    'home.join_title': 'Join our lab',
     'home.recruiting_label': 'Now recruiting',
 
-    'page.kicker.research': 'What we work on',
-    'page.kicker.people': 'The team',
-    'page.kicker.publications': 'Research output',
-    'page.kicker.lectures': 'Teaching',
-    'page.kicker.news': 'Board',
-    'page.kicker.gallery': 'Lab life',
-    'page.kicker.contact': 'Find us',
 
     'research.title': 'Research',
     'research.lead':
@@ -212,7 +200,6 @@ export const ui = {
     'nav.gallery': 'Gallery',
     'nav.contact': 'Contact',
     'nav.members': 'Members',
-    'page.kicker.members': 'Internal',
     'members.title': 'For Lab Members',
     'members.lead':
       '연구실 구성원 전용 자료 링크입니다. 연구실(학교) 계정으로 로그인해야 접근할 수 있으며, 권한은 PI에게 요청하세요. 새 폴더나 중요 파일은 PI 계정 소유로 유지해 주세요.',
@@ -226,35 +213,24 @@ export const ui = {
     'cta.contact': '문의하기',
     'cta.learn_more': '자세히 보기',
     'cta.how_to_apply': '지원 방법 보기',
-    'cta.all_news': 'All news',
-    'cta.all_publications': 'All publications',
+    'cta.all_news': '소식 전체',
+    'cta.all_publications': '논문 전체',
     'cta.all_people': 'Meet the team',
     'cta.email': '이메일 문의',
     'cta.back_home': '홈으로 돌아가기',
 
     'home.why_title': 'Why PONS?',
-    'home.why_kicker': 'The name',
-    'home.research_kicker': 'Research',
-    'home.research_title': 'Three axes, one system',
+    'home.research_title': '몸에 닿는 기기부터, 신호를 읽는 모델까지',
     'home.research_lead':
       '몸에 닿는 하드웨어, 그 신호를 제어로 바꾸는 인터페이스, 그리고 신호가 뜻하는 바를 읽어내는 지능. 세 축이 하나로 이어집니다.',
-    'home.news_kicker': 'News',
-    'home.news_title': 'Latest from the lab',
+    'home.news_title': '최근 소식',
     'home.news_lead': '연구실의 공지와 소식을 전합니다.',
-    'home.pubs_kicker': 'Publications',
-    'home.pubs_title': 'Selected publications',
+    'home.pubs_title': '대표 논문',
     'home.pubs_lead':
       '연구실의 대표 논문입니다. 이름 뒤 1은 제1저자, *는 교신저자이며 연구실 구성원은 굵게 표시했습니다.',
-    'home.join_title': 'Build the bridge with us',
-    'home.recruiting_label': 'Now recruiting',
+    'home.join_title': '함께할 연구원을 모집합니다',
+    'home.recruiting_label': '모집 중',
 
-    'page.kicker.research': 'What we work on',
-    'page.kicker.people': 'The team',
-    'page.kicker.publications': 'Research output',
-    'page.kicker.lectures': 'Teaching',
-    'page.kicker.news': 'Board',
-    'page.kicker.gallery': 'Lab life',
-    'page.kicker.contact': 'Find us',
 
     'research.title': 'Research',
     'research.lead':

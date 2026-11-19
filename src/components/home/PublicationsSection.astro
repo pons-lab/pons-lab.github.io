@@ -9,16 +9,22 @@ const t = useTranslations(lang);
 const items = selectedPublications();
 ---
 
-<section class="section pubs">
-  <div class="container">
-    <div class="section-head head-row">
-      <div>
-        <p class="kicker">{t('home.pubs_kicker')}</p>
-        <h2>{t('home.pubs_title')}</h2>
-      </div>
-      <a class="link-arrow" href={localizePath('/publications/journal', lang)}>
-        {t('cta.all_publications')}
-        <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+<!-- 메인 페이지에서 소식 목록과 나란히 놓이는 한 칸 (HomePage.astro) -->
+<div class="col">
+  <h2>{t('home.pubs_title')}</h2>
+  <ol class="list">
+    {
+      items.map((pub) => (
+        <li>
+          <PublicationItem pub={pub} compact />
+        </li>
+      ))
+    }
+  </ol>
+  <p class="more">
+    <a class="link-arrow" href={localizePath('/publications/journal', lang)}>
+      {t('cta.all_publications')}
+      <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true">
           <path
             d="M3 8h9m0 0L8.5 4.5M12 8l-3.5 3.5"
             stroke="currentColor"
@@ -26,49 +32,33 @@ const items = selectedPublications();
             stroke-linecap="round"
             stroke-linejoin="round"></path>
         </svg>
-      </a>
-    </div>
-
-    <ol class="list">
-      {
-        items.map((pub) => (
-          <li class="card">
-            <PublicationItem pub={pub} compact />
-          </li>
-        ))
-      }
-    </ol>
-
-    <p class="legend small muted">{t('pub.legend')}</p>
-  </div>
-</section>
+    </a>
+  </p>
+</div>
 
 <style>
-  .pubs {
-    background: #f6f8fc;
-    border-block: 1px solid var(--line);
-  }
-
-  .head-row {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: flex-end;
-    justify-content: space-between;
-    gap: 1rem;
-  }
-  .head-row h2 {
-    margin-bottom: 0;
-  }
-  .head-row .link-arrow {
-    padding-bottom: 0.4rem;
+  h2 {
+    font-size: var(--text-block-title);
+    margin-bottom: 1.25rem;
   }
 
   .list {
     display: grid;
-    gap: 0.9rem;
+    border-top: 2px solid var(--ink);
+  }
+  .list li {
+    padding: 1.1rem 0;
+    border-bottom: 1px solid var(--line);
   }
 
-  .legend {
-    margin: 1.5rem 0 0;
+  /* 메인에서는 제목·저널·연도만. 저자와 DOI 는 논문 페이지에서 본다
+     (제목 링크가 DOI 로 간다). 소식 칸과 길이를 맞추기 위해서다. */
+  .list :global(.authors-line),
+  .list :global(.foot) {
+    display: none;
+  }
+
+  .more {
+    margin: 1.25rem 0 0;
   }
 </style>

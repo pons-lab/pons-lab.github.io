@@ -13,16 +13,16 @@ const items = (await getCollection('news'))
   .slice(0, site.home_news_count ?? 3);
 ---
 
-<section class="section">
-  <div class="container">
-    <div class="section-head head-row">
-      <div>
-        <p class="kicker">{t('home.news_kicker')}</p>
-        <h2>{t('home.news_title')}</h2>
-      </div>
-      <a class="link-arrow" href={localizePath('/news', lang)}>
-        {t('cta.all_news')}
-        <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+<!-- 메인 페이지에서 논문 목록과 나란히 놓이는 한 칸 (HomePage.astro) -->
+<div class="col">
+  <h2>{t('home.news_title')}</h2>
+  <ul class="news-list">
+    {items.map((item) => <NewsItem item={item} compact />)}
+  </ul>
+  <p class="more">
+    <a class="link-arrow" href={localizePath('/news', lang)}>
+      {t('cta.all_news')}
+      <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true">
           <path
             d="M3 8h9m0 0L8.5 4.5M12 8l-3.5 3.5"
             stroke="currentColor"
@@ -30,32 +30,29 @@ const items = (await getCollection('news'))
             stroke-linecap="round"
             stroke-linejoin="round"></path>
         </svg>
-      </a>
-    </div>
-
-    <ul class="news-list">
-      {items.map((item) => <NewsItem item={item} compact />)}
-    </ul>
-  </div>
-</section>
+    </a>
+  </p>
+</div>
 
 <style>
-  .news-list {
-    display: grid;
-    border-top: 1px solid var(--line);
+  h2 {
+    font-size: var(--text-block-title);
+    margin-bottom: 1.25rem;
   }
 
-  .head-row {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: flex-end;
-    justify-content: space-between;
-    gap: 1rem;
+  .news-list {
+    display: grid;
+    border-top: 2px solid var(--ink);
   }
-  .head-row h2 {
-    margin-bottom: 0;
+
+  /* 좁은 칸이라 날짜·태그를 제목 위에 둔다. */
+  .news-list :global(.news-item) {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0.3rem;
+    padding: 1.1rem 0;
   }
-  .head-row .link-arrow {
-    padding-bottom: 0.4rem;
+
+  .more {
+    margin: 1.25rem 0 0;
   }
 </style>

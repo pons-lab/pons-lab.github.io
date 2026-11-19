@@ -10,7 +10,7 @@ const t = useTranslations(lang);
 const items = (await getCollection('news')).sort((a, b) => b.data.date - a.data.date);
 ---
 
-<PageHero kicker={t('page.kicker.news')} title={t('news.title')} lead={t('news.lead')} />
+<PageHero title={t('news.title')} lead={t('news.lead')} />
 
 <section class="section">
   <div class="container">

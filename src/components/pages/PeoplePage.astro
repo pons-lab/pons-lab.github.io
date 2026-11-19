@@ -28,7 +28,7 @@ const memberSince = (m) => (lang === 'ko' ? m.since_ko || m.since : m.since);
 const piPhoto = asset(pi.photo);
 ---
 
-<PageHero kicker={t('page.kicker.people')} title={t('people.title')} />
+<PageHero title={t('people.title')} />
 
 <!-- ── Principal Investigator ─────────────────────────────────────────── -->
 <section class="section-tight">
@@ -485,7 +485,7 @@ const piPhoto = asset(pi.photo);
   }
 
   .members-band {
-    background: #f6f8fc;
+    background: var(--tint);
     border-block: 1px solid var(--line);
   }
 

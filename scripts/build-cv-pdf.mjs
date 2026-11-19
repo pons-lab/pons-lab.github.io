@@ -61,7 +61,7 @@ const base = `http://127.0.0.1:${server.address().port}`;
 // 페이지 CSS 를 상속하지 않으므로 글꼴·크기를 여기서 직접 준다.
 const updated = new Date().toLocaleDateString('en-CA'); // YYYY-MM-DD
 const FOOTER = `
-  <div style="width:100%;padding:0 19mm;font-family:Inter,Segoe UI,sans-serif;
+  <div style="width:100%;padding:0 19mm;font-family:'Pretendard Variable',Pretendard,Segoe UI,sans-serif;
               font-size:7.5pt;color:#8b98ad;display:flex;justify-content:space-between;">
     <span>Hodam Kim — Last updated: ${updated}</span>
     <span>Page <span class="pageNumber"></span> of <span class="totalPages"></span></span>

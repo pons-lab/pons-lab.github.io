@@ -1,9 +1,9 @@
 ---
 // 글꼴은 프로젝트에 내장한다. CDN 에 기대면 CI 에서 PDF 를 만들 때
 // 글꼴이 늦게 오거나 빠져서 줄 간격과 줄바꿈이 화면과 달라진다.
-// 두 글꼴 모두 가변(variable) 판이라 550·620 같은 중간 굵기도 그대로 나온다.
-import '@fontsource-variable/inter';
-import '@fontsource-variable/noto-sans-kr';
+// Pretendard 가변(variable) 판이라 550·620 같은 중간 굵기도 그대로 나온다.
+// 동적 서브셋이라 브라우저는 화면에 나온 글자가 든 조각만 받는다.
+import 'pretendard/dist/web/variable/pretendardvariable-dynamic-subset.css';
 import '../styles/global.css';
 import '../styles/cv-print.css';
 import Header from '../components/Header.astro';

@@ -13,7 +13,7 @@ const conferenceCount = publications.conferences.length;
 const patentCount = cv.patents.length;
 ---
 
-<PageHero kicker={t('page.kicker.publications')} title={t('pub.conferences')}>
+<PageHero title={t('pub.conferences')}>
   <p class="counts">
     <span class="count-chip">
       <strong class="mono-num">{conferenceCount}</strong> {t('pub.count_conferences')}
@@ -122,7 +122,7 @@ const patentCount = cv.patents.length;
   }
 
   .band {
-    background: #f6f8fc;
+    background: var(--tint);
     border-block: 1px solid var(--line);
   }
 
