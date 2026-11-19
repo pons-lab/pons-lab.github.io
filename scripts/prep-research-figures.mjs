@@ -1,4 +1,5 @@
 // images/ 의 논문 도면을 연구 카드용으로 손질한다.
+// (다른 연구 사진은 _originals/figures 에서 손으로 잘라 src/assets/research/*.jpg 로 넣었다.)
 //  - 빨간 주석선은 사진에 인쇄돼 있어 크롭으로 못 지우므로 붉은 화소를 주변 중앙값으로 메운다
 //  - 사진 자체의 회색 배경은 카드 배경색으로 갈아끼워 카드와 이어 보이게 한다
 import sharp from 'sharp';
@@ -112,15 +113,6 @@ async function compose(parts, out, { gap = 20, pad = 14 } = {}) {
     .toFile(out);
 }
 
-// ── 1) 일상 속 뇌신호 센서 : 손끝 컷 + 뒤통수 착용 컷 ─────────────────
-const src1 = '_originals/figures/comfortable EEg device.png';
-// 손끝 — 손가락에 바짝 붙여 자른다 (위쪽 분홍 콜아웃·검은 테두리 제외)
-await sharp(src1).extract({ left: 30, top: 436, width: 344, height: 264 }).toFile('prep-finger.png');
-// 뒤통수 — 인셋과 스케일바 아래부터, 머리와 무선 모듈 위주로
-await sharp(await removeRed(await sharp(src1).extract({ left: 566, top: 300, width: 312, height: 396 }).toBuffer()))
-  .toFile('prep-head.png');
-await compose(['prep-finger.png', 'prep-head.png'], 'src/assets/research/brain-sensor.webp');
-
 // ── 2) 인간-기계 인터페이스 : 전완부 패치 ────────────────────────────
 // 사진의 회색 배경을 카드 배경으로 바꾸고, 여백을 걷어내 피사체를 키운다
 // 가장자리의 검은 테두리를 먼저 잘라낸 뒤 배경을 갈아끼운다
@@ -129,35 +121,5 @@ const hmiSrc = await sharp('_originals/figures/Soft patch sensor.png')
   .toBuffer();
 await sharp(await swapBackground(hmiSrc)).trim({ threshold: 6 }).toFile('prep-hmi.png');
 await compose(['prep-hmi.png'], 'src/assets/research/hmi-forearm-emg.webp', { pad: 8 });
-
-// ── 3) 통합 멀티센서 모니터링 : 사진(좌, 꽉 채움) + 기존 도식(우) ──────
-// 둘 다 가로로 긴 그림이라 나란히 줄여 놓으면 위아래가 텅 빈다.
-// 사진은 카드 높이를 꽉 채우고, 도식은 그 옆 밝은 바탕에 얹는다.
-{
-  const photoW = 356;
-  const photo = await sharp('_originals/figures/Integrated Multi-sensor Monitoring System.png')
-    .resize(photoW, H, { fit: 'cover', position: 'centre' })
-    .toBuffer();
-  const diagramW = W - photoW - 44;
-  const diagram = await sharp('src/assets/research/multi-sensor.svg', { density: 300 })
-    .resize({ width: diagramW })
-    .flatten({ background: { r: BG[0], g: BG[1], b: BG[2] } })
-    .toBuffer();
-  const dh = (await sharp(diagram).metadata()).height;
-  await sharp({ create: { width: W, height: H, channels: 3, background: { r: BG[0], g: BG[1], b: BG[2] } } })
-    .composite([
-      { input: photo, left: 0, top: 0 },
-      { input: diagram, left: photoW + 22, top: Math.round((H - dh) / 2) },
-    ])
-    .webp({ quality: 88 })
-    .toFile('src/assets/research/multi-sensor.webp');
-}
-
-// Join 밴드 배경 (같은 사진, 밴드 폭으로 확대 + 약한 블러)
-await sharp('_originals/figures/Integrated Multi-sensor Monitoring System.png')
-  .resize(1600, 520, { fit: 'cover', position: 'centre', kernel: 'lanczos3' })
-  .blur(1.4)
-  .webp({ quality: 78 })
-  .toFile('src/assets/join-circuit.webp');
 
 console.log('연구 카드 이미지 생성 완료');

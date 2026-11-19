@@ -1,5 +1,7 @@
 ---
+import { Image } from 'astro:assets';
 import { research } from '../../lib/data.js';
+import { asset } from '../../lib/images.js';
 import { getLangFromUrl, useTranslations, localizePath, pick } from '../../i18n/utils.js';
 
 const lang = getLangFromUrl(Astro.url);
@@ -18,6 +20,16 @@ const t = useTranslations(lang);
       {
         research.axes.map((axis) => (
           <article>
+            {axis.home_images?.length > 0 && (
+              <figure>
+                <div class={`photos n${axis.home_images.length}`}>
+                  {axis.home_images.map((path) => asset(path) && (
+                    <Image src={asset(path)} alt="" widths={[360, 720]} sizes="(max-width: 900px) 90vw, 380px" />
+                  ))}
+                </div>
+                {axis.home_credit && <figcaption lang="en">{axis.home_credit}</figcaption>}
+              </figure>
+            )}
             <h3>
               <a href={localizePath('/research', lang)}>{pick(axis, 'title', lang)}</a>
             </h3>
@@ -78,6 +90,34 @@ const t = useTranslations(lang);
     border-right: 0;
   }
 
+  /* 논문 사진. 한두 장을 같은 높이 띠로 묶는다 */
+  figure {
+    margin: 0 0 1.4rem;
+  }
+  .photos {
+    display: grid;
+    gap: 6px;
+    /* 기둥 폭이 조금씩 달라도 사진 띠 높이는 같게 */
+    height: clamp(200px, 19vw, 236px);
+  }
+  .photos.n2 {
+    grid-template-columns: 1fr 1fr;
+  }
+  .photos img {
+    width: 100%;
+    height: 100%;
+    min-height: 0;
+    object-fit: cover;
+    border-radius: 6px;
+    background: var(--tint);
+  }
+  figcaption {
+    margin-top: 0.45rem;
+    font-size: var(--text-3xs);
+    line-height: 1.4;
+    color: var(--muted);
+  }
+
   h3 {
     margin-bottom: 0.75rem;
   }
@@ -119,6 +159,10 @@ const t = useTranslations(lang);
     }
     .pillars article:last-child {
       border-bottom: 0;
+    }
+    .photos {
+      height: auto;
+      aspect-ratio: 16 / 10;
     }
   }
 </style>

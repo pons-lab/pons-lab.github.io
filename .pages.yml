@@ -528,6 +528,13 @@ content:
             type: image
             options:
               media: research
+          - name: home_images
+            label: 메인 페이지 그림 (1~2장)
+            type: image
+            list: true
+            options:
+              media: research
+          - { name: home_credit, label: 메인 페이지 그림 출처, type: string }
           - name: topics
             label: 세부 주제
             type: object
