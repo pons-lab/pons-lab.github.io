@@ -40,8 +40,8 @@ axes:
           심박·호흡·체온·움직임을 하나의 무선 플랫폼에서 동시에 측정합니다.
           탈수나 온열 스트레스, 야외 작업자의 초기 신장 손상처럼 센서 하나로는
           잡히지 않는 상태는 여러 신호를 함께 읽을 때 비로소 드러납니다.
-        image: research/onbody-layers.jpg
-        image_credit: Kim et al., Biosensors and Bioelectronics 2025
+        image: research/onbody-athlete-monitor.jpg
+        image_credit: Adapted from Kim et al., Advanced Science 2024
         refs: [16, 23, 15]
 
       - title_en: Soft Physiological Signal Patch
